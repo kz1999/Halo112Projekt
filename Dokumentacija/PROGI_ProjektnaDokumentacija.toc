@@ -1,0 +1,12 @@
+\babel@toc {croatian}{}\relax 
+\contentsline {chapter}{\numberline {1}Dnevnik promjena dokumentacije}{2}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Arhitektura i dizajn sustava}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Baza podataka}{4}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Opis tablica}{4}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Dijagram baze podataka}{5}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}Dijagram razreda}{6}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Dijagram stanja}{7}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Dijagram aktivnosti}{8}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Dijagram komponenti}{9}{section.2.5}%
+\contentsline {chapter}{Indeks slika i dijagrama}{10}{chapter*.2}%
+\contentsline {chapter}{Dodatak: Prikaz aktivnosti grupe}{11}{chapter*.3}%
