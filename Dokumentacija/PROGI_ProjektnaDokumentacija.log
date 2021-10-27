@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.10) (preloaded format=pdflatex 2021.10.26)  26 OCT 2021 19:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (MiKTeX 21.10) (preloaded format=pdflatex 2021.10.26)  27 OCT 2021 12:23
 entering extended mode
 **./PROGI_ProjektnaDokumentacija.tex
 (PROGI_ProjektnaDokumentacija.tex
@@ -1645,6 +1645,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--10
  []
 
 
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.28 				\begin{packed_enum}
+                            
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
 (fancyhdr)                \setlength{\headheight}{14.49998pt}.
@@ -2074,7 +2086,7 @@ mi.pfb><D:/Program files/MikTex/fonts/type1/public/kpfonts/jkpmit8a.pfb><D:/Pro
 gram files/MikTex/fonts/type1/public/kpfonts/jkpmn8a.pfb><D:/Program files/MikT
 ex/fonts/type1/public/kpfonts/jkpsy.pfb><D:/Program files/MikTex/fonts/type1/pu
 blic/kpfonts/jkpttmn8a.pfb>
-Output written on PROGI_ProjektnaDokumentacija.pdf (30 pages, 191502 bytes).
+Output written on PROGI_ProjektnaDokumentacija.pdf (30 pages, 191534 bytes).
 PDF statistics:
  409 PDF objects out of 1000 (max. 8388607)
  93 named destinations out of 1000 (max. 500000)
