@@ -23,11 +23,11 @@
 			
 			
 			\begin{packed_enum}
-				
+				\item funkcionalnost 1\item  \underbar{Aktor 1 (inicijator) može:}
 				
 				\begin{packed_enum}
 
-					\item funkcionalnost 1\item  \underbar{Aktor 1 (inicijator) može:}
+					
 					\item funkcionalnost 2
 					\begin{packed_enum}
 						
@@ -157,8 +157,8 @@
 						\item[] \begin{packed_enum}
 	
 							\item \text Dispečer otvara akciju sa dostupnim informacijama i fotografijama
-							\item \text Dispečer dobiva uvid u broj spasilaca po stanicama
-							\item \text Dispečer šalje zahtjev pojedinom spasiocu sa definiranim načinom sudjelovanja i hitnosti
+							\item \text Dispečer dobiva uvid o broju spasilaca po stanicama
+							\item \text Dispečer šalje zahtjev pojedinom spasiocima sa definiranim načinom sudjelovanja i hitnosti
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
@@ -191,8 +191,115 @@
 						\end{packed_enum}
 						
 					\end{packed_item}
+
+					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ - \text Uklanjanje spasioca s akcije}}
+					\begin{packed_item}
+	
+						\item \textbf{Glavni sudionik: }\text Dispečer
+						\item  \textbf{Cilj:}\text Ukloniti spasioca s akcije
+						\item  \textbf{Sudionici:} \text Baza podataka
+						\item  \textbf{Preduvjet:} \text Spasioc trenutno na akciji
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+	
+							\item \text Dispečer otvara popis spasilaca na odabranoj akciji
+							\item \text Dispečer odabire spasioca te ga miče s akcije
+							\item \text Spasioc biva obaviješten o uklanjanju s akcije
+						\end{packed_enum}
+						
+					\end{packed_item}
+
+					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ - \text Odazivanje na akciju}}
+					\begin{packed_item}
+	
+						\item \textbf{Glavni sudionik: }\text Spasilac
+						\item  \textbf{Cilj:} \text Odazivanje na akciju
+						\item  \textbf{Sudionici:} \text Baza podataka
+						\item  \textbf{Preduvjet:} \text Akcija pokrenuta i dispečer poslao zahtjev spasiocu
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+	
+							\item \text Spasilac dobiva zahtjev od dispečera za uključenje u akciju
+							\item \text Spasilac potvrduje zahtjev ili ga odbija
+						\end{packed_enum}
+						
+					\end{packed_item}
 				
-					
+					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ - \text Zadavanje pojedinačnih zadataka}}
+					\begin{packed_item}
+	
+						\item \textbf{Glavni sudionik: }\text Dispečer
+						\item  \textbf{Cilj:} \text Zadati pojedinačan zadatak spasiocu
+						\item  \textbf{Sudionici:} \text Baza podataka, Spasilac
+						\item  \textbf{Preduvjet:} \text Spasilac dostupan za akciju
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+	
+							\item \text Dispečer otvara kartu
+							\item \text Na karti odabire dostupnog spasioca
+							\item \text Dispečer upisuje informacije o zadatku, moguć je zahtjev prolaska određenom rutom do lokacije
+							\item \text Dispečer po potrebi dodaje i dodatni komentar
+							\item \text Spasilac dobiva informacije o zadatku
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+	
+							\item[2.a] \text Nema dostupnih spasilaca za zadatak
+							\item[] \begin{packed_item}
+								
+								\item \text Sustav obavještava dispečera porukom o nedostupnosti spasilaca
+								
+							\end{packed_item}
+							
+						\end{packed_item}
+					\end{packed_item}		
+
+					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ - \text Odabir moda izračuna dijagrama}}
+					\begin{packed_item}
+	
+						\item \textbf{Glavni sudionik: }\text Dispečer
+						\item  \textbf{Cilj:} \text Odabrati način izračuna Vornojevog dijagrama
+						\item  \textbf{Sudionici:} \text Baza podataka, vanjski servis
+						\item  \textbf{Preduvjet:} \text Dispečer prijavljen u aplikaciju
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+	
+							\item \text Dispečer na meniju karte odabire opciju "način izračuna"
+							\item \text Dispečer odabire jednu od tri opcije:
+								\begin{packed_enum}
+									\item \text Uključiti sve spasioce
+									\item \text Uključiti sve dostupne neaktivne spasioce
+									\item \text Uključiti sve spasioce aktivne na određenoj akciji
+								\end{packed_enum}
+							\item \text Vanjski servis obavlja izračun na temelju odabrane opcije
+						\end{packed_enum}
+						
+					\end{packed_item}	
+
+					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ - \text Prikaz spasilaca}}
+					\begin{packed_item}
+	
+						\item \textbf{Glavni sudionik: }\text Dispečer
+						\item  \textbf{Cilj:} \text Adekvatno prikazati spasioce na karti
+						\item  \textbf{Sudionici:} \text Baza podataka
+						\item  \textbf{Preduvjet:} \text Dispečer prijavljen u aplikaciju
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+	
+							\item \text Ovisno o ulozi spasioca u akciji, sustav spasioca na karti treba prikazati adekvatnom ikonom
+							\item \text Prilikom odabira karte, dispečeru se spasioci koji sudjeluju u akciji prikazuju adekvatnim ikonama
+						
+						\end{packed_enum}
+						
+					\end{packed_item}		
+
 				\subsubsection{Dijagrami obrazaca uporabe}
 					
 					\textit{Prikazati odnos aktora i obrazaca uporabe odgovarajućim UML dijagramom. Nije nužno nacrtati sve na jednom dijagramu. Modelirati po razinama apstrakcije i skupovima srodnih funkcionalnosti.}
