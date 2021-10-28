@@ -1,50 +1,106 @@
 \chapter{Specifikacija programske potpore}
 		
 	\section{Funkcionalni zahtjevi}
+
+		\textbf{\textit{dio 1. revizije}}
+		
+		
+		\noindent \textbf{Dionici:}
+		
+		\begin{packed_enum}
 			
-			\textbf{\textit{dio 1. revizije}}\\
-			
-			\textit{Navesti \textbf{dionike} koji imaju \textbf{interes u ovom sustavu} ili  \textbf{su nositelji odgovornosti}. To su prije svega korisnici, ali i administratori sustava, naručitelji, razvojni tim.}\\
-				
-			\textit{Navesti \textbf{aktore} koji izravno \textbf{koriste} ili \textbf{komuniciraju sa sustavom}. Oni mogu imati inicijatorsku ulogu, tj. započinju određene procese u sustavu ili samo sudioničku ulogu, tj. obavljaju određeni posao. Za svakog aktora navesti funkcionalne zahtjeve koji se na njega odnose.}\\
-			
-			
-			\noindent \textbf{Dionici:}
-			
-			\begin{packed_enum}
-				
-				\item Dionik 1
-				\item Dionik 2				
-				\item ...
-				
+			\item Neregistrirani/neprijavljeni korisnik
+			\item Spasioc
+			\item Doktor(Spasioc)
+			\item Vatrogasac(Spasioc)
+			\item Policajac(Spasioc)
+			\item Voditelj stanice		
+			\item Dispečer
+			\item Administrator
+			\item Razvojni tim
+	
 			\end{packed_enum}
 			
 			\noindent \textbf{Aktori i njihovi funkcionalni zahtjevi:}
 			
 			
 			\begin{packed_enum}
-				\item  \underbar{Aktor 1 (inicijator) može:}
+				\item \underline{Neregistrirani/neprijavljeni korisnik može:}
 				
 				\begin{packed_enum}
-
-					\item funkcionalnost 1
-					\item funkcionalnost 2
-					\begin{packed_enum}
-						
-						\item  podfunkcionalnost 1 
-						\item  podfunkcionalnost 2
-				
-					\end{packed_enum}
-					\item  funkcionalnost 3
+					
+					\item poslati zahtjev za registraciju s željenom ulogom za
+					koju se prijavljuje, a potrebni su korisničko ime, fotografija, lozinka, ime, prezime, broj
+					mobitela i email adresa\item  \underbar{Aktor 1 (inicijator) može:}
+					\item prijaviti se za ulogu: 112 dispečer, doktor,
+					vatrogasac i policajac
 					
 				\end{packed_enum}
-			
-				\item  \underbar{Aktor 2 (sudionik) može:}
+				
+				\item \underline{Spasioc može:}
 				
 				\begin{packed_enum}
 					
-					\item funkcionalnost 1
-					\item funkcionalnost 2
+					\item osvježiti podatak o dostupnosti za akcije (dostupan i spreman za akciju ili nije)
+					\item odazvati se na akciju spašavanja
+					
+				\end{packed_enum}
+				
+				\item \underline{Doktor(Spasioc) može:}
+				
+				\begin{packed_enum}
+					
+					\item biti osposobljen za vožnju motociklom ili kao putnik u kolima hitne pomoći
+					
+				\end{packed_enum}
+				
+				\item \underline{Vatrogasac(Spasioc) može:}
+				
+				\begin{packed_enum}
+					
+					\item biti osposobljen za vožnju autocisterni, autoljestvi, zapovjednog vozila i šumskog vozila
+					
+				\end{packed_enum}
+				
+				\item \underline{Policajac(Spasioc) može:}
+				
+				\begin{packed_enum}
+					
+					\item kretati se kao kontaktni policajac, pomoću motocikla, automobila ili oklopnog vozila
+					
+				\end{packed_enum}
+				
+				\item \underline{Voditelj stanice može:}
+				
+				\begin{packed_enum}
+					
+					\item definirati koji su spasioci dio njegove stanice
+					\item definirati na koji način su spasioci iz njegove stanice osposobljeni voditi spašavanje
+					\item odazvati se na akciju spašavanja
+					
+				\end{packed_enum}
+				\item \underline{Dispečer može:}
+				
+				\begin{packed_enum}
+					
+					\item na temelju prijave otvarati akcije spašavanja s dostupnim informacijama i fotografijama
+					\item vidjeti broj dostupnih spasioca po stanicama
+					\item poslati zahtjev za uključivanjem spasilaca u akciju spašavanja
+					\item prilikom slanja zahtjeva definirati na koji način bi spasilac trebao sudjelovati (auto, pješke.. )
+					\item definirati razinu hitnosti zahtjeva
+					\item ako je potrebno spasioca ukloniti s akcije
+					\item ako je akcija spašavanja završila, označiti ju u sustavu kao gotovom
+					\item preko karte spasiocima pojedinačno zadati zadatke
+					\item pristupiti trenutnim pozicijama svih spasilaca zajedno s prikazom Voronojevog dijagrama
+					\item odabrati da se za izradu dijagrama koriste pozicije svih spasioca, ili svih dostupnih neaktivnih spasioca, ili aktivnih spasioca na određenoj akciji
+					
+				\end{packed_enum}
+				\item \underline{Administrator može:}
+				
+				\begin{packed_enum}
+					
+					\item vidjeti popis svih registriranih korisnika i njihovih osobnih podataka
+					\item mijenjati dodijeljena prava, osobne podatke i pripadnost stanici
 					
 				\end{packed_enum}
 			\end{packed_enum}
