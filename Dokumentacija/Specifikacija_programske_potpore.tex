@@ -2,20 +2,22 @@
 		
 	\section{Funkcionalni zahtjevi}
 			
-			\textbf{\textit{dio 1. revizije}}\\
-			
-			\textit{Navesti \textbf{dionike} koji imaju \textbf{interes u ovom sustavu} ili  \textbf{su nositelji odgovornosti}. To su prije svega korisnici, ali i administratori sustava, naručitelji, razvojni tim.}\\
-				
-			\textit{Navesti \textbf{aktore} koji izravno \textbf{koriste} ili \textbf{komuniciraju sa sustavom}. Oni mogu imati inicijatorsku ulogu, tj. započinju određene procese u sustavu ili samo sudioničku ulogu, tj. obavljaju određeni posao. Za svakog aktora navesti funkcionalne zahtjeve koji se na njega odnose.}\\
+			\textbf{\textit{dio 1. revizije}}
 			
 			
 			\noindent \textbf{Dionici:}
 			
 			\begin{packed_enum}
 				
-				\item Dionik 1
-				\item Dionik 2				
-				\item ...
+				\item Neregistrirani/neprijavljeni korisnik
+				\item Spasioc
+				\item Doktor(Spasioc)
+				\item Vatrogasac(Spasioc)
+				\item Policajac(Spasioc)
+				\item Voditelj stanice		
+				\item Dispečer
+				\item Administrator
+				\item Razvojni tim
 				
 			\end{packed_enum}
 			
@@ -23,30 +25,84 @@
 			
 			
 			\begin{packed_enum}
-				\item  \underbar{Aktor 1 (inicijator) može:}
+				\item \underline{Neregistrirani/neprijavljeni korisnik može:}
 				
 				\begin{packed_enum}
-
-					\item funkcionalnost 1
-					\item funkcionalnost 2
-					\begin{packed_enum}
-						
-						\item  podfunkcionalnost 1 
-						\item  podfunkcionalnost 2
-				
-					\end{packed_enum}
-					\item  funkcionalnost 3
+					
+					\item poslati zahtjev za registraciju s željenom ulogom za
+					koju se prijavljuje, a potrebni su korisničko ime, fotografija, lozinka, ime, prezime, broj
+					mobitela i email adresa\item  \underbar{Aktor 1 (inicijator) može:}
+					\item prijaviti se za ulogu: 112 dispečer, doktor,
+					vatrogasac i policajac
 					
 				\end{packed_enum}
 			
-				\item  \underbar{Aktor 2 (sudionik) može:}
+				\item \underline{Spasioc može:}
 				
 				\begin{packed_enum}
 					
-					\item funkcionalnost 1
-					\item funkcionalnost 2
+					\item osvježiti podatak o dostupnosti za akcije (dostupan i spreman za akciju ili nije)
+					\item odazvati se na akciju spašavanja
 					
 				\end{packed_enum}
+			
+				\item \underline{Doktor(Spasioc) može:}
+				
+				\begin{packed_enum}
+					
+					\item biti osposobljen za vožnju motociklom ili kao putnik u kolima hitne pomoći
+					
+				\end{packed_enum}
+			
+				\item \underline{Vatrogasac(Spasioc) može:}
+				
+				\begin{packed_enum}
+					
+					\item biti osposobljen za vožnju autocisterni, autoljestvi, zapovjednog vozila i šumskog vozila
+					
+				\end{packed_enum}
+			
+				\item \underline{Policajac(Spasioc) može:}
+				
+				\begin{packed_enum}
+					
+					\item kretati se kao kontaktni policajac, pomoću motocikla, automobila ili oklopnog vozila
+					
+				\end{packed_enum}
+			
+				\item \underline{Voditelj stanice može:}
+				
+				\begin{packed_enum}
+					
+					\item definirati koji su spasioci dio njegove stanice
+					\item definirati na koji način su spasioci iz njegove stanice osposobljeni voditi spašavanje
+					\item odazvati se na akciju spašavanja
+					
+				\end{packed_enum}
+			\item \underline{Dispečer može:}
+			
+			\begin{packed_enum}
+				
+				\item na temelju prijave otvarati akcije spašavanja s dostupnim informacijama i fotografijama
+				\item vidjeti broj dostupnih spasioca po stanicama
+				\item poslati zahtjev za uključivanjem spasilaca u akciju spašavanja
+				\item prilikom slanja zahtjeva definirati na koji način bi spasilac trebao sudjelovati (auto, pješke.. )
+				\item definirati razinu hitnosti zahtjeva
+				\item ako je potrebno spasioca ukloniti s akcije
+				\item ako je akcija spašavanja završila, označiti ju u sustavu kao gotovom
+				\item preko karte spasiocima pojedinačno zadati zadatke
+				\item pristupiti trenutnim pozicijama svih spasilaca zajedno s prikazom Voronojevog dijagrama
+				\item odabrati da se za izradu dijagrama koriste pozicije svih spasioca, ili svih dostupnih neaktivnih spasioca, ili aktivnih spasioca na određenoj akciji
+				
+			\end{packed_enum}
+			\item \underline{Administrator može:}
+			
+			\begin{packed_enum}
+				
+				\item vidjeti popis svih registriranih korisnika i njihovih osobnih podataka
+				\item mijenjati dodijeljena prava, osobne podatke i pripadnost stanici
+				
+			\end{packed_enum}
 			\end{packed_enum}
 			
 			\eject 
@@ -61,404 +117,42 @@
 					\textit{Funkcionalne zahtjeve razraditi u obliku obrazaca uporabe. Svaki obrazac je potrebno razraditi prema donjem predlošku. Ukoliko u nekom koraku može doći do odstupanja, potrebno je to odstupanje opisati i po mogućnosti ponuditi rješenje kojim bi se tijek obrasca vratio na osnovni tijek.}\\
 					
 
-					\noindent \underbar{\textbf{UC1 -Registracija}}
+					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
 					\begin{packed_item}
 	
-						\item \textbf{Glavni sudionik: } Neregistrirani korisnik
-						\item  \textbf{Cilj:} Registrirati se
-						\item  \textbf{Sudionici:} Baza podataka
-						\item  \textbf{Preduvjet:} -
+						\item \textbf{Glavni sudionik: }$<$sudionik$>$
+						\item  \textbf{Cilj:} $<$cilj$>$
+						\item  \textbf{Sudionici:} $<$sudionici$>$
+						\item  \textbf{Preduvjet:} $<$preduvjet$>$
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
 	
-							\item Korisnik odabire opciju za se registrirati
-							\item Korisnik unosi potrebne podatke
-							\item Korisnik dobiva potvrdu da mu je registracija odobrena
+							\item $<$opis korak jedan$>$
+							\item $<$opis korak dva$>$
+							\item $<$opis korak tri$>$
+							\item $<$opis korak četiri$>$
+							\item $<$opis korak pet$>$
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						
 						\item[] \begin{packed_item}
 	
-							\item[2.a] Odabir zauzetog korisničkog imena ili e-mail adrese, unos potrebnih podatak u krivom formatu
+							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
 							\item[] \begin{packed_enum}
 								
-								\item Sustav obavještava korisnika o grešci
-								\item Korisnik ispravlja podatke ili odustaje od registracije
+								\item $<$opis rješenja mogućeg scenarija korak 1$>$
+								\item $<$opis rješenja mogućeg scenarija korak 2$>$
 								
 							\end{packed_enum}
+							\item[2.b] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
+							\item[3.a] $<$opis mogućeg scenarija odstupanja  u koraku 3$>$
 							
 						\end{packed_item}
 					\end{packed_item}
 				
-					\noindent \underbar{\textbf{UC2 -Prijava}}
-					\begin{packed_item}
-						
-						\item \textbf{Glavni sudionik: } Registrirani korisnik
-						\item  \textbf{Cilj:} Dobiti pristup korisničkom sučelju
-						\item  \textbf{Sudionici:} Baza podataka
-						\item  \textbf{Preduvjet:} Registracija
-						\item  \textbf{Opis osnovnog tijeka:}
-						
-						\item[] \begin{packed_enum}
-							
-							\item Unos korisničkog imena i lozinke
-							\item Pristup korisničkim funkcijama
-						\end{packed_enum}
-						
-						\item  \textbf{Opis mogućih odstupanja:}
-						
-						\item[] \begin{packed_item}
-							
-							\item[1.a] Unos krivog korisničkog imena ili lozinke
-							\item[] \begin{packed_enum}
-								
-								\item Sustav obavještava korisnika o grešci
-								\item Korisnik ispravlja podatke ili odustaje od registracije
-								
-							\end{packed_enum}
-							
-						\end{packed_item}
-					\end{packed_item}
-			
-			
-					\noindent \underbar{\textbf{UC3 -Pregled korisnika}}
-					\begin{packed_item}
-						
-						\item \textbf{Glavni sudionik: } Administrator
-						\item  \textbf{Cilj:} Vidjeti popis registriranih korisnika i njihove podatke
-						\item  \textbf{Sudionici:} Baza podataka
-						\item  \textbf{Preduvjet:} Administrator je prijavljen u sustav
-						\item  \textbf{Opis osnovnog tijeka:}
-						
-						\item[] \begin{packed_enum}
-							
-							\item Administrator odabire opciju pregledavanja korisnika
-							\item Prikaže se lista registriranih korisnika s njihovim podacima
-						\end{packed_enum}
-						
-					\end{packed_item}
-				
-					\noindent \underbar{\textbf{UC4 -Promjena prava i podataka registriranih korisnika}}
-					\begin{packed_item}
-						
-						\item \textbf{Glavni sudionik: } Administrator
-						\item  \textbf{Cilj:} Mijenjati prava, podatke i pripadnost stanici registriranih korisnika
-						\item  \textbf{Sudionici:} Baza podataka
-						\item  \textbf{Preduvjet:} Administrator je prijavljen u sustav
-						\item  \textbf{Opis osnovnog tijeka:}
-						
-						\item[] \begin{packed_enum}
-							
-							\item Administrator odabire željenog korisnika
-							\item Administrator mijenja željene podatke i prava
-						\end{packed_enum}
-					\end{packed_item}
-				
-					\noindent \underbar{\textbf{UC5 -Obrada zahtjeva za registraciju}}
-					\begin{packed_item}
-						
-						\item \textbf{Glavni sudionik: } Administrator
-						\item  \textbf{Cilj:} Odobriti ili odbiti zahtjev za registraciju
-						\item  \textbf{Sudionici:} Baza podataka
-						\item  \textbf{Preduvjet:} Administrator je prijavljen u sustav, ima novih zahtjeva za registraciju
-						\item  \textbf{Opis osnovnog tijeka:}
-						
-						\item[] \begin{packed_enum}
-							
-							\item Administrator odabire opciju pregledavanja zahtjeva za registraciju
-							\item Administrator potvrđuje ili odbija registraciju
-						\end{packed_enum}
-						
-					\end{packed_item}
-				
-					\noindent \underbar{\textbf{UC6 -Kreiranje stanice}}
-					\begin{packed_item}
-						
-						\item \textbf{Glavni sudionik: } Administrator
-						\item  \textbf{Cilj:} Napraviti novu stanicu
-						\item  \textbf{Sudionici:} Baza podataka
-						\item  \textbf{Preduvjet:} Administrator je prijavljen u sustav
-						\item  \textbf{Opis osnovnog tijeka:}
-						
-						\item[] \begin{packed_enum}
-							
-							\item Administrator odabire opciju stvaranja nove stanice
-							\item Administrator unosi potrebne podatke i stvara stanicu
-						\end{packed_enum}
-						
-						
-					\end{packed_item}
-				
-					\noindent \underbar{\textbf{UC7 - \text Osvježavanje dostupnosti}}
-					\begin{packed_item}
-	
-						\item \textbf{Glavni sudionik: }\text Spasilac
-						\item  \textbf{Cilj:} \text Ažurirati dostupnost za akciju
-						\item  \textbf{Sudionici:} \text Baza podataka
-						\item  \textbf{Preduvjet:} \text Spasilac prijavljen
-						\item  \textbf{Opis osnovnog tijeka:}
-						
-						\item[] \begin{packed_enum}
-	
-							\item Spasilac klikom na gumb odabire svoju dostupnost
-							\item Spasilac postaje dostupan ili nedostupan za akciju
-						\end{packed_enum}
-					\end{packed_item}
-
-					\noindent \underbar{\textbf{UC8 - \text Definiranje spasilaca }}
-					\begin{packed_item}
-	
-						\item \textbf{Glavni sudionik: }\text Voditelj
-						\item  \textbf{Cilj:} \text Definirati spasioce i njihove uloge
-						\item  \textbf{Sudionici:} \text Baza podataka
-						\item  \textbf{Preduvjet:} \text Voditelj prijavljen
-						\item  \textbf{Opis osnovnog tijeka:}
-						
-						\item[] \begin{packed_enum}
-	
-							\item \text Voditelj odabire opciju pregleda stanice
-							\item \text Voditelj dobiva pregled stanice, opreme u stanici i spasilaca pripadnika stanice
-							\item \text Voditelj odabire opciju dodavanja spasilaca
-							\item \text Voditelj odabire spasioca iz baze registriranih spasilaca te mu dodjeljuje ulogu
 					
-						\end{packed_enum}
-
-						\item  \textbf{Opis mogućih odstupanja:}
-						
-						\item[] \begin{packed_item}
-	
-							\item[4.a] \text Nema slobodnih spasilaca
-							\item[] \begin{packed_item}
-								
-								\item \text Sustav obavještava voditelja da nema dostupnih spasilaca
-								
-							\end{packed_item}
-							
-						\end{packed_item}
-						
-					\end{packed_item}
-
-					\noindent \underbar{\textbf{UC9 - \text Otvaranje akcije}}
-					\begin{packed_item}
-	
-						\item \textbf{Glavni sudionik: }\text Dispečer
-						\item  \textbf{Cilj:} \text Otvoriti akciju i poslati zahtjeve spasiocima
-						\item  \textbf{Sudionici:} \text Baza podataka
-						\item  \textbf{Preduvjet:} \text Dispečer prijavljen
-						\item  \textbf{Opis osnovnog tijeka:}
-						
-						\item[] \begin{packed_enum}
-	
-							\item \text Dispečer otvara akciju sa dostupnim informacijama i fotografijama
-							\item \text Dispečer dobiva uvid o broju spasilaca po stanicama
-							\item \text Dispečer šalje zahtjev pojedinom spasiocima sa definiranim načinom sudjelovanja i hitnosti
-						\end{packed_enum}
-						
-						\item  \textbf{Opis mogućih odstupanja:}
-						
-						\item[] \begin{packed_item}
-	
-							\item[2.a] \text Nema dostupnih spasilaca za akciju
-							\item[] \begin{packed_item}
-								
-								\item \text Sustav obavještava dispečera o nedostupnosti spasilaca
-								
-							\end{packed_item}
-							
-						\end{packed_item}
-					\end{packed_item}
-
-					\noindent \underbar{\textbf{UC10 - \text Završavanje akcije}}
-					\begin{packed_item}
-	
-						\item \textbf{Glavni sudionik: }\text Dispečer
-						\item  \textbf{Cilj:}\text Označiti akciju kao završenom
-						\item  \textbf{Sudionici:} Baza podataka
-						\item  \textbf{Preduvjet:} Akcija završena
-						\item  \textbf{Opis osnovnog tijeka:}
-						
-						\item[] \begin{packed_enum}
-	
-							\item \text Dispečer provjerava je li akcija završena
-							\item \text Dispečer označava akciju kao završenom
-						\end{packed_enum}
-						
-					\end{packed_item}
-
-					\noindent \underbar{\textbf{UC11 - \text Uklanjanje spasioca s akcije}}
-					\begin{packed_item}
-	
-						\item \textbf{Glavni sudionik: }\text Dispečer
-						\item  \textbf{Cilj:}\text Ukloniti spasioca s akcije
-						\item  \textbf{Sudionici:} \text Baza podataka
-						\item  \textbf{Preduvjet:} \text Spasioc trenutno na akciji
-						\item  \textbf{Opis osnovnog tijeka:}
-						
-						\item[] \begin{packed_enum}
-	
-							\item \text Dispečer otvara popis spasilaca na odabranoj akciji
-							\item \text Dispečer odabire spasioca te ga miče s akcije
-							\item \text Spasioc biva obaviješten o uklanjanju s akcije
-						\end{packed_enum}
-						
-					\end{packed_item}
-
-					\noindent \underbar{\textbf{UC12 - \text Odazivanje na akciju}}
-					\begin{packed_item}
-	
-						\item \textbf{Glavni sudionik: }\text Spasilac
-						\item  \textbf{Cilj:} \text Odazivanje na akciju
-						\item  \textbf{Sudionici:} \text Baza podataka
-						\item  \textbf{Preduvjet:} \text Akcija pokrenuta i dispečer poslao zahtjev spasiocu
-						\item  \textbf{Opis osnovnog tijeka:}
-						
-						\item[] \begin{packed_enum}
-	
-							\item \text Spasilac dobiva zahtjev od dispečera za uključenje u akciju
-							\item \text Spasilac potvrduje zahtjev ili ga odbija
-						\end{packed_enum}
-						
-					\end{packed_item}
-				
-					\noindent \underbar{\textbf{UC13 - \text Zadavanje pojedinačnih zadataka}}
-					\begin{packed_item}
-	
-						\item \textbf{Glavni sudionik: }\text Dispečer
-						\item  \textbf{Cilj:} \text Zadati pojedinačan zadatak spasiocu
-						\item  \textbf{Sudionici:} \text Baza podataka, Spasilac
-						\item  \textbf{Preduvjet:} \text Spasilac dostupan za akciju
-						\item  \textbf{Opis osnovnog tijeka:}
-						
-						\item[] \begin{packed_enum}
-	
-							\item \text Dispečer otvara kartu
-							\item \text Na karti odabire dostupnog spasioca
-							\item \text Dispečer upisuje informacije o zadatku, moguć je zahtjev prolaska određenom rutom do lokacije
-							\item \text Dispečer po potrebi dodaje i dodatni komentar
-							\item \text Spasilac dobiva informacije o zadatku
-						\end{packed_enum}
-						
-						\item  \textbf{Opis mogućih odstupanja:}
-						
-						\item[] \begin{packed_item}
-	
-							\item[2.a] \text Nema dostupnih spasilaca za zadatak
-							\item[] \begin{packed_item}
-								
-								\item \text Sustav obavještava dispečera porukom o nedostupnosti spasilaca
-								
-							\end{packed_item}
-							
-						\end{packed_item}
-					\end{packed_item}		
-
-					\noindent \underbar{\textbf{UC14 - \text Odabir moda izračuna dijagrama}}
-					\begin{packed_item}
-	
-						\item \textbf{Glavni sudionik: }\text Dispečer
-						\item  \textbf{Cilj:} \text Odabrati način izračuna Vornojevog dijagrama
-						\item  \textbf{Sudionici:} \text Baza podataka, vanjski servis
-						\item  \textbf{Preduvjet:} \text Dispečer prijavljen u aplikaciju
-						\item  \textbf{Opis osnovnog tijeka:}
-						
-						\item[] \begin{packed_enum}
-	
-							\item \text Dispečer na meniju karte odabire opciju "način izračuna"
-							\item \text Dispečer odabire jednu od tri opcije:
-								\begin{packed_enum}
-									\item \text Uključiti sve spasioce
-									\item \text Uključiti sve dostupne neaktivne spasioce
-									\item \text Uključiti sve spasioce aktivne na određenoj akciji
-								\end{packed_enum}
-							\item \text Vanjski servis obavlja izračun na temelju odabrane opcije
-						\end{packed_enum}
-						
-					\end{packed_item}	
-
-					\noindent \underbar{\textbf{UC15 - \text Prikaz spasilaca}}
-					\begin{packed_item}
-	
-						\item \textbf{Glavni sudionik: }\text Dispečer
-						\item  \textbf{Cilj:} \text Adekvatno prikazati spasioce na karti
-						\item  \textbf{Sudionici:} \text Baza podataka
-						\item  \textbf{Preduvjet:} \text Dispečer prijavljen u aplikaciju
-						\item  \textbf{Opis osnovnog tijeka:}
-						
-						\item[] \begin{packed_enum}
-	
-							\item \text Ovisno o ulozi spasioca u akciji, sustav spasioca na karti treba prikazati adekvatnom ikonom
-							\item \text Prilikom odabira karte, dispečeru se spasioci koji sudjeluju u akciji prikazuju adekvatnim ikonama
-						
-						\end{packed_enum}
-						
-					\end{packed_item}	
-				
-					\noindent \underbar{\textbf{UC16 -Pregled zadataka}}
-					\begin{packed_item}
-						
-						\item \textbf{Glavni sudionik: } Spasilac
-						\item  \textbf{Cilj:} Pregled zadataka koje treba obaviti
-						\item  \textbf{Sudionici:} Baza podataka
-						\item  \textbf{Preduvjet:} Spasilac je prijavljen u sustav, dispečer je zadao barem jedan zadatak
-						\item  \textbf{Opis osnovnog tijeka:}
-						
-						\item[] \begin{packed_enum}
-							
-							\item Spasilac pristupa karti na kojoj mu se prikazuju zadaci
-						\end{packed_enum}
-						
-					\end{packed_item}
-					
-					\noindent \underbar{\textbf{UC17 -Pregled pozicije ostalih spasilaca}}
-					\begin{packed_item}
-						
-						\item \textbf{Glavni sudionik: } Spasilac
-						\item  \textbf{Cilj:} Pregledati trenutnu poziciju ostalih spasilaca aktivnih na istoj akciji
-						\item  \textbf{Sudionici:} Baza podataka
-						\item  \textbf{Preduvjet:} Spasilac je prijavljen u sustav, ima ostalih spasilaca na istoj akciji
-						\item  \textbf{Opis osnovnog tijeka:}
-						
-						\item[] \begin{packed_enum}
-							
-							\item Spasilac pristupa karti na kojoj mu se prikazuju ostali spasioci na istoj akciji
-						\end{packed_enum}
-						
-					\end{packed_item}
-					
-					\noindent \underbar{\textbf{UC18 -Komentiranje}}
-					\begin{packed_item}
-						
-						\item \textbf{Glavni sudionik: } Spasilac
-						\item  \textbf{Cilj:} Ostaviti komentar na karti za ostale sudionike u akciji
-						\item  \textbf{Sudionici:} Baza podataka
-						\item  \textbf{Preduvjet:} Spasilac je prijavljen u sustav i sudjeluje u akciji
-						\item  \textbf{Opis osnovnog tijeka:}
-						
-						\item[] \begin{packed_enum}
-							
-							\item  Spasilac pristupa karti na kojoj bira gdje će ostaviti komentar
-						\end{packed_enum}
-						
-					\end{packed_item}
-					
-					\noindent \underbar{\textbf{UC19 -Pregled komentara}}
-					\begin{packed_item}
-						
-						\item \textbf{Glavni sudionik: } Spasilac
-						\item  \textbf{Cilj:} Pregledati komentar ostavljen na karti
-						\item  \textbf{Sudionici:} Baza podataka
-						\item  \textbf{Preduvjet:} Spasilac je prijavljen u sustav, sudjeluje u akciji i ima ostavljenih komentara
-						\item  \textbf{Opis osnovnog tijeka:}
-						
-						\item[] \begin{packed_enum}
-							
-							\item  Spasilac pristupa karti na kojoj vidi komentar
-						\end{packed_enum}
-						
-					\end{packed_item}	
-
 				\subsubsection{Dijagrami obrazaca uporabe}
 					
 					\textit{Prikazati odnos aktora i obrazaca uporabe odgovarajućim UML dijagramom. Nije nužno nacrtati sve na jednom dijagramu. Modelirati po razinama apstrakcije i skupovima srodnih funkcionalnosti.}
