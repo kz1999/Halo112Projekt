@@ -259,7 +259,8 @@
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
-	
+							
+							\item \text Spasilac odabire postavke računa
 							\item \text Spasilac u svojim postavkama odabire opciju za dostupnost
 							\item \text Odabirom jedne od dviju opcija se postavlja dostupnost spasioca
 							\item \text Spasilac postaje dostupan ili nedostupan za akciju
@@ -411,6 +412,7 @@
 	
 							\item \text Spasilac dobiva zahtjev od dispečera za uključenje u akciju
 							\item \text Spasilac potvrduje zahtjev ili ga odbija
+							\item \text Nakon potvrde vanjski servis izračunava rutu do lokacije
 						\end{packed_enum}
 						
 					\end{packed_item}
@@ -430,7 +432,7 @@
 							\item \text Na karti odabire dostupnog spasioca
 							\item \text Dispečer upisuje informacije o zadatku, moguć je zahtjev prolaska određenom rutom do lokacije
 							\item \text Dispečer po potrebi dodaje i dodatni komentar
-							\item \text Spasilac dobiva informacije o zadatku
+							\item \text Spasilac dobiva informacije o zadatku te izračunatu rutu od strane vanjskog servisa
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
@@ -457,8 +459,9 @@
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
-	
-							\item \text Dispečer na meniju karte odabire opciju "način izračuna"
+							
+							\item \text DIspečer odabire opciju pottavki karte
+							\item \text Dispečer u postavkama karte odabire opciju "način izračuna"
 							\item \text Dispečer odabire jednu od tri opcije:
 								\begin{packed_enum}
 									\item \text Uključiti sve spasioce
@@ -500,6 +503,7 @@
 						\item[] \begin{packed_enum}
 							
 							\item Spasilac pristupa karti na kojoj mu se prikazuju zadaci
+							\item moguć je i odabir prikaza popisa svih zadataka
 						\end{packed_enum}
 						
 					\end{packed_item}
@@ -515,7 +519,7 @@
 						
 						\item[] \begin{packed_enum}
 							
-							\item Spasilac pristupa karti na kojoj mu se prikazuju ostali spasioci na istoj akciji
+							\item Spasilac pristupa karti na kojoj mu se prikazuje lokacija ostalh spasioca
 						\end{packed_enum}
 						
 					\end{packed_item}
