@@ -347,7 +347,7 @@
 							\item \text Dispečer odabire opciju otvaranja nove akcije
 							\item \text Dispečer otvara akciju sa dostupnim informacijama i fotografijama
 							\item \text Dispečer dobiva uvid o broju spasilaca po stanicama
-							\item \text Dispečer šalje zahtjev pojedinom spasiocima sa definiranim načinom sudjelovanja i hitnosti
+							\item \text Dispečer šalje zahtjev pojedinim spasiocima sa definiranim načinom sudjelovanja i hitnosti
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
@@ -563,7 +563,7 @@
 					\textit{Prikazati odnos aktora i obrazaca uporabe odgovarajućim UML dijagramom. Nije nužno nacrtati sve na jednom dijagramu. Modelirati po razinama apstrakcije i skupovima srodnih funkcionalnosti.}
 			
 				\begin{figure}[H]
-					\includegraphics[scale=0.5]{slike/usecase.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+					\includegraphics[scale=0.5]{slike/usecase.PNG}
 					\centering
 					\caption{Dijagram obrazaca uporabe}
 					\label{fig:promjene}
@@ -576,24 +576,42 @@
 				
 				\textit{Nacrtati sekvencijske dijagrame koji modeliraju najvažnije dijelove sustava (max. 4 dijagrama). Ukoliko postoji nedoumica oko odabira, razjasniti s asistentom. Uz svaki dijagram napisati detaljni opis dijagrama.}
 				\begin{figure}[H]
-					\includegraphics[scale=0.5]{slike/dispatcher_sequence.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+					\includegraphics[scale=0.5]{slike/dispatcher_sequence.PNG}
 					\centering
-					\caption{UC10 Otvaranje akcije}
+					\caption{Sekvencijski dijagram - Otvaranje akcije (UC10)}
 					\label{fig:promjene}
 				\end{figure}
-							\begin{figure}[H]
-				\includegraphics[scale=0.5]{slike/Voditelj.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
-				\centering
-				\caption{Prikaz postupka u kojem voditelj dodaje neraspoređene spasioce u svoju postaju i dodjeljuje im za što su osposobljeni}
-				\label{fig:promjene}
+			
+				Prikaz postupka u kojem dispečer stvara akciju i šalje zahtjeve pojedinim spasiocima. Prije stvaranja akcije
+				dispečeru se prikazuje popis broja dostupnih spasilaca po stanicama.
+			
+				\begin{figure}[H]
+					\includegraphics[scale=0.5]{slike/zadavanje_zadataka.png}
+					\centering
+					\caption{Sekvencijski dijagram - Zadavanje pojedinačnih zadataka (UC14)}
+					\label{fig:promjene}
 				\end{figure}
 				
+				Prikaz postupka u kojem dispečer pomoću karte spasilaca zadaje pojedinačni zadatak određenom spasiocu.
+				Dispečer može odrediti rutu kojom spasilac prolazi.
+				
 				\begin{figure}[H]
-					\includegraphics[scale=0.4]{slike/Akcija.PNG} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+					\includegraphics[scale=0.5]{slike/Voditelj.PNG}
 					\centering
-					\caption{Prikaz postupka dispečera i spasioca od početka do kraja akcije. Kada je spasiocu dodijeljena akcija, ili on stvara upit za prikaz karte i ostalih sudionika u akciji ili odbija dodijeljenu akciju. kada se spasioc vrati s akcije, dispečer ju zatvara i status spasioca se vraća na dostupan.}
+					\caption{Sekvencijski dijagram}
 					\label{fig:promjene}
 				\end{figure}
+			
+				Prikaz postupka u kojem voditelj dodaje neraspoređene spasioce u svoju postaju i dodjeljuje im za što su osposobljeni
+				
+				\begin{figure}[H]
+					\includegraphics[scale=0.4]{slike/Akcija.PNG}
+					\centering
+					\caption{Sekvencijski dijagram - }
+					\label{fig:promjene}
+				\end{figure}
+			
+				Prikaz postupka dispečera i spasioca od početka do kraja akcije. Kada je spasiocu dodijeljena akcija, ili on stvara upit za prikaz karte i ostalih sudionika u akciji ili odbija dodijeljenu akciju. kada se spasioc vrati s akcije, dispečer ju zatvara i status spasioca se vraća na dostupan.
 				
 				\eject
 	
