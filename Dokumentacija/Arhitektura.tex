@@ -127,7 +127,7 @@
 					\SetCell{LightBlue} Korisničko ime dispečera	& VARCHAR &   	Korisničko ime dispečera koji je poslao poziv\\ \hline 
 				\end{longtblr}
 			
-				\textbf{Ruta} \text Ovaj entitet sadrži sve važne informacije o ruti zadatka. Sadrži atribute: Ruta i Adresa. Ovaj entitet je u vezi \textit{One-to-many} s entitetom Zadatak preko atributa Ruta.
+				\textbf{Ruta} \text Ovaj entitet sadrži sve važne informacije o ruti zadatka. Sadrži atribute: Usputna lokacija i ID Zadatka. Ovaj entitet je u vezi \textit{Many-to-one} s entitetom Zadatak preko atributa ID Zadatka.
 				
 				
 				\begin{longtblr}[
@@ -139,11 +139,11 @@
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
 					\hline \multicolumn{3}{|c|}{\textbf{Ruta}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}Ruta & VARCHAR	&  	Ruta koju određuje dispečer  	\\ \hline
-					Adresa	& VARCHAR & Adresa na koju treba doći  	\\ \hline 
+					\SetCell{LightGreen}Usputna lokacija & VARCHAR	&  	Lokacija kroz koju treba proći na putu do adrese zadatka	\\ \hline
+					ID Zadatka	& INT & ID Zadatka na kojeg se usputna lokacija odnosi	\\ \hline 
 				\end{longtblr}
 				
-				\textbf{Zadatak} \text Ovaj entitet sadrži sve važne informacije o zadatku kojeg dispečer zadaje spasiocima. Sadrži atribute: ID Zadatka, Komentar, Opis zadatka, Korisničko ime spasioca, Korisničkno ime dispečera i Ruta. Ovaj entitet je u vezi \textit{Many-to-one} s entitetom Ruta preko atributa Ruta, u vezi \textit{Many-to-one} s entitetom Korisnik preko atributa Korisničko ime dispečera te u vezi \textit{Many-to-one} s entitetom Spasilac preko atributa Korisničko ime spasioca.
+				\textbf{Zadatak} \text Ovaj entitet sadrži sve važne informacije o zadatku kojeg dispečer zadaje spasiocima. Sadrži atribute: ID Zadatka, Komentar, Opis zadatka, Korisničko ime spasioca, Korisničkno ime dispečera i Adresa. Ovaj entitet je u vezi \textit{One-to-many} s entitetom Ruta preko atributa ID zadatka, u vezi \textit{Many-to-one} s entitetom Korisnik preko atributa Korisničko ime dispečera te u vezi \textit{Many-to-one} s entitetom Spasilac preko atributa Korisničko ime spasioca.
 				
 				
 				\begin{longtblr}[
@@ -158,9 +158,10 @@
 					\SetCell{LightGreen}ID Zadatka & INT & Identifikator zadatka	\\ \hline
 					Komentar	& VARCHAR & Komentar kojeg može dati dispečer  	\\ \hline 
 					Opis zadatka & VARCHAR & Opis zadatka  \\ \hline
+					Adresa	& VARCHAR & Adresa na koju treba doći\\ \hline
 					\SetCell{LightBlue} Korisničko ime spasioca	& VARCHAR &   	Korisničko ime spasioca koji je dobio zadatak\\ \hline 
 					\SetCell{LightBlue} Korisničko ime dispečera	& VARCHAR &   	Korisničko ime dispečera koji je zadao zadatak\\ \hline 
-					\SetCell{LightBlue} Ruta	& VARCHAR & Ruta koju određuje dispečer\\ \hline 
+					 
 				\end{longtblr}
 			
 				\textbf{Galerija akcije} \text Ovaj entitet sadrži fotografije akcija. Sadrži atribute: Fotografija i idAkcije. Ovaj entitet je u vezi \textit{Many-to-one} s entitetom Akcija preko atributa idAkcije.
