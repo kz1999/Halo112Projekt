@@ -1,0 +1,93 @@
+CREATE TABLE Korisnik
+(
+  korisnickoIme VARCHAR(30) NOT NULL,
+  urlFotografije VARCHAR(30) NOT NULL,
+  hashLozinke VARCHAR(30) NOT NULL,
+  Ime VARCHAR(20) NOT NULL,
+  Prezime VARCHAR(30) NOT NULL,
+  brojMobitela VARCHAR(10) NOT NULL,
+  eMail VARCHAR(30) NOT NULL,
+  Uloga VARCHAR(30) NOT NULL,
+  Potvrden BIT NOT NULL,
+  PRIMARY KEY (korisnickoIme)
+);
+
+CREATE TABLE Akcija
+(
+  imeAkcije VARCHAR(30) NOT NULL,
+  Adresa VARCHAR(30) NOT NULL,
+  Gotova BIT NOT NULL,
+  opisAkcije VARCHAR(50) NOT NULL,
+  PRIMARY KEY (imeAkcije)
+);
+
+CREATE TABLE Fotografija
+(
+  urlFotografije VARCHAR(30) NOT NULL,
+  imeAkcije VARCHAR(30) NOT NULL,
+  PRIMARY KEY (urlFotografije),
+  FOREIGN KEY (imeAkcije) REFERENCES Akcija(imeAkcije)
+);
+
+CREATE TABLE Spasilac
+(
+  Osposobljenje VARCHAR(30) NOT NULL,
+  lokacijaLatitude VARCHAR(30) NOT NULL,
+  Zauzetost BIT NOT NULL,
+  lokacijaLongitude VARCHAR(30) NOT NULL,
+  korisnickoIme VARCHAR(30) NOT NULL,
+  imeAkcije VARCHAR(30),
+  imeStanice VARCHAR(30) NOT NULL,
+  PRIMARY KEY (korisnickoIme),
+  FOREIGN KEY (korisnickoIme) REFERENCES Korisnik(korisnickoIme),
+  FOREIGN KEY (imeAkcije) REFERENCES Akcija(imeAkcije),
+  FOREIGN KEY (imeStanice) REFERENCES Stanica(imeStanice)
+);
+
+CREATE TABLE Stanica
+(
+  imeStanice VARCHAR(30) NOT NULL,
+  Voditelj VARCHAR(30),
+  PRIMARY KEY (imeStanice),
+  FOREIGN KEY (Voditelj) REFERENCES Spasilac(korisnickoIme)
+);
+
+CREATE TABLE PozivNaAkciju
+(
+  nacinSudjelovanja VARCHAR(30) NOT NULL,
+  Hitnost INT NOT NULL,
+  odgovorSpasioca BIT NOT NULL,
+  Komentar VARCHAR(50) NOT NULL,
+  korisnickoImeSpasioca VARCHAR(30) NOT NULL,
+  imeAkcije VARCHAR(30) NOT NULL,
+  korisnickoImeDispecera VARCHAR(30) NOT NULL,
+  PRIMARY KEY (korisnickoImeSpasioca, imeAkcije),
+  FOREIGN KEY (korisnickoImeSpasioca) REFERENCES Spasilac(korisnickoIme),
+  FOREIGN KEY (imeAkcije) REFERENCES Akcija(imeAkcije),
+  FOREIGN KEY (korisnickoImeDispecera) REFERENCES Korisnik(korisnickoIme)
+);
+
+CREATE TABLE Zadatak
+(
+  idZadatka INT NOT NULL,
+  komentarDispecera VARCHAR(50),
+  opisZadatka VARCHAR(50) NOT NULL,
+  Adresa VARCHAR(30) NOT NULL,
+  korisnickoImeSpasioca VARCHAR(30) NOT NULL,
+  korisnickoImeDispecera VARCHAR(30) NOT NULL,
+  PRIMARY KEY (idZadatka),
+  FOREIGN KEY (korisnickoImeSpasioca) REFERENCES Spasilac(korisnickoIme),
+  FOREIGN KEY (korisnickoImeDispecera) REFERENCES Korisnik(korisnickoIme)
+);
+
+CREATE TABLE KomentariAkcije
+(
+  Komentar VARCHAR(50) NOT NULL,
+  lokacijaLatitude VARCHAR(30) NOT NULL,
+  lokacijaLongitude VARCHAR(30) NOT NULL,
+  imeAkcije VARCHAR(30) NOT NULL,
+  korisnickoIme VARCHAR(30) NOT NULL,
+  PRIMARY KEY (imeAkcije, korisnickoIme),
+  FOREIGN KEY (imeAkcije) REFERENCES Akcija(imeAkcije),
+  FOREIGN KEY (korisnickoIme) REFERENCES Spasilac(korisnickoIme)
+);
