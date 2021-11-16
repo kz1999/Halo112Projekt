@@ -42,7 +42,7 @@ function UserForm(){
                     <label>Password</label>
                     <input name='password' onChange={onChange} value={form.password}/>
                 </div>
-                <button type="submit" disabled = {!isValid}>Submit</button>
+                <button type="submit" disabled = {!isValid}>Login</button>
             </form>
         </div>
     )

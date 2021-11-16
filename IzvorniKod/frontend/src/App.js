@@ -3,7 +3,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 import './styles/App.css';
 
-import StudentForm from './UserForm';
+import UserForm from './UserForm';
 
 
 function App() {
@@ -14,7 +14,8 @@ function App() {
       </header>
       <BrowserRouter>
         <Switch>
-          <Route path='/' exact component={StudentForm}/>
+          <Route path='/' exact component={UserForm}/>
+          
         </Switch>
       </BrowserRouter>
     </div>
