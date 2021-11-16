@@ -20,7 +20,7 @@ public class KorisnikController {
     }
     @PostMapping("")
     //@Secured("ROLE_ADMIN")
-    public Korisnik createKorisnik(@RequestBody Korisnik korisnik) {
+    public Korisnik createKorisnik(@RequestBody Korisnik korisnik) throws Exception {
         return korisnikService.createKorisnik(korisnik);
     }
 

@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface KorisnikRepository
         extends JpaRepository<Korisnik, Long> {
 
+    public int countByKorisnickoIme(String korisnickoIme);
+
 }
