@@ -1,7 +1,7 @@
 import React from "react";
 
 function UserForm(){
-    const [form, setForm] = React.useState( {jmbag: '', givenName:'', familyName:''});
+    const [form, setForm] = React.useState( {username:'', password:''});
 
     function onChange(event){
         const {name, value} = event.target;
@@ -11,9 +11,9 @@ function UserForm(){
     function onSubmit(e){
         e.preventDefault();
         const data = {
-            jmbag: form.jmbag,
-            familyName: form.familyName,
-            givenName: form.givenName
+            
+            username: form.username,
+            password: form.password
         };
         const options={
             method: 'POST',
@@ -26,8 +26,8 @@ function UserForm(){
     }
 
     function isValid(){
-        const {jmbag, givenName, familyName} = form;
-        return jmbag.length === 10 && givenName.length > 0 && familyName.length > 0;
+        const {username, password} = form;
+        return username.length === 1 && password.length > 8;
     }
 
     return(
@@ -35,16 +35,12 @@ function UserForm(){
             <h2>New User</h2>
             <form onSubmit={onSubmit}>
                 <div className="FormRow">
-                    <label>JMBAG</label>
-                    <input name='jmbag' onChange={onChange} value={form.jmbag}/>
+                    <label>Username</label>
+                    <input name='username' onChange={onChange} value={form.username}/>
                 </div>
                 <div className="FormRow">
-                    <label>Given name</label>
-                    <input name='givenName' onChange={onChange} value={form.givenName}/>
-                </div>
-                <div className="FormRow">
-                    <label>Family name</label>
-                    <input name='familyName' onChange={onChange} value={form.familyName}/>
+                    <label>Password</label>
+                    <input name='password' onChange={onChange} value={form.password}/>
                 </div>
                 <button type="submit" disabled = {!isValid}>Submit</button>
             </form>
