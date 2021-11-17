@@ -2,7 +2,7 @@ import React from "react";
 
 
 function User(props){
-    const {username, password} = props.student
+    const {username, password} = props.user
 
     return (
         <p>{username} {password} </p>

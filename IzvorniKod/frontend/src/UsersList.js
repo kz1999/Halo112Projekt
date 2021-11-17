@@ -1,24 +1,24 @@
 import React from "react";
-import Student from "./Student";
-import './styles/StudentList.css'
+import User from "./User";
+import Card from "./Card";
 
-function UserList(){
+function UsersList(){
 
     const [users, setUsers] = React.useState([]);
     
     React.useEffect(()=>{
-        fetch("http://localhost:8080/korisnici")
+        fetch('/korisnici')
         .then(data => data.json())
-        .then(students => setUsers(users))
+        .then(users => setUsers(users))
     }, []);
     
     return(
-        <div>
+        <Card title="Users">
             
-            { users.map(users => <User key={user.jmbag} student = {user}/>)}
+            { users.map(user => <User key={user.id} user = {user}/>)}
             
-        </div>
+        </Card>
     )
 }
 
-export default UserList;
+export default UsersList;
