@@ -9,10 +9,28 @@ import javax.validation.constraints.Size;
 @Entity
 public class Korisnik {
 
-    @Id
-    @GeneratedValue
+    public Korisnik(Long id, String korisnickoIme, String fotografija, String hashLozinke, String ime, String prezime, String brojMobitela, String email, String uloga, boolean potvrden) {
+        this.id = id;
+        this.korisnickoIme = korisnickoIme;
+        this.fotografija = fotografija;
+        this.hashLozinke = hashLozinke;
+        this.ime = ime;
+        this.prezime = prezime;
+        this.brojMobitela = brojMobitela;
+        this.email = email;
+        this.uloga = uloga;
+        this.potvrden = potvrden;
+    }
+
+    public Korisnik() {
+
+    }
+
+    //@Id
+    //@GeneratedValue
     private Long id;
 
+    @Id
     @Column(unique = true)
     @NotNull
     @Size(min=8, max=30)
@@ -31,6 +49,8 @@ public class Korisnik {
     private String email;
 
     private String uloga;
+
+
 
     private boolean potvrden;
 
@@ -113,4 +133,21 @@ public class Korisnik {
     public void setPotvrden(boolean potvrden) {
         this.potvrden = potvrden;
     }
+
+    @Override
+    public String toString() {
+        return "Korisnik{" +
+                "id=" + id +
+                ", korisnickoIme='" + korisnickoIme + '\'' +
+                ", fotografija='" + fotografija + '\'' +
+                ", hashLozinke='" + hashLozinke + '\'' +
+                ", ime='" + ime + '\'' +
+                ", prezime='" + prezime + '\'' +
+                ", brojMobitela='" + brojMobitela + '\'' +
+                ", email='" + email + '\'' +
+                ", uloga='" + uloga + '\'' +
+                ", potvrden=" + potvrden +
+                '}';
+    }
+
 }

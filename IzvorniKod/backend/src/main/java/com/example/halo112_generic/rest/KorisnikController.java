@@ -18,10 +18,21 @@ public class KorisnikController {
     public List<Korisnik> listKorisnici() {
         return korisnikService.listAll();
     }
+
     @PostMapping("")
     //@Secured("ROLE_ADMIN")
     public Korisnik createKorisnik(@RequestBody Korisnik korisnik) throws Exception {
         return korisnikService.createKorisnik(korisnik);
+    }
+
+    @GetMapping("/{korisnickoIme}")
+    public Korisnik getKorisnik(@PathVariable String korisnickoIme) throws Exception {
+        return korisnikService.getKorisnik(korisnickoIme);
+    }
+
+    @PostMapping("/{korisnickoIme}")
+    public Korisnik editKorisnik(@PathVariable String korisnickoIme, @RequestBody Korisnik korisnik) throws Exception {
+        return korisnikService.editKorisnik(korisnickoIme, korisnik);
     }
 
 }
