@@ -1,4 +1,4 @@
-CREATE TABLE "User"
+CREATE TABLE HaloUser
 (
   Username VARCHAR(30) NOT NULL,
   PhotoURL VARCHAR(100) NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE Responder
   CallName VARCHAR(30) NOT NULL,
   StationName VARCHAR(30) NOT NULL,
   PRIMARY KEY (Username),
-  FOREIGN KEY (Username) REFERENCES "User"(Username),
+  FOREIGN KEY (Username) REFERENCES HaloUser(Username),
   FOREIGN KEY (CallName) REFERENCES Call(CallName),
   FOREIGN KEY (StationName) REFERENCES Station(StationName)
 );
@@ -65,7 +65,7 @@ CREATE TABLE CallRequest
   PRIMARY KEY (ResponderUsername, CallName),
   FOREIGN KEY (ResponderUsername) REFERENCES Responder(Username),
   FOREIGN KEY (CallName) REFERENCES Call(CallName),
-  FOREIGN KEY (DIspacherUsername) REFERENCES "User"(Username)
+  FOREIGN KEY (DIspacherUsername) REFERENCES HaloUser(Username)
 );
 
 CREATE TABLE Task
@@ -78,7 +78,7 @@ CREATE TABLE Task
   DispatcherUsername VARCHAR(30) NOT NULL,
   PRIMARY KEY (IDTask),
   FOREIGN KEY (ResponderUsername) REFERENCES Responder(Username),
-  FOREIGN KEY (DispatcherUsername) REFERENCES "User"(Username)
+  FOREIGN KEY (DispatcherUsername) REFERENCES HaloUser(Username)
 );
 
 CREATE TABLE CallComments
@@ -93,7 +93,7 @@ CREATE TABLE CallComments
   FOREIGN KEY (Username) REFERENCES Responder(Username)
 );
 
-INSERT INTO "User"(
+INSERT INTO HaloUser(
   Username,
   PhotoURL,
   PasswordHash,

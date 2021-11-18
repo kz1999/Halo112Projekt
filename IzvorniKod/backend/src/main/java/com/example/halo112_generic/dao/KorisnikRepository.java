@@ -17,37 +17,37 @@ public interface KorisnikRepository
 
     public int countByKorisnickoIme(String korisnickoIme);
 
-    @Query("SELECT r FROM User r where r.username = :korisnickoIme")
+    @Query("SELECT r FROM HaloUser r where r.username = :korisnickoIme")
     Korisnik findKorisnikByKorisnickoIme(@Param("korisnickoIme") String korisnickoIme);
 
     @Transactional
     @Modifying
-    @Query("UPDATE 'User' k SET k.PhotoURL = :korisnikFotografija WHERE k.username = :korisnickoIme")
+    @Query("UPDATE HaloUser k SET k.PhotoURL = :korisnikFotografija WHERE k.username = :korisnickoIme")
     void editKorisnikFotografija(@Param("korisnickoIme") String korisnickoIme, @Param("korisnikFotografija") String korisnikFotografija);
 
     @Transactional
     @Modifying
-    @Query("UPDATE 'User' k SET k.Name = :korisnikIme WHERE k.username = :korisnickoIme")
+    @Query("UPDATE HaloUser k SET k.Name = :korisnikIme WHERE k.username = :korisnickoIme")
     void editKorisnikIme(@Param("korisnickoIme") String korisnickoIme, @Param("korisnikIme") String korisnikIme);
 
     @Transactional
     @Modifying
-    @Query("UPDATE 'User' k SET k.Surname = :korisnikPrezime WHERE k.username = :korisnickoIme")
+    @Query("UPDATE HaloUser k SET k.Surname = :korisnikPrezime WHERE k.username = :korisnickoIme")
     void editKorisnikPrezime(@Param("korisnickoIme") String korisnickoIme, @Param("korisnikPrezime") String korisnikPrezime);
 
     @Transactional
     @Modifying
-    @Query("UPDATE 'User' k SET k.PhoneNumber = :korisnikBrojMobitela WHERE k.Username = :korisnickoIme")
+    @Query("UPDATE HaloUser k SET k.PhoneNumber = :korisnikBrojMobitela WHERE k.Username = :korisnickoIme")
     void editKorisnikBrojMobitela(@Param("korisnickoIme") String korisnickoIme, @Param("korisnikBrojMobitela") String korisnikBrojMobitela);
 
     @Transactional
     @Modifying
-    @Query("UPDATE 'User' k SET k.email = :korisnikEmail WHERE k.username = :korisnickoIme")
+    @Query("UPDATE HaloUser k SET k.email = :korisnikEmail WHERE k.username = :korisnickoIme")
     void editKorisnikEmail(@Param("korisnickoIme") String korisnickoIme, @Param("korisnikEmail") String korisnikEmail);
 
     @Transactional
     @Modifying
-    @Query("UPDATE 'User' k SET k.role = :korisnikUloga WHERE k.username = :korisnickoIme")
+    @Query("UPDATE HaloUser k SET k.role = :korisnikUloga WHERE k.username = :korisnickoIme")
     void editKorisnikUloga(@Param("korisnickoIme") String korisnickoIme, @Param("korisnikUloga") String korisnikUloga);
 
 
