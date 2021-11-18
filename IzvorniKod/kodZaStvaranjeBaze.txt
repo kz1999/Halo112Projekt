@@ -1,93 +1,93 @@
-CREATE TABLE Korisnik
+CREATE TABLE User
 (
-  korisnickoIme VARCHAR(30) NOT NULL,
-  urlFotografije VARCHAR(30) NOT NULL,
-  hashLozinke VARCHAR(30) NOT NULL,
-  Ime VARCHAR(20) NOT NULL,
-  Prezime VARCHAR(30) NOT NULL,
-  brojMobitela VARCHAR(10) NOT NULL,
+  Username VARCHAR(30) NOT NULL,
+  PhotoURL 30 NOT NULL,
+  PasswordHash VARCHAR(30) NOT NULL,
+  Name VARCHAR(20) NOT NULL,
+  Surname VARCHAR(30) NOT NULL,
+  PhoneNumber VARCHAR(10) NOT NULL,
   eMail VARCHAR(30) NOT NULL,
-  Uloga VARCHAR(30) NOT NULL,
-  Potvrden BIT NOT NULL,
-  PRIMARY KEY (korisnickoIme)
+  Role VARCHAR(20) NOT NULL,
+  Confirmed 1 NOT NULL,
+  PRIMARY KEY (Username)
 );
 
-CREATE TABLE Akcija
+CREATE TABLE Call
 (
-  imeAkcije VARCHAR(30) NOT NULL,
-  Adresa VARCHAR(30) NOT NULL,
-  Gotova BIT NOT NULL,
-  opisAkcije VARCHAR(50) NOT NULL,
-  PRIMARY KEY (imeAkcije)
+  CallName VARCHAR(30) NOT NULL,
+  Address VARCHAR(30) NOT NULL,
+  Finished 1 NOT NULL,
+  Description VARCHAR(30) NOT NULL,
+  PRIMARY KEY (CallName)
 );
 
-CREATE TABLE Fotografija
+CREATE TABLE Photo
 (
-  urlFotografije VARCHAR(30) NOT NULL,
-  imeAkcije VARCHAR(30) NOT NULL,
-  PRIMARY KEY (urlFotografije),
-  FOREIGN KEY (imeAkcije) REFERENCES Akcija(imeAkcije)
+  PhotoURL 30 NOT NULL,
+  CallName VARCHAR(30) NOT NULL,
+  PRIMARY KEY (PhotoURL),
+  FOREIGN KEY (CallName) REFERENCES Call(CallName)
 );
 
-CREATE TABLE Spasilac
+CREATE TABLE Responder
 (
-  Osposobljenje VARCHAR(30) NOT NULL,
-  lokacijaLatitude VARCHAR(30) NOT NULL,
-  Zauzetost BIT NOT NULL,
-  lokacijaLongitude VARCHAR(30) NOT NULL,
-  korisnickoIme VARCHAR(30) NOT NULL,
-  imeAkcije VARCHAR(30),
-  imeStanice VARCHAR(30) NOT NULL,
-  PRIMARY KEY (korisnickoIme),
-  FOREIGN KEY (korisnickoIme) REFERENCES Korisnik(korisnickoIme),
-  FOREIGN KEY (imeAkcije) REFERENCES Akcija(imeAkcije),
-  FOREIGN KEY (imeStanice) REFERENCES Stanica(imeStanice)
+  Qualification VARCHAR(30) NOT NULL,
+  LocationLatitute 30 NOT NULL,
+  LocationLongitude 30 NOT NULL,
+  Availability 1 NOT NULL,
+  Username VARCHAR(30) NOT NULL,
+  CallName VARCHAR(30) NOT NULL,
+  StationName VARCHAR(30) NOT NULL,
+  PRIMARY KEY (Username),
+  FOREIGN KEY (Username) REFERENCES User(Username),
+  FOREIGN KEY (CallName) REFERENCES Call(CallName),
+  FOREIGN KEY (StationName) REFERENCES Station(StationName)
 );
 
-CREATE TABLE Stanica
+CREATE TABLE Station
 (
-  imeStanice VARCHAR(30) NOT NULL,
-  Voditelj VARCHAR(30),
-  PRIMARY KEY (imeStanice),
-  FOREIGN KEY (Voditelj) REFERENCES Spasilac(korisnickoIme)
+  StationName VARCHAR(30) NOT NULL,
+  StationChief VARCHAR(30) NOT NULL,
+  PRIMARY KEY (StationName),
+  FOREIGN KEY (StationChief) REFERENCES Responder(Username)
 );
 
-CREATE TABLE PozivNaAkciju
+CREATE TABLE CallRequest
 (
-  nacinSudjelovanja VARCHAR(30) NOT NULL,
-  Hitnost INT NOT NULL,
-  odgovorSpasioca BIT NOT NULL,
-  Komentar VARCHAR(50) NOT NULL,
-  korisnickoImeSpasioca VARCHAR(30) NOT NULL,
-  imeAkcije VARCHAR(30) NOT NULL,
-  korisnickoImeDispecera VARCHAR(30) NOT NULL,
-  PRIMARY KEY (korisnickoImeSpasioca, imeAkcije),
-  FOREIGN KEY (korisnickoImeSpasioca) REFERENCES Spasilac(korisnickoIme),
-  FOREIGN KEY (imeAkcije) REFERENCES Akcija(imeAkcije),
-  FOREIGN KEY (korisnickoImeDispecera) REFERENCES Korisnik(korisnickoIme)
+  ResponderRole VARCHAR(30) NOT NULL,
+  Urgency INT NOT NULL,
+  ResponderResponse  NOT NULL,
+  Comment VARCHAR(30) NOT NULL,
+  ResponderUsername VARCHAR(30) NOT NULL,
+  CallName VARCHAR(30) NOT NULL,
+  DIspacherUsername VARCHAR(30) NOT NULL,
+  PRIMARY KEY (ResponderUsername, CallName),
+  FOREIGN KEY (ResponderUsername) REFERENCES Responder(Username),
+  FOREIGN KEY (CallName) REFERENCES Call(CallName),
+  FOREIGN KEY (DIspacherUsername) REFERENCES User(Username)
 );
 
-CREATE TABLE Zadatak
+CREATE TABLE Task
 (
-  idZadatka INT NOT NULL,
-  komentarDispecera VARCHAR(50),
-  opisZadatka VARCHAR(50) NOT NULL,
-  Adresa VARCHAR(30) NOT NULL,
-  korisnickoImeSpasioca VARCHAR(30) NOT NULL,
-  korisnickoImeDispecera VARCHAR(30) NOT NULL,
-  PRIMARY KEY (idZadatka),
-  FOREIGN KEY (korisnickoImeSpasioca) REFERENCES Spasilac(korisnickoIme),
-  FOREIGN KEY (korisnickoImeDispecera) REFERENCES Korisnik(korisnickoIme)
+  IDTask INT NOT NULL,
+  Comment VARCHAR(30) NOT NULL,
+  Description VARCHAR(30) NOT NULL,
+  Address VARCHAR(30) NOT NULL,
+  ResponderUsername VARCHAR(30) NOT NULL,
+  DispatcherUsername VARCHAR(30) NOT NULL,
+  PRIMARY KEY (IDTask),
+  FOREIGN KEY (ResponderUsername) REFERENCES Responder(Username),
+  FOREIGN KEY (DispatcherUsername) REFERENCES User(Username)
 );
 
-CREATE TABLE KomentariAkcije
+CREATE TABLE CallComments
 (
-  Komentar VARCHAR(50) NOT NULL,
-  lokacijaLatitude VARCHAR(30) NOT NULL,
-  lokacijaLongitude VARCHAR(30) NOT NULL,
-  imeAkcije VARCHAR(30) NOT NULL,
-  korisnickoIme VARCHAR(30) NOT NULL,
-  PRIMARY KEY (imeAkcije, korisnickoIme),
-  FOREIGN KEY (imeAkcije) REFERENCES Akcija(imeAkcije),
-  FOREIGN KEY (korisnickoIme) REFERENCES Spasilac(korisnickoIme)
+  Comment VARCHAR(30) NOT NULL,
+  LocationLatitude 30 NOT NULL,
+  LocationLongitude 30 NOT NULL,
+  CallName VARCHAR(30) NOT NULL,
+  Username VARCHAR(30) NOT NULL,
+  PRIMARY KEY (CallName, Username),
+  FOREIGN KEY (CallName) REFERENCES Call(CallName),
+  FOREIGN KEY (Username) REFERENCES Responder(Username)
 );
