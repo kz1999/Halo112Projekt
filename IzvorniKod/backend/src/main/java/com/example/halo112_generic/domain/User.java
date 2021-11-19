@@ -25,11 +25,11 @@ public class User {
 
     }
 
-    //@Id
+    @Id
     @GeneratedValue
     private Long id;
 
-    @Id
+    //@Id
     @Column(unique = true)
     @NotNull
     @Size(max=30)
