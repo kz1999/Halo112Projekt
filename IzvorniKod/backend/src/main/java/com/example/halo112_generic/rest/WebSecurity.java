@@ -52,9 +52,10 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         */
         http.authorizeRequests()
-                .antMatchers("/helloworld").hasRole("ADMIN")
+                .antMatchers("/helloworld").hasAuthority("ADMIN")
                 .antMatchers("/h2-console").permitAll()
                 .antMatchers("/korisnici").permitAll()
+                .antMatchers("/user").permitAll()
                 .antMatchers("/").permitAll()
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
                 .and().formLogin().loginPage("/login");

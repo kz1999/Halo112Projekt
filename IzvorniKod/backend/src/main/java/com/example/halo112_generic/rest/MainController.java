@@ -8,11 +8,13 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/")
 public class MainController {
 
     @Autowired
@@ -21,15 +23,15 @@ public class MainController {
     @Autowired
     private UserRepository userRepo;
 
-    @GetMapping("/")
+    @GetMapping("")
     public String index(){return "Index page!";}
 
     @GetMapping("/user")
-    @Secured("ROLE_USER")
+    //@Secured("ROLE_USER")
     public Optional<User> currentUser(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
-        System.out.println(auth.isAuthenticated() + "\n" + username + "\n");
+        System.out.println(auth.isAuthenticated() + "\n" + username + "\n" + auth.getAuthorities());
         return userRepo.findUserByUserName(username);
     }
 }
