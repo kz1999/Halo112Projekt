@@ -17,7 +17,7 @@ public class UsersController {
     private UserService userService;
 
     @GetMapping("")
-    @Secured("ROLE_ADMIN")
+    //@Secured("ROLE_ADMIN")
     public List<User> listUsers() throws Exception {
         if(!userService.findByUserName("admin").isPresent()){
             User admin = new User();
