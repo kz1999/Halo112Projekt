@@ -1,23 +1,51 @@
 \chapter{Arhitektura i dizajn sustava}
-		
-		\textbf{\textit{dio 1. revizije}}\\
+			
+		\text Arhitektura se može podijeliti na tri podsustava:
+		\begin{packed_item}
+			
+			\item Web poslužitelj
+			\item Web aplikacija
+			\item Baza podataka
+			
+		\end{packed_item}
 
-		\textit{ Potrebno je opisati stil arhitekture te identificirati: podsustave, preslikavanje na radnu platformu, spremišta podataka, mrežne protokole, globalni upravljački tok i sklopovsko-programske zahtjeve. Po točkama razraditi i popratiti odgovarajućim skicama:}
-	\begin{itemize}
-		\item 	\textit{izbor arhitekture temeljem principa oblikovanja pokazanih na predavanjima (objasniti zašto ste baš odabrali takvu arhitekturu)}
-		\item 	\textit{organizaciju sustava s najviše razine apstrakcije (npr. klijent-poslužitelj, baza podataka, datotečni sustav, grafičko sučelje)}
-		\item 	\textit{organizaciju aplikacije (npr. slojevi frontend i backend, MVC arhitektura) }		
-	\end{itemize}
-
+		\begin{figure}[H]
+			\includegraphics[scale=0.50]{slike/arhitektura.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+			\centering
+			\caption{Arhitektura sustava}
+			\label{fig:arhitekura slika}
+		\end{figure}
 	
+		\textit {\underbar {Web preglednik}} \text je program koji služi za pregledavanje web-stranica. Uloga web preglednika je da kada korisnik zatraži određenu stranicu dohvati potreban sadržaj s web poslužitelja i prikaže ga korisniku. 
 		
-
+		\textit {\underbar {Web poslužitelj}} \text omogućuju komunikaciju klijenta s aplikacijom tako da proslijedi zahtjev klijenta aplikaciji i odgovor kojeg je stvorila aplikacija natrag klijentu. Komunikacija se odvija preko HTTP-a, internetskog protokola aplikacijskog sloja koji služi za prijenos dokumenata poput onih pisanih u HTML-u. 
 		
+		\textit {\underbar {Web aplikacija}} \text omogućuje klijentu postavljanje zahtjeva na koje ona stvara odgovore. Ovisno o zahtjevu može pristupati bazi podataka te onda generira odgovor kojeg šalje u obliku HTML dokumenta pregledniku kojeg koristi klijent.
+		
+		\textit {\underbar {Poslužitelj baze podataka}} \text omogućuje web aplikaciji  dohvaćanje sadržaja iz baze podataka i zapisivanje novih stavki u bazu podataka.
+		
+		\text Za izradu frontenda korišten je programski jezik JavaScript i radni okvir React. React je JavaScript biblioteka koja služi za izradu korisničkih sučelja. Za izradu backenda korišten je programski jezik Java i radni okvir Spring Boot koji omogućuje brži i efikasniji razvoj aplikacije. Korišteno razvojno okruženje je Microsoft Visual Studio. Arhitektura sustava temeljiti će se na MVC (Model-View-Controller) konceptu.
+		
+		Svrha MVC obrasca je odvajanje programske logike u tri međusobno povezana dijela, čime se poštuje načelo odvajanja briga i olakšava razvoj aplikacije.
+		
+		\begin{figure}[H]
+			\includegraphics[scale=0.50]{slike/mvc.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+			\centering
+			\caption{MVC dijagram}
+			\label{fig:mvc model}
+		\end{figure}
+	
+		\text MVC se sastoji od:
+		\begin{packed_item}
+			
+			\item Model - centralna komponenta koja upravlja podacima, logikom i pravilima aplikacije
+			\item View - prikazuje podatke modela i šalje radnje korisnika kontroleru
+			\item Controller - prima radnje korisnika na temelju kojih vrši daljnu interakciju s modelom i pogledom
+			
+		\end{packed_item}
 
 				
 		\section{Baza podataka}
-			
-			\textbf{\textit{dio 1. revizije}}\\
 			
 		\text Za potrebe našeg sustava koristit ćemo relacijsku bazu podataka koja svojom strukturom olakšava modeliranje stvarnog svijeta. Gradivna jedinka baze je relacija, odnosno tablica koja je definirana svojim imenom i skupom atributa. Zadaća baze podataka je brza i jednostavna pohrana, izmjena i dohvat podataka za daljnju obradu.
 		\text Baza podataka se sastoji od idućih entiteta:
@@ -195,29 +223,11 @@
 					\SetCell{LightBlue}StationChief	& VARCHAR & Korisničko ime voditelja stanice\\ \hline 
 				\end{longtblr}
 				
-				\textit{Svaku tablicu je potrebno opisati po zadanom predlošku. Lijevo se nalazi točno ime varijable u bazi podataka, u sredini se nalazi tip podataka, a desno se nalazi opis varijable. Svjetlozelenom bojom označite primarni ključ. Svjetlo plavom označite strani ključ}
-				
-				
-				\begin{longtblr}[
-					label=none,
-					entry=none
-					]{
-						width = \textwidth,
-						colspec={|X[6,l]|X[6, l]|X[20, l]|}, 
-						rowhead = 1,
-					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
-					\hline \multicolumn{3}{|c|}{\textbf{korisnik - ime tablice}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}IDKorisnik & INT	&  	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  	\\ \hline
-					korisnickoIme	& VARCHAR &   	\\ \hline 
-					email & VARCHAR &   \\ \hline 
-					ime & VARCHAR	&  		\\ \hline 
-					\SetCell{LightBlue} primjer	& VARCHAR &   	\\ \hline 
-				\end{longtblr}
 
 				
 			
 			\subsection{Dijagram baze podataka}
-				\textit{ U ovom potpoglavlju potrebno je umetnuti dijagram baze podataka. Primarni i strani ključevi moraju biti označeni, a tablice povezane. Bazu podataka je potrebno normalizirati. Podsjetite se kolegija "Baze podataka".}
+				
 
 				\begin{figure}[H]
 					\includegraphics[scale=0.40]{slike/ModelBazePodataka.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
@@ -231,12 +241,6 @@
 			
 		\section{Dijagram razreda}
 		
-			\textit{Potrebno je priložiti dijagram razreda s pripadajućim opisom. Zbog preglednosti je moguće dijagram razlomiti na više njih, ali moraju biti grupirani prema sličnim razinama apstrakcije i srodnim funkcionalnostima.}\\
-			
-			\textbf{\textit{dio 1. revizije}}\\
-		
-			\textit{Prilikom prve predaje projekta, potrebno je priložiti potpuno razrađen dijagram razreda vezan uz \textbf{generičku funkcionalnost} sustava. Ostale funkcionalnosti trebaju biti idejno razrađene u dijagramu sa sljedećim komponentama: nazivi razreda, nazivi metoda i vrste pristupa metodama (npr. javni, zaštićeni), nazivi atributa razreda, veze i odnosi između razreda.}\\
-			
 			\begin{figure}[H]
 				\includegraphics[scale=0.4]{slike/classes.PNG}
 				\centering
