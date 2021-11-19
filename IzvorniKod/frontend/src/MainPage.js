@@ -8,9 +8,6 @@ function MainPage(){
 
     return(
         <div className="MainPage">
-            <header className="App-header">
-                {getCookie("username")}
-            </header>
             MainPage
         </div>
     )
