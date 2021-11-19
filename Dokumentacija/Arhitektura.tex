@@ -23,20 +23,20 @@
 		\text Baza podataka se sastoji od idućih entiteta:
 		\begin{packed_item}
 			
-			\item Korisnik
-			\item Spasilac
-			\item Stanica
-			\item Akcija
-			\item PozivNaAkciju
-			\item Fotografija
-			\item Zadatak
-			\item KomentariAkcije
+			\item User
+			\item Responder
+			\item Station
+			\item Call
+			\item CallRequest
+			\item Photo
+			\item Task
+			\item CallComments
 
 		\end{packed_item}
 		
 			\subsection{Opis tablica}
 
-				\textbf {Korisnik} \text Ovaj entitet sadrži općenite informacije o svim korisnicima aplikacije. Sadrži atribute: korisnickoIme, hashLozinke, Ime, Prezime, eMail, brojMobitela, urlFotografije, Uloga, Potvrden. Ovaj entitet je u vezi \textit{One-to-one} s entitetom Spasilac preko atributa korisničkoIme, u vezi \textit{One-to-many} s entitetom PozivNaAkciju preko atributa korisničkoImeDispecera te je u vezi \textit{One-to-many} s entitetom Zadatak preko atributa korisničkoImeDispecera. 
+				\textbf {User} \text Ovaj entitet sadrži općenite informacije o svim korisnicima aplikacije. Sadrži atribute: Username, PhotoURL, PasswordHash, Name, Surname, PhoneNumber, eMail, Role i Confirmed. Ovaj entitet je u vezi \textit{One-to-one} s entitetom Responder preko atributa Username, u vezi \textit{One-to-many} s entitetom CallRequest preko atributa DispatcherUsername te je u vezi \textit{One-to-many} s entitetom Task preko atributa DispatcherUsername. 
 				
 				
 				\begin{longtblr}[
@@ -47,21 +47,21 @@
 						colspec={|X[6,l]|X[6, l]|X[20, l]|}, 
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
-					\hline \multicolumn{3}{|c|}{\textbf{Korisnik}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}korisnickoIme & VARCHAR & jedinstveno korisničko ime  	 	\\ \hline
-					hashLozinke & VARCHAR & Hash lozinke korisnika  	\\ \hline
-					Ime & VARCHAR & Ime korisnika  	\\ \hline
-					Prezime & VARCHAR & Prezime korisnika  	\\ \hline
+					\hline \multicolumn{3}{|c|}{\textbf{Username}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}Username & VARCHAR & jedinstveno korisničko ime  	 	\\ \hline
+					PhotoURL & VARCHAR & url fotografije	\\ \hline
+					PasswordHash	& VARCHAR & hash lozinke 	\\ \hline
+					Name & VARCHAR & Ime korisnika  	\\ \hline
+					Surname & VARCHAR & Prezime korisnika  	\\ \hline
 					eMail & VARCHAR & e-mail korisnika  \\ \hline 
-					brojMobitela & VARCHAR & Broj mobitela korisnika  	\\ \hline 
-					urlFotografije	& VARCHAR & Url fotografije korisnika  	\\ \hline
-					Uloga & VARCHAR	& Uloga korisnika		\\ \hline
-					Potvrden & BIT & Status registracije korisnika \\ \hline   
+					PhoneNumber & VARCHAR & Broj mobitela korisnika  	\\ \hline 
+					Role & VARCHAR	& Uloga korisnika		\\ \hline
+					Confirmed & BIT & Status registracije korisnika \\ \hline   
 				\end{longtblr}
 
 
 
-				\textbf {Spasilac} \text Ovaj entitet sadrži sve važne informacije o spasiocima. Sadrži atribute: korisnickoIme, Zauzetost, Osposobljenje, lokacijaLatitude, lokacijaLongitude, imeAkcije, imeStanice. Ovaj entitet je u vezi \textit{One-to-one} sa entitetom Korisnik preko 							  atributa korisnickoIme, u vezi \textit{One-to-many} sa entitetom PozivNaAkciju preko atributa korisnickoImeSpasioca, u vezi \textit{One-to-one} s entitetom Stanica preko atributa imeStanice, u vezi \textit{One-to-one} s entitetom Stanica preko atributa korisnickoIme, u 							  vezi \textit{One-to-Many} s entitetom Zadatak preko atributa korisničkoImeSpasioca, u vezi \textit{One-to-Many} s					  entitetom KomentariAkcije preko atributa korisničkoIme te u vezi \textit{One-to-one} s entitetom Akcija preko atributa 									  imeAkcije.
+				\textbf {Responder} \text Ovaj entitet sadrži sve važne informacije o spasiocima. Sadrži atribute: Username, Qualification, LocationLatitude, LocationLongitude, Availability, CallName i StationName. Ovaj entitet je u vezi \textit{One-to-one} sa entitetom User preko atributa Username, u vezi \textit{One-to-many} sa entitetom CallRequest preko atributa ResponderUsername, u vezi \textit{One-to-one} s entitetom Station preko atributa StationName, u vezi \textit{One-to-one} s entitetom Station preko atributa StationChief, u vezi \textit{One-to-Many} s entitetom Task preko atributa ResponderUsername, u vezi \textit{One-to-Many} s entitetom CallComents preko atributa Username te u vezi \textit{One-to-one} s entitetom Call preko atributa CallName.
 				
 				
 				\begin{longtblr}[
@@ -72,19 +72,19 @@
 						colspec={|X[8,l]|X[6, l]|X[20, l]|}, 
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
-					\hline \multicolumn{3}{|c|}{\textbf{Spasilac}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}korisnickoIme & VARCHAR	&  	Korisničko ime spasioca  	\\ \hline
-					Zauzetost & BIT	&  Status zauzetosti spasioca 		\\ \hline 
-					Osposobljenje	& VARCHAR &  Osposobljenje spasioca 	\\ \hline 
-					lokacijaLatitude & VARCHAR &  Geografska širina lokacije spasioca \\ \hline 
-					lokacijaLongitude & VARCHAR & Geografska dužina lokacije spasioca \\ \hline 
-					\SetCell{LightBlue} imeAkcije	& VARCHAR & Ime akcije u kojoj spasilac trenutno sudjeluje \\ \hline 
-					\SetCell{LightBlue} imeStanice	& VARCHAR &  Ime stanice kojoj spasilac pripada \\ \hline 
+					\hline \multicolumn{3}{|c|}{\textbf{Responder}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}Username & VARCHAR	&  	Korisničko ime spasioca  	\\ \hline
+					Qualification	& VARCHAR &  Osposobljenje spasioca 	\\ \hline 
+					Location Latitutude & VARCHAR &  Geografska širina lokacije spasioca \\ \hline 
+					Location Longitude & VARCHAR & Geografska dužina lokacije spasioca \\ \hline 
+					Availability & BIT	&  Status zauzetosti spasioca 		\\ \hline 
+					\SetCell{LightBlue} CallName	& VARCHAR & Ime akcije u kojoj spasilac trenutno sudjeluje \\ \hline 
+					\SetCell{LightBlue} StationName	& VARCHAR &  Ime stanice kojoj spasilac pripada \\ \hline 
 				\end{longtblr}
 			
 				
 
-				\textbf{Akcija} \text Ovaj entitet sadrži sve važne informacije o akciji. Sadrži atribute: imeAkcije, opisAkcije, Adresa, Gotova. Ovaj entitet je u 						             vezi \textit{One-to-one} s entitetom Spasilac preko atributa imeAkcije, u vezi \textit{One-to-many} s entitetom Fotografija preko atributa imeAkcije, u vezi \textit{One-to-many} s entitetom KomentariAkcije preko atributa imeAkcije te u 									     vezi \textit{One-to-many} s entitetom PozivNaAkciju preko atributa imeAkcije.
+				\textbf{Call} \text Ovaj entitet sadrži sve važne informacije o akciji. Sadrži atribute: CallName, Address, Finished i Description. Ovaj entitet je u 						             vezi \textit{One-to-one} s entitetom Responder preko atributa CallName, u vezi \textit{One-to-many} s entitetom Photo preko atributa CallName, u vezi \textit{One-to-many} s entitetom CallComments preko atributa CallName te u 									     vezi \textit{One-to-many} s entitetom CallRequest preko atributa CallName.
 				
 				
 				\begin{longtblr}[
@@ -95,15 +95,15 @@
 						colspec={|X[6,l]|X[6, l]|X[20, l]|}, 
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
-					\hline \multicolumn{3}{|c|}{\textbf{Akcija}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}imeAkcije & VARCHAR	&  	Ime akcije  	\\ \hline
-					opisAkcije & VARCHAR	&  Kratak opis akcije		\\ \hline
-					Adresa	& VARCHAR &  Adresa  	\\ \hline 
-					Gotova & BIT &  Oznaka završetka akcije \\ \hline  
+					\hline \multicolumn{3}{|c|}{\textbf{Call}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}CallName & VARCHAR	&  	Ime akcije  	\\ \hline
+					Address	& VARCHAR &  Adresa  	\\ \hline 
+					Finished & BIT &  Oznaka završetka akcije \\ \hline 
+					Description & VARCHAR	&  Kratak opis akcije		\\ \hline 
 				\end{longtblr}
 
 				
-				\textbf{PozivNaAkciju} \text Ovaj entitet sadrži sve važne informacije o pozivu na akciju pojedinačnom spasiocu. Sadrži atribute: imeAkcije, korisnickoImeSpasioca, korisnickoImeDispecera, odgovorSpasioca, nacinSudjelovanja, Hitnost, Komentar. Ovaj entitet je u vezi \textit{Many-to-one} s entitetom Spasilac preko atributa korisnickoImeSpasioca, u vezi \textit{Many-to-many} s entitetom Korisnik preko atributa korisničkoImeDispečera te u vezi \textit{Many-to-one} s entitetom Akcija preko atributa imeAkcije.
+				\textbf{CallRequest} \text Ovaj entitet sadrži sve važne informacije o pozivu na akciju pojedinačnom spasiocu. Sadrži atribute: CallName, ResponderUsername, DispatcherUsername, ResponderResponse, ResponderRole, Urgency i Comment. Ovaj entitet je u vezi \textit{Many-to-one} s entitetom Responder preko atributa ResponderUsername, u vezi \textit{Many-to-many} s entitetom User preko atributa DispatcherUsername te u vezi \textit{Many-to-one} s entitetom Call preko atributa CallName.
 				
 				
 				\begin{longtblr}[
@@ -114,17 +114,17 @@
 						colspec={|X[8,l]|X[6, l]|X[20, l]|}, 
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
-					\hline \multicolumn{3}{|c|}{\textbf{PozivNaAkciju}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}imeAkcije & VARCHAR	&  	Ime akcije za koju se šalje poziv  	\\ \hline
-					\SetCell{LightGreen}korisnicko ImeSpasioca & VARCHAR	&  	Korisničko ime spasioca kojem je poslan poziv  	\\ \hline  
-					\SetCell{LightBlue} korisnicko ImeDispecera	& VARCHAR &   	Korisničko ime dispečera koji je poslao poziv\\ \hline 
-					odgovorSpasioca & BIT	&  Prihvat poziva ili odbijanje\\ \hline
-					nacinSudjelovanja	& VARCHAR & Način sudjelovanja spasioca  	\\ \hline 
-					Hitnost & INT & Razina hitnosti  \\ \hline 
-					Komentar	& VARCHAR & Komentar dispečera  	\\ \hline
+					\hline \multicolumn{3}{|c|}{\textbf{CallRequest}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}CallName & VARCHAR	&  	Ime akcije za koju se šalje poziv  	\\ \hline
+					\SetCell{LightGreen}Respoder Username & VARCHAR	&  	Korisničko ime spasioca kojem je poslan poziv  	\\ \hline  
+					\SetCell{LightBlue} Dispatcher Username	& VARCHAR &   	Korisničko ime dispečera koji je poslao poziv\\ \hline 
+					Responder Response & BIT	&  Prihvat poziva ili odbijanje\\ \hline
+					Responder Role	& VARCHAR & Način sudjelovanja spasioca  	\\ \hline 
+					Urgency & INT & Razina hitnosti  \\ \hline 
+					Comment	& VARCHAR & Komentar dispečera  	\\ \hline
 				\end{longtblr}
 				
-				\textbf{Zadatak} \text Ovaj entitet sadrži sve važne informacije o zadatku kojeg dispečer zadaje spasiocima. Sadrži atribute: idZadatka, opisZadatka, komentarDispecera, Adresa, korisnickoImeDispecera, korisnicknoImeSpasioca. Ovaj entitet je u vezi \textit{Many-to-one} s entitetom Korisnik preko atributa korisnickoImeDispecera te u vezi \textit{Many-to-one} s entitetom Spasilac preko atributa korisnickoImeSpasioca.
+				\textbf{Task} \text Ovaj entitet sadrži sve važne informacije o zadatku kojeg dispečer zadaje spasiocima. Sadrži atribute: IDTask, Comment, Description, Address, ResponderUsername i DispatcherUsername. Ovaj entitet je u vezi \textit{Many-to-one} s entitetom User preko atributa DispatcherUsername te u vezi \textit{Many-to-one} s entitetom Responder preko atributa ResponderUsername.
 				
 				
 				\begin{longtblr}[
@@ -135,17 +135,16 @@
 						colspec={|X[6,l]|X[6, l]|X[20, l]|}, 
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
-					\hline \multicolumn{3}{|c|}{\textbf{Zadatak}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}idZadatka & INT & Identifikator zadatka	\\ \hline 
-					opisZadatka & VARCHAR & Opis zadatka  \\ \hline
-					Komentar	& VARCHAR & Komentar kojeg može dati dispečer  	\\ \hline
-					Adresa	& VARCHAR & Adresa na koju treba doći\\ \hline
-					\SetCell{LightBlue} korisnicko ImeDispecera	& VARCHAR &   	Korisničko ime dispečera koji je zadao zadatak\\ \hline 
-					\SetCell{LightBlue} korisnicko ImeSpasioca	& VARCHAR &   	Korisničko ime spasioca koji je dobio zadatak\\ \hline 
-					 
+					\hline \multicolumn{3}{|c|}{\textbf{Task}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}IDTask & INT & Identifikator zadatka	\\ \hline 		
+					Comment	& VARCHAR & Komentar kojeg može dati dispečer  	\\ \hline
+					Description & VARCHAR & Opis zadatka  \\ \hline
+					Address	& VARCHAR & Adresa na koju treba doći\\ \hline
+					\SetCell{LightBlue} Responder Username	& VARCHAR &   	Korisničko ime spasioca koji je dobio zadatak\\ \hline 
+					\SetCell{LightBlue} Dispatcher Username	& VARCHAR &   	Korisničko ime dispečera koji je zadao zadatak\\ \hline 
 				\end{longtblr}
 			
-				\textbf{Fotografija} \text Ovaj entitet sadrži fotografije akcija. Sadrži atribute: urlFotografija i imeAkcije. Ovaj entitet je u vezi \textit{Many-to-one} s entitetom Akcija preko atributa imeAkcije.
+				\textbf{Photo} \text Ovaj entitet sadrži fotografije akcija. Sadrži atribute: PhotoURL i CallName. Ovaj entitet je u vezi \textit{Many-to-one} s entitetom Call preko atributa CallName.
 				
 				
 				\begin{longtblr}[
@@ -156,12 +155,12 @@
 						colspec={|X[6,l]|X[6, l]|X[20, l]|}, 
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
-					\hline \multicolumn{3}{|c|}{\textbf{Fotografija}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}urlFotografije & VARCHAR	&  Url fotografije akcije  	\\ \hline
-					\SetCell{LightBlue} imeAkcije	& VARCHAR & Ime akcije kojoj fotografija pripada  	\\ \hline 
+					\hline \multicolumn{3}{|c|}{\textbf{Photo}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}PhotoURL & VARCHAR	&  Url fotografije akcije  	\\ \hline
+					\SetCell{LightBlue} CallName	& VARCHAR & Ime akcije kojoj fotografija pripada  	\\ \hline 
 				\end{longtblr}
 			
-				\textbf{KomentariAkcije} \text Ovaj entitet sadrži sve važne informacije vezane uz mogućnost spasilaca da komentiraju akcije. Sadrži atribute: imeAkcije, korisnickoIme, Komentar, lokacijaLatitude, lokacijaLongitude. Ovaj entitet je u vezi \textit{Many-to-one} s entitetom Akcija preko atributa imeAkcije te u vezi \textit{Many-to-one} s entitetom Spasilac preko atributa korisnickoImeSpasioca.
+				\textbf{CallComments} \text Ovaj entitet sadrži sve važne informacije vezane uz mogućnost spasilaca da komentiraju akcije. Sadrži atribute: CallName, Username, Comment, Locationlatitude i LocationLongitude. Ovaj entitet je u vezi \textit{Many-to-one} s entitetom Call preko atributa CallName te u vezi \textit{Many-to-one} s entitetom Responder preko atributa Username.
 				
 				
 				\begin{longtblr}[
@@ -172,15 +171,15 @@
 						colspec={|X[8,l]|X[6, l]|X[20, l]|}, 
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
-					\hline \multicolumn{3}{|c|}{\textbf{KomentariAkcije}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}imeAkcije & VARCHAR	&  Ime akcije za koju se ostavlja komentar  	\\ \hline
-					\SetCell{LightGreen} korisnickoIme	& VARCHAR & Korisnik koji ostavlja komentar \\ \hline 
-					Komentar	& VARCHAR & Komentar kojeg je korisnik ostavio  	\\ \hline 
-					lokacijaLatitude & VARCHAR &  Geografska širina lokacije komentara \\ \hline 
-					lokacijaLongitude & VARCHAR & Geografska dužina lokacije komentara \\ \hline 
+					\hline \multicolumn{3}{|c|}{\textbf{CallComments}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}CallName & VARCHAR	&  Ime akcije za koju se ostavlja komentar  	\\ \hline
+					\SetCell{LightGreen} Username	& VARCHAR & Korisnik koji ostavlja komentar \\ \hline 
+					Comment	& VARCHAR & Komentar kojeg je korisnik ostavio  	\\ \hline 
+					Location Latitude & VARCHAR &  Geografska širina lokacije komentara \\ \hline 
+					Location Longitude & VARCHAR & Geografska dužina lokacije komentara \\ \hline 
 				\end{longtblr}
 			
-				\textbf{Stanica} \text Ovaj entitet sadrži sve važne informacije vezane uz stanicu. Sadrži atribute: imeStanice i Voditelj. Ovaj entitet je u vezi \textit{One-to-one} s entitetom Spasilac preko atributa imeStanice te u vezi \textit{One-to-one} s entitetom Spasilac preko atributa Voditelj.
+				\textbf{Station} \text Ovaj entitet sadrži sve važne informacije vezane uz stanicu. Sadrži atribute: StationName i StationChief. Ovaj entitet je u vezi \textit{One-to-one} s entitetom Responder preko atributa StationName te u vezi \textit{One-to-one} s entitetom Responder preko atributa StationChief.
 				
 				
 				\begin{longtblr}[
@@ -191,9 +190,9 @@
 						colspec={|X[6,l]|X[6, l]|X[20, l]|}, 
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
-					\hline \multicolumn{3}{|c|}{\textbf{Stanica}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}imeStanice	& VARCHAR & Naziv stanice \\ \hline 
-					\SetCell{LightBlue}Voditelj	& VARCHAR & Korisničko ime voditelja stanice\\ \hline 
+					\hline \multicolumn{3}{|c|}{\textbf{Station}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}StationName	& VARCHAR & Naziv stanice \\ \hline 
+					\SetCell{LightBlue}StationChief	& VARCHAR & Korisničko ime voditelja stanice\\ \hline 
 				\end{longtblr}
 				
 				\textit{Svaku tablicu je potrebno opisati po zadanom predlošku. Lijevo se nalazi točno ime varijable u bazi podataka, u sredini se nalazi tip podataka, a desno se nalazi opis varijable. Svjetlozelenom bojom označite primarni ključ. Svjetlo plavom označite strani ključ}
@@ -214,14 +213,14 @@
 					ime & VARCHAR	&  		\\ \hline 
 					\SetCell{LightBlue} primjer	& VARCHAR &   	\\ \hline 
 				\end{longtblr}
-				
+
 				
 			
 			\subsection{Dijagram baze podataka}
 				\textit{ U ovom potpoglavlju potrebno je umetnuti dijagram baze podataka. Primarni i strani ključevi moraju biti označeni, a tablice povezane. Bazu podataka je potrebno normalizirati. Podsjetite se kolegija "Baze podataka".}
 
 				\begin{figure}[H]
-					\includegraphics[scale=0.16]{slike/ModelBazePodataka.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
+					\includegraphics[scale=0.40]{slike/ModelBazePodataka.png} %veličina slike u odnosu na originalnu datoteku i pozicija slike
 					\centering
 					\caption{Dijagram baze podataka}
 					\label{fig:baza podataka}

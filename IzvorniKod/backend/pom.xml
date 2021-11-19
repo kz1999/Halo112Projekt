@@ -11,6 +11,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>halo112_generic</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>halo112_generic</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -20,6 +21,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
