@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @EnableWebSecurity
@@ -20,6 +21,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     @Autowired
     UserDetailsService userDetailsService;
+    private Object BCryptPasswordEncoder;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
@@ -36,19 +38,25 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         */
         http.authorizeRequests()
-                .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/helloworld").hasRole("ADMIN")
                 .antMatchers("/h2-console").permitAll()
                 .antMatchers("/korisnici").permitAll()
                 .antMatchers("/").permitAll()
+                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
                 .and().formLogin();
         http.headers().frameOptions().sameOrigin(); // fixes h2-console problem
         http.csrf().disable();
     }
 
     @Bean
+    PasswordEncoder passwordEncoder(){ return NoOpPasswordEncoder.getInstance();}
+
+    /*
+    @Bean
     PasswordEncoder passwordEncoder(){
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
+     */
 
 }
 

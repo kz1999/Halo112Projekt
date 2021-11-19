@@ -4,9 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HelloWorldController {
-    @GetMapping("/helloworld")
-    public String index() {
-        return "Hello world";
-    }
+public class MainController {
+    @GetMapping("/")
+    public String index(){return "Index page!";}
 }
