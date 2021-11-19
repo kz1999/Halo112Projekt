@@ -13,10 +13,15 @@ function Header(props){
 
     return(
         <header className="Header">
-            <header className="App-header">
-                {getCookie("username")}
-                <Link to='/users'>Users</Link>
-                <button onClick={logout}>Logout</button>
+            <header className="App-header-container">
+                <div className="App-header">
+                    <Link to='/main'>Main page</Link>
+                    <Link to='/users'>Users list</Link>
+                    <Link to='/login'>Login</Link>
+                    <Link to='/register'>Register</Link>
+                    User: {getCookie("username")}
+                    <button onClick={logout}>Logout</button>
+                </div>
             </header>
         </header>
     )

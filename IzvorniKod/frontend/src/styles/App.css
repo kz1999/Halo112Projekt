@@ -2,16 +2,18 @@
   text-align: center;
 }
 
-.App-header {
+.App-header-container {
   background-color: #282c34;
   min-height: 100px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.App-header {
+  margin: auto;
+  width: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
