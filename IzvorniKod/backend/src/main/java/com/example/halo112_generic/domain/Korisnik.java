@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
+@Table(name = "Korisnik")
 public class Korisnik {
 
     public Korisnik(Long id, String korisnickoIme, String fotografija, String hashLozinke, String ime, String prezime, String brojMobitela, String email, String uloga, boolean potvrden) {
@@ -33,7 +34,7 @@ public class Korisnik {
     @Id
     @Column(unique = true)
     @NotNull
-    @Size(min=8, max=30)
+    @Size(max=30)
     private String korisnickoIme;
 
     private String fotografija;

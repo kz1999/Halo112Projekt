@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Repository
 public interface KorisnikRepository
@@ -18,7 +19,7 @@ public interface KorisnikRepository
     public int countByKorisnickoIme(String korisnickoIme);
 
     @Query("SELECT r FROM Korisnik r where r.korisnickoIme = :korisnickoIme")
-    Korisnik findKorisnikByKorisnickoIme(@Param("korisnickoIme") String korisnickoIme);
+    Optional<Korisnik> findKorisnikByKorisnickoIme(@Param("korisnickoIme") String korisnickoIme);
 
     @Transactional
     @Modifying
@@ -49,6 +50,16 @@ public interface KorisnikRepository
     @Modifying
     @Query("UPDATE Korisnik k SET k.uloga = :korisnikUloga WHERE k.korisnickoIme = :korisnickoIme")
     void editKorisnikUloga(@Param("korisnickoIme") String korisnickoIme, @Param("korisnikUloga") String korisnikUloga);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Korisnik k SET k.potvrden = :korisnikPotvrden WHERE k.korisnickoIme = :korisnickoIme")
+    void editKorisnikPotvrden(@Param("korisnickoIme") String korisnickoIme, @Param("korisnikPotvrden") boolean korisnikPotvrden);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Korisnik k SET k.hashLozinke = :korisnikHashLozinka WHERE k.korisnickoIme = :korisnickoIme")
+    void editKorisnikHashLozinka(@Param("korisnickoIme") String korisnickoIme, @Param("korisnikHashLozinka") String korisnikHashLozinka);
 
 
 }

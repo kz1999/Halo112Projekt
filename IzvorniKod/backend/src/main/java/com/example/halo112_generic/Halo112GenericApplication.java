@@ -17,10 +17,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class Halo112GenericApplication {
 
-	@Bean
-	public PasswordEncoder pswdEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+	//@Bean
+	//public PasswordEncoder pswdEncoder() {
+	//	return new BCryptPasswordEncoder();
+	//}
 
 	public static void main(String[] args) {
 		SpringApplication.run(Halo112GenericApplication.class, args);
