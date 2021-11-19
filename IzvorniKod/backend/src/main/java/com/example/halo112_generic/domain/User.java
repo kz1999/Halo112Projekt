@@ -26,7 +26,7 @@ public class User {
     }
 
     //@Id
-    //@GeneratedValue
+    @GeneratedValue
     private Long id;
 
     @Id
