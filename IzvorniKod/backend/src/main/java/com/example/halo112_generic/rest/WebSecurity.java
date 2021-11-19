@@ -2,6 +2,7 @@ package com.example.halo112_generic.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,6 +24,14 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     UserDetailsService userDetailsService;
     private Object BCryptPasswordEncoder;
 
+    @Bean
+    public DaoAuthenticationProvider authProvider(){
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setPasswordEncoder(passwordEncoder());
+        authenticationProvider.setUserDetailsService(userDetailsService);
+        return authenticationProvider;
+    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(userDetailsService);
@@ -30,6 +39,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .withUser("admin")
                 .password("pass")
                 .roles("ADMIN");
+        auth.authenticationProvider(authProvider());
     }
 
     @Override
@@ -47,7 +57,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/korisnici").permitAll()
                 .antMatchers("/").permitAll()
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
-                .and().formLogin();
+                .and().formLogin().loginPage("/login");
         http.headers().frameOptions().sameOrigin(); // fixes h2-console problem
         http.csrf().disable();
     }
