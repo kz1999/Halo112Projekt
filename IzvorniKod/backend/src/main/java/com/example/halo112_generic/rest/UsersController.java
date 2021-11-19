@@ -37,13 +37,13 @@ public class UsersController {
     }
 
     @GetMapping("/{userName}")
-    @Secured("ROLE_ADMIN")
+    //@Secured("ROLE_ADMIN")
     public Optional<User> findByUserName(@PathVariable String userName) throws Exception {
         return userService.findByUserName(userName);
     }
 
     @PostMapping("/{userName}")
-    @Secured("ROLE_ADMIN")
+    //@Secured("ROLE_ADMIN")
     public Optional<User> editUser(@PathVariable String userName, @RequestBody User user) throws Exception {
         return userService.editUser(userName, user);
     }
