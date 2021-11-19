@@ -1,11 +1,9 @@
 import React from "react";
-import {setCookie, getCookie} from './Cookies';
 import './styles/App.css';
 
 function Login(props){
     const [loginForm, setLoginForm] = React.useState( {username:'', password:'' });
     const [error, setError] = React.useState('');
-
 
     function onChange(event){
         const {name, value} = event.target;
@@ -15,23 +13,23 @@ function Login(props){
     function onSubmit(event){
         event.preventDefault();
         setError("");
-        const body = `username=${loginForm.username}$password=${loginForm.password}`;
+        const body =  `username=${loginForm.username}&password=${loginForm.password}`;
+
         const options = {
-            metehod: 'POST',
+            method: 'GET',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
             },
-            body: body
+            //body: body
         };
-        fetch('/login',options)
+        fetch('login',options)
             .then(response => {
-                if(response.status=401){
-                    setError("Login failed");
+                if(response.status===401){
+                    setError("Login failed")
                 }else{
                     props.onLogin();
                 }
             });
-        //setCookie("username",loginForm.username,30);
     }
 
     return(

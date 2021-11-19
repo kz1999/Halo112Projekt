@@ -1,8 +1,20 @@
 import React from "react";
 import './styles/App.css';
 
-function Register(){
-    const [form, setForm] = React.useState( {username:'', password:'', name:'', lastName:'', phoneNumber:'', email:'', role:''});
+function ChangeUser(props){
+
+    /*
+    const [user, setUser] = React.useState([]);
+    React.useEffect(()=>{
+        fetch('/korisnici/'+ props.user.userName)
+        .then(data => data.json())
+        .then(user => setUser(user))
+    });
+    */
+
+    const [form, setForm] = React.useState( {username:props.user.userName, password:props.user.passwordHash, 
+        name:props.user.name, lastName:props.user.surname, phoneNumber:props.user.phoneNumber, email:props.user.email, role:props.user.role});
+
 
     function onChange(event){
         const {name, value} = event.target;
@@ -14,7 +26,6 @@ function Register(){
         
 
         const data = {
-            userName: form.username,
             passwordHash: form.password,
             name: form.name,
             surname: form.lastName,
@@ -31,7 +42,7 @@ function Register(){
             body: JSON.stringify(data)
         };
         
-        return fetch('/korisnici',options);
+        return fetch('/korisnici/' + form.username, options);
         
     }
 
@@ -42,15 +53,11 @@ function Register(){
 
     return(
         <div className="UserForm">
-            <h2>Register</h2>
+            <h2>Change user: {form.username}</h2>
             <form onSubmit={onSubmit}>
                 <div className="FormRow">
-                    <label>Username</label>
-                    <input name='username' onChange={onChange} value={form.username}/>
-                </div>
-                <div className="FormRow">
                     <label>Password</label>
-                    <input name='password' type='password' onChange={onChange} value={form.password}/>
+                    <input name='password' onChange={onChange} value={form.password}/>
                 </div>
                 <div className="FormRow">
                     <label>E-mail adress</label>
@@ -73,10 +80,10 @@ function Register(){
                     <input name='role' onChange={onChange} value={form.role}/>
                 </div>
                 
-                <button type="submit" disabled = {!isValid}>Register</button>
+                <button type="submit" disabled = {!isValid}>ChangeUser</button>
             </form>
         </div>
     )
 }
 
-export default Register;
+export default ChangeUser;
