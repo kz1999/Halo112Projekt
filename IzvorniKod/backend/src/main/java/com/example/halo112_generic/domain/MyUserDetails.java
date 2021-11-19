@@ -20,7 +20,7 @@ public class MyUserDetails implements UserDetails {
         this.userName = user.getUserName();
         this.password = user.getPasswordHash();
         this.active = true;
-        if(user.getUserName()=="admin") this.authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        if(user.getUserName()=="admin") this.authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
         else this.authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
     }
 

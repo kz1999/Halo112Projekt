@@ -17,7 +17,7 @@ public class UsersController {
     private UserService userService;
 
     @GetMapping("")
-    //@Secured("ROLE_ADMIN")
+    @Secured("ROLE_ADMIN")
     public List<User> listUsers() {
         return userService.listAll();
     }
@@ -29,7 +29,7 @@ public class UsersController {
     }
 
     @GetMapping("/{userName}")
-    //@Secured("ROLE_ADMIN")
+    @Secured("ROLE_ADMIN")
     public Optional<User> findByUserName(@PathVariable String userName) throws Exception {
         return userService.findByUserName(userName);
     }
