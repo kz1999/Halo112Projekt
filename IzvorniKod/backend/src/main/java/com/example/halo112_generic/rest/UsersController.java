@@ -18,7 +18,15 @@ public class UsersController {
 
     @GetMapping("")
     //@Secured("ROLE_ADMIN")
-    public List<User> listUsers() {
+    public List<User> listUsers() throws Exception {
+        if(!userService.findByUserName("admin").isPresent()){
+            User admin = new User();
+            admin.setUserName("admin");
+            admin.setName("Adminko");
+            admin.setSurname("Adminović");
+            admin.setPasswordHash("pass");
+            userService.createUser(admin);
+        }
         return userService.listAll();
     }
 

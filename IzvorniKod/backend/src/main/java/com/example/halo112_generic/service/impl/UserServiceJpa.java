@@ -55,7 +55,7 @@ public class UserServiceJpa implements UserService {
     }
 
     @Override
-    @Secured("ROLE_ADMIN")
+    //@Secured("ROLE_ADMIN")
     public Optional<User> editUser(String userName, User user) {
         if(user.getName()!=null) userRepo.editNameUser(userName, user.getName());
         if(user.getSurname()!=null) userRepo.editSurnameUser(userName, user.getSurname());
