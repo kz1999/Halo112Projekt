@@ -1,11 +1,6 @@
 import React from "react";
-import {getCookie} from './Cookies';
 
 function MainPage(){
-    
-    
-    
-
     return(
         <div className="MainPage">
             MainPage

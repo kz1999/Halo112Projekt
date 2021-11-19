@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import "./styles/Header.css";
-import {getCookie} from "./Cookies";
 
 function Header(props){
 
@@ -19,7 +18,6 @@ function Header(props){
                     <Link to='/users'>Users list</Link>
                     <Link to='/login'>Login</Link>
                     <Link to='/register'>Register</Link>
-                    User: {getCookie("username")}
                     <button onClick={logout}>Logout</button>
                 </div>
             </header>

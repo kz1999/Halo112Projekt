@@ -11,25 +11,33 @@ import UsersList from './UsersList';
 
 
 function App() {
+  
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   function onLogin(){
     setIsLoggedIn(true)
+
   }
 
   function onLogout(){
     setIsLoggedIn(false);
   }
   
-  {/*
-  if(!isLoggedIn){
-    return(
+  
+  if(!isLoggedIn){ return(
+
+    <BrowserRouter>
+      <Header onLogout={onLogout}/>
       <div className="App">
-        <Login onLogin={onLogin}/>
+        <Switch>
+          <Login path='/login'  onLogin={onLogin}/>
+          <Route path='/register' exact component={Register}/>
+        </Switch>
       </div>
-    )
-  }
-  */}
+    </BrowserRouter>
+
+  );}
+  
 
   return (
     
@@ -37,15 +45,13 @@ function App() {
       <Header onLogout={onLogout}/>
       <div className="App">
         <Switch>
-          <Route path='/' exact component={Login}/>
-          <Route path='/login' exact component={Login}/>
-          <Route path='/main' exact component={MainPage}/>
           <Route path='/register' exact component={Register}/>
+          <Route path='/main' exact component={MainPage}/>
           <Route path='/users' exact component={UsersList}/>
+          <Route path='/login' exact component={Login}/>
         </Switch>
       </div>
     </BrowserRouter>
-    
   );
 }
 
