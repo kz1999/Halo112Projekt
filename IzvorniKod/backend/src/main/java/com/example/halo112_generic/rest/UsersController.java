@@ -17,7 +17,7 @@ public class UsersController {
     private UserService userService;
 
     @GetMapping("")
-    @Secured("ROLE_ADMIN")
+    //@Secured("ROLE_ADMIN")
     public List<User> listUsers() {
         return userService.listAll();
     }
