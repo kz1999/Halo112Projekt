@@ -1,0 +1,107 @@
+CREATE TABLE "User"
+(
+  Username VARCHAR(30) NOT NULL,
+  PhotoURL VARCHAR(100) NOT NULL,
+  PasswordHash VARCHAR(50) NOT NULL,
+  Name VARCHAR(20) NOT NULL,
+  Surname VARCHAR(30) NOT NULL,
+  PhoneNumber VARCHAR(10) NOT NULL,
+  eMail VARCHAR(30) NOT NULL,
+  Role VARCHAR(20) NOT NULL,
+  Confirmed BOOLEAN NOT NULL,
+  PRIMARY KEY (Username)
+);
+
+CREATE TABLE Call
+(
+  CallName VARCHAR(30) NOT NULL,
+  Address VARCHAR(30) NOT NULL,
+  Finished BOOLEAN NOT NULL,
+  Description VARCHAR(30) NOT NULL,
+  PRIMARY KEY (CallName)
+);
+
+CREATE TABLE Photo
+(
+  PhotoURL VARCHAR(100) NOT NULL,
+  CallName VARCHAR(30) NOT NULL,
+  PRIMARY KEY (PhotoURL),
+  FOREIGN KEY (CallName) REFERENCES Call(CallName)
+);
+
+CREATE TABLE Station
+(
+  StationName VARCHAR(30) NOT NULL,
+  StationChief VARCHAR(30) NOT NULL,
+  PRIMARY KEY (StationName)
+);
+
+CREATE TABLE Responder
+(
+  Qualification VARCHAR(30) NOT NULL,
+  LocationLatitute VARCHAR(30) NOT NULL,
+  LocationLongitude VARCHAR(30) NOT NULL,
+  Availability BOOLEAN NOT NULL,
+  Username VARCHAR(30) NOT NULL,
+  CallName VARCHAR(30) NOT NULL,
+  StationName VARCHAR(30) NOT NULL,
+  PRIMARY KEY (Username),
+  FOREIGN KEY (Username) REFERENCES "User"(Username),
+  FOREIGN KEY (CallName) REFERENCES Call(CallName),
+  FOREIGN KEY (StationName) REFERENCES Station(StationName)
+);
+
+
+
+CREATE TABLE CallRequest
+(
+  ResponderRole VARCHAR(30) NOT NULL,
+  Urgency INT NOT NULL,
+  ResponderResponse BOOLEAN NOT NULL,
+  Comment VARCHAR(30) NOT NULL,
+  ResponderUsername VARCHAR(30) NOT NULL,
+  CallName VARCHAR(30) NOT NULL,
+  DIspacherUsername VARCHAR(30) NOT NULL,
+  PRIMARY KEY (ResponderUsername, CallName),
+  FOREIGN KEY (ResponderUsername) REFERENCES Responder(Username),
+  FOREIGN KEY (CallName) REFERENCES Call(CallName),
+  FOREIGN KEY (DIspacherUsername) REFERENCES "User"(Username)
+);
+
+CREATE TABLE Task
+(
+  IDTask INT NOT NULL,
+  Comment VARCHAR(30) NOT NULL,
+  Description VARCHAR(30) NOT NULL,
+  Address VARCHAR(30) NOT NULL,
+  ResponderUsername VARCHAR(30) NOT NULL,
+  DispatcherUsername VARCHAR(30) NOT NULL,
+  PRIMARY KEY (IDTask),
+  FOREIGN KEY (ResponderUsername) REFERENCES Responder(Username),
+  FOREIGN KEY (DispatcherUsername) REFERENCES "User"(Username)
+);
+
+CREATE TABLE CallComments
+(
+  Comment VARCHAR(30) NOT NULL,
+  LocationLatitude VARCHAR(30) NOT NULL,
+  LocationLongitude VARCHAR(30) NOT NULL,
+  CallName VARCHAR(30) NOT NULL,
+  Username VARCHAR(30) NOT NULL,
+  PRIMARY KEY (CallName, Username),
+  FOREIGN KEY (CallName) REFERENCES Call(CallName),
+  FOREIGN KEY (Username) REFERENCES Responder(Username)
+);
+
+INSERT INTO "User"(
+  Username,
+  PhotoURL,
+  PasswordHash,
+  Name,
+  Surname,
+  PhoneNumber,
+  eMail,
+  Role,
+  Confirmed
+) 
+VALUES ('Admin1', 'https://support.discord.com/hc/user_images/l12c7vKVRCd-XLIdDkLUDg.png', '0e1b8b3ef01dad60a89c3b16b6eeff54', 'Lukas', 'Ujcic', 1234, 'lu52326@fer.hr', 'admin', TRUE);
