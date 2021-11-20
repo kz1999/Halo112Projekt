@@ -1,70 +1,16 @@
-# Getting Started with Create React App
+potrebno je prvo otici u frontend folder, iz njega otvoriti command prompt i pokrenuti sljedeću naredbu koja će instalirati potrebnu verziju reacta:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### npm install react-scripts --save
 
-## Available Scripts
+otići u package.json i u posljednjem redku promjeniti link u: http://halo112h.herokuapp.com/
+potom pokrenuti aplikaciju iz naredbenog retka sa sljedećom naredbom:
 
-In the project directory, you can run:
+### npm start
 
-### `npm start`
+browser bi trebao automatski pokrenuti stranicu: http://localhost:3000, ali ako nece, mozete ju rucno otvoriti.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+login ne radi, pa se moze unijeti bilo koje ime za ulazak u program, prije pritiska na gumb login nije dostupan nijedan link osim /login i /register.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+nakon pritiska na gumb ulazi se u stranicu i frontend se ponasa kao da je admin. Mogu se mijenjati podaci korisnika, ili dodavati novi na /register. Dostupna je i main stranica koja bi se prikazivala svima (cak i ne adminima).
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+*napomena: login ne radi isključivo na frontendu, na backendu je implementiran. Ideja je da kad se netko ulogira, samo ako je admin moze vidjeti i uredivati tude podatke. Inace bi mu bila dostupna samo /main stranica
