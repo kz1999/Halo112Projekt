@@ -8,35 +8,18 @@ function Logout(props){
         const body =  `username=admin&password=pass`;
 
         const options = {
-            method: 'POST',
-            /*headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: body*/
-        };
-
-        fetch('/login',options).then(response => console.log(response));
-        
-        
-        /*
-        const options = {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: body
         };
-        fetch('/login',options)
-            .then(response => {
-                if(response.status===401){
-                    setError("Login failed")
-                };
-            });
-            */
+
+        fetch('/login').then(response => console.log(response));
     }
 
     return(
-        <div className="Logout">
+        <div className="Test">
             <h2>Logout</h2>
             
                 

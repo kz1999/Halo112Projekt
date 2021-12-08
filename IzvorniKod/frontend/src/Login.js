@@ -12,6 +12,7 @@ function Login(props){
 
     function onSubmit(event){
         event.preventDefault();
+        setError("");
         const body =  `username=${loginForm.username}&password=${loginForm.password}`;
 
         const options = {
@@ -32,7 +33,7 @@ function Login(props){
     return(
         <div className="Login">
             <h2>Login</h2>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} error={error}>
                 <div className="FormRow">
                     <label>Username</label>
                     <input name='username' onChange={onChange} value={loginForm.username}/>

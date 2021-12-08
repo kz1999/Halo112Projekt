@@ -3,15 +3,6 @@ import './styles/App.css';
 
 function ChangeUser(props){
 
-    /*
-    const [user, setUser] = React.useState([]);
-    React.useEffect(()=>{
-        fetch('/korisnici/'+ props.user.userName)
-        .then(data => data.json())
-        .then(user => setUser(user))
-    });
-    */
-
     const [form, setForm] = React.useState( {username:props.user.userName, password:props.user.passwordHash, 
         name:props.user.name, lastName:props.user.surname, phoneNumber:props.user.phoneNumber, email:props.user.email, role:props.user.role});
 
