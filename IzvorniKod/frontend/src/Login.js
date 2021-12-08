@@ -12,23 +12,20 @@ function Login(props){
 
     function onSubmit(event){
         event.preventDefault();
-        setError("");
         const body =  `username=${loginForm.username}&password=${loginForm.password}`;
 
         const options = {
-            method: 'GET',
+            method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                'Content-Type': 'application/x-www-form-urlencoded'
             },
-            //body: body
+            body: body
         };
-        fetch('login',options)
+        fetch('/login',options)
             .then(response => {
                 if(response.status===401){
                     setError("Login failed")
-                }else{
-                    props.onLogin();
-                }
+                };
             });
     }
 
