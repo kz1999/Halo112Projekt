@@ -12,10 +12,11 @@ function Logout(props){
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: body
+            body: body,
+            mode: 'no-cors'
         };
 
-        fetch('/login').then(response => console.log(response));
+        fetch('/user').then(response => console.log(response));
     }
 
     return(
