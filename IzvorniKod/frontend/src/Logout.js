@@ -16,7 +16,7 @@ function Logout(props){
             mode: 'no-cors'
         };
 
-        fetch('/user').then(response => console.log(response));
+        fetch('/user').then(data => data.json()).then(data => console.log(data));
     }
 
     return(
