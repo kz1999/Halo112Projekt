@@ -21,7 +21,7 @@ function Login(props){
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: body,
-            //mode: 'no-cors'
+            mode: 'no-cors'
         };
         fetch('/login',options).then(data => console.log(data));
             
