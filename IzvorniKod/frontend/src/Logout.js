@@ -13,7 +13,7 @@ function Logout(props){
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: body,
-            mode: 'no-cors'
+            //mode: 'no-cors'
         };
         
         fetch('/login', options).then(data => console.log(data));
@@ -22,7 +22,7 @@ function Logout(props){
     function onClickLogout(event){
         event.preventDefault();
         const options = {
-            mode: 'no-cors'
+            //mode: 'no-cors'
         };
         fetch('/logout', options).then(data => console.log(data));
     }
