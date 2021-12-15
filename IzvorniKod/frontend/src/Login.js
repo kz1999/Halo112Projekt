@@ -20,14 +20,11 @@ function Login(props){
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: body
+            body: body,
+            mode: 'no-cors'
         };
-        fetch('/login',options)
-            .then(response => {
-                if(response.status===401){
-                    setError("Login failed")
-                };
-            });
+        fetch('/login',options).then(data => console.log(data));
+            
     }
 
     return(
