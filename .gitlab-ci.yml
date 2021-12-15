@@ -1,34 +1,39 @@
+
 stages:
   - deploy
 
 deploy-be:
   stage: deploy
   script:
-    - cd IzvorniKod/backend;
-      git config --global user.email "$blank";
-      git config --global user.name "blank";
+    - cd IzvorniKod;
+      cd backend;
+      git config --global user.email "$HEROKU_USER";
+      git config --global user.name "$HEROKU_USER";
       git init;
       git add .;
       git commit -m "heroku deploy";
-      git push -f https://blank:26b20b3a-3bd5-4dd1-9ae3-52aaa714382a@git.heroku.com/halo112h.git HEAD:master
+      git push -f https://$HEROKU_USER:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_STAGING_BE.git HEAD:main
   only:
     refs:
-      - master
+      - dev
     changes:
-      - backend/**
+      - IzvorniKod/backend/**
 
 deploy-fe:
   stage: deploy
   script:
-    - cd IzvorniKod/frontend;
-      git config --global user.email "blank";
-      git config --global user.name "blank";
+    - cd IzvorniKod;
+      cd frontend;
+      git config --global user.email "$HEROKU_USER";
+      git config --global user.name "$HEROKU_USER";
       git init;
       git add .;
       git commit -m "heroku deploy";
-      git push -f https://blank:26b20b3a-3bd5-4dd1-9ae3-52aaa714382a@git.heroku.com/halo112c.git HEAD:master
+      git push -f https://$HEROKU_USER:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_STAGING_FE.git HEAD:main
   only:
     refs:
-      - master
+      - dev
     changes:
-      - frontend/**
+      - IzvorniKod/frontend/**
+
+
