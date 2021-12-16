@@ -20,7 +20,8 @@ function Login(props){
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: body
+            body: body,
+            mode: "no-cors"
         };
         fetch('/login',options)
             .then(response => {

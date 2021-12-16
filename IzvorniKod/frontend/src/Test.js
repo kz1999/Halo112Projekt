@@ -1,7 +1,7 @@
 import React from "react";
 import './styles/App.css';
 
-function Logout(props){
+function Test(props){
 
     function onClick(event){
         event.preventDefault();
@@ -12,21 +12,22 @@ function Logout(props){
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: body
+            //body: body,
+            mode: "no-cors"
         };
 
-        fetch('/login').then(response => console.log(response));
+        fetch('/user', options).then(response => response.json()).then(response => console.log(response));
     }
 
     return(
         <div className="Test">
-            <h2>Logout</h2>
-            
-                
+            <h2>Test</h2>
+            <div>
             <button onClick={onClick}>Logout</button>
+            </div>
             
         </div>
     )
 }
 
-export default Logout;
+export default Test;

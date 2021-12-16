@@ -8,7 +8,7 @@ function Header(){
         <header className="Header">
             <header className="App-header-container">
                 <div className="App-header">
-                    <Link to='/logout'>Logout</Link>
+                    <Link to='/test'>Test</Link>
                     <Link to='/users'>Users list</Link>
                     <Link to='/login'>Login</Link>
                     <Link to='/register'>Register</Link>

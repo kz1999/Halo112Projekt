@@ -7,7 +7,7 @@ import Login from './Login';
 import Register from './Register';
 import Header from './Header';
 import UsersList from './UsersList';
-import Logout from './Logout';
+import Test from './Test';
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
           <Route path='/register' exact component={Register}/>
           <Route path='/users' exact component={UsersList}/>
           <Route path='/login' exact component={Login}/>
-          <Route path='/logout' exact component={Logout}/>
+          <Route path='/test' exact component={Test}/>
         </Switch>
       </div>
     </BrowserRouter>
