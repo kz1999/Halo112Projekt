@@ -1,7 +1,7 @@
 import React from "react";
 import './styles/App.css';
 
-function Register(){
+function Register(props){
     const [form, setForm] = React.useState( {username:'', password:'', name:'', lastName:'', phoneNumber:'', email:'', role:''});
 
     function onChange(event){

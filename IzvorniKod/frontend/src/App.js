@@ -12,24 +12,27 @@ import Test from './Test';
 
 function App() {
 
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [user, setUser] = React.useState(false);
 
-  function onLogin(){
-    setIsLoggedIn(true)
+  function checkUserStatus(){
+    fetch('/user')
+      .then(data => data.json())
+      .then(data =>{
+        if(data === null){
+          setUser(false);
+        }else{
+          setUser(true);
+        }
+    })
   }
 
-  function onLogout(){
-    setIsLoggedIn(false)
-  }
-
-  if(!isLoggedIn){
+  if(user === false){
     return(
       <BrowserRouter>
         <HeaderLoggedOut/>
         <div className="App">
           <Switch>
-            <Login path='/' onLogin={onLogin}/>
-            <Login path='/login' onLogin={onLogin}/>
+            <Login path='/login' onLogin={checkUserStatus}/>
             <Route path='/register' exact component={Register}/>
           </Switch>
         </div>
@@ -39,7 +42,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <HeaderLoggedIn onLogout={onLogout}/>
+      <HeaderLoggedIn onLogout={checkUserStatus}/>
       <div className="App">
         <Switch>
           <Route path='/register' exact component={Register}/>
