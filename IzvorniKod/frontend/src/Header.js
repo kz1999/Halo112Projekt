@@ -13,18 +13,31 @@ function HeaderLoggedIn(props){
             props.onLogout();
         });
     }
-
-    return(
-        <header className="Header">
-            <header className="App-header-container">
-                <div className="App-header">
-                    <Link to='/test'>Test</Link>
-                    <Link to='/users'>Users list</Link>
-                    <button onClick={logout}> user: {props.currentUser}, role: {props.role}<div/>Logout!</button>
-                </div>
+    if(props.role === "admin"){
+        return(
+            <header className="Header">
+                <header className="App-header-container">
+                    <div className="App-header">
+                        <Link to='/test'>Test</Link>
+                        <Link to='/users'>Users list</Link>
+                        <button onClick={logout}> user: {props.currentUser}, role: {props.role}<div/>Logout!</button>
+                    </div>
+                </header>
             </header>
-        </header>
-    )
+        )
+    }
+    else{
+        return(
+            <header className="Header">
+                <header className="App-header-container">
+                    <div className="App-header">
+                        <Link to='/test'>Test</Link>    
+                        <button onClick={logout}> user: {props.currentUser}, role: {props.role}<div/>Logout!</button>
+                    </div>
+                </header>
+            </header>
+        )
+    }
 }
 
 function HeaderLoggedOut(){
@@ -33,9 +46,8 @@ function HeaderLoggedOut(){
         <header className="Header">
             <header className="App-header-container">
                 <div className="App-header">
-                    <Link to='/'>Login</Link>
+                    <Link to='/login'>Login</Link>
                     <Link to='/register'>Register</Link>
-                    
                 </div>
             </header>
         </header>

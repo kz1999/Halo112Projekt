@@ -35,7 +35,7 @@ function App() {
         <HeaderLoggedOut/>
         <div className="App">
           <Switch>
-            <Login path='/' onLogin={checkUserStatus}/>
+            <Login path='/login' onLogin={checkUserStatus}/>
             <Route path='/register' exact component={Register}/>
           </Switch>
         </div>
