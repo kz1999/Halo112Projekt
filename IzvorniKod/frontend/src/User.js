@@ -1,14 +1,25 @@
 import React from "react";
 import './styles/User.css';
+import {Link} from "react-router-dom";
+
+import ChangeUser from './ChangeUser';
 
 function User(props){
-    
-    
-    //username, Password, E-mail adress, Name, Last name, Telephone number, Role
+
+    function onClick(event){
+        event.preventDefault();
+        props.setUserToChange(props.user.userName);
+    }
+
     return(
+        
+      
+        
         <div className="flex-container">
             <div>
+            <div className="link" onClick={onClick}>
                 {props.user.userName}
+            </div>
             </div>
             <div>
                 {props.user.password}
@@ -32,6 +43,7 @@ function User(props){
                 {props.user.confirmed.toString()}
             </div>
         </div>
+        
     )
 }
 

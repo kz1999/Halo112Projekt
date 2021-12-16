@@ -2,10 +2,14 @@ import React from "react";
 import './styles/App.css';
 
 function ChangeUser(props){
-
-    const [form, setForm] = React.useState( {username:props.user.userName, password:props.user.passwordHash, 
-        name:props.user.name, lastName:props.user.surname, phoneNumber:props.user.phoneNumber, email:props.user.email, role:props.user.role});
-
+    
+    const [form, setForm] = React.useState([]);
+    
+    React.useEffect(()=>{
+        fetch('/korisnici/'+props.user)
+        .then(data => data.json())
+        .then(data => setForm(data))
+    }, []);
 
     function onChange(event){
         const {name, value} = event.target;
@@ -14,7 +18,6 @@ function ChangeUser(props){
 
     function onSubmit(e){
         e.preventDefault();
-        
 
         const data = {
             passwordHash: form.password,
@@ -33,22 +36,18 @@ function ChangeUser(props){
             body: JSON.stringify(data)
         };
         
-        return fetch('/korisnici/' + form.username, options);
+        return fetch('/korisnici/' + form.userName, options);
         
     }
 
-    function isValid(){
-        const {username, password} = form;
-        return username.length === 1 && password.length > 8;
-    }
-
     return(
+        
         <div className="UserForm">
-            <h2>Change user: {form.username}</h2>
+            <h2>Change user: {form.userName}</h2>
             <form onSubmit={onSubmit}>
                 <div className="FormRow">
                     <label>Password</label>
-                    <input name='password' onChange={onChange} value={form.password}/>
+                    <input name='password' onChange={onChange} value={form.passwordHash}/>
                 </div>
                 <div className="FormRow">
                     <label>E-mail adress</label>
@@ -60,7 +59,7 @@ function ChangeUser(props){
                 </div>
                 <div className="FormRow">
                     <label>Last name</label>
-                    <input name='lastName' onChange={onChange} value={form.lastName}/>
+                    <input name='surname' onChange={onChange} value={form.surname}/>
                 </div>
                 <div className="FormRow">
                     <label>Telephone number</label>
@@ -71,10 +70,11 @@ function ChangeUser(props){
                     <input name='role' onChange={onChange} value={form.role}/>
                 </div>
                 
-                <button type="submit" disabled = {!isValid}>ChangeUser</button>
+                <button type="submit">ChangeUser</button>
             </form>
         </div>
     )
+    
 }
 
 export default ChangeUser;
