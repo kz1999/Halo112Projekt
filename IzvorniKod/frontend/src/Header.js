@@ -20,7 +20,7 @@ function HeaderLoggedIn(props){
                 <div className="App-header">
                     <Link to='/test'>Test</Link>
                     <Link to='/users'>Users list</Link>
-                    <button onClick={logout}>Logout: {props.currentUser}</button>
+                    <button onClick={logout}> user: {props.currentUser}, role: {props.role}<div/>Logout!</button>
                 </div>
             </header>
         </header>
@@ -35,6 +35,7 @@ function HeaderLoggedOut(){
                 <div className="App-header">
                     <Link to='/'>Login</Link>
                     <Link to='/register'>Register</Link>
+                    
                 </div>
             </header>
         </header>

@@ -45,7 +45,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <HeaderLoggedIn onLogout={checkUserStatus} currentUser={user.userName}/>
+      <HeaderLoggedIn onLogout={checkUserStatus} currentUser={user.userName} role={user.role}/>
       <div className="App">
         <Switch>
           <Route path='/' exact component={Test}/>
