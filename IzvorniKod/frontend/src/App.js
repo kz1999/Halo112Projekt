@@ -13,6 +13,7 @@ import Test from './Test';
 function App() {
 
   const [user, setUser] = React.useState(false);
+  const [username, setUsername] = React.useState('');
 
   function checkUserStatus(){
     fetch('/user')
@@ -22,6 +23,7 @@ function App() {
           setUser(false);
         }else{
           setUser(true);
+          setUsername(data.userName);
         }
     })
   }
@@ -42,7 +44,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <HeaderLoggedIn onLogout={checkUserStatus}/>
+      <HeaderLoggedIn onLogout={checkUserStatus} currentUser={username}/>
       <div className="App">
         <Switch>
           <Route path='/register' exact component={Register}/>

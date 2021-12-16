@@ -20,7 +20,7 @@ function HeaderLoggedIn(props){
                 <div className="App-header">
                     <Link to='/test'>Test</Link>
                     <Link to='/users'>Users list</Link>
-                    <button onClick={logout}>Logout</button>
+                    <button onClick={logout}>Logout: {props.currentUser}</button>
                 </div>
             </header>
         </header>

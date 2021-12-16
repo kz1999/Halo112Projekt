@@ -4,7 +4,7 @@ import './styles/App.css';
 function Login(props){
     const [loginForm, setLoginForm] = React.useState( {username:'', password:'' });
     const [error, setError] = React.useState('');
-
+    props.onLogin();
     function onChange(event){
         const {name, value} = event.target;
         setLoginForm(oldForm => ({...oldForm, [name]: value}))
