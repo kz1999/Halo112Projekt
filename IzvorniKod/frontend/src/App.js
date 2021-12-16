@@ -12,6 +12,22 @@ import Test from './Test';
 
 function App() {
 
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+  function onLogin(){
+    setIsLoggedIn(true)
+  }
+
+  if(!isLoggedIn){
+    return(
+      <div className='App'>
+        <Login onLogin={onLogin}/>
+      </div>
+    )
+  }
+
+
+
   return (
     
     <BrowserRouter>

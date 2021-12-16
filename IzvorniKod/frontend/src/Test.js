@@ -29,8 +29,6 @@ function Test(props){
             <h2>Test</h2>
             <div><button onClick={onClickUser}>User</button></div>
             <div><button onClick={onClickLogout}>Logout</button></div>
-            
-            
         </div>
     )
 }

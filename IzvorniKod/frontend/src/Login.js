@@ -12,7 +12,7 @@ function Login(props){
 
     function onSubmit(event){
         event.preventDefault();
-        setError("");
+        setError('');
         const body =  `username=${loginForm.username}&password=${loginForm.password}`;
 
         const options = {
@@ -21,29 +21,36 @@ function Login(props){
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: body,
-            mode: "no-cors"
+            mode: 'no-cors'
         };
-        fetch('/login',options)
+        
+        fetch('/login',options);
+
+        fetch('/user', {method: 'GET', mode: "no-cors"})
+            .then(response => response.json())
             .then(response => {
-                if(response.status===401){
-                    setError("Login failed")
-                };
+                if(response === null){
+                    setError("Login failed");
+                }else{
+                    props.onLogin();
+                }
             });
     }
 
     return(
         <div className="Login">
             <h2>Login</h2>
-            <form onSubmit={onSubmit} error={error}>
+            <form onSubmit={onSubmit}>
                 <div className="FormRow">
                     <label>Username</label>
-                    <input name='username' onChange={onChange} value={loginForm.username}/>
+                    <input name='username' onChange={onChange} value={loginForm.username} />
                 </div>
                 <div className="FormRow">
                     <label>Password</label>
                     <input name='password' type='password' onChange={onChange} value={loginForm.password}/>
                 </div>
                 <button type="submit">Login</button>
+                <div className="error">{error}</div>
             </form>
         </div>
     )
