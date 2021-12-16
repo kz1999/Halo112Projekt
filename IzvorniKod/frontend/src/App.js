@@ -13,7 +13,7 @@ import Test from './Test';
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [user, setUser] = React.useState( {username:'', password:'', name:'', lastName:'', phoneNumber:'', email:'', role:''});
+  const [user, setUser] = React.useState( {username:'', password:'', name:'', lastName:'', phoneNumber:'', email:'', role:'', confirmed:false});
   
   function checkUserStatus(){
     fetch('/user')
@@ -21,7 +21,7 @@ function App() {
       .then(data =>{
         if(data === null){
           setIsLoggedIn(false);
-          setUser({username:'', password:'', name:'', lastName:'', phoneNumber:'', email:'', role:''});
+          setUser({username:'', password:'', name:'', lastName:'', phoneNumber:'', email:'', role:'', confirmed:false});
         }else{
           setIsLoggedIn(true);
           setUser(data);

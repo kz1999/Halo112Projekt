@@ -1,6 +1,6 @@
 import React from "react";
 import User from "./User";
-import Card from "./Card";
+
 
 function UsersList(){
 
@@ -13,11 +13,37 @@ function UsersList(){
     }, []);
     
     return(
-        <Card title="Users">
-            
+        <div className="Users">
+            <h2>Users list</h2>
+            <div className="flex-container">
+                <div>
+                    userName
+                </div>
+                <div>
+                    password
+                </div>
+                <div >                    
+                    email
+                </div>
+                <div>
+                    name
+                </div>
+                <div>
+                    lastName
+                </div>
+                <div>
+                    phoneNumber
+                </div>
+                <div >                    
+                    role
+                </div>
+                <div >                    
+                    confirmed
+                </div>
+                </div>
             { users.map(user => <User key={user.id} user = {user}/>)}
             
-        </Card>
+        </div>
     )
 }
 
