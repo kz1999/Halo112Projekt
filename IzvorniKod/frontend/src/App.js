@@ -5,7 +5,7 @@ import './styles/App.css';
 
 import Login from './Login';
 import Register from './Register';
-import Header from './Header';
+import {HeaderLoggedIn, HeaderLoggedOut} from './Header';
 import UsersList from './UsersList';
 import Test from './Test';
 
@@ -24,25 +24,26 @@ function App() {
 
   if(!isLoggedIn){
     return(
-      <div className='App'>
-        <Login onLogin={onLogin}/>
-      </div>
-    )
+      <BrowserRouter>
+        <HeaderLoggedOut/>
+        <div className="App">
+          <Switch>
+            <Login path='/' onLogin={onLogin}/>
+            <Login path='/login' onLogin={onLogin}/>
+            <Route path='/register' exact component={Register}/>
+          </Switch>
+        </div>
+      </BrowserRouter>
+    );
   }
 
-
-
-
-
   return (
-    
     <BrowserRouter>
-      <Header onLogout={onLogout}/>
+      <HeaderLoggedIn onLogout={onLogout}/>
       <div className="App">
         <Switch>
           <Route path='/register' exact component={Register}/>
           <Route path='/users' exact component={UsersList}/>
-          <Route path='/login' exact component={Login}/>
           <Route path='/test' exact component={Test}/>
         </Switch>
       </div>
