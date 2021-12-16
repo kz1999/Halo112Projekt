@@ -18,6 +18,10 @@ function App() {
     setIsLoggedIn(true)
   }
 
+  function onLogout(){
+    setIsLoggedIn(false)
+  }
+
   if(!isLoggedIn){
     return(
       <div className='App'>
@@ -28,10 +32,12 @@ function App() {
 
 
 
+
+
   return (
     
     <BrowserRouter>
-      <Header/>
+      <Header onLogout={onLogout}/>
       <div className="App">
         <Switch>
           <Route path='/register' exact component={Register}/>

@@ -24,9 +24,9 @@ function Login(props){
             mode: 'no-cors'
         };
         
-        fetch('/login',options);
-
-        fetch('/user', {method: 'GET', mode: "no-cors"})
+        fetch('/login',options).then(()=>{
+            //ne radimo nista s odgovorom jer je response status 0!
+            fetch('/user', {method: 'GET', mode: "no-cors"})
             .then(response => response.json())
             .then(response => {
                 if(response === null){
@@ -34,7 +34,7 @@ function Login(props){
                 }else{
                     props.onLogin();
                 }
-            });
+            });});
     }
 
     return(
