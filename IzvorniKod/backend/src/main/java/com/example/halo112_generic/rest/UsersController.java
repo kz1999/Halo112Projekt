@@ -20,11 +20,7 @@ public class UsersController {
     //@Secured("ROLE_ADMIN")
     public List<User> listUsers() throws Exception {
         if(!userService.findByUserName("admin").isPresent()){
-            User admin = new User();
-            admin.setUserName("admin");
-            admin.setName("Adminko");
-            admin.setSurname("Adminović");
-            admin.setPasswordHash("pass");
+            User admin = new User((long)1, "admin", "", "pass", "Adminko", "Adminović", "", "", "", true);
             userService.createUser(admin);
         }
         return userService.listAll();
