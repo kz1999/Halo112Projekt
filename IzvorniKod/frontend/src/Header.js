@@ -33,7 +33,7 @@ function HeaderLoggedOut(){
         <header className="Header">
             <header className="App-header-container">
                 <div className="App-header">
-                    <Link to='/login'>Login</Link>
+                    <Link to='/'>Login</Link>
                     <Link to='/register'>Register</Link>
                 </div>
             </header>

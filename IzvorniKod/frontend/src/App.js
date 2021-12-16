@@ -12,29 +12,30 @@ import Test from './Test';
 
 function App() {
 
-  const [user, setUser] = React.useState(false);
-  const [username, setUsername] = React.useState('');
-
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [user, setUser] = React.useState( {username:'', password:'', name:'', lastName:'', phoneNumber:'', email:'', role:''});
+  
   function checkUserStatus(){
     fetch('/user')
       .then(data => data.json())
       .then(data =>{
         if(data === null){
-          setUser(false);
+          setIsLoggedIn(false);
+          setUser({username:'', password:'', name:'', lastName:'', phoneNumber:'', email:'', role:''});
         }else{
-          setUser(true);
-          setUsername(data.userName);
+          setIsLoggedIn(true);
+          setUser(data);
         }
     })
   }
 
-  if(user === false){
+  if(isLoggedIn === false){
     return(
       <BrowserRouter>
         <HeaderLoggedOut/>
         <div className="App">
           <Switch>
-            <Login path='/login' onLogin={checkUserStatus}/>
+            <Login path='/' onLogin={checkUserStatus}/>
             <Route path='/register' exact component={Register}/>
           </Switch>
         </div>
@@ -44,9 +45,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      <HeaderLoggedIn onLogout={checkUserStatus} currentUser={username}/>
+      <HeaderLoggedIn onLogout={checkUserStatus} currentUser={user.userName}/>
       <div className="App">
         <Switch>
+          <Route path='/' exact component={Test}/>
           <Route path='/register' exact component={Register}/>
           <Route path='/users' exact component={UsersList}/>
           <Route path='/test' exact component={Test}/>
