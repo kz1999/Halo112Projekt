@@ -28,7 +28,7 @@ function App() {
     })
   }
 
-  if(isLoggedIn === false){
+  if(isLoggedIn !== true){
     return(
       <BrowserRouter>
         <HeaderLoggedOut/>

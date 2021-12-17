@@ -1,7 +1,7 @@
 import React from "react";
 import './styles/App.css';
 
-function Register(props){
+function Register(){
     const [form, setForm] = React.useState( {username:'', password:'', name:'', lastName:'', phoneNumber:'', email:'', role:''});
 
     function onChange(event){
@@ -12,7 +12,6 @@ function Register(props){
     function onSubmit(e){
         e.preventDefault();
         
-
         const data = {
             userName: form.username,
             passwordHash: form.password,

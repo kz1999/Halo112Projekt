@@ -8,32 +8,42 @@ function UsersList(){
     const [userToChange, setUserToChange] = React.useState('');
 
     React.useEffect(()=>{
-        fetch('/korisnici')
+        fetch('/korisnici', {mode: "no-cors"})
         .then(data => data.json())
-        .then(users => setUsers(users))
+        .then(users => setUsers(users));
     }, []);
-    if(userToChange !== ''){
-        return(
-            <ChangeUser user = {userToChange}  ></ChangeUser>
-        )
+
+    function returnToList(event){
+        event.preventDefault();
+        setUserToChange('');
     }
 
-    return(
-        <div className="Users">
-            <h2>Users list</h2>
-            <div className="flex-container">
-                <div>USERNAME</div>
-                <div>PASSWORD</div>
-                <div>EMAIL</div>
-                <div>NAME</div>
-                <div>SURNAME</div>
-                <div>PHONE NUMBER</div>
-                <div>ROLE</div>
-                <div>CONFIRMED</div>
+    if(userToChange===''){
+        return(
+            <div className="Users">
+                <h2>Users list</h2>
+                <div className="flex-container">
+                    <div>USERNAME</div>
+                    <div>PASSWORD</div>
+                    <div>EMAIL</div>
+                    <div>NAME</div>
+                    <div>SURNAME</div>
+                    <div>PHONE NUMBER</div>
+                    <div>ROLE</div>
+                    <div>CONFIRMED</div>
+                </div>
+                { users.map(user => <User key={user.id} user = {user} setUserToChange = {setUserToChange}/>)}
             </div>
-            { users.map(user => <User key={user.id} user = {user} setUserToChange = {setUserToChange}/>)}
-        </div>
-    )
+        )
+    }
+    else{
+        return(
+            <div className="Users">
+                <ChangeUser user = {userToChange}/>
+                <button onClick={returnToList}>Return</button>
+            </div>
+        )
+    }
 }
 
 export default UsersList;
