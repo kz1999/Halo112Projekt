@@ -6,7 +6,7 @@ import './styles/App.css';
 import Login from './Login';
 import Register from './Register';
 import {HeaderLoggedIn, HeaderLoggedOut} from './Header';
-import UsersList from './UsersList';
+import Users from './Users';
 import Test from './Test';
 
 function App() {
@@ -49,7 +49,7 @@ function App() {
         <Switch>
           <Route path='/' exact component={Test}/>
           <Route path='/register' exact component={Register}/>
-          <Route path='/users' exact component={UsersList}/>
+          <Route path='/users' exact component={Users}/>
           <Route path='/test' exact component={Test}/>
         </Switch>
       </div>
