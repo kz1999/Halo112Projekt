@@ -15,7 +15,7 @@ function User(props){
             <div>{props.user.password}</div>
             <div>{props.user.email}</div>
             <div>{props.user.name}</div>
-            <div>{props.user.lastName}</div>
+            <div>{props.user.surname}</div>
             <div>{props.user.phoneNumber}</div>
             <div>{props.user.role}</div>
             <div>{props.user.confirmed.toString()}</div>

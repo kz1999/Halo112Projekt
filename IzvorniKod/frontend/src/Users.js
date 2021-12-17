@@ -1,4 +1,3 @@
-
 import React from "react";
 import ChangeUser from './ChangeUser';
 import UsersList from "./UsersList";
@@ -17,14 +16,13 @@ function Users(){
             <UsersList setUserToChange = {setUserToChange}/>
         )
     }
-    else{
-        return(
-            <div className="Users">
-                <ChangeUser user = {userToChange}/>
-                <button onClick={returnToList}>Return</button>
-            </div>
-        )
-    }
+    return(
+        <div className="Users">
+            <ChangeUser user = {userToChange}/>
+            <button onClick={returnToList}>Return</button>
+        </div>
+    )
+    
 }
 
 export default Users;
