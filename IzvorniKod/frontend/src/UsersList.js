@@ -1,13 +1,12 @@
 import React from "react";
 import User from "./User";
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import ChangeUser from './ChangeUser';
 
 function UsersList(){
 
     const [users, setUsers] = React.useState([]);
     const [userToChange, setUserToChange] = React.useState('');
-    
+
     React.useEffect(()=>{
         fetch('/korisnici')
         .then(data => data.json())
@@ -15,7 +14,7 @@ function UsersList(){
     }, []);
     if(userToChange !== ''){
         return(
-            <ChangeUser user = {userToChange}></ChangeUser>
+            <ChangeUser user = {userToChange}  ></ChangeUser>
         )
     }
 
@@ -23,31 +22,15 @@ function UsersList(){
         <div className="Users">
             <h2>Users list</h2>
             <div className="flex-container">
-                <div>
-                    userName
-                </div>
-                <div>
-                    password
-                </div>
-                <div >                    
-                    email
-                </div>
-                <div>
-                    name
-                </div>
-                <div>
-                    lastName
-                </div>
-                <div>
-                    phoneNumber
-                </div>
-                <div >                    
-                    role
-                </div>
-                <div >                    
-                    confirmed
-                </div>
-                </div>
+                <div>USERNAME</div>
+                <div>PASSWORD</div>
+                <div>EMAIL</div>
+                <div>NAME</div>
+                <div>SURNAME</div>
+                <div>PHONE NUMBER</div>
+                <div>ROLE</div>
+                <div>CONFIRMED</div>
+            </div>
             { users.map(user => <User key={user.id} user = {user} setUserToChange = {setUserToChange}/>)}
         </div>
     )

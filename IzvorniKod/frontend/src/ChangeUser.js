@@ -19,14 +19,7 @@ function ChangeUser(props){
     function onSubmit(e){
         e.preventDefault();
 
-        const data = {
-            passwordHash: form.password,
-            name: form.name,
-            surname: form.lastName,
-            phoneNumber: form.phoneNumber,
-            email: form.email,
-            role: form.role
-        };
+        const data = form;
         
         const options={
             method: 'POST',
@@ -35,9 +28,7 @@ function ChangeUser(props){
             },
             body: JSON.stringify(data)
         };
-        
         return fetch('/korisnici/' + form.userName, options);
-        
     }
 
     return(
