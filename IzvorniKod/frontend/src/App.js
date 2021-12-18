@@ -8,6 +8,7 @@ import Register from './Register';
 import {HeaderLoggedIn, HeaderLoggedOut} from './Header';
 import Users from './Users';
 import Test from './Test';
+import {MapContainer, TileLayer} from 'react-leaflet';
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
   }
 
   return (
+    <React.Fragment>
     <BrowserRouter>
       <HeaderLoggedIn onLogout={checkUserStatus} currentUser={user.userName} role={user.role}/>
       <div className="App">
@@ -54,6 +56,11 @@ function App() {
         </Switch>
       </div>
     </BrowserRouter>
+
+    <MapContainer center={[40.505, -100.09]} zoom={13} >
+      <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+    </MapContainer>
+    </React.Fragment>
   );
 }
 
