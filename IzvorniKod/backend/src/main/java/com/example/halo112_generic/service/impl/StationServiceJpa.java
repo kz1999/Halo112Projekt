@@ -29,6 +29,9 @@ public class StationServiceJpa implements StationService {
 
     @Override
     public Optional<Station> editStation(Long id, Station station) throws Exception {
+        if(station.getDirector().getId()!=0) stationRepo.editStationDirector(station.getDirector().getId(), id);
+        if(station.getLocation().getX()!=0 && station.getLocation().getY()!=0) stationRepo.editStationLocation(station.getLocation().getId(), id);
+        if(station.getType().toString()!="") stationRepo.editStationType(station.getType(), id);
         return stationRepo.findStationById(id);
     }
 
