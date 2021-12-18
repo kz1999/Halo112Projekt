@@ -1,15 +1,33 @@
 package com.example.halo112_generic.dao;
 
 import com.example.halo112_generic.domain.Station;
+import com.example.halo112_generic.domain.StationType;
 import com.example.halo112_generic.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 public interface StationRepository extends JpaRepository<Station, Long> {
 
     @Query("SELECT r FROM Station r where r.id = :id")
     Optional<Station> findStationById(@Param("id") Long id);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Station k SET k.director_id = :director_id WHERE k.id = :id")
+    void editStationDirector(@Param("director_id") Long director_id,@Param("id") Long id);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Station k SET k.location_id = :location_id WHERE k.id = :id")
+    void editStationLocation(@Param("location_id") Long location_id,@Param("id") Long id);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Station k SET k.type = :type WHERE k.id = :id")
+    void editStationType(@Param("type")StationType type, @Param("id") Long id);
 }
