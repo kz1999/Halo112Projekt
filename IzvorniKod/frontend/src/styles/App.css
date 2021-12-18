@@ -21,3 +21,9 @@
 .error{
   color: red;
 }
+
+.leaflet-container {  
+  width: 50vw;
+  height: 50vh;  
+  z-index: 1;
+}
