@@ -18,12 +18,12 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     @Transactional
     @Modifying
-    @Query("UPDATE User k SET k.user = :user_id WHERE k.id = :id")
-    void editCommentUser(@Param("user_id") Long user_id, @Param("id") Long id);
+    @Query("UPDATE Comment k SET k.owner = :user_id WHERE k.id = :id")
+    void editCommentOwner(@Param("user_id") Long user_id, @Param("id") Long id);
 
     @Transactional
     @Modifying
-    @Query("UPDATE User k SET k.text = :text WHERE k.id = :id")
+    @Query("UPDATE Comment k SET k.text = :text WHERE k.id = :id")
     void editCommentText(@Param("text") String text, @Param("id") Long id);
 
 }

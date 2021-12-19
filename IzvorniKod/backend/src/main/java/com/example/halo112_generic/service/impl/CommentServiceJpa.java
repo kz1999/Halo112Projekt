@@ -1,6 +1,5 @@
 package com.example.halo112_generic.service.impl;
 
-import com.example.halo112_generic.dao.ActionRepository;
 import com.example.halo112_generic.dao.CommentRepository;
 import com.example.halo112_generic.domain.Comment;
 import com.example.halo112_generic.service.CommentService;
@@ -31,7 +30,7 @@ public class CommentServiceJpa implements CommentService {
 
     @Override
     public Optional<Comment> editComment(Long id, Comment comment) {
-        if(comment.getOwner().getId()!=null) commentRepo.editCommentUser(comment.getOwner().getId(), id);
+        if(comment.getOwner().getId()!=null) commentRepo.editCommentOwner(comment.getOwner().getId(), id);
         if(comment.getText()!=null) commentRepo.editCommentText(comment.getText(), id);
         return commentRepo.findCommentById(id);
     }
