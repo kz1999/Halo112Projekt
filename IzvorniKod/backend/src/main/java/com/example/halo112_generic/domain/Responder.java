@@ -11,6 +11,10 @@ public class Responder {
     @GeneratedValue
     private Long id;
 
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @ManyToOne
     @JoinColumn(name = "station_id")
     private Station station;
@@ -27,24 +31,20 @@ public class Responder {
 
     private boolean isDirector;
 
-    public Responder(Long id, Station station, boolean status, Action currentAction, Location location, boolean isDirector) {
-        this.id = id;
-        this.station = station;
-        this.status = status;
-        this.currentAction = currentAction;
-        this.location = location;
-        this.isDirector = isDirector;
-    }
-
-    public Responder() {
-    }
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Station getStation() {
@@ -85,17 +85,5 @@ public class Responder {
 
     public void setDirector(boolean director) {
         isDirector = director;
-    }
-
-    @Override
-    public String toString() {
-        return "Responder{" +
-                "id=" + id +
-                ", station=" + station +
-                ", status=" + status +
-                ", currentAction=" + currentAction +
-                ", location=" + location +
-                ", isDirector=" + isDirector +
-                '}';
     }
 }

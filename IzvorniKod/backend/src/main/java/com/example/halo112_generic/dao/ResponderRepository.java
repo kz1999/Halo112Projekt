@@ -41,4 +41,9 @@ public interface ResponderRepository extends JpaRepository<Responder, Long> {
     @Modifying
     @Query("UPDATE Respodner k SET k.isDirector = :isDirector WHERE k.id = :id")
     void editRespodnerIsDirector(@Param("isDirector") boolean isDirector, @Param("id") Long id);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Respodner k SET k.user_id = :user_id WHERE k.id = :id")
+    void editRespodnerUser(@Param("user_id") Long station_id,@Param("id") Long id);
 }
