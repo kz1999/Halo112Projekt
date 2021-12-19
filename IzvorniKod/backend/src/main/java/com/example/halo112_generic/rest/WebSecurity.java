@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -22,7 +21,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 
     @Autowired
     UserDetailsService userDetailsService;
-    private Object BCryptPasswordEncoder;
+    private PasswordEncoder BCryptPasswordEncoder;
 
     @Bean
     public DaoAuthenticationProvider authProvider(){
@@ -35,10 +34,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(userDetailsService);
-        auth.inMemoryAuthentication()
-                .withUser("admin")
-                .password("pass")
-                .roles("ADMIN");
         auth.authenticationProvider(authProvider());
     }
 
@@ -56,22 +51,15 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/h2-console").permitAll()
                 .antMatchers("/korisnici").permitAll()
                 .antMatchers("/user").permitAll()
+                .antMatchers("/login").permitAll()
                 .antMatchers("/").permitAll()
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
-                .and().formLogin().loginPage("/login");
+                .and().formLogin().loginPage("/login").failureHandler(new CustomAuthenticationFailureHandler()).successHandler(new CustomAuthenticationSuccessHandler());
         http.headers().frameOptions().sameOrigin(); // fixes h2-console problem
         http.csrf().disable();
     }
 
     @Bean
-    PasswordEncoder passwordEncoder(){ return NoOpPasswordEncoder.getInstance();}
-
-    /*
-    @Bean
-    PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
-     */
-
+    PasswordEncoder passwordEncoder(){ return new BCryptPasswordEncoder();}
 }
 
