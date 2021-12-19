@@ -18,17 +18,16 @@ public class Comment {
 
     private LocalDateTime timeStamp;
 
-    public User getOwner() {
-        return owner;
-    }
+    private String text;
 
-    public Comment() {
-    }
-
-    public Comment(Long id, User owner, LocalDateTime timeStamp) {
+    public Comment(Long id, User owner, LocalDateTime timeStamp, String text) {
         this.id = id;
         this.owner = owner;
         this.timeStamp = timeStamp;
+        this.text = text;
+    }
+
+    public Comment() {
     }
 
     public Long getId() {
@@ -37,6 +36,10 @@ public class Comment {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public User getOwner() {
+        return owner;
     }
 
     public void setOwner(User owner) {
@@ -51,12 +54,11 @@ public class Comment {
         this.timeStamp = timeStamp;
     }
 
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "id=" + id +
-                ", owner=" + owner +
-                ", timeStamp=" + timeStamp +
-                '}';
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }
