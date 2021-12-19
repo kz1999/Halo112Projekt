@@ -23,10 +23,13 @@ function Login(props){
             body: body
         };
         fetch('/login',options).then(response=>{
-            if(response.status !== 202){
-                setError("Login failed");
-            }else{
+            if(response.status === 401){
                 props.onLogin();
+            }else if(response.status === 202){
+                props.checkUserStatus();
+            }
+            else{
+                setError("Login failed");
             }
         });
     }

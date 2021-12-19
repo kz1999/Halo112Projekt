@@ -14,6 +14,12 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [user, setUser] = React.useState( {username:'', password:'', name:'', lastName:'', phoneNumber:'', email:'', role:'', confirmed:false});
   
+  function onLogin(){
+    
+    setIsLoggedIn(true);
+  
+  }
+
   function checkUserStatus(){
     fetch('/user')
       .then(data => data.json())
@@ -34,7 +40,7 @@ function App() {
         <HeaderLoggedOut/>
         <div className="App">
           <Switch>
-            <Login path='/login' onLogin={checkUserStatus}/>
+            <Login path='/login' onLogin={onLogin} checkUserStatus={checkUserStatus}/>
             <Route path='/register' exact component={Register}/>
           </Switch>
         </div>

@@ -10,8 +10,8 @@ function Test(){
 
     return(
         <div className="Test">
-            <h2>Logout</h2>    
-            <div><button onClick={onClickUser}>Login</button></div>
+            <h2>Test</h2>    
+            <div><button onClick={onClickUser}>Gumb</button></div>
         </div>
     )
 }
