@@ -68,4 +68,31 @@ public class UserServiceJpa implements UserService {
 
         return userRepo.findUserByUserName(userName);
     }
+    
+    @Override
+	public boolean confirmUser(Long id) {
+		if (userRepo.existsById(id)) {
+			userRepo.findById(id).get().setConfirmed(true);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean denyUser(Long id) {
+		if (userRepo.existsById(id)) {
+			userRepo.deleteById(id);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean changePrivilege(String privilege, Long id) {
+		if (userRepo.existsById(id)) {
+			userRepo.findById(id).get().setRole(privilege);;
+			return true;
+		}
+		return false;
+	}
 }

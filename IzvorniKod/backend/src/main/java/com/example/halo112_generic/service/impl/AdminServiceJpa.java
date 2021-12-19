@@ -5,10 +5,12 @@ import com.example.halo112_generic.domain.Action;
 import com.example.halo112_generic.domain.Admin;
 import com.example.halo112_generic.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class AdminServiceJpa implements AdminService {
     @Autowired
     private AdminRepository adminRepo;
@@ -27,4 +29,6 @@ public class AdminServiceJpa implements AdminService {
     public Optional<Admin> findById(Long id) {
         return adminRepo.findAdminById(id);
     }
+
+	
 }
