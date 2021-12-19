@@ -2,6 +2,8 @@ import React from "react";
 import './styles/App.css';
 
 function Login(props){
+
+    const api  = process.env.REACT_APP_API_URL;
     const [loginForm, setLoginForm] = React.useState( {username:'', password:'' });
     const [error, setError] = React.useState('');
     
@@ -24,9 +26,9 @@ function Login(props){
             mode: 'no-cors'
         };
         
-        fetch('/login',options).then(()=>{
+        fetch(api + '/login',options).then(()=>{
             //ne radimo nista s odgovorom jer je response status 0!
-            fetch('/user', {method: 'GET', mode: "no-cors"})
+            fetch(api + '/user', {method: 'GET', mode: "no-cors"})
             .then(response => response.json())
             .then(response => {
                 if(response === null){

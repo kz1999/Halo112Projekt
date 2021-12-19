@@ -3,10 +3,11 @@ import User from "./User";
 
 function UsersList(props){
 
+    const api  = process.env.REACT_APP_API_URL;
     const [users, setUsers] = React.useState([]);
 
     React.useEffect(()=>{
-        fetch('/korisnici', {mode: "no-cors"})
+        fetch(api + '/korisnici', {mode: "no-cors"})
         .then(data => data.json())
         .then(users => setUsers(users));
     }, []);

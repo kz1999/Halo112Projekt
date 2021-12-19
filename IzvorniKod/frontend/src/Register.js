@@ -2,6 +2,8 @@ import React from "react";
 import './styles/App.css';
 
 function Register(){
+    
+    const api  = process.env.REACT_APP_API_URL;
     const [form, setForm] = React.useState( {username:'', password:'', name:'', lastName:'', phoneNumber:'', email:'', role:''});
 
     function onChange(event){
@@ -30,7 +32,7 @@ function Register(){
             body: JSON.stringify(data)
         };
         
-        return fetch('/korisnici',options);
+        return fetch(api + '/korisnici',options);
         
     }
 

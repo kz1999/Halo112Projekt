@@ -4,12 +4,14 @@ import "./styles/Header.css";
 
 function HeaderLoggedIn(props){
 
+    const api  = process.env.REACT_APP_API_URL;
+
     function logout(){
         const options = {
             mode: "no-cors"
         };
 
-        fetch('/logout', options).then(() => {
+        fetch(api + '/logout', options).then(() => {
             props.onLogout();
         });
     }

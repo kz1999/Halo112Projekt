@@ -3,10 +3,11 @@ import './styles/App.css';
 
 function ChangeUser(props){
     
+    const api  = process.env.REACT_APP_API_URL;
     const [form, setForm] = React.useState([]);
     
     React.useEffect(()=>{
-        fetch('/korisnici/'+props.user)
+        fetch(api + '/korisnici/'+props.user)
         .then(data => data.json())
         .then(data => setForm(data))
     }, []);
@@ -28,7 +29,7 @@ function ChangeUser(props){
             },
             body: JSON.stringify(data)
         };
-        return fetch('/korisnici/' + form.userName, options);
+        return fetch(api + '/korisnici/' + form.userName, options);
     }
 
     return(

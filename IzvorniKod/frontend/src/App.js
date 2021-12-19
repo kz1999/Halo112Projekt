@@ -11,11 +11,12 @@ import Test from './Test';
 
 function App() {
 
+  const api  = process.env.REACT_APP_API_URL;
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [user, setUser] = React.useState( {username:'', password:'', name:'', lastName:'', phoneNumber:'', email:'', role:'', confirmed:false});
   
   function checkUserStatus(){
-    fetch('/user')
+    fetch(api + `/user`)
       .then(data => data.json())
       .then(data =>{
         if(data === null){

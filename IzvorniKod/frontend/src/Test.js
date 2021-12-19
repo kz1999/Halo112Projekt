@@ -3,6 +3,8 @@ import './styles/App.css';
 
 function Test(props){
 
+    const api  = process.env.REACT_APP_API_URL;
+    
     function onClickUser(event){
         event.preventDefault();
 
@@ -11,7 +13,7 @@ function Test(props){
             mode: "no-cors"
         };
 
-        fetch('/user', options).then(response => response.json()).then(response => console.log(response));
+        fetch(api + '/user', options).then(response => response.json()).then(response => console.log(response));
     }
 
     return(
