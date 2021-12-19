@@ -5,6 +5,7 @@ import com.example.halo112_generic.domain.User;
 import com.example.halo112_generic.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,8 +26,8 @@ public class UsersController {
     public List<User> listUsers() throws Exception {
         if(!userService.findByUserName("admin").isPresent()){
             User admin = new User((long)1,"admin","","$2a$12$RFv9B3TthXaQ/3MdjZFzxuigjmcP518d3mcvR9RKo9H4dufMWR0Iy","Adminko","Adminović","","","",true);
+            
             userService.createUser(admin);
-            userRepo.save(admin);
         }
         return userService.listAll();
     }
@@ -34,6 +35,11 @@ public class UsersController {
     @PostMapping("")
     //@Secured("ROLE_ADMIN")
     public User createUser(@RequestBody User user) throws Exception {
+    	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	    String encodedPassword = passwordEncoder.encode(user.getPasswordHash());
+	    user.setPasswordHash(encodedPassword);
+	    user.setConfirmed(false);
+	    
         return userService.createUser(user);
     }
 
