@@ -20,21 +20,15 @@ function Login(props){
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: body,
-            mode: 'no-cors'
+            body: body
         };
-        
-        fetch('/login',options).then(()=>{
-            //ne radimo nista s odgovorom jer je response status 0!
-            fetch('/user', {method: 'GET', mode: "no-cors"})
-            .then(response => response.json())
-            .then(response => {
-                if(response === null){
-                    setError("Login failed");
-                }else{
-                    props.onLogin();
-                }
-            });});
+        fetch('/login',options).then(response=>{
+            if(response.status !== 202){
+                setError("Login failed");
+            }else{
+                props.onLogin();
+            }
+        });
     }
 
     return(
