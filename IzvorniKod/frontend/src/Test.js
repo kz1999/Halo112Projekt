@@ -1,24 +1,17 @@
 import React from "react";
 import './styles/App.css';
 
-function Test(props){
+function Test(){
 
     function onClickUser(event){
         event.preventDefault();
-
-        const options = {
-            method: 'GET',
-            mode: "no-cors"
-        };
-
-        fetch('/user', options).then(response => response.json()).then(response => console.log(response));
+        fetch('/user').then(data => data.json()).then(data => console.log(data));
     }
 
     return(
         <div className="Test">
-            <h2>Test</h2>
-            <div><button onClick={onClickUser}>User</button></div>
-            
+            <h2>Test</h2>    
+            <div><button onClick={onClickUser}>Gumb</button></div>
         </div>
     )
 }

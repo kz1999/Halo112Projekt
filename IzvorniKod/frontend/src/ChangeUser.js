@@ -60,7 +60,10 @@ function ChangeUser(props){
                     <label>Role</label>
                     <input name='role' onChange={onChange} value={form.role}/>
                 </div>
-                
+                <div className="FormRow">
+                    <label>Confirmed</label>
+                    <input name='confirmed' onChange={onChange} value={form.confirmed}/>
+                </div>
                 <button type="submit">ChangeUser</button>
             </form>
         </div>

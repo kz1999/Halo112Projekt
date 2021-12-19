@@ -5,15 +5,11 @@ import "./styles/Header.css";
 function HeaderLoggedIn(props){
 
     function logout(){
-        const options = {
-            mode: "no-cors"
-        };
-
-        fetch('/logout', options).then(() => {
+        fetch('/logout').then(() => {
             props.onLogout();
         });
     }
-    if(props.role === "admin"){
+    if(props.currentUser === "admin"){
         return(
             <header className="Header">
                 <header className="App-header-container">
