@@ -17,9 +17,6 @@ public class UsersController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private UserRepository userRepo;
     
     @GetMapping("")
     //@Secured("ROLE_ADMIN")
