@@ -13,12 +13,12 @@ import java.util.Optional;
 @Repository
 public interface ActionRepository extends JpaRepository<Action, Long> {
 
-    @Query("SELECT r FROM Responder r where r.id = :id")
+    @Query("SELECT r FROM Action r where r.id = :id")
     Optional<Action> findActionById(@Param("id")Long id);
 
     @Transactional
     @Modifying
-    @Query("UPDATE Action k SET k.location_id = :location_id WHERE k.id = :id")
+    @Query("UPDATE Action k SET k.location = :location_id WHERE k.id = :id")
     void editActionLocation(@Param("location_id") Long location_id, @Param("id") Long id);
 
     @Transactional
@@ -28,7 +28,7 @@ public interface ActionRepository extends JpaRepository<Action, Long> {
 
     @Transactional
     @Modifying
-    @Query("UPDATE Action k SET k.desc = :desc WHERE k.id = :id")
-    void editActionDescription(@Param("desc") String desc, @Param("id") Long id);
+    @Query("UPDATE Action k SET k.description = :description WHERE k.id = :id")
+    void editActionDescription(@Param("description") String desc, @Param("id") Long id);
 
 }

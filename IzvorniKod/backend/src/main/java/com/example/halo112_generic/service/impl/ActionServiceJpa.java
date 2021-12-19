@@ -5,10 +5,12 @@ import com.example.halo112_generic.dao.ResponderRepository;
 import com.example.halo112_generic.domain.Action;
 import com.example.halo112_generic.service.ActionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class ActionServiceJpa implements ActionService {
     @Autowired
     private ActionRepository actionRepo;

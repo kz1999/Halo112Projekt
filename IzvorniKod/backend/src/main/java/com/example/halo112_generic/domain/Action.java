@@ -14,16 +14,20 @@ public class Action {
     @JoinColumn(name = "location_id")
     private Location location;
 
+    @OneToMany(targetEntity = Responder.class)
     private List<Responder> team;
 
     private int urgency;
 
+    @OneToMany(targetEntity = Task.class)
     private List<Task> tasks;
 
+    @OneToMany(targetEntity=Comment.class)
     private List<Comment> comments;
 
     private String description;
 
+    @ElementCollection
     private List<String> gallery;
 
     public List<Comment> getComments() {
@@ -34,43 +38,16 @@ public class Action {
         this.comments = comments;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<String> getGallery() {
-        return gallery;
-    }
-
-    public void setGallery(List<String> gallery) {
-        this.gallery = gallery;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public Action(Long id, Location location, List<Responder> team, int urgency, List<Task> tasks) {
-        this.id = id;
-        this.location = location;
-        this.team = team;
-        this.urgency = urgency;
-        this.tasks = tasks;
-    }
-
-    public Action() {
-    }
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 
     public void setLocation(Location location) {
@@ -101,14 +78,19 @@ public class Action {
         this.tasks = tasks;
     }
 
-    @Override
-    public String toString() {
-        return "Action{" +
-                "id=" + id +
-                ", location=" + location +
-                ", team=" + team +
-                ", urgency=" + urgency +
-                ", tasks=" + tasks +
-                '}';
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<String> getGallery() {
+        return gallery;
+    }
+
+    public void setGallery(List<String> gallery) {
+        this.gallery = gallery;
     }
 }

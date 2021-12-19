@@ -16,6 +16,7 @@ public class Task {
     @JoinColumn(name = "responder_id")
     private Responder responder;
 
+    @OneToMany(targetEntity = Comment.class)
     private List<Comment> comments;
 
     public Responder getResponder() {

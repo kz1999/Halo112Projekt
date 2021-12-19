@@ -19,31 +19,31 @@ public interface ResponderRepository extends JpaRepository<Responder, Long> {
 
     @Transactional
     @Modifying
-    @Query("UPDATE Respodner k SET k.station_id = :station_id WHERE k.id = :id")
-    void editRespodnerStation(@Param("station_id") Long station_id,@Param("id") Long id);
+    @Query("UPDATE Responder k SET k.station = :station_id WHERE k.id = :id")
+    void editResponderStation(@Param("station_id") Long station_id,@Param("id") Long id);
 
     @Transactional
     @Modifying
-    @Query("UPDATE Respodner k SET k.status = :status WHERE k.id = :id")
-    void editRespodnerStatus(@Param("status") boolean status,@Param("id") Long id);
+    @Query("UPDATE Responder k SET k.status = :status WHERE k.id = :id")
+    void editResponderStatus(@Param("status") boolean status,@Param("id") Long id);
 
     @Transactional
     @Modifying
-    @Query("UPDATE Respodner k SET k.action_id = :action_id WHERE k.id = :id")
-    void editRespodnerAction(@Param("action_id") Long action_id, @Param("id") Long id);
+    @Query("UPDATE Responder k SET k.currentAction = :action_id WHERE k.id = :id")
+    void editResponderAction(@Param("action_id") Long action_id, @Param("id") Long id);
 
     @Transactional
     @Modifying
-    @Query("UPDATE Respodner k SET k.location_id = :location_id WHERE k.id = :id")
-    void editRespodnerLocation(@Param("location_id") Long location_id, @Param("id") Long id);
+    @Query("UPDATE Responder k SET k.location = :location_id WHERE k.id = :id")
+    void editResponderLocation(@Param("location_id") Long location_id, @Param("id") Long id);
 
     @Transactional
     @Modifying
-    @Query("UPDATE Respodner k SET k.isDirector = :isDirector WHERE k.id = :id")
-    void editRespodnerIsDirector(@Param("isDirector") boolean isDirector, @Param("id") Long id);
+    @Query("UPDATE Responder k SET k.isDirector = :isDirector WHERE k.id = :id")
+    void editResponderIsDirector(@Param("isDirector") boolean isDirector, @Param("id") Long id);
 
     @Transactional
     @Modifying
-    @Query("UPDATE Respodner k SET k.user_id = :user_id WHERE k.id = :id")
-    void editRespodnerUser(@Param("user_id") Long station_id,@Param("id") Long id);
+    @Query("UPDATE Responder k SET k.user = :user_id WHERE k.id = :id")
+    void editResponderUser(@Param("user_id") Long station_id,@Param("id") Long id);
 }
