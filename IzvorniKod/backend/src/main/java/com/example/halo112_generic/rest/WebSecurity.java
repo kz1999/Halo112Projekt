@@ -34,14 +34,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(userDetailsService);
-        auth.inMemoryAuthentication()
-             .withUser("admin")
-             .password("$2a$12$RFv9B3TthXaQ/3MdjZFzxuigjmcP518d3mcvR9RKo9H4dufMWR0Iy")
-             .roles("ADMIN");
-        auth.inMemoryAuthentication()
-        	.withUser("user")
-        	.password("$2a$12$RFv9B3TthXaQ/3MdjZFzxuigjmcP518d3mcvR9RKo9H4dufMWR0Iy")
-        	.roles("USER");
         auth.authenticationProvider(authProvider());
     }
 

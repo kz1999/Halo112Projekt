@@ -37,6 +37,7 @@ public class User {
 
     private String photo;
 
+    @Column(nullable = false)
     private String passwordHash;
 
     private String name;
