@@ -13,12 +13,14 @@ public class MyUserDetails implements UserDetails {
 
     private String userName;
     private String password;
+    private boolean confirmed;
     private boolean active;
     private List<GrantedAuthority> authorities;
 
     public MyUserDetails(User user){
         this.userName = user.getUserName();
         this.password = user.getPasswordHash();
+        this.confirmed = user.isConfirmed();
         this.active = true;
         if(user.getUserName()=="admin") this.authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
         else this.authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
@@ -40,6 +42,10 @@ public class MyUserDetails implements UserDetails {
     @Override
     public String getUsername() {
         return userName;
+    }
+    
+    public boolean isConfirmed() {
+        return confirmed;
     }
 
     @Override
@@ -68,6 +74,7 @@ public class MyUserDetails implements UserDetails {
                 "userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", active=" + active +
+                ", confirmed=" + confirmed +
                 ", authorities=" + authorities +
                 '}';
     }
