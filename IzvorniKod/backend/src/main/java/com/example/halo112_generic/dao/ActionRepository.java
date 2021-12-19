@@ -26,4 +26,9 @@ public interface ActionRepository extends JpaRepository<Action, Long> {
     @Query("UPDATE Action k SET k.urgency = :urgency WHERE k.id = :id")
     void editActionUrgency(@Param("urgency") int urgency, @Param("id") Long id);
 
+    @Transactional
+    @Modifying
+    @Query("UPDATE Action k SET k.desc = :desc WHERE k.id = :id")
+    void editActionDescription(@Param("desc") String desc, @Param("id") Long id);
+
 }

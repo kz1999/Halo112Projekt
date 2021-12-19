@@ -30,12 +30,11 @@ public class ActionServiceJpa implements ActionService {
 
     @Override
     public Optional<Action> editAction(Long id, Action action) {
-        if(action.getLocation().getId()!=null){
-            actionRepo.editActionLocation(action.getLocation().getId(),id);
-        }
+        if(action.getLocation().getId()!=null) actionRepo.editActionLocation(action.getLocation().getId(),id);
         //if(!action.getTasks().isEmpty()) actionRepo.editActionTasks(action.getTasks(),id);
         //if(action.getTeam().isEmpty()) actionRepo.editActionTeam(action.getTeam(),id);
         actionRepo.editActionUrgency(action.getUrgency(),id);
+        if(action.getDescription()!=null) actionRepo.editActionDescription(action.getDescription(), id);
         return actionRepo.findActionById(id);
     }
 }

@@ -20,6 +20,36 @@ public class Action {
 
     private List<Task> tasks;
 
+    private List<Comment> comments;
+
+    private String description;
+
+    private List<String> gallery;
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<String> getGallery() {
+        return gallery;
+    }
+
+    public void setGallery(List<String> gallery) {
+        this.gallery = gallery;
+    }
+
     public Location getLocation() {
         return location;
     }
