@@ -10,6 +10,9 @@ public class Station {
     @Id
     @GeneratedValue
     private Long id;
+    
+    @Column(unique = true)
+    String name;
 
     @OneToOne
     @JoinColumn(name = "director_id")
@@ -24,8 +27,8 @@ public class Station {
     @NotNull
     private StationType type;
 
-    public Station(Long id, Responder director, Location location, StationType type) {
-        this.id = id;
+    public Station(String name, Responder director, Location location, StationType type) {
+        this.name = name;
         this.director = director;
         this.location = location;
         this.type = type;

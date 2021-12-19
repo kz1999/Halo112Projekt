@@ -17,4 +17,10 @@ public interface UserService {
     Optional<User> editUser(String korisnickoIme, User user) throws Exception;
 
     Optional<User> findByUserName(String korisnickoIme);
+
+	boolean confirmUser(Long id);
+
+	boolean denyUser(Long id);
+
+	boolean changePrivilege(String privilege, Long id);
 }

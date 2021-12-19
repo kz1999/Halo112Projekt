@@ -14,6 +14,8 @@ import java.util.Optional;
 
 @Repository
 public interface StationRepository extends JpaRepository<Station, Long> {
+	
+	String findByName(String name);
 
     @Query("SELECT r FROM Station r where r.id = :id")
     Optional<Station> findStationById(@Param("id") Long id);
