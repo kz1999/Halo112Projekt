@@ -54,7 +54,9 @@ public class ActionServiceJpa implements ActionService {
 	@Override
 	public boolean addTask(Task task, Long id) {
 		if (actionRepo.existsById(id)) {
-			actionRepo.findById(id).ifPresent(x -> x.getTasks().add(task));;
+			Action action = actionRepo.findById(id).get();
+			action.getTasks().add(task);
+			actionRepo.save(action);
 			return true;
 		}
 		return false;
@@ -71,7 +73,9 @@ public class ActionServiceJpa implements ActionService {
 	@Override
 	public boolean addImage(String imageUrl, Long id) {
 		if (actionRepo.existsById(id)) {
-			actionRepo.findById(id).get().getGallery().add(imageUrl);
+			Action action = actionRepo.findById(id).get();
+			action.getGallery().add(imageUrl);
+			actionRepo.save(action);
 			return true;
 		}
 		return false;
@@ -80,7 +84,9 @@ public class ActionServiceJpa implements ActionService {
 	@Override
 	public boolean addComment(Comment comment, Long id) {
 		if (actionRepo.existsById(id)) {
-			actionRepo.findById(id).get().getComments().add(comment);
+			Action action = actionRepo.findById(id).get();
+			action.getComments().add(comment);
+			actionRepo.save(action);
 			return true;
 		}
 		return false;

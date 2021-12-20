@@ -72,7 +72,9 @@ public class UserServiceJpa implements UserService {
     @Override
 	public boolean confirmUser(Long id) {
 		if (userRepo.existsById(id)) {
-			userRepo.findById(id).get().setConfirmed(true);
+			User user = userRepo.findById(id).get();
+			user.setConfirmed(true);
+			userRepo.save(user);
 			return true;
 		}
 		return false;
@@ -90,7 +92,9 @@ public class UserServiceJpa implements UserService {
 	@Override
 	public boolean changePrivilege(String privilege, Long id) {
 		if (userRepo.existsById(id)) {
-			userRepo.findById(id).get().setRole(privilege);;
+			User user = userRepo.findById(id).get();
+			user.setRole(privilege);
+			userRepo.save(user);
 			return true;
 		}
 		return false;
