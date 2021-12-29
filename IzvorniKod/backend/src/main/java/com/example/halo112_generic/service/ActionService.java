@@ -2,6 +2,7 @@ package com.example.halo112_generic.service;
 
 import com.example.halo112_generic.domain.Action;
 import com.example.halo112_generic.domain.Comment;
+import com.example.halo112_generic.domain.Responder;
 import com.example.halo112_generic.domain.Task;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +17,7 @@ public interface ActionService {
 
     Optional<Action> findById(Long id);
 
-    Optional<Action> editAction(Long id, Action action);
+    Action editAction(Action action);
 
 	boolean closeAction(Long id);
 
@@ -27,4 +28,10 @@ public interface ActionService {
 	boolean addImage(String imageUrl, Long id);
 
 	boolean addComment(Comment comment, Long id);
+
+	boolean addResponderToAction(Responder responder, Long id);
+
+	boolean removeResponderFromAction(Long actionID, Long responderID);
+
+	boolean rejectAction(Action action, Long id);
 }

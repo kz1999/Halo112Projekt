@@ -1,6 +1,9 @@
 package com.example.halo112_generic.service;
 
+import com.example.halo112_generic.domain.Action;
 import com.example.halo112_generic.domain.Responder;
+import com.example.halo112_generic.domain.Station;
+
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,4 +18,10 @@ public interface ResponderService {
     Optional<Responder> findById(Long id);
 
     Optional<Responder> editResponder(Long id, Responder responder);
+
+	boolean acceptAction(Action action, Long id);
+
+	boolean setStatus(boolean status, Long id);
+
+	boolean setStation(Station station, Long id);
 }

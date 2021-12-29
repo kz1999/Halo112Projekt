@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "dispatcher")
-public class Dispatcher {
+public class Dispatcher{
 	@Id
     @GeneratedValue
     private Long id;
@@ -60,9 +60,9 @@ public class Dispatcher {
 		this.actions = actions;
 	}
 
-	@Override
-	public String toString() {
-		return "Dispatcher [id=" + id + ", user=" + user + ", actions=" + actions + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Dispatcher [id=" + id + ", user=" + user + ", actions=" + actions + "]";
+//	}
 
 }

@@ -1,5 +1,6 @@
 package com.example.halo112_generic.service;
 
+import com.example.halo112_generic.domain.Action;
 import com.example.halo112_generic.domain.User;
 import org.springframework.stereotype.Component;
 

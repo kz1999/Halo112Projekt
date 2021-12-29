@@ -1,6 +1,7 @@
 package com.example.halo112_generic.service.impl;
 
 import com.example.halo112_generic.dao.UserRepository;
+import com.example.halo112_generic.domain.Action;
 import com.example.halo112_generic.domain.User;
 import com.example.halo112_generic.service.UserService;
 import com.example.halo112_generic.service.RequestDeniedException;

@@ -64,9 +64,9 @@ public class ActionController {
 		return actionService.addImage(imageUrl, id);
 	}
 
-	@PostMapping("/{id}")
+	@PostMapping("/edit")
 	// @Secured("ROLE_ADMIN")
-	public Optional<Action> editAction(@PathVariable Long id, @RequestBody Action action) throws Exception {
-		return actionService.editAction(id, action);
+	public Action editAction(@RequestBody Action action) throws Exception {
+		return actionService.editAction(action);
 	}
 }

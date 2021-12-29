@@ -6,6 +6,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "myuser")
+//@MappedSuperclass
 public class User {
 
     public User(Long id, String userName, String photo, String passwordHash, String name, String surname, String phoneNumber, String email, String role, boolean confirmed) {
@@ -51,8 +52,7 @@ public class User {
 
     private boolean confirmed;
 
-
-    public Long getId() {
+	public Long getId() {
         return id;
     }
 
