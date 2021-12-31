@@ -30,8 +30,8 @@ public class LoginController {
     private UserRepository userRepo;
 	
     @GetMapping
-    public ResponseEntity<String> login() {
-    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    public String login() {
+    	/*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         
         if (!auth.getAuthorities().stream()
@@ -39,18 +39,8 @@ public class LoginController {
         	return new ResponseEntity<>("already logged in as " + username, HttpStatus.FORBIDDEN);
         } else {
         	return new ResponseEntity<>("login page", HttpStatus.OK);
-        }
+        }*/
+    	
+    	return "LOGIN PAGE";
     }
-    /*
-    @PostMapping
-    public ResponseEntity<String> login(HttpServletRequest req, @RequestParam(name = "username") String username, @RequestParam(name = "password") String password) {
-    	UsernamePasswordAuthenticationToken authReq = new UsernamePasswordAuthenticationToken(username, password);
-    	Authentication auth = authManager.authenticate(authReq);
-    
-    	SecurityContext sc = SecurityContextHolder.getContext();
-    	sc.setAuthentication(auth);
-    	HttpSession session = req.getSession(true);
-    	session.setAttribute(SPRING_SECURITY_CONTEXT_KEY, sc);
-    }
-    */
 }

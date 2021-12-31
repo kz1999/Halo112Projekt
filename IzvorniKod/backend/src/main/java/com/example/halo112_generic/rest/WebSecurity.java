@@ -54,7 +54,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/").permitAll()
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
-                .and().formLogin().loginPage("/login").failureHandler(new CustomAuthenticationFailureHandler()).successHandler(new CustomAuthenticationSuccessHandler());
+                .and().formLogin().loginPage("/login");
         http.headers().frameOptions().sameOrigin(); // fixes h2-console problem
         http.csrf().disable();
     }
