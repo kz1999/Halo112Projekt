@@ -14,10 +14,9 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [user, setUser] = React.useState( {username:'', password:'', name:'', lastName:'', phoneNumber:'', email:'', role:'', confirmed:false});
   
-  function onLogin(){
-    
-    setIsLoggedIn(true);
-  
+  function onLogout(){
+    fetch('/logout',{method: 'POST', mode: "no-cors"}).then(()=>{});
+    checkUserStatus();
   }
 
   function checkUserStatus(){
@@ -34,13 +33,13 @@ function App() {
     })
   }
 
-  if(isLoggedIn !== true){
+  if(isLoggedIn === false){
     return(
       <BrowserRouter>
         <HeaderLoggedOut/>
         <div className="App">
           <Switch>
-            <Login path='/login' onLogin={onLogin} checkUserStatus={checkUserStatus}/>
+            <Login path='/login' checkUserStatus={checkUserStatus}/>
             <Route path='/register' exact component={Register}/>
           </Switch>
         </div>
@@ -50,7 +49,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <HeaderLoggedIn onLogout={checkUserStatus} currentUser={user.userName} role={user.role}/>
+      <HeaderLoggedIn onLogout={onLogout} currentUser={user.userName} role={user.role}/>
       <div className="App">
         <Switch>
           <Route path='/' exact component={Test}/>

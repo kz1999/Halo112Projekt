@@ -34,7 +34,7 @@ function User(props){
     return(
         <div className="flex-container">
             <div className="link" onClick={changeUser}>{user.userName}</div>
-            <div>{user.passwordHash}</div>
+            <div>{}</div>
             <div>{user.email}</div>
             <div>{user.name}</div>
             <div>{user.surname}</div>

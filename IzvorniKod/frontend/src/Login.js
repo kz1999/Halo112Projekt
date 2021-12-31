@@ -20,16 +20,18 @@ function Login(props){
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: body
+            body: body,
+            mode: "no-cors"
         };
-        fetch('/login',options).then(response=>{
-            if(response.status === 202){
-                props.checkUserStatus();
-            }
-            else{
+        fetch('/login',options).then(()=>{
+            fetch('/user', {mode:"no-cors"}).then(response=>{
+            if(response === null){
                 setError("Login failed");
             }
-        });
+            else{
+                props.checkUserStatus();
+            }
+        })});
     }
 
     return(
