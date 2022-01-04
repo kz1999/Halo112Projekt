@@ -8,6 +8,7 @@ import Register from './Register';
 import {HeaderLoggedIn, HeaderLoggedOut} from './Header';
 import Users from './Users';
 import Test from './Test';
+import Station from './Station';
 
 function App() {
 
@@ -59,6 +60,7 @@ function App() {
           <Route path='/register' exact component={Register}/>
           <Route path='/users' exact component={Users}/>
           <Route path='/test' exact component={Test}/>
+          <Route path='/station' exact component={Station}/>
         </Switch>
       </div>
     </BrowserRouter>
