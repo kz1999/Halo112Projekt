@@ -9,14 +9,62 @@ function HeaderLoggedIn(props){
             props.onLogout();
         });
     }
-    if(props.currentUser === "admin"){
+    if(props.role === "admin"){
         return(
             <header className="Header">
                 <header className="App-header-container">
                     <div className="App-header">
                         <Link to='/test'>Test</Link>
                         <Link to='/users'>Users list</Link>
-                        <button onClick={logout}> user: {props.currentUser}, role: {props.role}<div/>Logout!</button>
+                        <button onClick={logout}> user: {props.currentUser}, role: admin<div/>Logout!</button>
+                    </div>
+                </header>
+            </header>
+        )
+    }
+    else if(props.role === "dispatcher"){
+        return(
+            <header className="Header">
+                <header className="App-header-container">
+                    <div className="App-header">
+                        <Link to='/test'>Test</Link>    
+                        <button onClick={logout}> user: {props.currentUser}, role: dispatcher<div/>Logout!</button>
+                    </div>
+                </header>
+            </header>
+        )
+    }
+    else if(props.role === "fireman"){
+        return(
+            <header className="Header">
+                <header className="App-header-container">
+                    <div className="App-header">
+                        <Link to='/test'>Test</Link>    
+                        <button onClick={logout}> user: {props.currentUser}, role: fireman<div/>Logout!</button>
+                    </div>
+                </header>
+            </header>
+        )
+    }
+    else if(props.role === "police"){
+        return(
+            <header className="Header">
+                <header className="App-header-container">
+                    <div className="App-header">
+                        <Link to='/test'>Test</Link>    
+                        <button onClick={logout}> user: {props.currentUser}, role: police<div/>Logout!</button>
+                    </div>
+                </header>
+            </header>
+        )
+    }
+    else if(props.role === "paramedic"){
+        return(
+            <header className="Header">
+                <header className="App-header-container">
+                    <div className="App-header">
+                        <Link to='/test'>Test</Link>    
+                        <button onClick={logout}> user: {props.currentUser}, role: paramedic<div/>Logout!</button>
                     </div>
                 </header>
             </header>
@@ -24,15 +72,14 @@ function HeaderLoggedIn(props){
     }
     else{
         return(
-            <header className="Header">
+        <header className="Header">
                 <header className="App-header-container">
                     <div className="App-header">
                         <Link to='/test'>Test</Link>    
                         <button onClick={logout}> user: {props.currentUser}, role: {props.role}<div/>Logout!</button>
                     </div>
                 </header>
-            </header>
-        )
+            </header>)
     }
 }
 
