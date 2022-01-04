@@ -36,7 +36,7 @@ function Register(){
 
     function isValid(){
         const {username, password} = form;
-        return username.length === 1 && password.length > 8;
+        return username.length === 1 || password.length > 8;
     }
 
     return(
