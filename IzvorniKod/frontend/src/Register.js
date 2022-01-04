@@ -69,7 +69,7 @@ function Register(){
                 </div>
                 <div className="FormRow">
                     <label>Role</label>
-                    <select name ="role" onchange="myFunction()" onChange={onChange} value={form.role}>
+                    <select name ="role" onChange={onChange} value={form.role}>
                         <option value="Dispatcher">Dispatcher</option>
                         <option value="Fireman">Fireman</option>
                         <option value="Policeman">Policeman</option>
