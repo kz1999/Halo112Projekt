@@ -15,7 +15,10 @@ function App() {
   const [user, setUser] = React.useState( {username:'', password:'', name:'', lastName:'', phoneNumber:'', email:'', role:'', confirmed:false});
   
   function onLogout(){
-    fetch('/logout',{method: 'POST', mode: "no-cors"}).then(()=>{});
+    const options = {
+      mode: "no-cors"
+    };
+    fetch('/logout',options).then(()=>{});
     checkUserStatus();
   }
 
