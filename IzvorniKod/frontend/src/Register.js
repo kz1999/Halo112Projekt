@@ -36,7 +36,7 @@ function Register(){
 
     function isValid(){
         const {username, password} = form;
-        return username.length === 1 && password.length > 8;
+        return username.length === 3 || password.length > 7;
     }
 
     return(
@@ -69,7 +69,12 @@ function Register(){
                 </div>
                 <div className="FormRow">
                     <label>Role</label>
-                    <input name='role' onChange={onChange} value={form.role}/>
+                    <select name ="role" onchange="myFunction()" onChange={onChange} value={form.role}>
+                        <option value="Dispatcher">Dispatcher</option>
+                        <option value="Fireman">Fireman</option>
+                        <option value="Policeman">Policeman</option>
+                        <option value="Doctor">Doctor</option>
+                    </select>
                 </div>
                 
                 <button type="submit" disabled = {!isValid}>Register</button>
