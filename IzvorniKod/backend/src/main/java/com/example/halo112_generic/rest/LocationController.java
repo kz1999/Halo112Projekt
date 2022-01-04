@@ -5,9 +5,7 @@ import com.example.halo112_generic.domain.Action;
 import com.example.halo112_generic.domain.Location;
 import com.example.halo112_generic.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +22,11 @@ public class LocationController {
     @GetMapping("/")
     public List<Location> listLocations() throws Exception {
         return locationService.listAll();
+    }
+
+    @PostMapping("/")
+    public Location createLocation(@RequestBody Location location) throws Exception {
+        return locationService.createLocation(location);
     }
 
 }
