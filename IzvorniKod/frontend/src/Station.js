@@ -49,7 +49,7 @@ function Station(){
                     <label>director_id</label>
                     <select name='director' onChange={onChange} value={form.director_id}>
                         {
-                            users.map(user => <option key={user.id} value={user.id}>{user.userName}</option>)
+                            users.filter(user => user.role === form.stationType).map(user => <option key={user.id} value={user.id}>{user.userName}</option>)
                         }
                     </select>
                 </div>
