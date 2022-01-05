@@ -46,7 +46,7 @@ function Station(){
                     <input name='name' onChange={onChange} value={form.name}/>
                 </div>
                 <div className="FormRow">
-                    <label>director_id</label>
+                    <label>director</label>
                     <select name='director' onChange={onChange} value={form.director_id}>
                         {
                             users.filter(user => user.role === form.stationType).map(user => <option key={user.id} value={user.id}>{user.userName}</option>)
@@ -54,7 +54,7 @@ function Station(){
                     </select>
                 </div>
                 <div className="FormRow">
-                    <label>location_id</label>
+                    <label>location</label>
                     <input name='location'  onChange={onChange} value={form.location_id}/>
                 </div>
                 <div className="FormRow">
@@ -65,7 +65,7 @@ function Station(){
                         <option value="Doctor">Ambulance</option>
                     </select>
                 </div>
-                <button type="submit">Register</button>
+                <button type="submit">Add</button>
             </form>
         </div>
     )

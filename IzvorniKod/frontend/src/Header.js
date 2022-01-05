@@ -9,7 +9,7 @@ function HeaderLoggedIn(props){
             props.onLogout();
         });
     }
-    if(props.role === "Admin"){
+    if(props.role === "Admin" || props.role === "admin"){
         return(
             <header className="Header">
                 <header className="App-header-container">
@@ -17,6 +17,7 @@ function HeaderLoggedIn(props){
                         <Link to='/test'>Test</Link>
                         <Link to='/users'>Users list</Link>
                         <Link to='/station'>Create station</Link>
+                        <Link to='/location'>Create location</Link>
                         <button onClick={logout}> user: {props.currentUser}, role: admin<div/>Logout!</button>
                     </div>
                 </header>

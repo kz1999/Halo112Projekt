@@ -10,6 +10,7 @@ import Users from './Users';
 import Test from './Test';
 import Station from './Station';
 import Map from './Map';
+import Location from './Location';
 
 function App() {
 
@@ -63,6 +64,7 @@ function App() {
           <Route path='/test' exact component={Test}/>
           <Route path='/station' exact component={Station}/>
           <Route path='/map' exact component={Map}/>
+          <Route path='/location' exact component={Location}/>
         </Switch>
       </div>
     </BrowserRouter>
