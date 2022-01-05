@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-
 import "./styles/App.css";
 
 import Login from "./Login";
@@ -47,7 +46,7 @@ function App() {
       });
   }
 
-  if (isLoggedIn !== true) {
+  /*if (isLoggedIn !== true) {
     return (
       <BrowserRouter>
         <HeaderLoggedOut />
@@ -59,7 +58,7 @@ function App() {
         </div>
       </BrowserRouter>
     );
-  }
+  }*/
 
   return (
     <BrowserRouter>
