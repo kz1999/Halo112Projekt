@@ -29,20 +29,18 @@ function Test(){
         
         const data = {
             name: "pimpek",
-            director_id: null,
-            location_id: null,
-            stationType: "FIREMAN"
+            
         };
         
         const options={
-            method: 'POST',
+            method: '',
             headers:{
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         };
 
-        fetch('/stanice', options).then(data => data.json()).then(data => console.log(data));
+        fetch('/stanice').then(data => data.json()).then(data => console.log(data));
     }
 
     
