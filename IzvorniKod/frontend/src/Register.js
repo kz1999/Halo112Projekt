@@ -2,7 +2,7 @@ import React from "react";
 import './styles/App.css';
 
 function Register(){
-    const [form, setForm] = React.useState( {username:'', password:'', name:'', lastName:'', phoneNumber:'', email:'', role:''});
+    const [form, setForm] = React.useState( {username:'', password:'', name:'', lastName:'', phoneNumber:'', email:'', role:'', photo:''});
 
     function onChange(event){
         const {name, value} = event.target;
@@ -19,7 +19,8 @@ function Register(){
             surname: form.lastName,
             phoneNumber: form.phoneNumber,
             email: form.email,
-            role: form.role
+            role: form.role,
+            photo: form.photo
         };
         
         const options={
@@ -71,20 +72,17 @@ function Register(){
                     <label>Role</label>
                     <select name ="role" onChange={onChange} value={form.role}>
                         <option value =''  ></option>
-                        <option value="Dispatcher">Dispatcher</option>
-                        <option value="Fireman">Fireman</option>
-                        <option value="Policeman">Policeman</option>
-                        <option value="Doctor">Doctor</option>
-                        <option value="Admin">Admin</option>
+                        <option value="dispatcher">Dispatcher</option>
+                        <option value="fireman">Fireman</option>
+                        <option value="policeman">Policeman</option>
+                        <option value="doctor">Doctor</option>
+                        <option value="admin">Admin</option>
                     </select>
                 </div>
-
                 <div className="FormRow">
                     <label>Picture </label>
-                    <input type ="file" name = "picture" onChange={onChange} value={form.picture}></input>
+                    <input type ="file" name = "picture" onChange={onChange} value={form.photo}></input>
                 </div>
-
-                
                 <button type="submit" disabled = {!isValid()}>Register</button>
             </form>
         </div>
