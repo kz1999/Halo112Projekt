@@ -53,7 +53,8 @@ function HeaderLoggedIn(props){
             <header className="Header">
                 <header className="App-header-container">
                     <div className="App-header">
-                        <Link to='/test'>Test</Link>    
+                        <Link to='/test'>Test</Link>
+                        <Link to='/map'>Map</Link>    
                         <button onClick={logout}> user: {props.currentUser}, role: police<div/>Logout!</button>
                     </div>
                 </header>
@@ -65,7 +66,8 @@ function HeaderLoggedIn(props){
             <header className="Header">
                 <header className="App-header-container">
                     <div className="App-header">
-                        <Link to='/test'>Test</Link>    
+                        <Link to='/test'>Test</Link>
+                        <Link to='/map'>Map</Link>    
                         <button onClick={logout}> user: {props.currentUser}, role: paramedic<div/>Logout!</button>
                     </div>
                 </header>
