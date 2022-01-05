@@ -46,6 +46,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().sameOrigin(); // fixes h2-console problem
         http.csrf().disable();
         */
+    	http.httpBasic();
         http.authorizeRequests()
                 .antMatchers("/helloworld").hasAuthority("ADMIN")
                 .antMatchers("/h2-console").permitAll()

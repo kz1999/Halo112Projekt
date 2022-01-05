@@ -19,12 +19,12 @@ public class LocationController {
     @Autowired
     LocationService locationService;
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<Location> listLocations() throws Exception {
         return locationService.listAll();
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     public Location createLocation(@RequestBody Location location) throws Exception {
         return locationService.createLocation(location);
     }

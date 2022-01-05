@@ -27,13 +27,14 @@ public class Dispatcher{
 
 	@OneToMany(targetEntity = Action.class)
 	private List<Action> actions;
-	
-	public Map getMap() {
-		return map;
+
+	public Dispatcher(User user, Map map, List<Action> actions) {
+		this.user = user;
+		this.map = map;
+		this.actions = actions;
 	}
 
-	public void setMap(Map map) {
-		this.map = map;
+	public Dispatcher() {
 	}
 
 	public Long getId() {
@@ -52,6 +53,14 @@ public class Dispatcher{
 		this.user = user;
 	}
 
+	public Map getMap() {
+		return map;
+	}
+
+	public void setMap(Map map) {
+		this.map = map;
+	}
+
 	public List<Action> getActions() {
 		return actions;
 	}
@@ -60,7 +69,16 @@ public class Dispatcher{
 		this.actions = actions;
 	}
 
-//	@Override
+	@Override
+	public String toString() {
+		return "Dispatcher{" +
+				"id=" + id +
+				", user=" + user +
+				", map=" + map +
+				", actions=" + actions +
+				'}';
+	}
+	//	@Override
 //	public String toString() {
 //		return "Dispatcher [id=" + id + ", user=" + user + ", actions=" + actions + "]";
 //	}
