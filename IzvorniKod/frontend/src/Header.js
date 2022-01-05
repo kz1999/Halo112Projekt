@@ -9,7 +9,7 @@ function HeaderLoggedIn(props){
             props.onLogout();
         });
     }
-    if(props.role === "Admin" || props.role === "admin"){
+    if(props.role === "admin"){
         return(
             <header className="Header">
                 <header className="App-header-container">
@@ -24,7 +24,7 @@ function HeaderLoggedIn(props){
             </header>
         )
     }
-    else if(props.role === "Dispatcher"){
+    else if(props.role === "dispatcher"){
         return(
             <header className="Header">
                 <header className="App-header-container">
@@ -36,7 +36,7 @@ function HeaderLoggedIn(props){
             </header>
         )
     }
-    else if(props.role === "Fireman"){
+    else if(props.role === "fireman"){
         return(
             <header className="Header">
                 <header className="App-header-container">
@@ -49,7 +49,7 @@ function HeaderLoggedIn(props){
             </header>
         )
     }
-    else if(props.role === "Police"){
+    else if(props.role === "police"){
         return(
             <header className="Header">
                 <header className="App-header-container">
@@ -62,7 +62,7 @@ function HeaderLoggedIn(props){
             </header>
         )
     }
-    else if(props.role === "Doctor"){
+    else if(props.role === "doctor"){
         return(
             <header className="Header">
                 <header className="App-header-container">
