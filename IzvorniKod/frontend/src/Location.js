@@ -29,6 +29,11 @@ function Location(){
         fetch('/lokacija', options).then(data => data.json()).then(data => console.log(data));
     }
 
+    function isValid(){
+        const {name, x, y} = form;
+        return name.length >= 1 && x.length >= 1 && y.length >= 1;
+    }
+
     return(
         <div className="Location">
             <h2>Add Location</h2>
@@ -39,13 +44,13 @@ function Location(){
                 </div>
                 <div className="FormRow">
                     <label>x</label>
-                    <input name='x' onChange={onChange} value={form.x}/>
+                    <input name='x' type='number' onChange={onChange} value={form.x}/>
                 </div>
                 <div className="FormRow">
                     <label>y</label>
-                    <input name='y'  onChange={onChange} value={form.y}/>
+                    <input name='y' type='number' onChange={onChange} value={form.y}/>
                 </div>
-                <button type="submit">Add</button>
+                <button type="submit" disabled = {!isValid()}>Add</button>
             </form>
         </div>
     )
