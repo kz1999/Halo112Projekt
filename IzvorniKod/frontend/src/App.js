@@ -9,6 +9,7 @@ import {HeaderLoggedIn, HeaderLoggedOut} from './Header';
 import Users from './Users';
 import Test from './Test';
 import Station from './Station';
+import Map from './Map';
 
 function App() {
 
@@ -61,6 +62,7 @@ function App() {
           <Route path='/users' exact component={Users}/>
           <Route path='/test' exact component={Test}/>
           <Route path='/station' exact component={Station}/>
+          <Route path='/map' exact component={Map}/>
         </Switch>
       </div>
     </BrowserRouter>
