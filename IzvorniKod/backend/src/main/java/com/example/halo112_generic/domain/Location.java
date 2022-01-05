@@ -17,13 +17,10 @@ public class Location {
 
     private String name;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    @NotNull
+    private double x;
+    @NotNull
+    private double y;
 
     public Long getId() {
         return id;
@@ -33,14 +30,12 @@ public class Location {
         this.id = id;
     }
 
-    @NotNull
-    private double x;
-    @NotNull
-    private double y;
+    public String getName() {
+        return name;
+    }
 
-    public Location(double x, double y) {
-        this.x = x;
-        this.y = y;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public double getX() {
@@ -59,10 +54,21 @@ public class Location {
         this.y = y;
     }
 
+    public Location(String name, double x, double y) {
+        this.name = name;
+        this.x = x;
+        this.y = y;
+    }
+
+    public Location() {
+    }
+
     @Override
     public String toString() {
         return "Location{" +
-                "x=" + x +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", x=" + x +
                 ", y=" + y +
                 '}';
     }
