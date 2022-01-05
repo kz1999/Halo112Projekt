@@ -35,8 +35,8 @@ function Register(){
     }
 
     function isValid(){
-        const {username, password} = form;
-        return username.length > 3 && password.length > 7;
+        const {username, password, role} = form;
+        return username.length > 3 && password.length > 7 && role !== '' ;
     }
 
     return(
@@ -70,6 +70,7 @@ function Register(){
                 <div className="FormRow">
                     <label>Role</label>
                     <select name ="role" onChange={onChange} value={form.role}>
+                        <option value =''  ></option>
                         <option value="Dispatcher">Dispatcher</option>
                         <option value="Fireman">Fireman</option>
                         <option value="Policeman">Policeman</option>
@@ -84,7 +85,7 @@ function Register(){
                 </div>
 
                 
-                <button type="submit" disabled = {!isValid}>Register</button>
+                <button type="submit" disabled = {!isValid()}>Register</button>
             </form>
         </div>
     )
