@@ -77,6 +77,12 @@ function Register(){
                         <option value="Admin">Admin</option>
                     </select>
                 </div>
+
+                <div className="FormRow">
+                    <label>Picture </label>
+                    <input type ="file" name = "picture" onChange={onChange} value={form.picture}></input>
+                </div>
+
                 
                 <button type="submit" disabled = {!isValid}>Register</button>
             </form>
