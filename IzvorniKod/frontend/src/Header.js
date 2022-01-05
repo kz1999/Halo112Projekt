@@ -61,7 +61,7 @@ function HeaderLoggedIn(props){
             </header>
         )
     }
-    else if(props.role === "Paramedic"){
+    else if(props.role === "Doctor"){
         return(
             <header className="Header">
                 <header className="App-header-container">
