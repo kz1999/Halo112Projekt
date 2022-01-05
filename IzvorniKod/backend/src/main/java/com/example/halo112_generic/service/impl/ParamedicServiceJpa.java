@@ -1,5 +1,7 @@
 package com.example.halo112_generic.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Component;
@@ -23,6 +25,16 @@ public class ParamedicServiceJpa implements ParamedicService{
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public Paramedic createParamed(Paramedic paramed) {
+		return paramedicRepo.save(paramed);
+	}
+
+	@Override
+	public List<Paramedic> listAll() {
+		return paramedicRepo.findAll();
 	}
 
 }

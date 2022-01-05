@@ -5,12 +5,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "admin")
 public class Admin{
+	
     @Id
     @GeneratedValue
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "user_id", nullable = false)
+    @MapsId
     private User user;
 
 	public Long getId() {

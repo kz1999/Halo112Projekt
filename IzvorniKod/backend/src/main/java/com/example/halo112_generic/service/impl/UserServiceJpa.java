@@ -2,9 +2,22 @@ package com.example.halo112_generic.service.impl;
 
 import com.example.halo112_generic.dao.UserRepository;
 import com.example.halo112_generic.domain.Action;
+import com.example.halo112_generic.domain.Admin;
+import com.example.halo112_generic.domain.Dispatcher;
+import com.example.halo112_generic.domain.Fireman;
+import com.example.halo112_generic.domain.Paramedic;
+import com.example.halo112_generic.domain.Police;
+import com.example.halo112_generic.domain.Responder;
 import com.example.halo112_generic.domain.User;
 import com.example.halo112_generic.service.UserService;
+import com.example.halo112_generic.service.AdminService;
+import com.example.halo112_generic.service.DispatcherService;
+import com.example.halo112_generic.service.FiremanService;
+import com.example.halo112_generic.service.ParamedicService;
+import com.example.halo112_generic.service.PoliceService;
 import com.example.halo112_generic.service.RequestDeniedException;
+import com.example.halo112_generic.service.ResponderService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,8 +33,26 @@ public class UserServiceJpa implements UserService {
     @Autowired
     private UserRepository userRepo;
 
+    @Autowired
+    private AdminService adminService;
+    
+    @Autowired
+    private ResponderService responderService;
+    
+    @Autowired
+    private DispatcherService dispatcherService;
+    
+    @Autowired
+    private PoliceService policeService;
+    
+    @Autowired
+    private FiremanService firemanService;
+    
+    @Autowired
+    private ParamedicService paramedService;
+    
     //@Autowired
-    private PasswordEncoder pswdEncoder;
+    //private PasswordEncoder pswdEncoder;
 
     @Override
     //@Secured("ROLE_ADMIN")
@@ -45,8 +76,46 @@ public class UserServiceJpa implements UserService {
             throw new RequestDeniedException(
                     "User with userName " + user.getUserName() + " already exists"
             );
+        
         //user.setPasswordHash(pswdEncoder.encode(user.getPasswordHash()));
-        return userRepo.save(user);
+        user = userRepo.save(user);
+        
+        Responder r = new Responder();
+        r.setUser(user);
+        switch (user.getRole().toLowerCase()) {
+        case "dispatcher":
+        	Dispatcher d = new Dispatcher();
+        	d.setUser(user);
+        	dispatcherService.createDispatcher(d);
+        	break;
+        case "policeman":
+        	r = responderService.createResponder(r);
+        	Police p = new Police();
+        	p.setResponder(r);
+        	policeService.createPolice(p);
+        	break;
+        case "fireman":
+        	r = responderService.createResponder(r);
+        	Fireman f = new Fireman();
+        	f.setResponder(r);
+        	firemanService.createFireman(f);
+        	break;
+        case "doctor":
+        	r = responderService.createResponder(r);
+        	Paramedic pm = new Paramedic();
+        	pm.setResponder(r);
+        	paramedService.createParamed(pm);
+        	break;
+        case "admin":
+        	Admin a = new Admin();
+        	a.setUser(user);
+        	adminService.createAdmin(a);
+        	break;
+        default:
+        	System.out.println("Error: unsupported role");
+        }
+        
+        return user;
     }
 
     @Override

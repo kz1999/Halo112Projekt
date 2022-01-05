@@ -11,8 +11,9 @@ public class Responder {
     @GeneratedValue
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "user_id")
+    @MapsId
     private User user;
 
     @ManyToOne
