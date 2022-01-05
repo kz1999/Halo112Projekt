@@ -58,11 +58,13 @@ function ChangeUser(props){
                 </div>
                 <div className="FormRow">
                     <label>Role</label>
-                    <input name='role' onChange={onChange} value={form.role}/>
-                </div>
-                <div className="FormRow">
-                    <label>Confirmed</label>
-                    <input name='confirmed' onChange={onChange} value={form.confirmed}/>
+                    <select name ="role" onChange={onChange} value={form.role}>
+                        <option value="dispatcher">Dispatcher</option>
+                        <option value="fireman">Fireman</option>
+                        <option value="policeman">Policeman</option>
+                        <option value="doctor">Doctor</option>
+                        <option value="admin">Admin</option>
+                    </select>
                 </div>
                 <button type="submit">ChangeUser</button>
             </form>
