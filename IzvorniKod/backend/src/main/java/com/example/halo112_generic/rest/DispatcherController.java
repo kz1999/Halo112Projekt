@@ -2,6 +2,7 @@ package com.example.halo112_generic.rest;
 
 import java.util.List;
 
+import com.example.halo112_generic.domain.Dispatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +24,18 @@ public class DispatcherController {
 	
 	@Autowired
 	private ActionService actionService;
+
+	@GetMapping("")
+	public List<Dispatcher> listDispatchers() throws Exception{
+		return dispatcherService.listAll();
+	}
+
+	@PostMapping("")
+	public Dispatcher createDispatcher(@RequestBody Dispatcher dispatcher) throws Exception{
+		return dispatcherService.createDispatcher(dispatcher);
+	}
 	
-	@GetMapping("/create")
+	@PostMapping("/create")
 	public Action createAction(@RequestBody Action action) throws Exception {
 		return actionService.createAction(action);
 	}

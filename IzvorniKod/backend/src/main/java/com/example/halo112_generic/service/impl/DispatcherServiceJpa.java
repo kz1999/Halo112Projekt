@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import com.example.halo112_generic.dao.DispatcherRepository;
 import com.example.halo112_generic.service.DispatcherService;
 
+import java.util.List;
+
 @Component
 public class DispatcherServiceJpa implements DispatcherService{
 
@@ -17,5 +19,10 @@ public class DispatcherServiceJpa implements DispatcherService{
     @Override
     public Dispatcher createDispatcher(Dispatcher dispatcher) {
         return dispatcherRepo.save(dispatcher);
+    }
+
+    @Override
+    public List<Dispatcher> listAll() {
+        return dispatcherRepo.findAll();
     }
 }
