@@ -2,7 +2,7 @@ import React from "react";
 import './styles/App.css';
 
 function Register(){
-    const [form, setForm] = React.useState( {username:'', password:'', name:'', lastName:'', phoneNumber:'', email:'', role:'', photo:''});
+    const [form, setForm] = React.useState( {username:'', password:'', name:'', lastName:'', phoneNumber:'', email:'', role:null, photo:''});
 
     function onChange(event){
         const {name, value} = event.target;
@@ -37,7 +37,7 @@ function Register(){
 
     function isValid(){
         const {username, password, role} = form;
-        return username.length > 3 && password.length > 7 && role !== '' ;
+        return username.length > 3 && password.length > 7 && role !== null ;
     }
 
     return(
@@ -71,7 +71,7 @@ function Register(){
                 <div className="FormRow">
                     <label>Role</label>
                     <select name ="role" onChange={onChange} value={form.role}>
-                        <option value =''  ></option>
+                        <option value={null}></option>
                         <option value="dispatcher">Dispatcher</option>
                         <option value="fireman">Fireman</option>
                         <option value="policeman">Policeman</option>
