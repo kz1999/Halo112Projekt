@@ -2,7 +2,7 @@ import React from "react";
 import './styles/App.css';
 
 function Station(){
-    const [form, setForm] = React.useState( {name:'', director_id:'', location_id:'', stationType:''});
+    const [form, setForm] = React.useState( {name:'', director_id:null, location_id:null, stationType:null});
     const [users, setUsers] = React.useState([]);
     const [locations, setLocations] = React.useState([]);
 
@@ -40,8 +40,13 @@ function Station(){
             },
             body: JSON.stringify(data)
         };
+        console.log(data);
+        fetch('/stanice/create', options).then(data => data.json()).then(data => console.log(data));
+    }
 
-        fetch('/stanice', options).then(data => data.json()).then(data => console.log(data));
+    function isValid(){
+        const {name, director_id, location_id, stationType} = form;
+        return name.length >= 1 && director_id != null && location_id != null && stationType != null;
     }
 
     return(
@@ -55,7 +60,7 @@ function Station(){
                 <div className="FormRow">
                     <label>director</label>
                     <select name='director_id' onChange={onChange} value={form.director_id}>
-                        <option value="">Odaberi</option>
+                        <option value={null}>Odaberi</option>
                         {
                             users.filter(user => user.role === form.stationType).map(user => <option key={user.id} value={user.id}>{user.userName}</option>)
                         }
@@ -64,7 +69,7 @@ function Station(){
                 <div className="FormRow">
                     <label>location</label>
                     <select name='location_id' onChange={onChange} value={form.location_id}>
-                        <option value="">Odaberi</option>
+                        <option value={null}>Odaberi</option>
                         {
                             locations.map(lokacija => <option key={lokacija.id} value={lokacija.id}>{lokacija.name}</option>)
                         }
@@ -73,13 +78,13 @@ function Station(){
                 <div className="FormRow">
                     <label>Role</label>
                     <select name ="stationType" onChange={onChange} value={form.stationType}>
-                        <option value="">Odaberi</option>
+                        <option value={null}>Odaberi</option>
                         <option value="fireman">Fire Department</option>
                         <option value="policeman">Police Department</option>
                         <option value="doctor">Ambulance</option>
                     </select>
                 </div>
-                <button type="submit">Add</button>
+                <button type="submit" disabled = {!isValid()}>Add</button>
             </form>
         </div>
     )
