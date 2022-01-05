@@ -4,11 +4,18 @@ import './styles/App.css';
 function Station(){
     const [form, setForm] = React.useState( {name:'', director_id:'', location_id:'', stationType:''});
     const [users, setUsers] = React.useState([]);
+    const [locations, setLocations] = React.useState([]);
 
     React.useEffect(()=>{
         fetch('/korisnici')
         .then(data => data.json())
         .then(users => setUsers(users));
+    }, []);
+
+    React.useEffect(()=>{
+        fetch('/lokacija')
+        .then(data => data.json())
+        .then(locations => setLocations(locations));
     }, []);
 
     function onChange(event){
@@ -47,7 +54,8 @@ function Station(){
                 </div>
                 <div className="FormRow">
                     <label>director</label>
-                    <select name='director' onChange={onChange} value={form.director_id}>
+                    <select name='director_id' onChange={onChange} value={form.director_id}>
+                        <option value="">Odaberi</option>
                         {
                             users.filter(user => user.role === form.stationType).map(user => <option key={user.id} value={user.id}>{user.userName}</option>)
                         }
@@ -55,11 +63,17 @@ function Station(){
                 </div>
                 <div className="FormRow">
                     <label>location</label>
-                    <input name='location'  onChange={onChange} value={form.location_id}/>
+                    <select name='location_id' onChange={onChange} value={form.location_id}>
+                        <option value="">Odaberi</option>
+                        {
+                            locations.map(lokacija => <option key={lokacija.id} value={lokacija.id}>{lokacija.name}</option>)
+                        }
+                    </select>
                 </div>
                 <div className="FormRow">
                     <label>Role</label>
                     <select name ="stationType" onChange={onChange} value={form.stationType}>
+                        <option value="">Odaberi</option>
                         <option value="Fireman">Fire Department</option>
                         <option value="Policeman">Police Department</option>
                         <option value="Doctor">Ambulance</option>
