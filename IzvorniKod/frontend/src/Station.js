@@ -74,9 +74,9 @@ function Station(){
                     <label>Role</label>
                     <select name ="stationType" onChange={onChange} value={form.stationType}>
                         <option value="">Odaberi</option>
-                        <option value="Fireman">Fire Department</option>
-                        <option value="Policeman">Police Department</option>
-                        <option value="Doctor">Ambulance</option>
+                        <option value="fireman">Fire Department</option>
+                        <option value="policeman">Police Department</option>
+                        <option value="doctor">Ambulance</option>
                     </select>
                 </div>
                 <button type="submit">Add</button>
