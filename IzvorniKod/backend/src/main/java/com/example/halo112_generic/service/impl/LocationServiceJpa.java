@@ -4,10 +4,12 @@ import com.example.halo112_generic.dao.LocationRepository;
 import com.example.halo112_generic.domain.Location;
 import com.example.halo112_generic.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class LocationServiceJpa implements LocationService {
     @Autowired
     LocationRepository locationRepo;
