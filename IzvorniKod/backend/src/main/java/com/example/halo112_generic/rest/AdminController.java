@@ -41,8 +41,8 @@ public class AdminController {
 
 	@PostMapping("/create_station")
 	// @Secured("ROLE_ADMIN")
-	public Station createStation(@RequestBody String name, @RequestBody Responder director,
-			@RequestBody Location location, @RequestBody StationType type) throws Exception {
+	public Station createStation(@RequestBody String name, @RequestBody Long director,
+			@RequestBody Long location, @RequestBody StationType type) throws Exception {
 		return stationService.createStation(new Station(name, director, location, type));
 	}
 	

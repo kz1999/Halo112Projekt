@@ -14,51 +14,47 @@ public class Station {
     @Column(unique = true)
     String name;
 
-    @OneToOne
-    @JoinColumn(name = "director_id")
     @NotNull
-    private Responder director;
+    private Long director_id;
 
-    @ManyToOne
-    @JoinColumn(name = "location_id")
     @NotNull
-    private Location location;
+    private Long location_id;
 
     @NotNull
     private StationType type;
 
-    public Station(String name, Responder director, Location location, StationType type) {
+    public Station(String name, Long director_id, Long location_id, StationType type) {
         this.name = name;
-        this.director = director;
-        this.location = location;
+        this.director_id = director_id;
+        this.location_id = location_id;
         this.type = type;
     }
 
     public Station() {
     }
 
-    public Long getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Responder getDirector() {
-        return director;
+    public Long getDirector_id() {
+        return director_id;
     }
 
-    public void setDirector(Responder director) {
-        this.director = director;
+    public void setDirector_id(Long director_id) {
+        this.director_id = director_id;
     }
 
-    public Location getLocation() {
-        return location;
+    public Long getLocation_id() {
+        return location_id;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setLocation_id(Long location_id) {
+        this.location_id = location_id;
     }
 
     public StationType getType() {
@@ -73,8 +69,9 @@ public class Station {
     public String toString() {
         return "Station{" +
                 "id=" + id +
-                ", director=" + director +
-                ", location=" + location +
+                ", name='" + name + '\'' +
+                ", director_id=" + director_id +
+                ", location_id=" + location_id +
                 ", type=" + type +
                 '}';
     }
