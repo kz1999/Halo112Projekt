@@ -14,6 +14,16 @@ import java.util.Optional;
 @RequestMapping("/stanice")
 public class StationsController {
 
+    private static class MemberId{
+        Long member_id;
+        private Long getId(){
+            return member_id;
+        }
+        private void setId(Long id){
+            this.member_id= id;
+        }
+    }
+
     @Autowired
     private StationService stationService;
 
@@ -42,8 +52,8 @@ public class StationsController {
 
     @PostMapping("/{id}/members")
     //@Secured("ROLE_ADMIN")
-    public void addMember(@PathVariable Long id, @RequestBody Long member_id) throws Exception {
-        stationService.findById(id).get().addMember(member_id);
+    public void addMember(@PathVariable Long id, @RequestBody MemberId member_id) throws Exception {
+        stationService.findById(id).get().addMember(member_id.getId());
     }
 
 
