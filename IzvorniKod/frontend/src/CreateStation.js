@@ -26,14 +26,13 @@ function CreateStation(){
     function onSubmit(event){
         event.preventDefault();
         const stationType = form.stationType;
-        
         const data = {
             name: form.name,
             director_id: form.director_id,
             location_id: form.location_id,
             type: stationType.toUpperCase()
         };
-        
+        console.log(data);
         const options={
             method: 'POST',
             headers:{
@@ -41,7 +40,7 @@ function CreateStation(){
             },
             body: JSON.stringify(data)
         };
-        console.log(data);
+        
         fetch('/stanice', options).then(data => data.json()).then(data => console.log(data));
     }
 
