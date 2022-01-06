@@ -30,7 +30,7 @@ function CreateStation(){
             name: form.name,
             director_id: form.director_id,
             location_id: form.location_id,
-            type: stationType.toUpperCase()
+            type: 'FIRESTATION'
         };
         console.log(data);
         const options={
