@@ -16,8 +16,9 @@ function HeaderLoggedIn(props){
                     <div className="App-header">
                         <Link to='/test'>Test</Link>
                         <Link to='/users'>Users list</Link>
-                        <Link to='/station'>Create station</Link>
+                        <Link to='/createStation'>Create station</Link>
                         <Link to='/location'>Create location</Link>
+                        <Link to='/station'>Add member to your station</Link>
                         <button onClick={logout}> user: {props.currentUser}, role: admin<div/>Logout!</button>
                     </div>
                 </header>

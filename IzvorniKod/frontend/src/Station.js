@@ -2,20 +2,13 @@ import React from "react";
 import './styles/App.css';
 
 function Station(){
-    const [form, setForm] = React.useState( {name:'', director_id:null, location_id:null, stationType:null});
+    const [form, setForm] = React.useState( {name:null, station_id:null});
     const [users, setUsers] = React.useState([]);
-    const [locations, setLocations] = React.useState([]);
 
     React.useEffect(()=>{
         fetch('/korisnici')
         .then(data => data.json())
         .then(users => setUsers(users));
-    }, []);
-
-    React.useEffect(()=>{
-        fetch('/lokacija')
-        .then(data => data.json())
-        .then(locations => setLocations(locations));
     }, []);
 
     function onChange(event){
@@ -28,9 +21,6 @@ function Station(){
         
         const data = {
             name: form.name,
-            director_id: form.director_id,
-            location_id: form.location_id,
-            stationType: form.stationType
         };
         
         const options={
@@ -45,43 +35,21 @@ function Station(){
     }
 
     function isValid(){
-        const {name, director_id, location_id, stationType} = form;
-        return name.length >= 1 && director_id != null && location_id != null && stationType != null;
+        const {name} = form;
+        return name != null;
     }
 
     return(
         <div className="Test">
-            <h2>Add Station</h2>
+            <h2>Add Member to station</h2>
             <form onSubmit={onSubmit}>
                 <div className="FormRow">
-                    <label>name</label>
-                    <input name='name' onChange={onChange} value={form.name}/>
-                </div>
-                <div className="FormRow">
-                    <label>director</label>
-                    <select name='director_id' onChange={onChange} value={form.director_id}>
-                        <option value={null}>Odaberi</option>
-                        {
-                            users.filter(user => user.role === form.stationType).map(user => <option key={user.id} value={user.id}>{user.userName}</option>)
-                        }
-                    </select>
-                </div>
-                <div className="FormRow">
                     <label>location</label>
-                    <select name='location_id' onChange={onChange} value={form.location_id}>
+                    <select name='name' onChange={onChange} value={form.name}>
                         <option value={null}>Odaberi</option>
                         {
-                            locations.map(lokacija => <option key={lokacija.id} value={lokacija.id}>{lokacija.name}</option>)
+                            users.map(user => <option key={user.id} value={user.id}>{user.name}</option>)
                         }
-                    </select>
-                </div>
-                <div className="FormRow">
-                    <label>Role</label>
-                    <select name ="stationType" onChange={onChange} value={form.stationType}>
-                        <option value={null}>Odaberi</option>
-                        <option value="fireman">Fire Department</option>
-                        <option value="policeman">Police Department</option>
-                        <option value="doctor">Ambulance</option>
                     </select>
                 </div>
                 <button type="submit" disabled = {!isValid()}>Add</button>
