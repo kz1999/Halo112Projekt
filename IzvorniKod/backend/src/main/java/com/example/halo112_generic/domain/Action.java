@@ -93,4 +93,17 @@ public class Action {
     public void setGallery(List<String> gallery) {
         this.gallery = gallery;
     }
+
+    public Action(Location location, List<Responder> team, int urgency, List<Task> tasks, List<Comment> comments, String description, List<String> gallery) {
+        this.location = location;
+        this.team = team;
+        this.urgency = urgency;
+        this.tasks = tasks;
+        this.comments = comments;
+        this.description = description;
+        this.gallery = gallery;
+    }
+
+    public Action() {
+    }
 }
