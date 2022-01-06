@@ -41,7 +41,7 @@ function CreateStation(){
             body: JSON.stringify(data)
         };
         
-        fetch('/stanice', options).then(data => data.json()).then(data => console.log(data));
+        fetch('/stanice', options);
     }
 
     function isValid(){
