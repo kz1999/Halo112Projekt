@@ -25,20 +25,15 @@ function Station(){
 
     function onSubmit(event){
         event.preventDefault();
-        
-        const data = {
-            member_id: form.member_id,
-        };
-        
         const options={
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: form.member_id
         };
-        console.log(data);
-        fetch('/stanice/'+form.station_id+'/members', options).then(data => data.json()).then(data => console.log(data));
+
+        fetch('/stanice/'+form.station_id+'/members', options);
     }
 
     function isValid(){

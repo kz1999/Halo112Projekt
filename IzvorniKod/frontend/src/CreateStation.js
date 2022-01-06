@@ -58,6 +58,15 @@ function CreateStation(){
                     <input name='name' onChange={onChange} value={form.name}/>
                 </div>
                 <div className="FormRow">
+                    <label>Role</label>
+                    <select name ="stationType" onChange={onChange} value={form.stationType}>
+                        <option value={null}>Odaberi</option>
+                        <option value="fireman">Fire station</option>
+                        <option value="policeman">Police station</option>
+                        <option value="doctor">Hospital</option>
+                    </select>
+                </div>
+                <div className="FormRow">
                     <label>director</label>
                     <select name='director_id' onChange={onChange} value={form.director_id}>
                         <option value={null}>Odaberi</option>
@@ -73,15 +82,6 @@ function CreateStation(){
                         {
                             locations.map(lokacija => <option key={lokacija.id} value={lokacija.id}>{lokacija.name}</option>)
                         }
-                    </select>
-                </div>
-                <div className="FormRow">
-                    <label>Role</label>
-                    <select name ="stationType" onChange={onChange} value={form.stationType}>
-                        <option value={null}>Odaberi</option>
-                        <option value="fireman">Fire Department</option>
-                        <option value="policeman">Police Department</option>
-                        <option value="doctor">Ambulance</option>
                     </select>
                 </div>
                 <button type="submit" disabled = {!isValid()}>Add</button>

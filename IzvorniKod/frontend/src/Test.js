@@ -21,26 +21,13 @@ function Test(){
             body: JSON.stringify(data)
         };
 
-        fetch('/stanice', options).then(data => data.json()).then(data => console.log(data));
+        fetch('/akcije', options).then(data => data.json()).then(data => console.log(data));
     }
 
     function onClickLocation(event){
         event.preventDefault();
         
-        const data = {
-            name: "pimpek",
-            
-        };
-        
-        const options={
-            method: '',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        };
-
-        fetch('/stanice').then(data => data.json()).then(data => console.log(data));
+        fetch('/akcije').then(response=>response.json()).then(response=>console.log(response))
     }
 
     
