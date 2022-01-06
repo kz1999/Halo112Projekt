@@ -22,12 +22,12 @@ public interface StationRepository extends JpaRepository<Station, Long> {
 
     @Transactional
     @Modifying
-    @Query("UPDATE Station k SET k.director = :director_id WHERE k.id = :id")
+    @Query("UPDATE Station k SET k.director_id = :director_id WHERE k.id = :id")
     void editStationDirector(@Param("director_id") Long director_id,@Param("id") Long id);
 
     @Transactional
     @Modifying
-    @Query("UPDATE Station k SET k.location = :location_id WHERE k.id = :id")
+    @Query("UPDATE Station k SET k.location_id = :location_id WHERE k.id = :id")
     void editStationLocation(@Param("location_id") Long location_id,@Param("id") Long id);
 
     @Transactional
