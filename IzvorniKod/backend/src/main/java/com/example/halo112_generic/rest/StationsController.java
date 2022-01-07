@@ -13,47 +13,48 @@ import java.util.Optional;
 @RequestMapping("/stanice")
 public class StationsController {
 
-    public static class MemberId{
-        Long member_id;
-        private Long getId(){
-            return member_id;
-        }
-        private void setId(Long id){
-            this.member_id= id;
-        }
-    }
+	public static class MemberId {
+		Long member_id;
 
-    @Autowired
-    private StationService stationService;
+		private Long getId() {
+			return member_id;
+		}
 
-    @GetMapping("")
-    //@Secured("ROLE_ADMIN")
-    public List<Station> listStations() throws Exception {
-        return stationService.listAll();
-    }
+		private void setId(Long id) {
+			this.member_id = id;
+		}
+	}
 
-    @PostMapping("")
-    public Station createStation(@RequestBody Station station) throws Exception {
-        return stationService.createStation(station);
-    }
+	@Autowired
+	private StationService stationService;
 
-    @GetMapping("/{id}")
-    //@Secured("ROLE_ADMIN")
-    public Optional<Station> findById(@PathVariable Long id) throws Exception {
-        return stationService.findById(id);
-    }
+	@GetMapping("")
+	// @Secured("ROLE_ADMIN")
+	public List<Station> listStations() throws Exception {
+		return stationService.listAll();
+	}
 
-    @PostMapping("/{id}")
-    //@Secured("ROLE_ADMIN")
-    public Optional<Station> editStation(@PathVariable Long id, @RequestBody Station station) throws Exception {
-        return stationService.editStation(id, station);
-    }
+	@PostMapping("")
+	public Station createStation(@RequestBody Station station) throws Exception {
+		return stationService.createStation(station);
+	}
 
-    @PostMapping("/{id}/members")
-    //@Secured("ROLE_ADMIN")
-    public ResponseEntity<Station> addMember(@PathVariable Long id, @RequestBody MemberId member_id) throws Exception {
-        return ResponseEntity.ok(stationService.addMember(id, member_id.getId()));
-    }
+	@GetMapping("/{id}")
+	// @Secured("ROLE_ADMIN")
+	public Optional<Station> findById(@PathVariable Long id) throws Exception {
+		return stationService.findById(id);
+	}
 
+	@PostMapping("/{id}")
+	// @Secured("ROLE_ADMIN")
+	public Optional<Station> editStation(@PathVariable Long id, @RequestBody Station station) throws Exception {
+		return stationService.editStation(id, station);
+	}
+
+	@PostMapping("/{id}/members/")
+	// @Secured("ROLE_ADMIN")
+	public Station addMember(@PathVariable Long id, @RequestBody Long member_id) throws Exception {
+		return stationService.addMember(id, member_id);
+	}
 
 }
