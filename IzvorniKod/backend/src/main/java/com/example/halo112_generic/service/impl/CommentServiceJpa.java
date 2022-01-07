@@ -4,10 +4,12 @@ import com.example.halo112_generic.dao.CommentRepository;
 import com.example.halo112_generic.domain.Comment;
 import com.example.halo112_generic.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class CommentServiceJpa implements CommentService {
 
     @Autowired

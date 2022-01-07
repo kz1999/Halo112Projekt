@@ -33,7 +33,7 @@ function Station(){
             body: form.member_id
         };
 
-        fetch('/stanice/'+form.station_id+'/members', options);
+        fetch('/stanice/members/'+form.station_id, options);
     }
 
     function isValid(){
