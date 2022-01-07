@@ -7,10 +7,9 @@ function Test(){
         event.preventDefault();
         
         const data = {
-            name: "pimpek",
-            director_id: null,
-            location_id: null,
-            stationType: "FIREMAN"
+            owner: "5",
+            timeStamp: "2",
+            text: "1"
         };
         
         const options={
@@ -21,13 +20,13 @@ function Test(){
             body: JSON.stringify(data)
         };
 
-        fetch('/akcije', options).then(data => data.json()).then(data => console.log(data));
+        fetch('/comments/6', options).then(data => data.json()).then(data => console.log(data));
     }
 
     function onClickLocation(event){
         event.preventDefault();
         
-        fetch('/akcije').then(response=>response.json()).then(response=>console.log(response))
+        fetch('/comment').then(response=>response.json()).then(response=>console.log(response))
     }
 
     
