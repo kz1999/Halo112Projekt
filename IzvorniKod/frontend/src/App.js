@@ -9,6 +9,7 @@ import {HeaderLoggedIn, HeaderLoggedOut} from './Header';
 import Users from './Users';
 import Test from './Test';
 import Station from './Station';
+import CreateStation from './CreateStation';
 import Map from './Map';
 import Location from './Location';
 
@@ -62,6 +63,7 @@ function App() {
           <Route path='/register' exact component={Register}/>
           <Route path='/users' exact component={Users}/>
           <Route path='/test' exact component={Test}/>
+          <Route path='/createStation' exact component={CreateStation}/>¸
           <Route path='/station' exact component={Station}/>
           <Route path='/map' exact component={Map}/>
           <Route path='/location' exact component={Location}/>

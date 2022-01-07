@@ -2,9 +2,9 @@ import React from "react";
 import './styles/App.css';
 
 function Station(){
-    const [form, setForm] = React.useState( {name:'', director_id:null, location_id:null, stationType:null});
+    const [form, setForm] = React.useState( {member_id:null,station_id:null});
     const [users, setUsers] = React.useState([]);
-    const [locations, setLocations] = React.useState([]);
+    const [stations, setStations] = React.useState([]);
 
     React.useEffect(()=>{
         fetch('/korisnici')
@@ -13,9 +13,9 @@ function Station(){
     }, []);
 
     React.useEffect(()=>{
-        fetch('/lokacija')
+        fetch('/stanice')
         .then(data => data.json())
-        .then(locations => setLocations(locations));
+        .then(stations => setStations(stations));
     }, []);
 
     function onChange(event){
@@ -25,63 +25,42 @@ function Station(){
 
     function onSubmit(event){
         event.preventDefault();
-        
-        const data = {
-            name: form.name,
-            director_id: form.director_id,
-            location_id: form.location_id,
-            stationType: form.stationType
-        };
-        
         const options={
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: form.member_id
         };
-        console.log(data);
-        fetch('/stanice/create', options).then(data => data.json()).then(data => console.log(data));
+
+        fetch('/stanice/'+form.station_id+'/members', options);
     }
 
     function isValid(){
-        const {name, director_id, location_id, stationType} = form;
-        return name.length >= 1 && director_id != null && location_id != null && stationType != null;
+        const {member_id,station_id} = form;
+        return member_id != null && station_id != null;
     }
 
     return(
         <div className="Test">
-            <h2>Add Station</h2>
+            <h2>Add Member to station</h2>
             <form onSubmit={onSubmit}>
                 <div className="FormRow">
-                    <label>name</label>
-                    <input name='name' onChange={onChange} value={form.name}/>
-                </div>
-                <div className="FormRow">
-                    <label>director</label>
-                    <select name='director_id' onChange={onChange} value={form.director_id}>
+                    <label>station</label>
+                    <select name='station_id' onChange={onChange} value={form.station_id}>
                         <option value={null}>Odaberi</option>
                         {
-                            users.filter(user => user.role === form.stationType).map(user => <option key={user.id} value={user.id}>{user.userName}</option>)
+                            stations.map(station => <option key={station.id} value={station.id}>{station.name}</option>)
                         }
                     </select>
                 </div>
                 <div className="FormRow">
-                    <label>location</label>
-                    <select name='location_id' onChange={onChange} value={form.location_id}>
+                    <label>member</label>
+                    <select name='member_id' onChange={onChange} value={form.member_id}>
                         <option value={null}>Odaberi</option>
                         {
-                            locations.map(lokacija => <option key={lokacija.id} value={lokacija.id}>{lokacija.name}</option>)
+                            users.map(user => <option key={user.id} value={user.id}>{user.userName}</option>)
                         }
-                    </select>
-                </div>
-                <div className="FormRow">
-                    <label>Role</label>
-                    <select name ="stationType" onChange={onChange} value={form.stationType}>
-                        <option value={null}>Odaberi</option>
-                        <option value="fireman">Fire Department</option>
-                        <option value="policeman">Police Department</option>
-                        <option value="doctor">Ambulance</option>
                     </select>
                 </div>
                 <button type="submit" disabled = {!isValid()}>Add</button>
