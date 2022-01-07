@@ -1,17 +1,15 @@
 package com.example.halo112_generic.service.impl;
 
 import com.example.halo112_generic.dao.ActionRepository;
+import com.example.halo112_generic.dao.LocationRepository;
 import com.example.halo112_generic.dao.ResponderRepository;
-import com.example.halo112_generic.domain.Action;
-import com.example.halo112_generic.domain.Comment;
-import com.example.halo112_generic.domain.Responder;
-import com.example.halo112_generic.domain.Task;
+import com.example.halo112_generic.dao.TaskRepository;
+import com.example.halo112_generic.domain.*;
 import com.example.halo112_generic.service.ActionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Component
@@ -21,6 +19,12 @@ public class ActionServiceJpa implements ActionService {
     
     @Autowired
     private ResponderRepository responderRepo;
+
+	@Autowired
+	private LocationRepository locationRepo;
+
+	@Autowired
+	private TaskRepository taskRepo;
 
     @Override
     public List<Action> listAll() {
@@ -61,10 +65,10 @@ public class ActionServiceJpa implements ActionService {
 	}
 
 	@Override
-	public boolean addTask(Task task, Long id) {
+	public boolean addTask(Long task_id, Long id) {
 		if (actionRepo.existsById(id)) {
 			Action action = actionRepo.findById(id).get();
-			action.getTasks().add(task);
+			action.getTasks().add(taskRepo.findById(task_id).get());
 			actionRepo.save(action);
 			return true;
 		}
@@ -75,6 +79,14 @@ public class ActionServiceJpa implements ActionService {
 	public List<Comment> displayComments(Long id) {
 		if (actionRepo.existsById(id)) {
 			return actionRepo.findById(id).get().getComments();
+		}
+		return null;
+	}
+
+	@Override
+	public List<String> displayImages(Long id) {
+		if (actionRepo.existsById(id)) {
+			return actionRepo.findById(id).get().getGallery();
 		}
 		return null;
 	}
@@ -102,10 +114,18 @@ public class ActionServiceJpa implements ActionService {
 	}
 
 	@Override
-	public boolean addResponderToAction(Responder responder, Long id) {
+	public List<Responder> displayResponders(Long id) {
+		if (actionRepo.existsById(id)) {
+			return actionRepo.findById(id).get().getTeam();
+		}
+		return null;
+	}
+
+	@Override
+	public boolean addResponderToAction(Long responder_id, Long id) {
 		if (actionRepo.existsById(id)) {
 			Action action = actionRepo.findById(id).get();
-			action.getTeam().add(responder);
+			action.getTeam().add(responderRepo.findById(responder_id).get());
 			actionRepo.save(action);
 			return true;
 		}
@@ -143,4 +163,37 @@ public class ActionServiceJpa implements ActionService {
 		}
 		return false;
 	}
+
+	@Override
+	public Location displayLocation(Long id) {
+		if (actionRepo.existsById(id)) {
+			return actionRepo.findById(id).get().getLocation();
+		}
+		return null;
+	}
+
+	@Override
+	public boolean setLocation(Long location_id, Long id) {
+		Location location;
+		if(locationRepo.existsById(location_id)) {
+			System.out.println("EXISTS");
+			location = locationRepo.findById(location_id).get();
+			Action action = actionRepo.findById(id).get();
+			action.setLocation(location);
+			actionRepo.save(action);
+			return true;
+		}
+		else return false;
+
+	}
+
+	@Override
+	public List<Task> displayTasks(Long id) {
+		if (actionRepo.existsById(id)) {
+			return actionRepo.findById(id).get().getTasks();
+		}
+		return null;
+	}
+
+
 }

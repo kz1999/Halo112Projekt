@@ -6,6 +6,8 @@ import com.example.halo112_generic.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,10 +44,20 @@ public class StationServiceJpa implements StationService {
 
     @Override
     public Station addMember(Long id, Long member_id) {
+        List<Long> kurcina = Collections.emptyList();
+        Long longKurcina = Long.valueOf(1234);
+        kurcina.add(longKurcina);
+        System.out.println(kurcina);
+
         Station station = findById(id).get();
-        station.addMember(member_id);
+        List<Long> listMembers = station.getMembers();
+        listMembers.add(member_id);
+        station.setMembers(listMembers);
+
         stationRepo.save(station);
+        System.out.println(listMembers);
         System.out.println(station.getMembers());
+
         return station;
     }
 }
