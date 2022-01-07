@@ -51,7 +51,7 @@ public class StationsController {
 		return stationService.editStation(id, station);
 	}
 
-	@PostMapping("/{id}/members/")
+	@PostMapping("/members/{id}")
 	// @Secured("ROLE_ADMIN")
 	public Station addMember(@PathVariable Long id, @RequestBody Long member_id) throws Exception {
 		return stationService.addMember(id, member_id);
