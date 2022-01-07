@@ -50,7 +50,7 @@ public class ResponderController {
     
     @PostMapping("/accept/{id}")
     public boolean acceptAction(@RequestBody Action action, @PathVariable Long id) throws Exception {
-        return responderService.acceptAction(action, id);
+        return responderService.acceptAction(action.getId(), id);
     }
     
     @PostMapping("/reject/{id}")
@@ -65,6 +65,6 @@ public class ResponderController {
     
     @PostMapping("/station/{id}")
     public boolean setStation(@RequestBody Station station, @PathVariable Long id) throws Exception {
-        return responderService.setStation(station, id);
+        return responderService.setStation(station.getId(), id);
     }
 }

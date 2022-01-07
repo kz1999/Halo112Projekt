@@ -11,26 +11,30 @@ public class Responder {
     @GeneratedValue
     private Long id;
 
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    @MapsId
-    private User user;
+    private Long user_id;
 
-    @ManyToOne
-    @JoinColumn(name = "station_id")
-    private Station station;
+    private Long station_id;
 
     private boolean status;
 
-    @ManyToOne
-    @JoinColumn(name = "current_action_id")
-    private Action currentAction;
+    private Long currentAction_id;
 
-    @ManyToOne
-    @JoinColumn(name = "location_id")
-    private Location location;
+    private Long location_id;
 
     private boolean isDirector;
+
+    public Responder(Long id, Long user_id, Long station_id, boolean status, Long currentAction_id, Long location_id, boolean isDirector) {
+        this.id = id;
+        this.user_id = user_id;
+        this.station_id = station_id;
+        this.status = status;
+        this.currentAction_id = currentAction_id;
+        this.location_id = location_id;
+        this.isDirector = isDirector;
+    }
+
+    public Responder() {
+    }
 
     public Long getId() {
         return id;
@@ -40,20 +44,20 @@ public class Responder {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUser_id() {
+        return user_id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
     }
 
-    public Station getStation() {
-        return station;
+    public Long getStation_id() {
+        return station_id;
     }
 
-    public void setStation(Station station) {
-        this.station = station;
+    public void setStation_id(Long station_id) {
+        this.station_id = station_id;
     }
 
     public boolean isStatus() {
@@ -64,20 +68,20 @@ public class Responder {
         this.status = status;
     }
 
-    public Action getCurrentAction() {
-        return currentAction;
+    public Long getCurrentAction_id() {
+        return currentAction_id;
     }
 
-    public void setCurrentAction(Action currentAction) {
-        this.currentAction = currentAction;
+    public void setCurrentAction_id(Long currentAction_id) {
+        this.currentAction_id = currentAction_id;
     }
 
-    public Location getLocation() {
-        return location;
+    public Long getLocation_id() {
+        return location_id;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setLocation_id(Long location_id) {
+        this.location_id = location_id;
     }
 
     public boolean isDirector() {
@@ -86,5 +90,18 @@ public class Responder {
 
     public void setDirector(boolean director) {
         isDirector = director;
+    }
+
+    @Override
+    public String toString() {
+        return "Responder{" +
+                "id=" + id +
+                ", user_id=" + user_id +
+                ", station_id=" + station_id +
+                ", status=" + status +
+                ", currentAction_id=" + currentAction_id +
+                ", location_id=" + location_id +
+                ", isDirector=" + isDirector +
+                '}';
     }
 }

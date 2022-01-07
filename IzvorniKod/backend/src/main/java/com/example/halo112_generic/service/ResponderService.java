@@ -19,9 +19,9 @@ public interface ResponderService {
 
     Optional<Responder> editResponder(Long id, Responder responder);
 
-	boolean acceptAction(Action action, Long id);
+	boolean acceptAction(Long action_id, Long id);
 
 	boolean setStatus(boolean status, Long id);
 
-	boolean setStation(Station station, Long id);
+	boolean setStation(Long station_id, Long id);
 }

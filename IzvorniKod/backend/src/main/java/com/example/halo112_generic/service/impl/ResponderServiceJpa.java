@@ -35,10 +35,10 @@ public class ResponderServiceJpa implements ResponderService {
 
     @Override
     public Optional<Responder> editResponder(Long id, Responder responder) {
-        if(responder.getUser().getId()!=null) responderRepo.editResponderUser(responder.getUser().getId(),id);
-        if(responder.getLocation().getId()!=null) responderRepo.editResponderLocation(responder.getLocation().getId(),id);
-        if(responder.getStation().getId()!=null) responderRepo.editResponderStation(responder.getStation().getId(), id);
-        if(responder.getCurrentAction().getId()!=null) responderRepo.editResponderAction(responder.getCurrentAction().getId(),id);
+        if(responder.getUser_id()!=null) responderRepo.editResponderUser(responder.getUser_id(),id);
+        if(responder.getLocation_id()!=null) responderRepo.editResponderLocation(responder.getLocation_id(),id);
+        if(responder.getStation_id()!=null) responderRepo.editResponderStation(responder.getStation_id(), id);
+        if(responder.getCurrentAction_id()!=null) responderRepo.editResponderAction(responder.getCurrentAction_id(),id);
         responderRepo.editResponderIsDirector(responder.isDirector(), id);
         responderRepo.editResponderStatus(responder.isStatus(),id);
 
@@ -46,10 +46,10 @@ public class ResponderServiceJpa implements ResponderService {
     }
     
     @Override
-	public boolean acceptAction(Action action, Long id) {
+	public boolean acceptAction(Long action_id, Long id) {
 		if (responderRepo.existsById(id)) {
 			Responder responder = responderRepo.findById(id).get();
-			responder.setCurrentAction(action);
+			responder.setCurrentAction_id(action_id);
 			responderRepo.save(responder);
 			return true;
 		}
@@ -68,10 +68,10 @@ public class ResponderServiceJpa implements ResponderService {
 	}
 
 	@Override
-	public boolean setStation(Station station, Long id) {
+	public boolean setStation(Long station_id, Long id) {
 		if (responderRepo.existsById(id)) {
 			Responder responder = responderRepo.findById(id).get();
-			responder.setStation(station);;
+			responder.setStation_id(station_id);;
 			responderRepo.save(responder);
 			return true;
 		}

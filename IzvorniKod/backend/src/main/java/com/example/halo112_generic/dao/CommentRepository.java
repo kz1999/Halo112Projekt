@@ -18,7 +18,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     @Transactional
     @Modifying
-    @Query("UPDATE Comment k SET k.owner = :user_id WHERE k.id = :id")
+    @Query("UPDATE Comment k SET k.owner_id = :user_id WHERE k.id = :id")
     void editCommentOwner(@Param("user_id") Long user_id, @Param("id") Long id);
 
     @Transactional

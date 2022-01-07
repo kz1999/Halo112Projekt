@@ -14,15 +14,15 @@ public class Action {
     @JoinColumn(name = "location_id")
     private Location location;
 
-    @OneToMany(targetEntity = Responder.class)
+    @OneToMany(targetEntity = Responder.class, cascade = CascadeType.ALL)
     private List<Responder> team;
 
     private int urgency;
 
-    @OneToMany(targetEntity = Task.class)
+    @OneToMany(targetEntity = Task.class, cascade = CascadeType.ALL)
     private List<Task> tasks;
 
-    @OneToMany(targetEntity=Comment.class)
+    @OneToMany(targetEntity=Comment.class, cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     private String description;
@@ -92,18 +92,5 @@ public class Action {
 
     public void setGallery(List<String> gallery) {
         this.gallery = gallery;
-    }
-
-    public Action(Location location, List<Responder> team, int urgency, List<Task> tasks, List<Comment> comments, String description, List<String> gallery) {
-        this.location = location;
-        this.team = team;
-        this.urgency = urgency;
-        this.tasks = tasks;
-        this.comments = comments;
-        this.description = description;
-        this.gallery = gallery;
-    }
-
-    public Action() {
     }
 }
