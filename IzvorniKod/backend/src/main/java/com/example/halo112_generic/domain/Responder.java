@@ -6,15 +6,12 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "responder")
-public class Responder {
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Responder extends User{
 
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "user_id")
     @MapsId
-    private User user;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "station_id")
@@ -31,22 +28,6 @@ public class Responder {
     private Location location;
 
     private boolean isDirector;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public Station getStation() {
         return station;

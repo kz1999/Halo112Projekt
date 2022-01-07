@@ -30,7 +30,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class Halo112GenericApplication {
 
 	public static void main(String[] args) throws Exception {
-
 		SpringApplication.run(Halo112GenericApplication.class, args);
 	}
 

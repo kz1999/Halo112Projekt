@@ -79,9 +79,8 @@ public class UserServiceJpa implements UserService {
         
         //user.setPasswordHash(pswdEncoder.encode(user.getPasswordHash()));
         user = userRepo.save(user);
-        
-        Responder r = new Responder();
-        r.setUser(user);
+
+        Responder r = (Responder)user;
         switch (user.getRole().toLowerCase()) {
         case "dispatcher":
         	Dispatcher d = new Dispatcher();

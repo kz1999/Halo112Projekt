@@ -35,7 +35,7 @@ public class ResponderServiceJpa implements ResponderService {
 
     @Override
     public Optional<Responder> editResponder(Long id, Responder responder) {
-        if(responder.getUser().getId()!=null) responderRepo.editResponderUser(responder.getUser().getId(),id);
+        if(responder.getId()!=null) responderRepo.editResponderUser(responder.getId(),id);
         if(responder.getLocation().getId()!=null) responderRepo.editResponderLocation(responder.getLocation().getId(),id);
         if(responder.getStation().getId()!=null) responderRepo.editResponderStation(responder.getStation().getId(), id);
         if(responder.getCurrentAction().getId()!=null) responderRepo.editResponderAction(responder.getCurrentAction().getId(),id);
