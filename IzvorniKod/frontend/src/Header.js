@@ -18,8 +18,8 @@ function HeaderLoggedIn(props){
                         <Link to='/users'>Users list</Link>
                         <Link to='/createStation'>Create station</Link>
                         <Link to='/location'>Create location</Link>
-                        <Link to='/station'>Add member to your station</Link>
                         <Link to='/comments'>Comments</Link>
+                        
                         <button onClick={logout}> user: {props.currentUser}, role: admin<div/>Logout!</button>
                     </div>
                 </header>
@@ -31,64 +31,44 @@ function HeaderLoggedIn(props){
             <header className="Header">
                 <header className="App-header-container">
                     <div className="App-header">
-                        <Link to='/test'>Test</Link>    
+                        <Link to='/test'>Test</Link>
+                        <Link to='/actions'>Actions</Link>     
                         <button onClick={logout}> user: {props.currentUser}, role: dispatcher<div/>Logout!</button>
                     </div>
                 </header>
             </header>
         )
     }
-    else if(props.role === "fireman"){
+    else if(props.role === "fireman" || props.role === "policeman" || props.role === "doctor"){
+        //fetch('fireman') je sada, vraca sve firemane, slicno za 'police', za doktore nisam uspio otkriti.
+        //fetch('fireman/id') bi vracao abilities, to mi netreba trenutacno
+        //fetch('responder') vraca director boolean -> otkriva mu se stranica za stanicu
+
+        //ispod statusa bi pisao popis akcija na koje je on pozvan, moze se odazvati samo na jednu, onda mu se otkriva mapa i zatvara /status
         return(
             <header className="Header">
                 <header className="App-header-container">
                     <div className="App-header">
+                        <Link to='/station'>Add member to your station</Link>
                         <Link to='/test'>Test</Link>
+                        <Link to='/status'>Status</Link> 
+                        
+                            
+                        
                         <Link to='/map'>Map</Link>       
-                        <button onClick={logout}> user: {props.currentUser}, role: fireman<div/>Logout!</button>
-                    </div>
-                </header>
-            </header>
-        )
-    }
-    else if(props.role === "police"){
-        return(
-            <header className="Header">
-                <header className="App-header-container">
-                    <div className="App-header">
-                        <Link to='/test'>Test</Link>
-                        <Link to='/map'>Map</Link>    
-                        <button onClick={logout}> user: {props.currentUser}, role: police<div/>Logout!</button>
-                    </div>
-                </header>
-            </header>
-        )
-    }
-    else if(props.role === "doctor"){
-        return(
-            <header className="Header">
-                <header className="App-header-container">
-                    <div className="App-header">
-                        <Link to='/test'>Test</Link>
-                        <Link to='/map'>Map</Link>    
-                        <button onClick={logout}> user: {props.currentUser}, role: paramedic<div/>Logout!</button>
-                    </div>
-                </header>
-            </header>
-        )
-    }
-    else{
-        return(
-        <header className="Header">
-                <header className="App-header-container">
-                    <div className="App-header">
-                        <Link to='/test'>Test</Link>
-                        <Link to='/map'>Map</Link>    
                         <button onClick={logout}> user: {props.currentUser}, role: {props.role}<div/>Logout!</button>
                     </div>
                 </header>
-            </header>)
+            </header>
+        )
     }
+    return(
+        <header className="Header">
+            <div className="Error">
+                <h>Something went wrong</h>
+            </div>
+        </header>
+    )
 }
 
 function HeaderLoggedOut(){
