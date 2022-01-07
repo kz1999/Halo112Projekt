@@ -19,6 +19,7 @@ function HeaderLoggedIn(props){
                         <Link to='/createStation'>Create station</Link>
                         <Link to='/location'>Create location</Link>
                         <Link to='/station'>Add member to your station</Link>
+                        <Link to='/comments'>Comments</Link>
                         <button onClick={logout}> user: {props.currentUser}, role: admin<div/>Logout!</button>
                     </div>
                 </header>

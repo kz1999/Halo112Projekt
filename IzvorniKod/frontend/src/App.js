@@ -12,6 +12,7 @@ import Station from './Station';
 import CreateStation from './CreateStation';
 import Map from './Map';
 import Location from './Location';
+import Comments from './Comments';
 
 function App() {
 
@@ -67,6 +68,7 @@ function App() {
           <Route path='/station' exact component={Station}/>
           <Route path='/map' exact component={Map}/>
           <Route path='/location' exact component={Location}/>
+          <Route path='/comments' exact component={Comments}/>
         </Switch>
       </div>
     </BrowserRouter>
