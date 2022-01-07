@@ -53,6 +53,7 @@ function Comments(){
                 </div>
                 <button type="submit">Send</button>
             </form>
+            { previousComments.map(comment => <div key={comment.id}>{comment.text}</div>)}
         </div>
     )
 }
