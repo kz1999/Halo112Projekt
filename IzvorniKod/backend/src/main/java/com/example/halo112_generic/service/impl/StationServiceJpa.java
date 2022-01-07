@@ -2,7 +2,6 @@ package com.example.halo112_generic.service.impl;
 
 import com.example.halo112_generic.dao.StationRepository;
 import com.example.halo112_generic.domain.Station;
-import com.example.halo112_generic.domain.User;
 import com.example.halo112_generic.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -35,8 +34,18 @@ public class StationServiceJpa implements StationService {
         return stationRepo.findStationById(id);
     }
 
+
     @Override
     public Optional<Station> findById(Long id) {
         return stationRepo.findStationById(id);
+    }
+
+    @Override
+    public Station addMember(Long id, Long member_id) {
+        Station station = findById(id).get();
+        station.addMember(member_id);
+        stationRepo.save(station);
+        System.out.println(station.getMembers());
+        return station;
     }
 }

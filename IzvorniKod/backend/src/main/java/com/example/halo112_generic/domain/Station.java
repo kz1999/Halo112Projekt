@@ -3,6 +3,7 @@ package com.example.halo112_generic.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,11 +22,20 @@ public class Station {
     @NotNull
     private Long location_id;
 
-    @ElementCollection(targetClass=Long.class)
-    private List<Long> members;
+    @ElementCollection
+    private List<Long> members = new ArrayList<Long>();
 
     @NotNull
     private StationType type;
+
+    public Station(Long id, String name, Long director_id, Long location_id, List<Long> members, StationType type) {
+        this.id = id;
+        this.name = name;
+        this.director_id = director_id;
+        this.location_id = location_id;
+        this.members = members;
+        this.type = type;
+    }
 
     public Station(String name, Long director_id, Long location_id, StationType type) {
         this.name = name;
@@ -38,7 +48,7 @@ public class Station {
     }
 
     public void addMember(Long id){
-        members.add(id);
+        this.members.add(id);
     }
 
     public Long getId() {
@@ -77,7 +87,7 @@ public class Station {
         return members;
     }
 
-    public void setMembers(List<Long> members) {
+    public void setMembers(ArrayList<Long> members) {
         this.members = members;
     }
 

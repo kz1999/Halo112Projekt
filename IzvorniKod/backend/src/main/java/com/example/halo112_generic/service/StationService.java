@@ -1,7 +1,6 @@
 package com.example.halo112_generic.service;
 
 import com.example.halo112_generic.domain.Station;
-import com.example.halo112_generic.domain.User;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,5 +15,7 @@ public interface StationService {
     Optional<Station> editStation(Long id, Station station) throws Exception;
 
     Optional<Station> findById(Long id);
+
+    public Station addMember(Long id, Long member_id);
 
 }

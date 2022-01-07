@@ -1,10 +1,9 @@
 package com.example.halo112_generic.rest;
 
 import com.example.halo112_generic.domain.Station;
-import com.example.halo112_generic.domain.User;
 import com.example.halo112_generic.service.StationService;
-import com.example.halo112_generic.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.Optional;
 @RequestMapping("/stanice")
 public class StationsController {
 
-    private static class MemberId{
+    public static class MemberId{
         Long member_id;
         private Long getId(){
             return member_id;
@@ -52,8 +51,8 @@ public class StationsController {
 
     @PostMapping("/{id}/members")
     //@Secured("ROLE_ADMIN")
-    public void addMember(@PathVariable Long id, @RequestBody MemberId member_id) throws Exception {
-        stationService.findById(id).get().addMember(member_id.getId());
+    public ResponseEntity<Station> addMember(@PathVariable Long id, @RequestBody MemberId member_id) throws Exception {
+        return ResponseEntity.ok(stationService.addMember(id, member_id.getId()));
     }
 
 
