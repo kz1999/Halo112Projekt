@@ -7,9 +7,7 @@ function Test(){
         event.preventDefault();
         
         const data = {
-            owner: "5",
-            timeStamp: "2",
-            text: "1"
+            
         };
         
         const options={
@@ -20,13 +18,13 @@ function Test(){
             body: JSON.stringify(data)
         };
 
-        fetch('/comments/6', options).then(data => data.json()).then(data => console.log(data));
+        fetch('/akcije', options).then(data => data.json()).then(data => console.log(data));
     }
 
     function onClickLocation(event){
         event.preventDefault();
         
-        fetch('/comment').then(response=>response.json()).then(response=>console.log(response))
+        fetch('/akcije').then(response=>response.json()).then(response=>console.log(response))
     }
 
     
