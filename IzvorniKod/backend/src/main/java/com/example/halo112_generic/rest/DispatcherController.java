@@ -44,7 +44,7 @@ public class DispatcherController {
 	
 	@PostMapping("/add")
 	public boolean addResponderToAction(@RequestBody Responder responder, @RequestBody Long id) throws Exception {
-		return actionService.addResponderToAction(responder, id);
+		return actionService.addResponderToAction(responder.getId(), id);
 	}
 	
 	@PostMapping("/remove")

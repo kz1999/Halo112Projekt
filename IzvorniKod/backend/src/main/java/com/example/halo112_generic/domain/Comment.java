@@ -12,17 +12,15 @@ public class Comment {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "owner_id")
-    private User owner;
+    private Long owner_id;
 
     private LocalDateTime timeStamp;
 
     private String text;
 
-    public Comment(Long id, User owner, LocalDateTime timeStamp, String text) {
+    public Comment(Long id, Long owner_id, LocalDateTime timeStamp, String text) {
         this.id = id;
-        this.owner = owner;
+        this.owner_id = owner_id;
         this.timeStamp = timeStamp;
         this.text = text;
     }
@@ -38,12 +36,12 @@ public class Comment {
         this.id = id;
     }
 
-    public User getOwner() {
-        return owner;
+    public Long getOwner() {
+        return owner_id;
     }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
+    public void setOwner(Long owner_id) {
+        this.owner_id = owner_id;
     }
 
     public LocalDateTime getTimeStamp() {

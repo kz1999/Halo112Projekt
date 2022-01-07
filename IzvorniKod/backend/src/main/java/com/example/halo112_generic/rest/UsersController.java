@@ -40,6 +40,7 @@ public class UsersController {
         return userService.createUser(user);
     }
     
+    /*
     @GetMapping("/fill")
     //@Secured("ROLE_ADMIN")
     public boolean fill() throws Exception {
@@ -73,6 +74,7 @@ public class UsersController {
         
         return true;
     }
+    */
 
     @GetMapping("/{userName}")
     //@Secured("ROLE_ADMIN")

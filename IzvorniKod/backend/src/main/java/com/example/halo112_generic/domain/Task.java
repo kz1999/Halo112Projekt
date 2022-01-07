@@ -12,21 +12,15 @@ public class Task {
 
     private String text;
 
-    @ManyToOne
-    @JoinColumn(name = "responder_id")
-    private Responder responder;
+    private Long responder_id;
 
     @OneToMany(targetEntity = Comment.class)
     private List<Comment> comments;
 
-    public Responder getResponder() {
-        return responder;
-    }
-
-    public Task(Long id, String text, Responder responder, List<Comment> comments) {
+    public Task(Long id, String text, Long responder_id, List<Comment> comments) {
         this.id = id;
         this.text = text;
-        this.responder = responder;
+        this.responder_id = responder_id;
         this.comments = comments;
     }
 
@@ -49,8 +43,12 @@ public class Task {
         this.text = text;
     }
 
-    public void setResponder(Responder responder) {
-        this.responder = responder;
+    public Long getResponder_id() {
+        return responder_id;
+    }
+
+    public void setResponder_id(Long responder_id) {
+        this.responder_id = responder_id;
     }
 
     public List<Comment> getComments() {
@@ -66,7 +64,7 @@ public class Task {
         return "Task{" +
                 "id=" + id +
                 ", text='" + text + '\'' +
-                ", responder=" + responder +
+                ", responder_id=" + responder_id +
                 ", comments=" + comments +
                 '}';
     }
