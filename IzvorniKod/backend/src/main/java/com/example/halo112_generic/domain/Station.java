@@ -22,7 +22,7 @@ public class Station {
     private Long location_id;
 
     @ElementCollection
-    private List<Long> members=Collections.emptyList();
+    private List<Long> members;
 
     @NotNull
     private StationType type;

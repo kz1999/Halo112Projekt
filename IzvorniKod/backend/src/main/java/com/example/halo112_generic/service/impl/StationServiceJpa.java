@@ -43,21 +43,11 @@ public class StationServiceJpa implements StationService {
     }
 
     @Override
-    public Station addMember(Long id, Long member_id) {
-        List<Long> kurcina = Collections.emptyList();
-        Long longKurcina = Long.valueOf(1234);
-        kurcina.add(longKurcina);
-        System.out.println(kurcina);
-
-        Station station = findById(id).get();
-        List<Long> listMembers = station.getMembers();
+    public Station addMember(Long id, Long member_id) {    	
+    	Station station = findById(id).get();
+    	List<Long> listMembers = station.getMembers();
         listMembers.add(member_id);
-        station.setMembers(listMembers);
-
         stationRepo.save(station);
-        System.out.println(listMembers);
-        System.out.println(station.getMembers());
-
         return station;
     }
 }
