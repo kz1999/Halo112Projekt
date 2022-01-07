@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 public class ResponderServiceJpa implements ResponderService {
@@ -18,9 +19,10 @@ public class ResponderServiceJpa implements ResponderService {
     @Autowired
     private ResponderRepository responderRepo;
 
+
     @Override
     public List<Responder> listAll() {
-        return responderRepo.findAll();
+        return responderRepo.findAll().stream().map(user -> (Responder)user).collect(Collectors.toList());
     }
 
     @Override
@@ -35,7 +37,7 @@ public class ResponderServiceJpa implements ResponderService {
 
     @Override
     public Optional<Responder> editResponder(Long id, Responder responder) {
-        if(responder.getId()!=null) responderRepo.editResponderUser(responder.getId(),id);
+        //if(responder.getId()!=null) responderRepo.(responder.getId(),id);
         if(responder.getLocation().getId()!=null) responderRepo.editResponderLocation(responder.getLocation().getId(),id);
         if(responder.getStation().getId()!=null) responderRepo.editResponderStation(responder.getStation().getId(), id);
         if(responder.getCurrentAction().getId()!=null) responderRepo.editResponderAction(responder.getCurrentAction().getId(),id);
@@ -48,7 +50,7 @@ public class ResponderServiceJpa implements ResponderService {
     @Override
 	public boolean acceptAction(Action action, Long id) {
 		if (responderRepo.existsById(id)) {
-			Responder responder = responderRepo.findById(id).get();
+			Responder responder = (Responder)responderRepo.findById(id).get();
 			responder.setCurrentAction(action);
 			responderRepo.save(responder);
 			return true;
@@ -59,7 +61,7 @@ public class ResponderServiceJpa implements ResponderService {
 	@Override
 	public boolean setStatus(boolean status, Long id) {
 		if (responderRepo.existsById(id)) {
-			Responder responder = responderRepo.findById(id).get();
+			Responder responder = (Responder)responderRepo.findById(id).get();
 			responder.setStatus(status);;
 			responderRepo.save(responder);
 			return true;
@@ -70,7 +72,7 @@ public class ResponderServiceJpa implements ResponderService {
 	@Override
 	public boolean setStation(Station station, Long id) {
 		if (responderRepo.existsById(id)) {
-			Responder responder = responderRepo.findById(id).get();
+			Responder responder = (Responder)responderRepo.findById(id).get();
 			responder.setStation(station);;
 			responderRepo.save(responder);
 			return true;

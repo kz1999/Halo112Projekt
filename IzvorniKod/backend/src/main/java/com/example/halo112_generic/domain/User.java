@@ -22,7 +22,7 @@ public class User {
         this.confirmed = confirmed;
     }
 
-    public User() {
+    public User(){
 
     }
 
@@ -35,21 +35,13 @@ public class User {
     @NotNull
     @Size(max=30)
     private String userName;
-
     private String photo;
-
     private String passwordHash;
-
     private String name;
-
     private String surname;
-
     private String phoneNumber;
-
     private String email;
-
     private String role;
-
     private boolean confirmed;
 
 	public Long getId() {

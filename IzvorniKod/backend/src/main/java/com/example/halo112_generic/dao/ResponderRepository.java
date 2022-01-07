@@ -1,11 +1,18 @@
 package com.example.halo112_generic.dao;
 
+
 import com.example.halo112_generic.domain.Responder;
+import com.example.halo112_generic.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -44,6 +51,8 @@ public interface ResponderRepository extends JpaRepository<Responder, Long> {
 
     @Transactional
     @Modifying
-    @Query("UPDATE Responder k SET k.user = :user_id WHERE k.id = :id")
-    void editResponderUser(@Param("user_id") Long station_id,@Param("id") Long id);
+    @Query("UPDATE User k SET k.passwordHash = :userPasswordHash WHERE k.userName = :userName")
+    void editUserPasswordHash(@Param("userName") String userName, @Param("userPasswordHash") String userPasswordHash);
+
+
 }

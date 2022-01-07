@@ -8,11 +8,6 @@ import javax.validation.constraints.Size;
 @Table(name = "responder")
 public class Responder extends User{
 
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    @MapsId
-    private Long id;
-
     @ManyToOne
     @JoinColumn(name = "station_id")
     private Station station;
@@ -28,6 +23,10 @@ public class Responder extends User{
     private Location location;
 
     private boolean isDirector;
+
+    public Responder(Long id, String userName, String photo, String passwordHash, String name, String surname, String phoneNumber, String email, String role, boolean confirmed) {
+        super(id, userName, photo, passwordHash, name, surname, phoneNumber, email, role, confirmed);
+    }
 
     public Station getStation() {
         return station;
