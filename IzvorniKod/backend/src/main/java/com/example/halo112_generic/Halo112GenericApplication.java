@@ -1,26 +1,11 @@
 package com.example.halo112_generic;
 
-import com.example.halo112_generic.dao.UserRepository;
-import com.example.halo112_generic.domain.User;
-import com.example.halo112_generic.rest.UsersController;
-import com.example.halo112_generic.rest.ActionController;
-import com.example.halo112_generic.rest.ResponderController;
-import com.example.halo112_generic.rest.StationsController;
-import com.example.halo112_generic.service.UserService;
-import com.example.halo112_generic.service.impl.UserServiceJpa;
-import com.example.halo112_generic.service.ActionService;
-import com.example.halo112_generic.service.impl.ActionServiceJpa;
-import com.example.halo112_generic.service.ResponderService;
-import com.example.halo112_generic.service.impl.ResponderServiceJpa;
-import com.example.halo112_generic.service.StationService;
-import com.example.halo112_generic.service.impl.StationServiceJpa;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-
 
 @SpringBootApplication
 @ComponentScan("com.example.halo112_generic")
@@ -32,6 +17,7 @@ public class Halo112GenericApplication {
 	public static void main(String[] args) throws Exception {
 
 		SpringApplication.run(Halo112GenericApplication.class, args);
+		
 	}
 
 }
