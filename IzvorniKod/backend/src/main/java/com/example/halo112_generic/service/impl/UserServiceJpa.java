@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
 import java.util.List;
@@ -79,8 +80,7 @@ public class UserServiceJpa implements UserService {
         
         //user.setPasswordHash(pswdEncoder.encode(user.getPasswordHash()));
         user = userRepo.save(user);
-
-        Responder r = (Responder)user;
+        Responder r = new Responder(user);
         switch (user.getRole().toLowerCase()) {
         case "dispatcher":
         	Dispatcher d = new Dispatcher();

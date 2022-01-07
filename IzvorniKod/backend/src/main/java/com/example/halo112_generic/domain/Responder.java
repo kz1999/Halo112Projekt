@@ -28,6 +28,14 @@ public class Responder extends User{
         super(id, userName, photo, passwordHash, name, surname, phoneNumber, email, role, confirmed);
     }
 
+    public Responder(User user) {
+        super(user.getId(), user.getUserName(), user.getPhoto(), user.getPasswordHash(), user.getName(), user.getSurname(), user.getPhoneNumber(), user.getEmail(), user.getRole(), user.isConfirmed());
+    }
+
+    public Responder(){
+
+    }
+
     public Station getStation() {
         return station;
     }
