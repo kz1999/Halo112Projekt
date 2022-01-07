@@ -21,6 +21,18 @@ public class User {
         this.role = role;
         this.confirmed = confirmed;
     }
+    
+    public User(String userName, String photo, String passwordHash, String name, String surname, String phoneNumber, String email, String role, boolean confirmed) {
+        this.userName = userName;
+        this.photo = photo;
+        this.passwordHash = passwordHash;
+        this.name = name;
+        this.surname = surname;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.role = role;
+        this.confirmed = confirmed;
+    }
 
     public User() {
 
