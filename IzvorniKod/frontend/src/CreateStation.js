@@ -3,7 +3,7 @@ import './styles/App.css';
 import StationDirectorDiv from "./StationDirectorDiv"
 
 function CreateStation(){
-    const [form, setForm] = React.useState( {name:'', director_id:null, location_id:null, stationType:null});
+    const [form, setForm] = React.useState( {name:'', director_id:"", location_id:"", stationType:""});
     const [locations, setLocations] = React.useState([]);
     const [stations, setStations] = React.useState([]);
     const [responders, setResponders] = React.useState([]);
@@ -59,7 +59,7 @@ function CreateStation(){
 
     function isValid(){
         const {name, director_id, location_id, stationType} = form;
-        return name.length >= 1 && director_id != null && location_id != null && stationType != null;
+        return name.length >= 1 && director_id !== "" && location_id !== "" && stationType !== "";
     }
 
     return(
@@ -73,7 +73,7 @@ function CreateStation(){
                 <div className="FormRow">
                     <label>Role</label>
                     <select name ="stationType" onChange={onChange} value={form.stationType}>
-                        <option value={null}>Odaberi</option>
+                        <option value="">Odaberi</option>
                         <option value="fireman">Fire station</option>
                         <option value="policeman">Police station</option>
                         <option value="doctor">Hospital</option>
@@ -82,7 +82,7 @@ function CreateStation(){
                 <div className="FormRow">
                     <label>director</label>
                     <select name='director_id' onChange={onChange} value={form.director_id}>
-                        <option value={null}>Odaberi</option>
+                        <option value="">Odaberi</option>
                         {
                             responders.filter(user => user.role === form.stationType).map(user => <option key={user.id} value={user.id}>{user.userName}</option>)
                         }
@@ -91,7 +91,7 @@ function CreateStation(){
                 <div className="FormRow">
                     <label>location</label>
                     <select name='location_id' onChange={onChange} value={form.location_id}>
-                        <option value={null}>Odaberi</option>
+                        <option value="">Odaberi</option>
                         {
                             locations.map(lokacija => <option key={lokacija.id} value={lokacija.id}>{lokacija.name}</option>)
                         }

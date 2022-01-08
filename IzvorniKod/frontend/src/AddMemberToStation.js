@@ -33,7 +33,7 @@ function AddMemberToStation(){
     function onSubmit(event){
         event.preventDefault();
         const data={
-            member_id:form.member_id
+            id:form.member_id
         }
 
         const options={
