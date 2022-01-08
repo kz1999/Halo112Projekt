@@ -10,10 +10,7 @@ public class Admin{
     @GeneratedValue
     private Long id;
 
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "user_id", nullable = false)
-    @MapsId
-    private User user;
+    private Long user_id;
 
 	public Long getId() {
 		return id;
@@ -23,12 +20,11 @@ public class Admin{
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
+	public Long getUser_id() {
+		return user_id;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser_id(Long user_id) {
+		this.user_id = user_id;
 	}
-
 }
