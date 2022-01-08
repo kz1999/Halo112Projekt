@@ -38,14 +38,20 @@ function Actions(){
 
     function onSubmit(event){
         event.preventDefault();
+        const data = {
+            id: 16
+        };
+        
         const options={
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
             },
-            body: form.member_id
+            body: JSON.stringify(data)
         };
-        console.log(form.member_id)
+
+        fetch('/akcije/team/8', options).then(data => console.log(data));
+        
         //postalji zahtjev tom memberu da je na toj akciji
         //fetch('/stanice/members/'+form.station_id, options);
     }
@@ -97,6 +103,7 @@ function Actions(){
                     </select>
                 </div>
                 <button type="submit">Add</button>
+                <div><button onClick={onClick1}>X</button></div>
             </form>
         </div>
     )
