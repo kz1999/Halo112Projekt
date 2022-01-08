@@ -26,16 +26,25 @@ function Map() {
     className: "leaflet-div-icon",
   });
 
+  const initialMarkers: LatLng[] = [];
+  const [markers, setMarkers] = useState(initialMarkers);
+  
+  React.useEffect(()=>{
+    fetch('/lokacija')
+    .then(data => data.json())
+    .then(markers => {
+      markers.map(marker => initialMarkers.push(new LatLng(marker.x, marker.y)))
+    });
+  }, []);
+  
   function LocationMarkers() {
-    const initialMarkers: LatLng[] = [new LatLng(46, 16)];
-    const [markers, setMarkers] = useState(initialMarkers);
-
     const map = useMapEvents({
       click(e) {
         markers.push(e.latlng);
         setMarkers((prevValue) => [...prevValue, e.latlng]);
       },
     });
+
     return (
       <React.Fragment>
         {markers.map((marker) => (
