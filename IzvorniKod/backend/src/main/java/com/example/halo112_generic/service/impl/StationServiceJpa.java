@@ -45,8 +45,7 @@ public class StationServiceJpa implements StationService {
             Station thisStation = stationRepo.findStationById(id).get();
             Long thisDirectorId = thisStation.getDirector_id();
             Responder thisResponder = responderRepo.getById(thisDirectorId);
-            thisResponder.setDirector(false); //miče se status direktora i
-            thisResponder.setStation_id(null); //id stanice sa respondera (bivšeg directora)
+            thisResponder.setDirector(false); //miče se status direktora
             responderRepo.save(thisResponder);
 
             Responder newResponder = responderRepo.getById(station.getDirector_id());
