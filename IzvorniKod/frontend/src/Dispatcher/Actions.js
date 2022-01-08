@@ -1,7 +1,6 @@
 import React from "react";
-import './styles/App.css';
+import '../styles/App.css';
 import Akcija from './Akcija'
-import Member from './Member'
 
 function Actions(){
     const [allActions, setAllActions] = React.useState([]);
@@ -54,6 +53,7 @@ function Actions(){
             <h2>Actions</h2>
             <div><button onClick={addAction}>addAction</button></div>
             { allActions.map(akcija => <Akcija key={akcija.id} actionId={akcija.id}/>)}
+            <button onClick={onClick1}>X</button>
         </div>
     )
 }

@@ -1,6 +1,5 @@
 import React from "react";
-import './styles/App.css';
-import StationDirectorDiv from "./StationDirectorDiv"
+import '../styles/App.css';
 
 function CreateStation(){
     const [form, setForm] = React.useState( {name:'', director_id:"", location_id:"", stationType:""});

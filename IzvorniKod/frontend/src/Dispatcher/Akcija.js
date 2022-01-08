@@ -1,6 +1,5 @@
 import React from "react";
-import './styles/App.css';
-import Member from './Member'
+import '../styles/App.css';
 import OPTGroupStanica from "./OPTGroupStanica";
 
 function Akcija(props){
@@ -32,9 +31,9 @@ function Akcija(props){
     function onSubmit(event){
         event.preventDefault();
         const data = {
-            id: 16
+            id: form.member_id
         };
-        
+        console.log(form.member_id)
         const options={
             method: 'POST',
             headers:{
@@ -43,7 +42,7 @@ function Akcija(props){
             body: JSON.stringify(data)
         };
 
-        fetch('/akcije/team'+action.id, options).then(data => console.log(data));
+        fetch('/akcije/team/'+action.id, options).then(data => console.log(data));
         
         //postalji zahtjev tom memberu da je na toj akciji
         //fetch('/stanice/members/'+form.station_id, options);

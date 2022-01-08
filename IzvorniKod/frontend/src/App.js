@@ -3,18 +3,19 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import "./styles/App.css";
 
-import Login from "./Login";
-import Register from "./Register";
+import Login from "./Login/Login";
+import Register from "./Login/Register";
+
 import { HeaderLoggedIn, HeaderLoggedOut } from "./Header";
-import Users from "./Users";
+import Users from "./Admin/Users";
 import Test from "./Test";
-import AddMemberToStation from "./AddMemberToStation";
-import CreateStation from "./CreateStation";
+import AddMemberToStation from "./Responder/AddMemberToStation";
+import CreateStation from "./Admin/CreateStation";
 import Map from "./Map";
-import Location from "./Location";
+import Location from "./Admin/Location";
 import Comments from "./Comments";
-import Actions from "./Actions";
-import ResponderIsReady from "./ResponderIsReady";
+import Actions from "./Dispatcher/Actions";
+import ResponderIsReady from "./Responder/ResponderIsReady";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);

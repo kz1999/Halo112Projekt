@@ -1,5 +1,5 @@
 import React from "react";
-import './styles/App.css';
+import '../styles/App.css';
 import Member from './Member'
 
 function OPTGroupStanica(props){
@@ -19,11 +19,11 @@ function OPTGroupStanica(props){
     }, []);
 
     return(
-        <optgroup label={station.name +  ", " + responders.filter(responder=>responder.status===true).filter(responder=>responder.stationId===station.id).length}>
+        <optgroup label={station.name +  ", " + responders.filter(responder=>responder.status===true).filter(responder=>responder.station_id===station.id).length}>
             {
                 responders.filter(responder=>responder.status===true)
-                .filter(responder=>responder.stationId===station.id)
-                .map(member_id => <Member key = {member_id} memberId={member_id}/>)
+                .filter(responder=>responder.station_id===station.id)
+                .map(responder => <Member key = {responder.id} memberId={responder.id}/>)
             }
         </optgroup>)
     

@@ -1,5 +1,5 @@
 import React from "react";
-import './styles/App.css';
+import '../styles/App.css';
 
 function Location(){
     const [form, setForm] = React.useState( {name:'', x:'', y:''});

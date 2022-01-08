@@ -1,5 +1,5 @@
 import React from "react";
-import './styles/App.css';
+import '../styles/App.css';
 
 function Member(props){
     const [member, setMember] = React.useState([]);
@@ -12,7 +12,7 @@ function Member(props){
     }, []);
 
     return(
-        <option className="Member">{member.userName}</option>
+        <option value={member.id}className="Member">{member.userName}</option>
     )
 }
 

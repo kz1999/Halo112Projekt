@@ -78,7 +78,7 @@ function HeaderLoggedIn(props) {
   return (
     <header className="Header">
       <div className="Error">
-        <h>Something went wrong</h>
+        <p>Something went wrong</p>
       </div>
     </header>
   );

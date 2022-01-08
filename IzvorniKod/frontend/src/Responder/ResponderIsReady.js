@@ -1,6 +1,6 @@
 import React from "react";
-import './styles/App.css';
-import './styles/Switch.css';
+import '../styles/App.css';
+import '../styles/Switch.css';
 
 function ResponderIsReady(){
 
@@ -34,7 +34,7 @@ function ResponderIsReady(){
             <h2>Status</h2>
             <label className="switch">
                 <input type="checkbox" id="check" defaultChecked={responder.status} onClick={myFunction}/>
-                <span class="slider round"></span>
+                <span className="slider round"></span>
             </label>
         </div>
     )

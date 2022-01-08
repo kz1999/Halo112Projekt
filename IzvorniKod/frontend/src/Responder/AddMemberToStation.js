@@ -1,5 +1,5 @@
 import React from "react";
-import './styles/App.css';
+import '../styles/App.css';
 
 function AddMemberToStation(){
     const [form, setForm] = React.useState( {member_id:null,station_id:null});
@@ -44,7 +44,7 @@ function AddMemberToStation(){
             body: JSON.stringify(data)
         };
 
-        fetch('/stanice/members/'+station.id, options);
+        fetch('/stanice/members/'+responder.station_id, options);
     }
 
     function isValid(){
