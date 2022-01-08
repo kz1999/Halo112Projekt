@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 @Component
 public interface ResponderService {
@@ -24,4 +25,6 @@ public interface ResponderService {
 	boolean setStatus(boolean status, Long id);
 
 	boolean setStation(Long station_id, Long id);
+
+    Optional<Responder> findByUserId(Long id);
 }

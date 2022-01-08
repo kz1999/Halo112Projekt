@@ -17,6 +17,9 @@ public interface ResponderRepository extends JpaRepository<Responder, Long> {
     @Query("SELECT r FROM Responder r where r.id = :id")
     Optional<Responder> findResponderById(@Param ("id") Long id);
 
+    @Query("SELECT r FROM Responder r where r.user_id = :user_id")
+    Optional<Responder> findResponderByUserId(@Param ("user_id") Long id);
+
     @Transactional
     @Modifying
     @Query("UPDATE Responder k SET k.station_id = :station_id WHERE k.id = :id")
@@ -46,4 +49,5 @@ public interface ResponderRepository extends JpaRepository<Responder, Long> {
     @Modifying
     @Query("UPDATE Responder k SET k.user_id = :user_id WHERE k.id = :id")
     void editResponderUser(@Param("user_id") Long station_id,@Param("id") Long id);
+
 }

@@ -33,6 +33,11 @@ public class ResponderServiceJpa implements ResponderService {
         return responderRepo.findResponderById(id);
     }
 
+	@Override
+	public Optional<Responder> findByUserId(Long id) {
+		return responderRepo.findResponderByUserId(id);
+	}
+
     @Override
     public Optional<Responder> editResponder(Long id, Responder responder) {
         if(responder.getUser_id()!=null) responderRepo.editResponderUser(responder.getUser_id(),id);
