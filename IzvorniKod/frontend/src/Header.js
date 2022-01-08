@@ -1,86 +1,101 @@
-import React from 'react';
-import {Link} from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import "./styles/Header.css";
 
-function HeaderLoggedIn(props){
+function HeaderLoggedIn(props) {
+  function logout() {
+    fetch("/logout").then(() => {
+      props.onLogout();
+    });
+  }
+  if (props.role === "admin") {
+    return (
+      <header className="Header">
+        <header className="App-header-container">
+          <div className="App-header">
+            <Link to="/test">Test</Link>
+            <Link to="/users">Users list</Link>
+            <Link to="/createStation">Create station</Link>
+            <Link to="/location">Create location</Link>
+            <Link to="/comments">Comments</Link>
+            <Link to="/map">Map</Link>
 
-    function logout(){
-        fetch('/logout').then(() => {
-            props.onLogout();
-        });
-    }
-    if(props.role === "admin"){
-        return(
-            <header className="Header">
-                <header className="App-header-container">
-                    <div className="App-header">
-                        <Link to='/test'>Test</Link>
-                        <Link to='/users'>Users list</Link>
-                        <Link to='/createStation'>Create station</Link>
-                        <Link to='/location'>Create location</Link>
-                        <Link to='/comments'>Comments</Link>
-                        
-                        <button onClick={logout}> user: {props.currentUser}, role: admin<div/>Logout!</button>
-                    </div>
-                </header>
-            </header>
-        )
-    }
-    else if(props.role === "dispatcher"){
-        return(
-            <header className="Header">
-                <header className="App-header-container">
-                    <div className="App-header">
-                        <Link to='/test'>Test</Link>
-                        <Link to='/actions'>Actions</Link>     
-                        <button onClick={logout}> user: {props.currentUser}, role: dispatcher<div/>Logout!</button>
-                    </div>
-                </header>
-            </header>
-        )
-    }
-    else if(props.role === "fireman" || props.role === "policeman" || props.role === "doctor"){
-        //fetch('fireman') je sada, vraca sve firemane, slicno za 'police', za doktore nisam uspio otkriti.
-        //fetch('fireman/id') bi vracao abilities, to mi netreba trenutacno
-        //fetch('responder') vraca director boolean -> otkriva mu se stranica za stanicu i dodavanje ljudi u nju
-
-        //ispod statusa bi pisao popis akcija na koje je on pozvan, moze se odazvati samo na jednu, onda mu se otkriva mapa i zatvara /status
-        //popis stanica bi bio u obliku pendingActions i currentAction (id)
-        return(
-            <header className="Header">
-                <header className="App-header-container">
-                    <div className="App-header">
-                        <Link to='/station'>Add member to your station</Link>
-                        <Link to='/test'>Test</Link>
-                        <Link to='/status'>Status</Link>
-                        <Link to='/map'>Map</Link>       
-                        <button onClick={logout}> user: {props.currentUser}, role: {props.role}<div/>Logout!</button>
-                    </div>
-                </header>
-            </header>
-        )
-    }
-    return(
-        <header className="Header">
-            <div className="Error">
-                <h>Something went wrong</h>
-            </div>
+            <button onClick={logout}>
+              {" "}
+              user: {props.currentUser}, role: admin
+              <div />
+              Logout!
+            </button>
+          </div>
         </header>
-    )
+      </header>
+    );
+  } else if (props.role === "dispatcher") {
+    return (
+      <header className="Header">
+        <header className="App-header-container">
+          <div className="App-header">
+            <Link to="/test">Test</Link>
+            <Link to="/actions">Actions</Link>
+            <button onClick={logout}>
+              {" "}
+              user: {props.currentUser}, role: dispatcher
+              <div />
+              Logout!
+            </button>
+          </div>
+        </header>
+      </header>
+    );
+  } else if (
+    props.role === "fireman" ||
+    props.role === "policeman" ||
+    props.role === "doctor"
+  ) {
+    //fetch('fireman') je sada, vraca sve firemane, slicno za 'police', za doktore nisam uspio otkriti.
+    //fetch('fireman/id') bi vracao abilities, to mi netreba trenutacno
+    //fetch('responder') vraca director boolean -> otkriva mu se stranica za stanicu i dodavanje ljudi u nju
+
+    //ispod statusa bi pisao popis akcija na koje je on pozvan, moze se odazvati samo na jednu, onda mu se otkriva mapa i zatvara /status
+    //popis stanica bi bio u obliku pendingActions i currentAction (id)
+    return (
+      <header className="Header">
+        <header className="App-header-container">
+          <div className="App-header">
+            <Link to="/station">Add member to your station</Link>
+            <Link to="/test">Test</Link>
+            <Link to="/status">Status</Link>
+            <Link to="/map">Map</Link>
+            <button onClick={logout}>
+              {" "}
+              user: {props.currentUser}, role: {props.role}
+              <div />
+              Logout!
+            </button>
+          </div>
+        </header>
+      </header>
+    );
+  }
+  return (
+    <header className="Header">
+      <div className="Error">
+        <h>Something went wrong</h>
+      </div>
+    </header>
+  );
 }
 
-function HeaderLoggedOut(){
-
-    return(
-        <header className="Header">
-            <header className="App-header-container">
-                <div className="App-header">
-                    <Link to='/login'>Login</Link>
-                    <Link to='/register'>Register</Link>
-                </div>
-            </header>
-        </header>
-    )
+function HeaderLoggedOut() {
+  return (
+    <header className="Header">
+      <header className="App-header-container">
+        <div className="App-header">
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
+        </div>
+      </header>
+    </header>
+  );
 }
-export {HeaderLoggedIn, HeaderLoggedOut};
-
+export { HeaderLoggedIn, HeaderLoggedOut };
