@@ -82,28 +82,30 @@ public class UserServiceJpa implements UserService {
         
         Responder r = new Responder();
         r.setUser_id(user.getId());
+        r.setUserName(user.getUserName());
+        r.setRole(user.getRole());
         switch (user.getRole().toLowerCase()) {
         case "dispatcher":
         	Dispatcher d = new Dispatcher();
-        	d.setUser(user);
+        	d.setUser(user.getId());
         	dispatcherService.createDispatcher(d);
         	break;
         case "policeman":
         	r = responderService.createResponder(r);
         	Police p = new Police();
-        	p.setResponder(r);
+        	p.setResponder(r.getId());
         	policeService.createPolice(p);
         	break;
         case "fireman":
         	r = responderService.createResponder(r);
         	Fireman f = new Fireman();
-        	f.setResponder(r);
+        	f.setResponder(r.getId());
         	firemanService.createFireman(f);
         	break;
         case "doctor":
         	r = responderService.createResponder(r);
         	Paramedic pm = new Paramedic();
-        	pm.setResponder(r);
+        	pm.setResponder(r.getId());
         	paramedService.createParamed(pm);
         	break;
         case "admin":
