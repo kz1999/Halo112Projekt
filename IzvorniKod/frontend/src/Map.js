@@ -28,15 +28,31 @@ function Map() {
 
   const initialMarkers: LatLng[] = [];
   const [markers, setMarkers] = useState(initialMarkers);
-  
-  React.useEffect(()=>{
-    fetch('/lokacija')
-    .then(data => data.json())
-    .then(markers => {
-      markers.map(marker => initialMarkers.push(new LatLng(marker.x, marker.y)))
-    });
+
+  React.useEffect(() => {
+    fetch("/lokacija")
+      .then((data) => data.json())
+      .then((markers) => {
+        markers.map((marker) => {
+          markers.push(new LatLng(marker.x, marker.y));
+          setMarkers((prevValue) => [
+            ...prevValue,
+            new LatLng(marker.x, marker.y),
+          ]);
+        });
+      });
   }, []);
-  
+
+  function BackendMarkers() {
+    return (
+      <React.Fragment>
+        {markers.map((marker) => (
+          <Marker position={marker} icon={iconCar}></Marker>
+        ))}
+      </React.Fragment>
+    );
+  }
+
   function LocationMarkers() {
     const map = useMapEvents({
       click(e) {
@@ -67,6 +83,7 @@ function Map() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        <BackendMarkers />
         <RoutingMachine />
         <LocationMarkers />
       </MapContainer>
