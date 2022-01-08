@@ -4,16 +4,9 @@ import StationDirectorDiv from "./StationDirectorDiv"
 
 function CreateStation(){
     const [form, setForm] = React.useState( {name:'', director_id:null, location_id:null, stationType:null});
-    const [users, setUsers] = React.useState([]);
     const [locations, setLocations] = React.useState([]);
     const [stations, setStations] = React.useState([]);
     const [responders, setResponders] = React.useState([]);
-
-    React.useEffect(()=>{
-        fetch('/korisnici')
-        .then(data => data.json())
-        .then(users => setUsers(users));
-    }, []);
 
     React.useEffect(()=>{
         fetch('/lokacija')
@@ -61,7 +54,6 @@ function CreateStation(){
             },
             body: JSON.stringify(data)
         };
-        
         fetch('/stanice', options);
     }
 
@@ -92,7 +84,7 @@ function CreateStation(){
                     <select name='director_id' onChange={onChange} value={form.director_id}>
                         <option value={null}>Odaberi</option>
                         {
-                            users.filter(user => user.role === form.stationType).map(user => <option key={user.id} value={user.id}>{user.userName}</option>)
+                            responders.filter(user => user.role === form.stationType).map(user => <option key={user.id} value={user.id}>{user.userName}</option>)
                         }
                     </select>
                 </div>
@@ -110,7 +102,7 @@ function CreateStation(){
             <div>
                 {
                     stations.map(station => <div key={station.id}>{station.name}, {
-                        users.filter(user => 
+                        responders.filter(user => 
                             user.id === station.director_id
                         ).map(user => <a key={user.id}>{user.userName}</a>)
                     }</div>)

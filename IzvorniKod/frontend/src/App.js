@@ -58,8 +58,8 @@ function App() {
         } else {
           setIsLoggedIn(true);
           setUser(data);
-          if(user.role==="fireman" || user.role==="policeman" || user.role==="doctor"){
-            setIsDirector(true);
+          if(data.role==="fireman" || data.role==="policeman" || data.role==="doctor"){
+            fetch("/spasioci/current").then(data=>data.json()).then(spasioc=>setIsDirector(spasioc.director))
           }
         }
       });
