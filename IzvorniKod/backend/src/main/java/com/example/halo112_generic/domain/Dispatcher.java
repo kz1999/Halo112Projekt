@@ -18,22 +18,16 @@ public class Dispatcher{
 	@Id
     @GeneratedValue
     private Long id;
-	
-	@OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    @MapsId
-    private User user;
-    
-    @OneToOne
-    @JoinColumn(name = "map_id")
-    private Map map;
 
-	@OneToMany(targetEntity = Action.class)
-	private List<Action> actions;
+    private Long user_id;
 
-	public Dispatcher(User user, Map map, List<Action> actions) {
-		this.user = user;
-		this.map = map;
+    private Long map_id;
+
+	private List<Long> actions;
+
+	public Dispatcher(Long user_id, Long map_id, List<Long> actions) {
+		this.user_id = user_id;
+		this.map_id = map_id;
 		this.actions = actions;
 	}
 
@@ -48,27 +42,27 @@ public class Dispatcher{
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
+	public Long getUser() {
+		return user_id;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(Long user_id) {
+		this.user_id = user_id;
 	}
 
-	public Map getMap() {
-		return map;
+	public Long getMap() {
+		return map_id;
 	}
 
-	public void setMap(Map map) {
-		this.map = map;
+	public void setMap(Long map_id) {
+		this.map_id = map_id;
 	}
 
-	public List<Action> getActions() {
+	public List<Long> getActions() {
 		return actions;
 	}
 
-	public void setActions(List<Action> actions) {
+	public void setActions(List<Long> actions) {
 		this.actions = actions;
 	}
 
@@ -76,14 +70,14 @@ public class Dispatcher{
 	public String toString() {
 		return "Dispatcher{" +
 				"id=" + id +
-				", user=" + user +
-				", map=" + map +
+				", user_id=" + user_id +
+				", map_id=" + map_id +
 				", actions=" + actions +
 				'}';
 	}
 	//	@Override
 //	public String toString() {
-//		return "Dispatcher [id=" + id + ", user=" + user + ", actions=" + actions + "]";
+//		return "Dispatcher [id=" + id + ", user_id=" + user_id + ", actions=" + actions + "]";
 //	}
 
 }
