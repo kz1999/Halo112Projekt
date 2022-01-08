@@ -12,12 +12,13 @@ const createRoutineMachineLayer = (props) => {
     lineOptions: {
       styles: [{ color: "#6FA1EC", weight: 4 }],
     },
-    show: false,
+    //show: false,
     addWaypoints: true,
     routeWhileDragging: true,
     draggableWaypoints: true,
     fitSelectedRoutes: true,
     showAlternatives: false,
+    collapsible: true,
     geocoder: L.Control.Geocoder.nominatim(),
   });
 
