@@ -13,6 +13,10 @@ public class Responder {
 
     private Long user_id;
 
+    private String userName;
+
+    private String role;
+
     private Long station_id;
 
     private boolean status;
@@ -23,17 +27,19 @@ public class Responder {
 
     private boolean isDirector;
 
-    public Responder(Long id, Long user_id, Long station_id, boolean status, Long currentAction_id, Long location_id, boolean isDirector) {
+    public Responder() {
+    }
+
+    public Responder(Long id, Long user_id, String userName, String role, Long station_id, boolean status, Long currentAction_id, Long location_id, boolean isDirector) {
         this.id = id;
         this.user_id = user_id;
+        this.userName = userName;
+        this.role = role;
         this.station_id = station_id;
         this.status = status;
         this.currentAction_id = currentAction_id;
         this.location_id = location_id;
         this.isDirector = isDirector;
-    }
-
-    public Responder() {
     }
 
     public Long getId() {
@@ -50,6 +56,22 @@ public class Responder {
 
     public void setUser_id(Long user_id) {
         this.user_id = user_id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Long getStation_id() {
@@ -97,6 +119,8 @@ public class Responder {
         return "Responder{" +
                 "id=" + id +
                 ", user_id=" + user_id +
+                ", userName='" + userName + '\'' +
+                ", role='" + role + '\'' +
                 ", station_id=" + station_id +
                 ", status=" + status +
                 ", currentAction_id=" + currentAction_id +
