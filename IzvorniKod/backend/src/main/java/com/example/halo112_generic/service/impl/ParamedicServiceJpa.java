@@ -1,6 +1,7 @@
 package com.example.halo112_generic.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,6 +26,11 @@ public class ParamedicServiceJpa implements ParamedicService{
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public Optional<Paramedic> findById(Long id) {
+		return paramedicRepo.findById(id);
 	}
 
 	@Override

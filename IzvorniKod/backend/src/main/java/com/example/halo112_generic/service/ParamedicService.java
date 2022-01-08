@@ -1,6 +1,7 @@
 package com.example.halo112_generic.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,8 @@ public interface ParamedicService {
 	Paramedic createParamed(Paramedic paramed);
 	
 	boolean setAbility(ParamedicAbilities ability, Long id);
+
+	Optional<Paramedic> findById(Long id);
 
 	List<Paramedic> listAll();
 

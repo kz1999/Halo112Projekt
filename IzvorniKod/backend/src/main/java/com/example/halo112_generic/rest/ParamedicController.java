@@ -1,6 +1,7 @@
 package com.example.halo112_generic.rest;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,4 +31,9 @@ public class ParamedicController {
 	public List<Paramedic> listParamedics() throws Exception {
         return paramedicService.listAll();
     }
+
+	@GetMapping("/{id}")
+	public Optional<Paramedic> findById(Long id) throws Exception {
+		return paramedicService.findById(id);
+	}
 }

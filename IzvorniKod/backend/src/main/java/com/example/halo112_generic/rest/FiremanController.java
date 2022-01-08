@@ -1,6 +1,7 @@
 package com.example.halo112_generic.rest;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,11 @@ public class FiremanController {
 	@GetMapping("")
 	public List<Fireman> listFiremen() throws Exception {
         return firemanService.listAll();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Fireman> findById(@PathVariable Long id){
+        return firemanService.findById(id);
     }
 	
 	@PostMapping("/ability/{id}")

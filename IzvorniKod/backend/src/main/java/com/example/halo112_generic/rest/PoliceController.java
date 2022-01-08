@@ -1,6 +1,7 @@
 package com.example.halo112_generic.rest;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,11 @@ public class PoliceController {
 	@GetMapping("")
 	public List<Police> listPolice() throws Exception {
         return policeService.listAll();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Police> findById(Long id) throws Exception {
+        return policeService.findById(id);
     }
 	
 	@PostMapping("/ability/{id}")

@@ -1,6 +1,7 @@
 package com.example.halo112_generic.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,6 +26,11 @@ public class FiremanServiceJpa implements FiremanService{
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public Optional<Fireman> findById(Long id) {
+		return firemanRepo.findById(id);
 	}
 
 	@Override
