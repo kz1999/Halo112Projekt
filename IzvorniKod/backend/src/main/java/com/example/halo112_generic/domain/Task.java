@@ -14,9 +14,8 @@ public class Task {
 
     private Long responder_id;
     
-    private Long route_id;
-    
-    private Long location_id;
+    @ElementCollection
+    private List<Long> location_id;
 
     @ElementCollection
     private List<Long> comments;
@@ -59,19 +58,11 @@ public class Task {
         return comments;
     }
 
-    public Long getRoute_id() {
-		return route_id;
-	}
-
-	public void setRoute_id(Long route_id) {
-		this.route_id = route_id;
-	}
-
-	public Long getLocation_id() {
+	public List<Long> getLocation_id() {
 		return location_id;
 	}
 
-	public void setLocation_id(Long location_id) {
+	public void setLocation_id(List<Long> location_id) {
 		this.location_id = location_id;
 	}
 
