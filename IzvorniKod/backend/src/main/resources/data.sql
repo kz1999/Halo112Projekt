@@ -9,6 +9,3 @@ INSERT INTO location(id, name, x, y) VALUES (107, 'lokacija2', 2, 2);
 
 INSERT INTO action(id, description, urgency, location_id) VALUES (108, 'fraeru se pimpek odlomio', 1, 106);
 INSERT INTO action(id, description, urgency, location_id) VALUES (109, 'upucani lik', 2, 107);
-
-INSERT INTO station(id, director_id, location_id, name, type) VALUES (110, 101, 106, 'Gradska Bolnica Dubrava', 0);
-INSERT INTO station(id, director_id, location_id, name, type) VALUES (111, 102, 107, '7. Policijska Stanica', 1);
