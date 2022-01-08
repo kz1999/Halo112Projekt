@@ -108,7 +108,7 @@ public class UserServiceJpa implements UserService {
         	break;
         case "admin":
         	Admin a = new Admin();
-        	a.setUser(user);
+        	a.setUser_id(user.getId());
         	adminService.createAdmin(a);
         	break;
         default:
