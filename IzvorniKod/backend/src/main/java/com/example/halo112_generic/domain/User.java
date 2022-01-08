@@ -60,6 +60,7 @@ public class User {
 
     private String email;
 
+    @NotNull
     private String role;
 
     private boolean confirmed;
