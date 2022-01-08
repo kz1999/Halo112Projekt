@@ -30,8 +30,14 @@ function CreateStation(){
             name: form.name,
             director_id: form.director_id,
             location_id: form.location_id,
-            type: 'FIRESTATION'
+            type: "FIRESTATION"
         };
+        if(stationType==="policeman"){
+            data.type = "POLICE"
+        }
+        if(stationType==="doctor"){
+            data.type = "HOSPITAL"
+        }
         console.log(data);
         const options={
             method: 'POST',
