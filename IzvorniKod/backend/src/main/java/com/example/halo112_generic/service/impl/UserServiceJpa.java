@@ -82,6 +82,8 @@ public class UserServiceJpa implements UserService {
         
         Responder r = new Responder();
         r.setUser_id(user.getId());
+        r.setUserName(user.getUserName());
+        r.setRole(user.getRole());
         switch (user.getRole().toLowerCase()) {
         case "dispatcher":
         	Dispatcher d = new Dispatcher();
