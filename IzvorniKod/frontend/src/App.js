@@ -16,6 +16,7 @@ import Location from "./Admin/Location";
 import Comments from "./Comments";
 import Actions from "./Dispatcher/Actions";
 import ResponderIsReady from "./Responder/ResponderIsReady";
+import ResponderActionMenager from "./Responder/ResponderActionMenager"
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -100,7 +101,7 @@ function App() {
           <Route path="/location" exact component={Location} />
           <Route path="/comments" exact component={Comments} />
           <Route path="/actions" exact component={Actions} />
-          <Route path="/status" exact component={ResponderIsReady} />
+          <Route path="/status" exact component={ResponderActionMenager} />
         </Switch>
       </div>
     </BrowserRouter>
