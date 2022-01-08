@@ -30,20 +30,7 @@ function Test(){
     function onClick3(event){
         event.preventDefault();
         
-        const data = {
-            owner_id: 1,
-            text: "blabla"
-        };
-        
-        const options={
-            method: 'POST',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        };
-
-        fetch('/komentari', options).then(data => console.log(data));
+        fetch('/stanice').then(response=>response.json()).then(response=>console.log(response))
     }
 
     return(

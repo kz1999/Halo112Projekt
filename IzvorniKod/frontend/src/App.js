@@ -13,6 +13,8 @@ import CreateStation from './CreateStation';
 import Map from './Map';
 import Location from './Location';
 import Comments from './Comments';
+import Actions from './Actions';
+import ResponderIsReady from './ResponderIsReady';
 
 function App() {
 
@@ -69,6 +71,8 @@ function App() {
           <Route path='/map' exact component={Map}/>
           <Route path='/location' exact component={Location}/>
           <Route path='/comments' exact component={Comments}/>
+          <Route path='/actions' exact component={Actions}/>
+          <Route path='/status' exact component={ResponderIsReady}/>
         </Switch>
       </div>
     </BrowserRouter>
