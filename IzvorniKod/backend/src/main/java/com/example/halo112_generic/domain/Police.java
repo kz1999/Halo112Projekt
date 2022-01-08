@@ -16,10 +16,7 @@ public class Police{
 	@GeneratedValue
 	private Long id;
 
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name = "responder_id")
-	@MapsId
-	private Responder responder;
+	private Long responder_id;
 	
 	private PoliceAbilities abilities;
 
@@ -39,12 +36,12 @@ public class Police{
 		this.id = id;
 	}
 
-	public Responder getResponder() {
-		return responder;
+	public Long getResponder() {
+		return responder_id;
 	}
 
-	public void setResponder(Responder responder) {
-		this.responder = responder;
+	public void setResponder(Long responder_id) {
+		this.responder_id = responder_id;
 	}
 
 }
