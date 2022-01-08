@@ -71,6 +71,11 @@ public class StationServiceJpa implements StationService {
     	Station station = findById(id).get();
     	List<Long> listMembers = station.getMembers();
         listMembers.add(member_id);
+
+        Responder newResponder = responderRepo.getById(member_id);
+        newResponder.setStation_id(id);  //id stanice se zapisuje u member-a
+        responderRepo.save(newResponder);
+
         stationRepo.save(station);
         return station;
     }

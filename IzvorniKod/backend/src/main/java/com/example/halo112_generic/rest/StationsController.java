@@ -1,5 +1,6 @@
 package com.example.halo112_generic.rest;
 
+import com.example.halo112_generic.domain.Responder;
 import com.example.halo112_generic.domain.Station;
 import com.example.halo112_generic.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,8 +54,8 @@ public class StationsController {
 
 	@PostMapping("/members/{id}")
 	// @Secured("ROLE_ADMIN")
-	public Station addMember(@PathVariable Long id, @RequestBody Long member_id) throws Exception {
-		return stationService.addMember(id, member_id);
+	public Station addMember(@PathVariable Long id, @RequestBody Responder member_id) throws Exception {
+		return stationService.addMember(id, member_id.getId());
 	}
 
 }
