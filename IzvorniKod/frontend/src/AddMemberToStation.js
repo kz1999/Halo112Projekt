@@ -3,19 +3,26 @@ import './styles/App.css';
 
 function AddMemberToStation(){
     const [form, setForm] = React.useState( {member_id:null,station_id:null});
-    const [users, setUsers] = React.useState([]);
-    const [stations, setStations] = React.useState([]);
+    const [responders, setResponders] = React.useState([]);
+    const [responder, setResponder] = React.useState([]);
+    const [station, setStation] = React.useState([]);
 
     React.useEffect(()=>{
-        fetch('/korisnici')
+        fetch('/spasioci')
         .then(data => data.json())
-        .then(users => setUsers(users));
+        .then(data => setResponders(data));
     }, []);
 
     React.useEffect(()=>{
-        fetch('/stanice')
+        fetch('/spasioci/current')
         .then(data => data.json())
-        .then(stations => setStations(stations));
+        .then(data => {
+            fetch('/stanice/'+data.station_id)
+                .then(data2 => data2.json())
+                .then(data2 => setStation(data2))
+            setResponder(data)
+        
+        })
     }, []);
 
     function onChange(event){
@@ -25,41 +32,37 @@ function AddMemberToStation(){
 
     function onSubmit(event){
         event.preventDefault();
+        const data={
+            member_id:form.member_id
+        }
+
         const options={
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
             },
-            body: form.member_id
+            body: JSON.stringify(data)
         };
 
-        fetch('/stanice/members/'+form.station_id, options);
+        fetch('/stanice/members/'+station.id, options);
     }
 
     function isValid(){
-        const {member_id,station_id} = form;
-        return member_id != null && station_id != null;
+        const {member_id} = form;
+        return member_id !== null;
     }
 
     return(
         <div className="Test">
             <h2>Add Member to station</h2>
             <form onSubmit={onSubmit}>
-                <div className="FormRow">
-                    <label>station</label>
-                    <select name='station_id' onChange={onChange} value={form.station_id}>
-                        <option value={null}>Odaberi</option>
-                        {
-                            stations.map(station => <option key={station.id} value={station.id}>{station.name}</option>)
-                        }
-                    </select>
-                </div>
+                {station.name}
                 <div className="FormRow">
                     <label>member</label>
                     <select name='member_id' onChange={onChange} value={form.member_id}>
                         <option value={null}>Odaberi</option>
                         {
-                            users.map(user => <option key={user.id} value={user.id}>{user.userName}</option>)
+                            responders.filter(responder => responder.station_id === null).map(user => <option key={user.id} value={user.id}>{user.userName}</option>)
                         }
                     </select>
                 </div>
