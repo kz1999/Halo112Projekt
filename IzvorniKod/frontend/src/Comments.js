@@ -8,7 +8,6 @@ function Comments(){
     
     React.useEffect(()=>{
         setInterval(() => {
-            console.log('Interval triggered');
             fetch('/komentari')
             .then(data => data.json())
             .then(previousComments => setPreviousComments(previousComments));

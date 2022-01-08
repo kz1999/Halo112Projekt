@@ -8,7 +8,7 @@ import Register from "./Register";
 import { HeaderLoggedIn, HeaderLoggedOut } from "./Header";
 import Users from "./Users";
 import Test from "./Test";
-import Station from "./Station";
+import AddMemberToStation from "./AddMemberToStation";
 import CreateStation from "./CreateStation";
 import Map from "./Map";
 import Location from "./Location";
@@ -18,6 +18,7 @@ import ResponderIsReady from "./ResponderIsReady";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isDirector, setIsDirector] = React.useState(false);
   const [user, setUser] = React.useState({
     username: "",
     password: "",
@@ -43,6 +44,7 @@ function App() {
       .then((data) => {
         if (data === null) {
           setIsLoggedIn(false);
+          setIsDirector(false);
           setUser({
             username: "",
             password: "",
@@ -56,6 +58,9 @@ function App() {
         } else {
           setIsLoggedIn(true);
           setUser(data);
+          if(user.role==="fireman" || user.role==="policeman" || user.role==="doctor"){
+            setIsDirector(true);
+          }
         }
       });
   }
@@ -77,6 +82,7 @@ function App() {
   return (
     <BrowserRouter>
       <HeaderLoggedIn
+        isDirector={isDirector}
         onLogout={onLogout}
         currentUser={user.userName}
         role={user.role}
@@ -88,7 +94,7 @@ function App() {
           <Route path="/users" exact component={Users} />
           <Route path="/test" exact component={Test} />
           <Route path="/createStation" exact component={CreateStation} />¸
-          <Route path="/station" exact component={Station} />
+          <Route path="/station" exact component={AddMemberToStation} />
           <Route path="/map" exact component={Map} />
           <Route path="/location" exact component={Location} />
           <Route path="/comments" exact component={Comments} />

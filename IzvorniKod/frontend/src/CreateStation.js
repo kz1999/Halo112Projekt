@@ -1,10 +1,13 @@
 import React from "react";
 import './styles/App.css';
+import StationDirectorDiv from "./StationDirectorDiv"
 
 function CreateStation(){
     const [form, setForm] = React.useState( {name:'', director_id:null, location_id:null, stationType:null});
     const [users, setUsers] = React.useState([]);
     const [locations, setLocations] = React.useState([]);
+    const [stations, setStations] = React.useState([]);
+    const [responders, setResponders] = React.useState([]);
 
     React.useEffect(()=>{
         fetch('/korisnici')
@@ -16,6 +19,18 @@ function CreateStation(){
         fetch('/lokacija')
         .then(data => data.json())
         .then(locations => setLocations(locations));
+    }, []);
+
+    React.useEffect(()=>{
+        fetch('/stanice')
+        .then(data => data.json())
+        .then(stations => setStations(stations));
+    }, []);
+
+    React.useEffect(()=>{
+        fetch('/spasioci')
+        .then(data => data.json())
+        .then(data => setResponders(data));
     }, []);
 
     function onChange(event){
@@ -92,6 +107,15 @@ function CreateStation(){
                 </div>
                 <button type="submit" disabled = {!isValid()}>Add</button>
             </form>
+            <div>
+                {
+                    stations.map(station => <div key={station.id}>{station.name}, {
+                        users.filter(user => 
+                            user.id === station.director_id
+                        ).map(user => <a key={user.id}>{user.userName}</a>)
+                    }</div>)
+                }
+            </div>
         </div>
     )
 }

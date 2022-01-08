@@ -1,7 +1,7 @@
 import React from "react";
 import './styles/App.css';
 
-function Station(){
+function AddMemberToStation(){
     const [form, setForm] = React.useState( {member_id:null,station_id:null});
     const [users, setUsers] = React.useState([]);
     const [stations, setStations] = React.useState([]);
@@ -69,4 +69,4 @@ function Station(){
     )
 }
 
-export default Station;
+export default AddMemberToStation;
