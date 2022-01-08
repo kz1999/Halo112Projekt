@@ -13,11 +13,15 @@ public class Task {
     private String text;
 
     private Long responder_id;
+    
+    private Long route_id;
+    
+    private Long location_id;
 
-    @OneToMany(targetEntity = Comment.class)
-    private List<Comment> comments;
+    @ElementCollection
+    private List<Long> comments;
 
-    public Task(Long id, String text, Long responder_id, List<Comment> comments) {
+    public Task(Long id, String text, Long responder_id, List<Long> comments) {
         this.id = id;
         this.text = text;
         this.responder_id = responder_id;
@@ -51,11 +55,27 @@ public class Task {
         this.responder_id = responder_id;
     }
 
-    public List<Comment> getComments() {
+    public List<Long> getComments() {
         return comments;
     }
 
-    public void setComments(List<Comment> comments) {
+    public Long getRoute_id() {
+		return route_id;
+	}
+
+	public void setRoute_id(Long route_id) {
+		this.route_id = route_id;
+	}
+
+	public Long getLocation_id() {
+		return location_id;
+	}
+
+	public void setLocation_id(Long location_id) {
+		this.location_id = location_id;
+	}
+
+	public void setComments(List<Long> comments) {
         this.comments = comments;
     }
 
