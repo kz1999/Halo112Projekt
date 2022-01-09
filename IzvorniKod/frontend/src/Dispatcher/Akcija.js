@@ -5,7 +5,7 @@ import Member from "./Member"
 
 function Akcija(props){
     const [action, setAction] = React.useState([]);
-    const [form, setForm] = React.useState( {how:"", urgencyLVL: ""});
+    const [form, setForm] = React.useState( {how:"", urgencyLVL: ''});
     const [formRemoveMember, setFormRemoveMember] = React.useState( {member_id:""});
     const [actionTeam, setActionTeam] = React.useState( []);
 
@@ -22,16 +22,13 @@ function Akcija(props){
         const {name, value} = event.target;
         setForm(oldForm => ({...oldForm, [name]: value}))
     }
-    function isValidSendRequest(){
-        const {member_id} = form;
-        return true;
-    }
+    
 
     function sendRequest(event){
         event.preventDefault();
         const data = {
             action_id: action.id,
-            emergencyLevel: form.urgencyLVL,
+            emergencyLevel: parseInt(form.urgencyLVL),
             responderAbility: form.how
         };
         console.log(form.member_id)
@@ -42,8 +39,8 @@ function Akcija(props){
             },
             body: JSON.stringify(data)
         };
-        console.log(data)
-        //fetch('/akcije/team/'+action.id, options).then(data => console.log(data));
+        console.log(data);
+        fetch('/dispatcher/createRequest', options).then(data => data.json()).then(data => console.log(data));
         
         //postalji zahtjev tom memberu da je na toj akciji
         //fetch('/stanice/members/'+form.station_id, options);
@@ -51,19 +48,15 @@ function Akcija(props){
 
     function deleteAction(event){
         event.preventDefault();
-        const data = {
-            action_id: action.id,
-        };
-        console.log(form.member_id)
         const options={
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({})
         };
-        console.log(data)
-
+        fetch('/akcije/close/'+action.id, options).then(response=>response.json()).then(response=>console.log(response))
+        
     }
 
     function removeResponderFromAction(event){
@@ -88,6 +81,11 @@ function Akcija(props){
         return member_id !== '';
     }
 
+    function isValidSendRequest(){
+        const {how, urgencyLVL} = form;
+        return how !== '' && urgencyLVL !=='';
+    }
+
     return(
         <div className="Action">
             {action.description }
@@ -95,14 +93,14 @@ function Akcija(props){
                 <div className="FormRow">
                     <label>how</label>
                     <select name='how' onChange={onChange} value={form.member_id}>
-                        <option value="">Odaberi</option>
-                        {["truck"].map(option => <option key={option} value={option}>{option}</option>)}
+                        <option value="">Odaberi</option> 
+                        {["CISTERN", "COMMAND", "FOREST", "LADDER", "AMBULANCE", "MOTORCYCLE", "CONTACT", "ARMORED", "CAR"].map(option => <option key={option} value={option}>{option}</option>)}
                     </select>
                 </div>
                 <div className="FormRow">
                     <label>urgency</label>
                     <select name='urgencyLVL' onChange={onChange} value={form.urgencyLVL}>
-                        <option value="">Odaberi</option>
+                        <option value=''>Odaberi</option>
                         {[1,2,3,4,5,6,7,8,9,10].map(lvl => <option key={lvl} value={lvl}>{lvl}</option>)}
                     </select>
                 </div>

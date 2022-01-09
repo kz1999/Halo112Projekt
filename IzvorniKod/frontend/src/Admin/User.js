@@ -19,16 +19,7 @@ function User(props){
 
     function confirmUser(event){
         event.preventDefault();
-        user.confirmed=true;
-        const data = user;
-        const options={
-            method: 'POST',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        };
-        fetch('/korisnici/' + user.userName, options);
+        fetch('/korisnici/confirm/' + user.id);
     }
 
     return(

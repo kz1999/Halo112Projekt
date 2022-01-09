@@ -88,13 +88,13 @@ public class UsersController {
         return userService.editUser(userName, user);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/ID/{id}")
     //@Secured("ROLE_ADMIN")
     public Optional<User> findById(@PathVariable Long id) throws Exception {
         return userService.findById(id);
     }
 
-    @PostMapping("/confirm/{id}")
+    @GetMapping("/confirm/{id}")
     public boolean confirmUser (@PathVariable Long id) throws Exception {
         return userService.confirmUser(id);
         //return userService.findById(id).get();

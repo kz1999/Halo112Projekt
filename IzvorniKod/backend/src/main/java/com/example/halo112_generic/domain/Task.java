@@ -20,11 +20,12 @@ public class Task {
     @ElementCollection
     private List<Long> comments;
 
-    public Task(Long id, String text, Long responder_id, List<Long> comments) {
+    public Task(Long id, String text, Long responder_id, List<Long> locations, List<Long> comments) {
         this.id = id;
         this.text = text;
         this.responder_id = responder_id;
-        this.comments = comments;
+        this.location_id=locations;
+        //this.comments = comments;
     }
 
     public Task() {

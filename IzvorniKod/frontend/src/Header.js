@@ -16,7 +16,6 @@ function HeaderLoggedIn(props) {
           <div className="App-header">
             <Link to="/users">Users list</Link>
             <Link to="/createStation">Create station</Link>
-            <Link to="/location">Create location</Link>
             <Link to="/comments">Comments</Link>
             <Link to="/map">Map</Link>
             <button onClick={logout}>
@@ -36,6 +35,7 @@ function HeaderLoggedIn(props) {
             <Link to="/createAction">New Action</Link>
             <Link to="/actions">Actions</Link>
             <Link to="/tasks">Tasks</Link>
+            <Link to="/location">Location</Link>
             <button onClick={logout}>
               user: {props.currentUser}, role: dispatcher
               <div/>

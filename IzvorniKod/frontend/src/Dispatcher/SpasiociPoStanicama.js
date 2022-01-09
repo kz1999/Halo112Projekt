@@ -13,8 +13,6 @@ function SpasiociPoStanicama(props){
         .then(data => data.json())
         .then(data => setStations(data));
     }, []);
-    
-                        
                     
     return(
         <div className="Stanice">

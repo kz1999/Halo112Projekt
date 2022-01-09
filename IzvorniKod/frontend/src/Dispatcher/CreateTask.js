@@ -1,9 +1,11 @@
 import React from "react";
 import '../styles/App.css';
-import Akcija from './Akcija'
+import '../styles/Switch.css';
 
-function CreateAction(){
+function CreateTask(props){
+    //za stvaranje zadataka i prikazivanje pozicija na mapi, voronijev dijagram
     const [form, setForm] = React.useState({description:""});
+
 
     function addAction(event){
         event.preventDefault();
@@ -19,8 +21,8 @@ function CreateAction(){
             },
             body: JSON.stringify(data)
         };
-        //console.log(data)
-        fetch('/akcije', options).then(response=>response.json()).then(response=>console.log(response))
+        console.log(data)
+        //fetch('/akcije', options).then(response=>response.json()).then(response=>console.log(response))
     }
 
     function onChange(event){
@@ -32,11 +34,9 @@ function CreateAction(){
         const {description} = form;
         return description.length > 0;
     }
-
+    
     return(
-
-        <div className="CreateAction">
-            <h2>CreateAction</h2>
+        <div className="">
             <form onSubmit={addAction}>
                 <div className="FormRow">
                     <label>description</label>
@@ -49,4 +49,4 @@ function CreateAction(){
 }
 
 
-export default CreateAction;
+export default CreateTask;
