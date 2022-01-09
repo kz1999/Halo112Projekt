@@ -6,9 +6,11 @@ function UsersList(props){
     const [users, setUsers] = React.useState([]);
 
     React.useEffect(()=>{
+        
         fetch('/korisnici')
         .then(data => data.json())
         .then(users => setUsers(users));
+        
     }, []);
 
     return(

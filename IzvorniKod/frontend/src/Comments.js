@@ -7,11 +7,11 @@ function Comments(){
     const [form, setForm] = React.useState( {text:'' });
     
     React.useEffect(()=>{
-        setInterval(() => {
+        //setInterval(() => {
             fetch('/komentari')
             .then(data => data.json())
             .then(previousComments => setPreviousComments(previousComments));
-        }, 1000);
+        //}, 1000);
     }, []);
 
     React.useEffect(()=>{

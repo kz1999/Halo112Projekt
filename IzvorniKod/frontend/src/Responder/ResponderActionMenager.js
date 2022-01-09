@@ -1,4 +1,5 @@
 import React from "react";
+import CurrentAction from "./CurrentAction";
 import ResponderIsReady from "./ResponderIsReady";
 
 
@@ -31,7 +32,7 @@ function ResponderActionMenager(){
     }
     return(
         <div className="ActionMenager">
-            {responder.currentAction_id}
+            <CurrentAction currentAction_id={responder.currentAction_id}/>
         </div>
     )
 

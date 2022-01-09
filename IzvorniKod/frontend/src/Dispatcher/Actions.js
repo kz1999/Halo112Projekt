@@ -12,6 +12,7 @@ function Actions(){
     }, []);
 
     function onClick1(event){
+        //trenutno dodaje lokaciju za akciju, ali ta funkcija je nepotrebna
         event.preventDefault();
         
         const data = {

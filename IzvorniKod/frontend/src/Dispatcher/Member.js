@@ -8,7 +8,10 @@ function Member(props){
     React.useEffect(()=>{
         fetch('/spasioci/'+props.memberId)
         .then(data => data.json())
-        .then(data => setMember(data));
+        .then(data => {setMember(data)
+            fetch('/korisnici/'+data.user_id)
+            .then(data2 => data2.json())
+            .then(data2 => setUser(data2))});
     }, []);
 
     return(

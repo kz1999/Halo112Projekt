@@ -14,9 +14,11 @@ function CreateStation(){
     }, []);
 
     React.useEffect(()=>{
+        
         fetch('/stanice')
         .then(data => data.json())
         .then(stations => setStations(stations));
+        
     }, []);
 
     React.useEffect(()=>{

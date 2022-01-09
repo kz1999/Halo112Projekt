@@ -48,6 +48,10 @@ function Akcija(props){
         //fetch('/stanice/members/'+form.station_id, options);
     }
 
+    function deleteAction(event){
+        event.preventDefault();
+    }
+
     return(
         <div className="Action">
             {action.description }
@@ -61,6 +65,7 @@ function Akcija(props){
                 </div>
                 <button type="submit" disabled = {!isValid()}>Add</button>
             </form>
+            <button onClick={deleteAction}>delete action</button>
         </div>
     )
 }
