@@ -27,4 +27,8 @@ public interface ResponderService {
 	boolean setStation(Long station_id, Long id);
 
     Optional<Responder> findByUserId(Long id);
+
+    boolean acceptRequest(Long id, Long request_id);
+
+    boolean rejectRequest(Long id, Long request_id);
 }
