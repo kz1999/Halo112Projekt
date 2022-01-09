@@ -33,6 +33,7 @@ function HeaderLoggedIn(props) {
       <header className="Header">
         <header className="App-header-container">
           <div className="App-header">
+            <Link to="/createAction">New Action</Link>
             <Link to="/actions">Actions</Link>
             <Link to="/tasks">Tasks</Link>
             <button onClick={logout}>

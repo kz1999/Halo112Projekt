@@ -17,6 +17,7 @@ import Comments from "./Comments";
 import Actions from "./Dispatcher/Actions";
 import ResponderActionMenager from "./Responder/ResponderActionMenager"
 import Tasks from "./Dispatcher/Tasks"
+import CreateAction from "./Dispatcher/CreateAction"
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -103,6 +104,7 @@ function App() {
           <Route path="/actions" exact component={Actions} />
           <Route path="/status" exact component={ResponderActionMenager} />
           <Route path="/tasks" exact component={Tasks} />
+          <Route path="/createAction" exact component={CreateAction} />
         </Switch>
       </div>
     </BrowserRouter>

@@ -21,9 +21,9 @@ function OPTGroupStanica(props){
     return(
         <optgroup label={station.name +  ", " + responders.filter(responder=>responder.status===true).filter(responder=>responder.station_id===station.id).length}>
             {
-                responders.filter(responder=>responder.status===true)
-                .filter(responder=>responder.station_id===station.id)
-                .map(responder => <Member key = {responder.id} memberId={responder.id}/>)
+                //responders.filter(responder=>responder.status===true)
+                //.filter(responder=>responder.station_id===station.id)
+                //.map(responder => <Member key = {responder.id} memberId={responder.id}/>)
             }
         </optgroup>)
     

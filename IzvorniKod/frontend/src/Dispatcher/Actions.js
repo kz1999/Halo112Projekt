@@ -52,7 +52,6 @@ function Actions(){
 
         <div className="Actions">
             <h2>Actions</h2>
-            <div><button onClick={addAction}>addAction</button></div>
             { allActions.map(akcija => <Akcija key={akcija.id} actionId={akcija.id}/>)}
             <button onClick={onClick1}>X</button>
         </div>
