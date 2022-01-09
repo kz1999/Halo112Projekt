@@ -84,4 +84,14 @@ public class ResponderController {
     public boolean setStation(@RequestBody Station station, @PathVariable Long id) throws Exception {
         return responderService.setStation(station.getId(), id);
     }
+    @PostMapping("/{id}/acceptRequest/{request_id}")
+    //@Secured("ROLE_ADMIN")
+    public boolean acceptRequest(@PathVariable Long id, @PathVariable Long request_id) throws Exception {
+        return responderService.acceptRequest(id,request_id);
+    }
+    @PostMapping("/{id}/rejectRequest/{request_id}")
+    //@Secured("ROLE_ADMIN")
+    public boolean rejectRequest(@PathVariable Long id, @PathVariable Long request_id) throws Exception {
+        return responderService.rejectRequest(id,request_id);
+    }
 }

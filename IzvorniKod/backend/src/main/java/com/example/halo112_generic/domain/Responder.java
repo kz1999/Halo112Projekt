@@ -3,6 +3,7 @@ package com.example.halo112_generic.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "responder")
@@ -27,10 +28,13 @@ public class Responder {
 
     private boolean isDirector;
 
+    @OneToMany(targetEntity = Request.class)
+    private List<Request> requestsList;
+
     public Responder() {
     }
 
-    public Responder(Long id, Long user_id, String userName, String role, Long station_id, boolean status, Long currentAction_id, Long location_id, boolean isDirector) {
+    public Responder(Long id, Long user_id, String userName, String role, Long station_id, boolean status, Long currentAction_id, Long location_id, boolean isDirector, List<Request> requestsList) {
         this.id = id;
         this.user_id = user_id;
         this.userName = userName;
@@ -40,6 +44,15 @@ public class Responder {
         this.currentAction_id = currentAction_id;
         this.location_id = location_id;
         this.isDirector = isDirector;
+        this.requestsList = requestsList;
+    }
+
+    public List<Request> getRequestsList() {
+        return requestsList;
+    }
+
+    public void setRequestsList(List<Request> requestsList) {
+        this.requestsList = requestsList;
     }
 
     public Long getId() {
@@ -126,6 +139,7 @@ public class Responder {
                 ", currentAction_id=" + currentAction_id +
                 ", location_id=" + location_id +
                 ", isDirector=" + isDirector +
+                ", requestsList=" + requestsList +
                 '}';
     }
 }
