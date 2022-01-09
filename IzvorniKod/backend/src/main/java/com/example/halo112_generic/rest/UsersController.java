@@ -88,4 +88,10 @@ public class UsersController {
         return userService.editUser(userName, user);
     }
 
+    @GetMapping("/{id}")
+    //@Secured("ROLE_ADMIN")
+    public Optional<User> findById(@PathVariable Long id) throws Exception {
+        return userService.findById(id);
+    }
+
 }

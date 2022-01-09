@@ -24,4 +24,6 @@ public interface UserService {
 	boolean denyUser(Long id);
 
 	boolean changePrivilege(String privilege, Long id);
+
+    Optional<User> findById(Long id);
 }

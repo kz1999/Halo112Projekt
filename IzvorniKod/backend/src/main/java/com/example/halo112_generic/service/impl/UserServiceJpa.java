@@ -171,4 +171,9 @@ public class UserServiceJpa implements UserService {
 		}
 		return false;
 	}
+
+    @Override
+    public Optional<User> findById(Long id) {
+        return userRepo.findById(id);
+    }
 }
