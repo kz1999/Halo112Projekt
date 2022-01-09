@@ -14,7 +14,7 @@ public class Action {
     @JoinColumn(name = "location_id")
     private Location location;
 
-    @OneToMany(targetEntity = Responder.class, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Responder.class)
     private List<Responder> team;
 
     private int urgency;

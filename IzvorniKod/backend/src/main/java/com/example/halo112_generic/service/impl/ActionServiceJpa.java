@@ -130,8 +130,11 @@ public class ActionServiceJpa implements ActionService {
 	@Override
 	public boolean addResponderToAction(Long responder_id, Long id) {
 		if (actionRepo.existsById(id)) {
+			Responder responder = responderRepo.getById(responder_id);
+			responder.setCurrentAction_id(id);
+			responderRepo.save(responder);
 			Action action = actionRepo.findById(id).get();
-			action.getTeam().add(responderRepo.findById(responder_id).get());
+			action.getTeam().add(responder);
 			actionRepo.save(action);
 			return true;
 		}
