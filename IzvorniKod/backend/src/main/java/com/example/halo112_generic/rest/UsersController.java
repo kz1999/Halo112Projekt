@@ -94,4 +94,10 @@ public class UsersController {
         return userService.findById(id);
     }
 
+    @PostMapping("/confirm/{id}")
+    public boolean confirmUser (@PathVariable Long id) throws Exception {
+        return userService.confirmUser(id);
+        //return userService.findById(id).get();
+    }
+
 }
