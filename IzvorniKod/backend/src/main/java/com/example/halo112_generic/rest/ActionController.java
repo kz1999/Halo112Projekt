@@ -92,6 +92,11 @@ public class ActionController {
 		return actionService.addResponderToAction(responder.getId(), id);
 	}
 
+	@PostMapping("/team/{action_id}/remove/{responder_id}")
+	public boolean removeResponderFromTeam(@PathVariable Long action_id, @PathVariable Long responder_id) throws Exception{
+		return actionService.removeResponderFromAction(action_id, responder_id);
+	}
+
 	@GetMapping("/location/{id}")
 	public Location displayLocation(@RequestBody Long id) throws Exception{
 		return actionService.displayLocation(id);

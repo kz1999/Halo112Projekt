@@ -136,7 +136,9 @@ public class ActionServiceJpa implements ActionService {
 	public boolean removeResponderFromAction(Long actionID, Long responderID) {
 		if (actionRepo.existsById(actionID) && responderRepo.existsById(responderID)) {
 			Action action = actionRepo.findById(actionID).get();
-			return action.getTeam().remove(responderRepo.findById(responderID).get());
+			boolean isRemoved = action.getTeam().remove(responderRepo.findById(responderID).get());
+			actionRepo.save(action);
+			return isRemoved;
 		}
 		return false;
 	}
