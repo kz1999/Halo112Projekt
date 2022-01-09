@@ -40,7 +40,7 @@ public class ActionController {
 		return actionService.findById(id);
 	}
 
-	@GetMapping("/close/{id}")
+	@PostMapping("/close/{id}")
 	// @Secured("ROLE_ADMIN")
 	public boolean closeAction(@PathVariable Long id) throws Exception {
 		return actionService.closeAction(id);
