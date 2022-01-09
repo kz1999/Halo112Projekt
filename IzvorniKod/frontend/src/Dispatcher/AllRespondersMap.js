@@ -1,6 +1,7 @@
 import React from "react";
 import '../styles/App.css';
 import '../styles/Switch.css';
+import CreateTask from './CreateTask'
 
 function AllRespondersMap(props){
     //za stvaranje zadataka i prikazivanje pozicija na mapi, voronijev dijagram
@@ -27,14 +28,21 @@ function AllRespondersMap(props){
 
     function Responder(props){ 
         const [location, setLocation] = React.useState([]);
+        const [responder, setResponder] = React.useState([]);
+
         React.useEffect(()=>{
             fetch('/lokacija/'+props.location_id)
             .then(data => data.json())
             .then(data => setLocation(data));
         }, []);
+        React.useEffect(()=>{
+            fetch('/spasioci/'+props.responder_id)
+            .then(data => data.json())
+            .then(data => setResponder(data));
+        }, []);
         return(
             <div>
-                <div>{location.x}, {location.y}</div>
+                <div>{props.responder_id}, {location.x}, {location.y}</div>
             </div>
         )
     }
@@ -44,7 +52,7 @@ function AllRespondersMap(props){
             return(
                 <div>
                     {responders.map(responder=>
-                        <Responder location_id={responder.location_id}/>)
+                        <Responder key={responder.id} responder_id={responder.id} location_id={responder.location_id}/>)
                     }
                 </div>
             )
@@ -52,7 +60,7 @@ function AllRespondersMap(props){
             return(
                 <div>
                     {responders.filter(responder => responder.status===true && responder.action===null).map(responder=>
-                        <Responder location_id={responder.location_id}/>)
+                        <Responder key={responder.id} responder_id={responder.id} location_id={responder.location_id}/>)
                     }
                 </div>
             )
@@ -60,7 +68,7 @@ function AllRespondersMap(props){
             return(
                 <div>
                     {responders.filter(responder=>responder.currentAction_id === parseInt(form.action)).map(responder=>
-                        <Responder location_id={responder.location_id}/>)
+                        <Responder key={responder.id} responder_id={responder.id} location_id={responder.location_id}/>)
                     }
                 </div>
             )
@@ -68,7 +76,7 @@ function AllRespondersMap(props){
         
         return(
             <div>
-                greska
+                
             </div>
         )
     }
@@ -79,9 +87,11 @@ function AllRespondersMap(props){
                 <div className="FormRow">
                     <label>asd</label>
                     <select name='option' onChange={onChange} value={form.option}>
+                        <option value="">Odaberi</option>
                         <option value="1">svi spasioci</option>
-                        <option value="2">dostupnih neaktivnih spasioca</option>
+                        <option value="2">dostupni neaktivni spasioci</option>
                         <option value="3">aktivnih spasioci na odredenoj akciji</option>
+                        <option value="4">dodaj zadatak spasiocu na akciji</option>
                     </select>
                     <div/>
                     <select name='action' onChange={onChange} hidden={form.option !== '3'}>
@@ -89,9 +99,10 @@ function AllRespondersMap(props){
                     </select>
                 </div>
             </form>
-            <div>
+            
+            <div hidden={form.option !== '4'}><CreateTask/></div>
             <FilterAllResponders/>
-            </div>
+            
         </div>
     )
 }

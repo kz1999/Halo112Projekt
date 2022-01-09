@@ -2,7 +2,7 @@ import React from "react";
 import '../styles/App.css';
 import '../styles/Switch.css';
 
-function ResponderIsReady(){
+function Status(){
 
     const [responder, setResponder] = React.useState([]);
 
@@ -41,4 +41,4 @@ function ResponderIsReady(){
 }
 
 
-export default ResponderIsReady;
+export default Status;

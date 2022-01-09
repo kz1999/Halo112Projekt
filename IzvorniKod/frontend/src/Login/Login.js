@@ -24,11 +24,12 @@ function Login(props){
             mode: "no-cors"
         };
         fetch('/login',options).then(()=>{
-            fetch('/user', {mode:"no-cors"}).then(response=>{
+            fetch('/user', {mode:"no-cors"}).then(response=>response.json()).then(response=>{
             if(response === null){
                 setError("Login failed");
-            }
-            else{
+            }else if(response.confirmed !== true){
+                setError("Login failed");
+            }else{
                 props.checkUserStatus();
             }
         })});

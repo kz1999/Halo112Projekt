@@ -1,6 +1,6 @@
 import React from "react";
 import CurrentAction from "./CurrentAction";
-import ResponderIsReady from "./ResponderIsReady";
+import Status from "./Status";
 
 
 function ResponderActionMenager(){
@@ -22,7 +22,7 @@ function ResponderActionMenager(){
     if(responder.currentAction_id === null){
         return(
             <div className="ActionMenager">
-                <ResponderIsReady/>
+                <Status/>
                 {
                     actions.filter(action=> action.team.filter(responder => responder.id===responder.id).length > 0)
                     .map(action => <div>{action.urgency}, {action.description}</div>)
@@ -32,6 +32,7 @@ function ResponderActionMenager(){
     }
     return(
         <div className="ActionMenager">
+            <Status/>
             <CurrentAction currentAction_id={responder.currentAction_id}/>
         </div>
     )

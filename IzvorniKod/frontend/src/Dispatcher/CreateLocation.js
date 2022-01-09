@@ -1,7 +1,7 @@
 import React from "react";
 import '../styles/App.css';
 
-function Location(){
+function CreateLocation(){
     const [form, setForm] = React.useState( {name:'', x:'', y:''});
 
     function onChange(event){
@@ -56,4 +56,4 @@ function Location(){
     )
 }
 
-export default Location;
+export default CreateLocation;

@@ -2,11 +2,11 @@ import React from "react";
 import '../styles/App.css';
 import OPTGroupStanica from "./OPTGroupStanica";
 import Member from "./Member"
+import RemoveResponder from "./RemoveResponder";
 
 function Akcija(props){
     const [action, setAction] = React.useState([]);
     const [form, setForm] = React.useState( {how:"", urgencyLVL: ''});
-    const [formRemoveMember, setFormRemoveMember] = React.useState( {member_id:""});
     const [actionTeam, setActionTeam] = React.useState( []);
 
     React.useEffect(()=>{
@@ -59,27 +59,7 @@ function Akcija(props){
         
     }
 
-    function removeResponderFromAction(event){
-        event.preventDefault();
-        const data = {
-            action_id: action.id,
-            member_id: formRemoveMember.member_id
-        };
-        console.log(form.member_id)
-        const options={
-            method: 'POST',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        };
-        console.log(data)
-    }
-
-    function isValidRemoveResponder(){
-        const {member_id} = formRemoveMember;
-        return member_id !== '';
-    }
+    
 
     function isValidSendRequest(){
         const {how, urgencyLVL} = form;
@@ -106,17 +86,7 @@ function Akcija(props){
                 </div>
                 <button type="submit" disabled = {!isValidSendRequest()}>Send Request</button>
             </form>
-            
-            <form onSubmit={removeResponderFromAction}>
-                <div className="FormRow">
-                    <label>removeResponderFromAction</label>
-                    <select name='member_id' onChange={onChange} value={form.member_id}>
-                        <option value="">Odaberi</option>
-                        {actionTeam.map(member_id => <Member key={member_id} memberId={member_id}></Member>)}
-                    </select>
-                </div>
-                <button type="submit" disabled = {!isValidRemoveResponder()}>Send Request</button>
-            </form>
+            <RemoveResponder action_id={action.id} actionTeam={actionTeam}/>
             <button onClick={deleteAction}>set as done</button>
         </div>
     )

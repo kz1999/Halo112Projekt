@@ -1,28 +1,44 @@
 import React from "react";
 import '../styles/App.css';
 import '../styles/Switch.css';
+import Member from "./Member";
 
 function CreateTask(props){
     //za stvaranje zadataka i prikazivanje pozicija na mapi, voronijev dijagram
-    const [form, setForm] = React.useState({description:""});
+    const [form, setForm] = React.useState({description:"", responder_id: "", locations:[]});
+    const [responders, setResponders] = React.useState([]);
 
+    React.useEffect(()=>{
+        fetch('/spasioci')
+        .then(data => data.json())
+        .then(data => setResponders(data));
+    }, []);
 
-    function addAction(event){
+    function createTask(event){
         event.preventDefault();
-        
         const data = {
-            description: form.description
-        };
+            text: form.description,
+            responder_id: parseInt(form.responder_id),
+            location_id: [2,2]};
 
         const options={
             method: 'POST',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        };
-        console.log(data)
-        //fetch('/akcije', options).then(response=>response.json()).then(response=>console.log(response))
+            headers:{'Content-Type': 'application/json'},
+            body: JSON.stringify(data)};
+
+        fetch('/task', options)
+            .then(task=>task.json())
+            .then(task=>{
+            fetch('/spasioci/'+task.responder_id)
+                .then(responder=>responder.json())
+                .then(responder=>{
+                fetch('/akcije/tasks/'+responder.currentAction_id, {
+                    method: 'POST',
+                    headers:{'Content-Type': 'application/json'},
+                    body: JSON.stringify({id: task.id}) 
+                })
+            })
+        })
     }
 
     function onChange(event){
@@ -31,18 +47,25 @@ function CreateTask(props){
     }
 
     function isValid(){
-        const {description} = form;
-        return description.length > 0;
+        const {description, responder_id} = form;
+        return description.length > 0 && responder_id !== '';
     }
     
     return(
         <div className="">
-            <form onSubmit={addAction}>
+            <form onSubmit={createTask}>
                 <div className="FormRow">
-                    <label>description</label>
+                    <label>Deskripcija</label>
                     <input name='description' onChange={onChange} value={form.description}/>
                 </div>
-                <button type="submit" disabled = {!isValid()}>Create Action</button>
+                <div className="FormRow">
+                    <label>Spasilac</label>
+                    <select name='responder_id' onChange={onChange}>
+                        <option value=''>Odaberi spasioca</option>
+                        {responders.map(responder=> <Member key={responder.id}memberId={responder.id}/>)}
+                    </select>
+                </div>
+                <button type="submit" disabled = {!isValid()}>New Task</button>
             </form>
         </div>
     )

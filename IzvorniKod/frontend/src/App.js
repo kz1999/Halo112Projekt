@@ -12,7 +12,7 @@ import Test from "./Test";
 import AddMemberToStation from "./Responder/AddMemberToStation";
 import CreateStation from "./Admin/CreateStation";
 import Map from "./Map";
-import Location from "./Admin/Location";
+import CreateLocation from "./Dispatcher/CreateLocation";
 import Comments from "./Comments";
 import Actions from "./Dispatcher/Actions";
 import ResponderActionMenager from "./Responder/ResponderActionMenager"
@@ -99,7 +99,7 @@ function App() {
           <Route path="/createStation" exact component={CreateStation} />¸
           <Route path="/station" exact component={AddMemberToStation} />
           <Route path="/map" exact component={Map} />
-          <Route path="/location" exact component={Location} />
+          <Route path="/location" exact component={CreateLocation} />
           <Route path="/comments" exact component={Comments} />
           <Route path="/actions" exact component={Actions} />
           <Route path="/status" exact component={ResponderActionMenager} />
