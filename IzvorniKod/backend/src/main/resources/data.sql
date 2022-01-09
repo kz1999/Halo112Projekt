@@ -4,9 +4,9 @@ INSERT INTO myuser(id, user_Name, photo, password_Hash, name, surname, phone_Num
 INSERT INTO myuser(id, user_Name, photo, password_Hash, name, surname, phone_Number, email, role, confirmed) VALUES (104, 'fireman', '/user4photo', '$2a$12$RFv9B3TthXaQ/3MdjZFzxuigjmcP518d3mcvR9RKo9H4dufMWR0Iy', 'user4name', 'user4surname', '091', 'user4mail', 'fireman', true);
 INSERT INTO myuser(id, user_Name, photo, password_Hash, name, surname, phone_Number, email, role, confirmed) VALUES (105, 'doctor', '/user5photo', '$2a$12$RFv9B3TthXaQ/3MdjZFzxuigjmcP518d3mcvR9RKo9H4dufMWR0Iy', 'user5name', 'user5surname', '091', 'user5mail', 'doctor', true);
 
-INSERT INTO responder(id, current_action_id, is_director, location_id, station_id, status, user_id) VALUES (101, null, true, 101, 101, true, 101);
-INSERT INTO responder(id, current_action_id, is_director, location_id, station_id, status, user_id) VALUES (102, 101, false, 101, 102, false, 104);
-INSERT INTO responder(id, current_action_id, is_director, location_id, station_id, status, user_id) VALUES (103, 102, false, 102, null, false, 105);
+INSERT INTO responder(id, current_action_id, is_director, location_id, station_id, status, user_id, role, user_name) VALUES (101, null, true, 101, 101, true, 101, 'policeman', 'policeman');
+INSERT INTO responder(id, current_action_id, is_director, location_id, station_id, status, user_id, role, user_name) VALUES (102, 101, false, 101, 102, false, 104, 'fireman', 'fireman');
+INSERT INTO responder(id, current_action_id, is_director, location_id, station_id, status, user_id, role, user_name) VALUES (103, 102, false, 102, null, false, 105, 'doctor', 'doctor');
 
 INSERT INTO police(id, abilities, responder_id) VALUES (101, 0, 101);
 INSERT INTO fireman(id, abilities, responder_id) VALUES (101, 0, 104);
