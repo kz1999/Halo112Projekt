@@ -12,7 +12,8 @@ function Tasks(props){
         <div className="">
             <h2>Dodaj zadatke</h2>
             <SpasiociPoStanicama/>
-            <CreateTask/>
+           {//<CreateTask/>
+}
             <AllRespondersMap/>
         </div>
     )

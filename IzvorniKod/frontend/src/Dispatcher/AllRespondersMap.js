@@ -40,11 +40,35 @@ function AllRespondersMap(props){
     }
     
     function FilterAllResponders(){ 
+        if(form.option==='1'){
+            return(
+                <div>
+                    {responders.map(responder=>
+                        <Responder location_id={responder.location_id}/>)
+                    }
+                </div>
+            )
+        }else if(form.option==='2'){
+            return(
+                <div>
+                    {responders.filter(responder => responder.status===true && responder.action===null).map(responder=>
+                        <Responder location_id={responder.location_id}/>)
+                    }
+                </div>
+            )
+        }else if(form.option==='3' && form.action!==''){
+            return(
+                <div>
+                    {responders.filter(responder=>responder.currentAction_id === parseInt(form.action)).map(responder=>
+                        <Responder location_id={responder.location_id}/>)
+                    }
+                </div>
+            )
+        }
+        
         return(
             <div>
-                {responders.map(responder=>
-                    <Responder location_id={responder.location_id}/>)
-                }
+                greska
             </div>
         )
     }
@@ -60,7 +84,7 @@ function AllRespondersMap(props){
                         <option value="3">aktivnih spasioci na odredenoj akciji</option>
                     </select>
                     <div/>
-                    <select name='action' onChange={onChange} value={form.action} hidden={form.option !== '2'}>
+                    <select name='action' onChange={onChange} hidden={form.option !== '3'}>
                         {actions.map(action=><option key={action.id} value={action.id} label={action.description}/>)}
                     </select>
                 </div>
