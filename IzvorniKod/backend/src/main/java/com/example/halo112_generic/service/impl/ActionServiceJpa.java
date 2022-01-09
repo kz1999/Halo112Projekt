@@ -58,6 +58,12 @@ public class ActionServiceJpa implements ActionService {
 	@Override
 	public boolean closeAction(Long id) {
 		if (actionRepo.existsById(id)) {
+			Action action = actionRepo.getById(id);
+			Responder r = null;
+			for(var responder : action.getTeam()) {
+				responder.setCurrentAction_id(null);
+				responderRepo.save(responder);
+			}
 			actionRepo.deleteById(id);
 			return true;
 		}
