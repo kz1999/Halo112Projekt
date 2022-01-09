@@ -54,6 +54,45 @@ public class UserServiceJpa implements UserService {
     //@Autowired
     //private PasswordEncoder pswdEncoder;
 
+    public void createSubEntities(User user){
+        Responder r = new Responder();
+        r.setUser_id(user.getId());
+        r.setUserName(user.getUserName());
+        r.setRole(user.getRole());
+        switch (user.getRole().toLowerCase()) {
+            case "dispatcher":
+                Dispatcher d = new Dispatcher();
+                d.setUser(user.getId());
+                dispatcherService.createDispatcher(d);
+                break;
+            case "policeman":
+                r = responderService.createResponder(r);
+                Police p = new Police();
+                p.setResponder(r.getId());
+                policeService.createPolice(p);
+                break;
+            case "fireman":
+                r = responderService.createResponder(r);
+                Fireman f = new Fireman();
+                f.setResponder(r.getId());
+                firemanService.createFireman(f);
+                break;
+            case "doctor":
+                r = responderService.createResponder(r);
+                Paramedic pm = new Paramedic();
+                pm.setResponder(r.getId());
+                paramedService.createParamed(pm);
+                break;
+            case "admin":
+                Admin a = new Admin();
+                a.setUser_id(user.getId());
+                adminService.createAdmin(a);
+                break;
+            default:
+                System.out.println("Error: unsupported role");
+        }
+    }
+
     @Override
     //@Secured("ROLE_ADMIN")
     public List<User> listAll(){
@@ -79,43 +118,9 @@ public class UserServiceJpa implements UserService {
         
         //user.setPasswordHash(pswdEncoder.encode(user.getPasswordHash()));
         user = userRepo.save(user);
-        
-        Responder r = new Responder();
-        r.setUser_id(user.getId());
-        r.setUserName(user.getUserName());
-        r.setRole(user.getRole());
-        switch (user.getRole().toLowerCase()) {
-        case "dispatcher":
-        	Dispatcher d = new Dispatcher();
-        	d.setUser(user.getId());
-        	dispatcherService.createDispatcher(d);
-        	break;
-        case "policeman":
-        	r = responderService.createResponder(r);
-        	Police p = new Police();
-        	p.setResponder(r.getId());
-        	policeService.createPolice(p);
-        	break;
-        case "fireman":
-        	r = responderService.createResponder(r);
-        	Fireman f = new Fireman();
-        	f.setResponder(r.getId());
-        	firemanService.createFireman(f);
-        	break;
-        case "doctor":
-        	r = responderService.createResponder(r);
-        	Paramedic pm = new Paramedic();
-        	pm.setResponder(r.getId());
-        	paramedService.createParamed(pm);
-        	break;
-        case "admin":
-        	Admin a = new Admin();
-        	a.setUser_id(user.getId());
-        	adminService.createAdmin(a);
-        	break;
-        default:
-        	System.out.println("Error: unsupported role");
-        }
+
+        if(user.isConfirmed())
+            createSubEntities(user);
         
         return user;
     }
@@ -145,6 +150,7 @@ public class UserServiceJpa implements UserService {
 	public boolean confirmUser(Long id) {
 		if (userRepo.existsById(id)) {
 			User user = userRepo.findById(id).get();
+            if(!user.isConfirmed()) createSubEntities(user); //ako prije nije bio confirmed i sada je, kreiraj pripadni subEntity
 			user.setConfirmed(true);
 			userRepo.save(user);
 			return true;
