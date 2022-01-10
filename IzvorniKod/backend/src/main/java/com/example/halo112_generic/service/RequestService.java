@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface RequestService {
     List<Request> listAll();
 
-    Request createRequest(Request responder);
+    Request createRequest(Request request);
 
     Optional<Request> findById(Long id);
 
