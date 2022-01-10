@@ -3,6 +3,8 @@ package com.example.halo112_generic.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.halo112_generic.domain.Action;
+import com.example.halo112_generic.domain.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +30,25 @@ public class TaskServiceJpa implements TaskService{
 	@Override
 	public Optional<Task> findById(Long id) {
 		return taskRepo.findById(id);
+	}
+
+	@Override
+	public List<Comment> displayComments(Long id) {
+		if (taskRepo.existsById(id)) {
+			return taskRepo.findById(id).get().getComments();
+		}
+		return null;
+	}
+
+	@Override
+	public boolean addComment(Comment comment, Long id) {
+		if (taskRepo.existsById(id)) {
+			Task task = taskRepo.findById(id).get();
+			task.getComments().add(comment);
+			taskRepo.save(task);
+			return true;
+		}
+		return false;
 	}
 
 }
