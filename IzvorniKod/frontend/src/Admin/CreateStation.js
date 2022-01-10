@@ -2,23 +2,14 @@ import React from "react";
 import '../styles/App.css';
 
 function CreateStation(){
-    const [form, setForm] = React.useState( {name:'', director_id:"", location_id:"", stationType:""});
-    const [locations, setLocations] = React.useState([]);
+    const [form, setForm] = React.useState( {name:'', director_id:"", stationType:""});
     const [stations, setStations] = React.useState([]);
     const [responders, setResponders] = React.useState([]);
 
     React.useEffect(()=>{
-        fetch('/lokacija')
-        .then(data => data.json())
-        .then(locations => setLocations(locations));
-    }, []);
-
-    React.useEffect(()=>{
-        
         fetch('/stanice')
         .then(data => data.json())
         .then(stations => setStations(stations));
-        
     }, []);
 
     React.useEffect(()=>{
@@ -59,7 +50,7 @@ function CreateStation(){
     }
 
     function isValid(){
-        const {name, director_id, location_id, stationType} = form;
+        const {name, director_id, stationType} = form;
         return name.length >= 1 && director_id !== "" && stationType !== "";
     }
 
@@ -86,15 +77,6 @@ function CreateStation(){
                         <option value="">Odaberi</option>
                         {
                             responders.filter(user => user.role === form.stationType).map(user => <option key={user.id} value={user.id}>{user.userName}</option>)
-                        }
-                    </select>
-                </div>
-                <div className="FormRow">
-                    <label>location</label>
-                    <select name='location_id' onChange={onChange} value={form.location_id}>
-                        <option value="">Odaberi</option>
-                        {
-                            locations.map(lokacija => <option key={lokacija.id} value={lokacija.id}>{lokacija.name}</option>)
                         }
                     </select>
                 </div>
