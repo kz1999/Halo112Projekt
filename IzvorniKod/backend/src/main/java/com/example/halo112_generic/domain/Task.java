@@ -17,15 +17,15 @@ public class Task {
     @ElementCollection
     private List<Long> location_id;
 
-    @ElementCollection
-    private List<Long> comments;
+    @OneToMany(targetEntity=Comment.class, cascade = CascadeType.ALL)
+    private List<Comment> comments;
 
-    public Task(Long id, String text, Long responder_id, List<Long> locations, List<Long> comments) {
+    public Task(Long id, String text, Long responder_id, List<Long> locations, List<Comment> comments) {
         this.id = id;
         this.text = text;
         this.responder_id = responder_id;
         this.location_id=locations;
-        //this.comments = comments;
+        this.comments = comments;
     }
 
     public Task() {
@@ -55,7 +55,7 @@ public class Task {
         this.responder_id = responder_id;
     }
 
-    public List<Long> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
@@ -67,7 +67,7 @@ public class Task {
 		this.location_id = location_id;
 	}
 
-	public void setComments(List<Long> comments) {
+	public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 

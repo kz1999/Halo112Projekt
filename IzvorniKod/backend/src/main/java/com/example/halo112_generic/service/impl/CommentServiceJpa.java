@@ -31,9 +31,12 @@ public class CommentServiceJpa implements CommentService {
     }
 
     @Override
-    public Optional<Comment> editComment(Long id, Comment comment) {
+    public Comment editComment(Long id, Comment comment) {
+        /*
         if(comment.getOwner()!=null) commentRepo.editCommentOwner(comment.getOwner(), id);
         if(comment.getText()!=null) commentRepo.editCommentText(comment.getText(), id);
-        return commentRepo.findCommentById(id);
+
+         */
+        return commentRepo.save(comment);
     }
 }

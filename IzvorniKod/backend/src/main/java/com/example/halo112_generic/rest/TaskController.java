@@ -3,6 +3,7 @@ package com.example.halo112_generic.rest;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.halo112_generic.domain.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,6 +43,17 @@ public class TaskController {
 	// @Secured("ROLE_ADMIN")
 	public Optional<Task> findById(@PathVariable Long id) throws Exception {
 		return taskService.findById(id);
+	}
+	@GetMapping("/comments/{id}")
+	// @Secured("ROLE_ADMIN")
+	public List<Comment> displayComments(@PathVariable Long id) throws Exception {
+		return taskService.displayComments(id);
+	}
+
+	@PostMapping("/comments/{id}")
+	// @Secured("ROLE_ADMIN")
+	public boolean addComment(@RequestBody Comment comment, @PathVariable Long id) throws Exception {
+		return taskService.addComment(comment, id);
 	}
 
 }
