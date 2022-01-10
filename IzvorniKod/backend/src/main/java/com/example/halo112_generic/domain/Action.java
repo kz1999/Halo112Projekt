@@ -10,6 +10,8 @@ public class Action {
     @GeneratedValue
     private Long id;
 
+    private String name;
+
     @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
@@ -29,6 +31,14 @@ public class Action {
 
     @ElementCollection
     private List<String> gallery;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public List<Comment> getComments() {
         return comments;
