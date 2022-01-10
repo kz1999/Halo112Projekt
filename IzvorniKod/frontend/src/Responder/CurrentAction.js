@@ -20,10 +20,19 @@ import "leaflet-routing-machine";
 //import RoutingMachine from "../Routing";
 import Task from "./Task";
 
+async function loadPosition(arr) {
+  let temp = [];
+  for (let i = 0; i < arr.length; i++) {
+    let locationId = arr[i];
+    const response = await fetch("/lokacije/" + locationId);
+    const json = await response.json();
+    temp.push(new LatLng(json.x, json.y));
+  }
+}
+
 function CurrentAction(props) {
   const [tasks, setTasks] = React.useState([]);
   const [responderId, setResponderId] = React.useState([]);
-  var locations = [];
 
   React.useEffect(() => {
     fetch("/task")
@@ -41,6 +50,7 @@ function CurrentAction(props) {
     .filter((task) => task.responder_id === responderId)
     .map((task) => task.location_id);
 
+  var locations = [];
   for (let i = 0; i < taskArr.length; i++) {
     let temp = taskArr[i];
     for (let j = 0; j < temp.length; j++) {
@@ -48,11 +58,11 @@ function CurrentAction(props) {
     }
   }
 
-  const waypointsAux = [];
+  const waypointsAux = loadPosition(locations);
 
-  for (let i = 0; i < locations.length; i++) {
+  /*for (let i = 0; i < locations.length; i++) {
     let locationId = locations[i];
-  }
+  }*/
 
   console.log(waypointsAux);
 
