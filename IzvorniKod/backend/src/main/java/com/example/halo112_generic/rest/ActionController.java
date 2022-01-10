@@ -96,7 +96,7 @@ public class ActionController {
 	public boolean removeResponderFromTeam(@PathVariable Long action_id, @PathVariable Long responder_id) throws Exception{
 		return actionService.removeResponderFromAction(action_id, responder_id);
 	}
-
+	/*
 	@GetMapping("/location/{id}")
 	public Location displayLocation(@RequestBody Long id) throws Exception{
 		return actionService.displayLocation(id);
@@ -108,5 +108,6 @@ public class ActionController {
 		System.out.println(location_id);
 		actionService.setLocation(location_id,id);
 	}
+	 */
 
 }

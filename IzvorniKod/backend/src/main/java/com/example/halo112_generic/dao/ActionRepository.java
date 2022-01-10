@@ -15,11 +15,13 @@ public interface ActionRepository extends JpaRepository<Action, Long> {
 
     @Query("SELECT r FROM Action r where r.id = :id")
     Optional<Action> findActionById(@Param("id")Long id);
-
+ /*
     @Transactional
     @Modifying
-    @Query("UPDATE Action k SET k.location = :location_id WHERE k.id = :id")
+    @Query("UPDATE Action k SET k.location_ = :location_id WHERE k.id = :id")
     void editActionLocation(@Param("location_id") Long location_id, @Param("id") Long id);
+
+  */
 
     @Transactional
     @Modifying

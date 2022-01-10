@@ -174,7 +174,7 @@ public class ActionServiceJpa implements ActionService {
 		}
 		return false;
 	}
-
+	/*
 	@Override
 	public Location displayLocation(Long id) {
 		if (actionRepo.existsById(id)) {
@@ -197,6 +197,7 @@ public class ActionServiceJpa implements ActionService {
 		else return false;
 
 	}
+	 */
 
 	@Override
 	public List<Task> displayTasks(Long id) {

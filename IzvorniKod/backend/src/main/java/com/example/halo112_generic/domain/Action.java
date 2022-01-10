@@ -10,9 +10,12 @@ public class Action {
     @GeneratedValue
     private Long id;
 
+    private String name;
+    /*
     @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
+     */
 
     @OneToMany(targetEntity = Responder.class)
     private List<Responder> team;
@@ -30,6 +33,14 @@ public class Action {
     @ElementCollection
     private List<String> gallery;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public List<Comment> getComments() {
         return comments;
     }
@@ -45,7 +56,7 @@ public class Action {
     public void setId(Long id) {
         this.id = id;
     }
-
+    /*
     public Location getLocation() {
         return location;
     }
@@ -53,6 +64,7 @@ public class Action {
     public void setLocation(Location location) {
         this.location = location;
     }
+     */
 
     public List<Responder> getTeam() {
         return team;

@@ -18,14 +18,33 @@ public class Comment {
 
     private String text;
 
-    public Comment(Long id, Long owner_id, LocalDateTime timeStamp, String text) {
+    private Long location_id;
+
+    public Comment() {
+    }
+
+    public Comment(Long id, Long owner_id, LocalDateTime timeStamp, String text, Long location_id) {
         this.id = id;
         this.owner_id = owner_id;
         this.timeStamp = timeStamp;
         this.text = text;
+        this.location_id = location_id;
     }
 
-    public Comment() {
+    public Long getOwner_id() {
+        return owner_id;
+    }
+
+    public void setOwner_id(Long owner_id) {
+        this.owner_id = owner_id;
+    }
+
+    public Long getLocation_id() {
+        return location_id;
+    }
+
+    public void setLocation_id(Long location_id) {
+        this.location_id = location_id;
     }
 
     public Long getId() {

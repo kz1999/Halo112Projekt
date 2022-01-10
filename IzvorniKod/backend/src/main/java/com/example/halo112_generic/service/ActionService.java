@@ -37,8 +37,9 @@ public interface ActionService {
 	boolean removeResponderFromAction(Long actionID, Long responderID);
 
 	boolean rejectAction(Action action, Long id);
-
+	/*
 	Location displayLocation(Long id);
 
 	boolean setLocation(Long location_id, Long id);
+	 */
 }
