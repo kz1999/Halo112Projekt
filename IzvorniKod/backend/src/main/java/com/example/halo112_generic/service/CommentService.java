@@ -15,5 +15,5 @@ public interface CommentService {
 
     Optional<Comment> findById(Long id);
 
-    Optional<Comment> editComment(Long id, Comment action);
+    Comment editComment(Long id, Comment action);
 }
