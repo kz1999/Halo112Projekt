@@ -1,6 +1,7 @@
 package com.example.halo112_generic.service.impl;
 
 import com.example.halo112_generic.dao.ActionRepository;
+import com.example.halo112_generic.dao.LocationRepository;
 import com.example.halo112_generic.dao.RequestRepository;
 import com.example.halo112_generic.dao.ResponderRepository;
 import com.example.halo112_generic.domain.*;
@@ -28,6 +29,9 @@ public class ResponderServiceJpa implements ResponderService {
 	@Autowired
 	private RequestRepository requestRepo;
 
+	@Autowired
+	private LocationRepository locationRepo;
+
     @Override
     public List<Responder> listAll() {
         return responderRepo.findAll();
@@ -35,6 +39,12 @@ public class ResponderServiceJpa implements ResponderService {
 
     @Override
     public Responder createResponder(Responder responder) {
+		Location l = new Location();
+		l.setName(responder.getUserName());
+		l.setX(0);
+		l.setY(0);
+		locationRepo.save(l);
+		responder.setLocation_id(l.getId());
         return responderRepo.save(responder);
     }
 
