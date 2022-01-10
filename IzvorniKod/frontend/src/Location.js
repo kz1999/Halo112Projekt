@@ -2,7 +2,6 @@ import React from "react";
 import './styles/App.css';
 
 function Location(props){
-
     const [location, setLocation] = React.useState([]);
 
     React.useEffect(()=>{
@@ -11,10 +10,14 @@ function Location(props){
         .then(data => setLocation(data));
     }, []);
 
-    return(
-        <div className="Location">
-            {location.x}{location.y}
-        </div>
+    if(location !== null && location !== undefined){
+        return(
+            <div className="Location">
+                X: {location.x}, Y: {location.y}
+            </div>
+        )
+    }return(
+        <div></div>
     )
 }
 

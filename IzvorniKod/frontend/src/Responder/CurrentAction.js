@@ -1,6 +1,7 @@
 import React from "react";
 import '../styles/App.css';
 import '../styles/Switch.css';
+import Task from "./Task";
 
 function CurrentAction(props){
 
@@ -23,7 +24,9 @@ function CurrentAction(props){
         <div className="Status">
             <h2>Action id: {props.currentAction_id}</h2>
             {tasks.filter(task=>task.responder_id === responderId).map(task=>
-                <p>Task name: {task.text}</p>)}
+
+                <Task key={task.id} taskId={task.id}/>
+                )}
             
             
         </div>

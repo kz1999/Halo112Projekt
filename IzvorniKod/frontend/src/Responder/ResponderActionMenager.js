@@ -1,7 +1,7 @@
 import React from "react";
 import CurrentAction from "./CurrentAction";
 import Status from "./Status";
-
+import Request from "./Request";
 
 function ResponderActionMenager(){
     const [actions, setActions] = React.useState([]);
@@ -20,12 +20,14 @@ function ResponderActionMenager(){
     }, []);
 
     if(responder.currentAction_id === null){
+
         return(
             <div className="ActionMenager">
                 <Status/>
+                <h2>Pozivi na akciju:</h2>
                 {
-                    actions.filter(action=> action.team.filter(responder => responder.id===responder.id).length > 0)
-                    .map(action => <div>{action.urgency}, {action.description}</div>)
+                    responder.requestsList.map(request_id=> 
+                    <Request key={request_id}request_id={request_id}></Request>)
                 }
             </div>
         )

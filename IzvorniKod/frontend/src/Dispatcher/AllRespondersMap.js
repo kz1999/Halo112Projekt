@@ -85,7 +85,7 @@ function AllRespondersMap(props){
         <div className="">
             <form>
                 <div className="FormRow">
-                    <label>asd</label>
+                    <label>Opcija</label>
                     <select name='option' onChange={onChange} value={form.option}>
                         <option value="">Odaberi</option>
                         <option value="1">svi spasioci</option>
@@ -95,6 +95,7 @@ function AllRespondersMap(props){
                     </select>
                     <div/>
                     <select name='action' onChange={onChange} hidden={form.option !== '3'}>
+                        <option value="">Odaberi</option>
                         {actions.map(action=><option key={action.id} value={action.id} label={action.description}/>)}
                     </select>
                 </div>

@@ -5,8 +5,15 @@ import Member from "./Member";
 
 function CreateTask(props){
     //za stvaranje zadataka i prikazivanje pozicija na mapi, voronijev dijagram
-    const [form, setForm] = React.useState({description:"", responder_id: "", locations:[]});
+    const [form, setForm] = React.useState({description:"", responder_id: "", location: "", locations:[]});
     const [responders, setResponders] = React.useState([]);
+    const [locations, setLocations] = React.useState([]);
+
+    React.useEffect(()=>{
+        fetch('/lokacija')
+        .then(data => data.json())
+        .then(data => setLocations(data));
+    }, []);
 
     React.useEffect(()=>{
         fetch('/spasioci')
@@ -19,7 +26,7 @@ function CreateTask(props){
         const data = {
             text: form.description,
             responder_id: parseInt(form.responder_id),
-            location_id: [2,2]};
+            location_id: [17,18]};
 
         const options={
             method: 'POST',
@@ -50,21 +57,36 @@ function CreateTask(props){
         const {description, responder_id} = form;
         return description.length > 0 && responder_id !== '';
     }
+
+    function addLocation(event){
+        event.preventDefault()
+        form.locations.push(parseInt(form.location))
+    }
     
     return(
         <div className="">
             <form onSubmit={createTask}>
+                Zadatak
                 <div className="FormRow">
-                    <label>Deskripcija</label>
+                    <label>Opis</label>
                     <input name='description' onChange={onChange} value={form.description}/>
                 </div>
                 <div className="FormRow">
                     <label>Spasilac</label>
                     <select name='responder_id' onChange={onChange}>
                         <option value=''>Odaberi spasioca</option>
-                        {responders.map(responder=> <Member key={responder.id}memberId={responder.id}/>)}
+                        {responders.filter(responder=>responder.currentAction_id!==null).map(responder=> <Member key={responder.id}memberId={responder.id}/>)}
                     </select>
                 </div>
+                <div className="FormRow">
+                    <label>Lokacija</label>
+                    <select name='lokacija' onChange={onChange}>
+                        <option value=''>Odaberi lokaciju</option>
+                        {locations.map(location=><option key={location.id} value={location.id}>{location.id}</option>)}
+                    </select>
+                </div>
+                <button disabled = {form.location!==""} onClick={addLocation}>add Location</button>
+            
                 <button type="submit" disabled = {!isValid()}>New Task</button>
             </form>
         </div>

@@ -38,7 +38,7 @@ function CreateStation(){
         const data = {
             name: form.name,
             director_id: form.director_id,
-            location_id: form.location_id,
+            location_id: 1,
             type: "FIRESTATION"
         };
         if(stationType==="policeman"){
@@ -60,7 +60,7 @@ function CreateStation(){
 
     function isValid(){
         const {name, director_id, location_id, stationType} = form;
-        return name.length >= 1 && director_id !== "" && location_id !== "" && stationType !== "";
+        return name.length >= 1 && director_id !== "" && stationType !== "";
     }
 
     return(

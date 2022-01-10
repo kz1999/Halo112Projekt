@@ -35,13 +35,13 @@ function RemoveResponder(props){
         <div>
             <form onSubmit={removeResponderFromAction}>
                 <div className="FormRow">
-                    <label>removeResponderFromAction</label>
+                    <label>Remove responder from action</label>
                     <select name='member_id' onChange={onChange}>
                         <option value="">Odaberi</option>
                         {props.actionTeam.map(member_id => <Member key={member_id} memberId={member_id}></Member>)}
                     </select>
                 </div>
-                <button type="submit" disabled = {!isValidRemoveResponder()}>Send Request</button>
+                <button type="submit" disabled = {!isValidRemoveResponder()}>Remove Responder</button>
             </form>
         </div>
     )

@@ -68,17 +68,17 @@ function Akcija(props){
 
     return(
         <div className="Action">
-            {action.description }
+            Naziv akcije: {action.description }
             <form onSubmit={sendRequest}>
                 <div className="FormRow">
-                    <label>how</label>
+                    <label>Prijevozno sredstvo</label>
                     <select name='how' onChange={onChange} value={form.member_id}>
                         <option value="">Odaberi</option> 
                         {["CISTERN", "COMMAND", "FOREST", "LADDER", "AMBULANCE", "MOTORCYCLE", "CONTACT", "ARMORED", "CAR"].map(option => <option key={option} value={option}>{option}</option>)}
                     </select>
                 </div>
                 <div className="FormRow">
-                    <label>urgency</label>
+                    <label>Razina hitnosti</label>
                     <select name='urgencyLVL' onChange={onChange} value={form.urgencyLVL}>
                         <option value=''>Odaberi</option>
                         {[1,2,3,4,5,6,7,8,9,10].map(lvl => <option key={lvl} value={lvl}>{lvl}</option>)}
