@@ -20,14 +20,10 @@ import "leaflet-routing-machine";
 //import RoutingMachine from "../Routing";
 import Task from "./Task";
 
-async function loadPosition(arr) {
-  let temp = [];
-  for (let i = 0; i < arr.length; i++) {
-    let locationId = arr[i];
-    const response = await fetch("/lokacije/" + locationId);
-    const json = await response.json();
-    temp.push(new LatLng(json.x, json.y));
-  }
+async function loadPosition(id) {
+  const response = await fetch("/lokacija/" + id);
+  const json = await response.json();
+  return json;
 }
 
 function CurrentAction(props) {
@@ -58,11 +54,16 @@ function CurrentAction(props) {
     }
   }
 
-  const waypointsAux = loadPosition(locations);
+  const waypointsAux = [];
 
-  /*for (let i = 0; i < locations.length; i++) {
-    let locationId = locations[i];
-  }*/
+  for (let i = 0; i < locations.length; i++) {
+    //waypointsAux.push(loadPosition[i]);
+    var data = loadPosition(locations[i]).then(
+      (data) => new LatLng(data.x, data.y)
+    );
+    console.log(data);
+    waypointsAux.push(data);
+  }
 
   console.log(waypointsAux);
 
