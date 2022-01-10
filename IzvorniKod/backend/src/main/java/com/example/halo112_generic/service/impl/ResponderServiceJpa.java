@@ -1,6 +1,7 @@
 package com.example.halo112_generic.service.impl;
 
 import com.example.halo112_generic.dao.ActionRepository;
+import com.example.halo112_generic.dao.RequestRepository;
 import com.example.halo112_generic.dao.ResponderRepository;
 import com.example.halo112_generic.domain.*;
 import com.example.halo112_generic.service.ActionService;
@@ -23,6 +24,9 @@ public class ResponderServiceJpa implements ResponderService {
 
 	@Autowired
 	private ActionService actionService;
+
+	@Autowired
+	private RequestRepository requestRepo;
 
     @Override
     public List<Responder> listAll() {
@@ -50,9 +54,9 @@ public class ResponderServiceJpa implements ResponderService {
 		boolean found=false;
 		Request r = null;
 		for(var request : responder.getRequestsList()) {
-			if (request.getId() == request_id) {
+			if (request == request_id) {
 				found = true;
-				r = request;
+				r = requestRepo.getById(request);
 				if(responder.getCurrentAction_id()==null){
 					responder.setCurrentAction_id(r.getAction_id());
 					actionService.addResponderToAction(r.getAction_id(),responder.getId());
@@ -66,8 +70,8 @@ public class ResponderServiceJpa implements ResponderService {
 				}
 			}
 		}
-		if(found && r!=null) {
-			responder.getRequestsList().remove(r);
+		if(found) {
+			responder.getRequestsList().remove(request_id);
 			responderRepo.save(responder);
 		}
 		return found;
@@ -79,13 +83,13 @@ public class ResponderServiceJpa implements ResponderService {
 		boolean found=false;
 		Request r=null;
 		for(var request : responder.getRequestsList()) {
-			if (request.getId() == request_id) {
+			if (request == request_id) {
 				found = true;
-				r = request;
+				r = requestRepo.getById(request);
 			}
 		}
-		if(found && r!=null) {
-			responder.getRequestsList().remove(r);
+		if(found) {
+			responder.getRequestsList().remove(request_id);
 			responderRepo.save(responder);
 		}
 

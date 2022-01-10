@@ -28,13 +28,13 @@ public class Responder {
 
     private boolean isDirector;
 
-    @OneToMany(targetEntity = Request.class)
-    private List<Request> requestsList;
+    @ElementCollection
+    private List<Long> requestsList;
 
     public Responder() {
     }
 
-    public Responder(Long id, Long user_id, String userName, String role, Long station_id, boolean status, Long currentAction_id, Long location_id, boolean isDirector, List<Request> requestsList) {
+    public Responder(Long id, Long user_id, String userName, String role, Long station_id, boolean status, Long currentAction_id, Long location_id, boolean isDirector, List<Long> requestsList) {
         this.id = id;
         this.user_id = user_id;
         this.userName = userName;
@@ -47,11 +47,11 @@ public class Responder {
         this.requestsList = requestsList;
     }
 
-    public List<Request> getRequestsList() {
+    public List<Long> getRequestsList() {
         return requestsList;
     }
 
-    public void setRequestsList(List<Request> requestsList) {
+    public void setRequestsList(List<Long> requestsList) {
         this.requestsList = requestsList;
     }
 
