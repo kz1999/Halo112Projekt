@@ -26,7 +26,7 @@ function CreateTask(props){
         const data = {
             text: form.description,
             responder_id: parseInt(form.responder_id),
-            location_id: [17,18]};
+            location_id: form.locations};
 
         const options={
             method: 'POST',
@@ -46,6 +46,9 @@ function CreateTask(props){
                 })
             })
         })
+
+        form.locations=[];
+        console.log(form.locations)
     }
 
     function onChange(event){
@@ -61,6 +64,7 @@ function CreateTask(props){
     function addLocation(event){
         event.preventDefault()
         form.locations.push(parseInt(form.location))
+        console.log(form.locations)
     }
     
     return(
@@ -78,16 +82,18 @@ function CreateTask(props){
                         {responders.filter(responder=>responder.currentAction_id!==null).map(responder=> <Member key={responder.id}memberId={responder.id}/>)}
                     </select>
                 </div>
+                
+                <button type="submit" disabled = {!isValid()}>New Task</button>
+            </form>
+            <form onSubmit={addLocation}>
                 <div className="FormRow">
                     <label>Lokacija</label>
-                    <select name='lokacija' onChange={onChange}>
+                    <select name='location' onChange={onChange}>
                         <option value=''>Odaberi lokaciju</option>
                         {locations.map(location=><option key={location.id} value={location.id}>{location.id}</option>)}
                     </select>
                 </div>
-                <button disabled = {form.location!==""} onClick={addLocation}>add Location</button>
-            
-                <button type="submit" disabled = {!isValid()}>New Task</button>
+                <button type="submit" disabled = {form.location===""}>add Location</button>
             </form>
         </div>
     )
