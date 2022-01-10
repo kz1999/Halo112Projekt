@@ -63,8 +63,8 @@ function CreateTask(props){
 
     function addLocation(event){
         event.preventDefault()
-        console.log(form.location)
         form.locations.push(parseInt(form.location))
+        console.log(form.locations)
     }
     
     return(
