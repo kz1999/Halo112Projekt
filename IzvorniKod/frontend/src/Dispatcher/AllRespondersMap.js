@@ -3,6 +3,19 @@ import '../styles/App.css';
 import '../styles/Switch.css';
 import CreateTask from './CreateTask'
 
+import {MapContainer,TileLayer,useMapEvents,Popup,Marker,} from "react-leaflet";
+import * as L from "leaflet";
+import { LatLng } from "leaflet";
+import { createControlComponent } from "@react-leaflet/core";
+import "leaflet-control-geocoder/dist/Control.Geocoder.css";
+import "leaflet-control-geocoder/dist/Control.Geocoder.js";
+import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
+import "leaflet-routing-machine/dist/leaflet-routing-machine.js";
+import "leaflet-routing-machine";
+
+
+
+
 function AllRespondersMap(props){
     //za stvaranje zadataka i prikazivanje pozicija na mapi, voronijev dijagram
     const [form, setForm] = React.useState({option:"", action:""});
@@ -104,6 +117,17 @@ function AllRespondersMap(props){
             <div hidden={form.option !== '4'}><CreateTask/></div>
             <FilterAllResponders/>
             
+            <div className="Action map">
+                <MapContainer
+                    center={[45.8, 16]}
+                    zoom={13}
+                    scrollWheelZoom={true}
+                    closePopupOnClick={true}>
+                    <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+                </MapContainer>
+            </div>
         </div>
     )
 }
