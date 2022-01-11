@@ -36,6 +36,7 @@ function CurrentAction(props) {
         fetch("/spasioci/current")
         .then(spasioc => spasioc.json())
         .then(spasioc => {
+            if(spasioc !== undefined){
             fetch("/lokacija/"+spasioc.location_id)
             .then(location => location.json())
             .then(location => {setResponderLocation(new LatLng(location.x, location.y))})
@@ -63,7 +64,7 @@ function CurrentAction(props) {
                 .then(location => location.json())
                 .then(location => respondersLocations.push(new LatLng(location.x, location.y)))
             }))
-        })
+        }})
     }, [])
 
     const createRoutineMachineLayer = (props) => {
