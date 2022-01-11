@@ -17,9 +17,9 @@ public class Request {
 
     private int emergencyLevel;
 
-    private ResponderAbility responderAbility;
+    private String responderAbility;
 
-    public Request(Long id, Long action_id, int emergencyLevel, ResponderAbility responderAbility) {
+    public Request(Long id, Long action_id, int emergencyLevel, String responderAbility) {
         this.id = id;
         this.action_id = action_id;
         this.emergencyLevel = emergencyLevel;
@@ -53,11 +53,11 @@ public class Request {
         this.emergencyLevel = emergencyLevel;
     }
 
-    public ResponderAbility getResponderAbility() {
+    public String getResponderAbility() {
         return responderAbility;
     }
 
-    public void setResponderAbility(ResponderAbility responderAbility) {
+    public void setResponderAbility(String responderAbility) {
         this.responderAbility = responderAbility;
     }
 

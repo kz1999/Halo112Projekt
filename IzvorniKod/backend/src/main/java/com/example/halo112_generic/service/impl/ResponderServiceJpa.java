@@ -108,12 +108,15 @@ public class ResponderServiceJpa implements ResponderService {
 
 	@Override
     public Optional<Responder> editResponder(Long id, Responder responder) {
+		Responder r = responderRepo.getById(id);
         if(responder.getUser_id()!=null) responderRepo.editResponderUser(responder.getUser_id(),id);
         if(responder.getLocation_id()!=null) responderRepo.editResponderLocation(responder.getLocation_id(),id);
         if(responder.getStation_id()!=null) responderRepo.editResponderStation(responder.getStation_id(), id);
         if(responder.getCurrentAction_id()!=null) responderRepo.editResponderAction(responder.getCurrentAction_id(),id);
-        responderRepo.editResponderIsDirector(responder.isDirector(), id);
-        responderRepo.editResponderStatus(responder.isStatus(),id);
+        if(responder.isDirector()!=null)responderRepo.editResponderIsDirector(responder.isDirector(), id);
+        if(responder.isStatus()!=null) responderRepo.editResponderStatus(responder.isStatus(),id);
+		if(responder.getRole()!=null) {r.setRole(responder.getRole()); responderRepo.save(r);}
+		if(responder.getResponderAbility()!=null) {r.setResponderAbility(responder.getResponderAbility()); responderRepo.save(r);}
 
         return responderRepo.findResponderById(id);
     }
