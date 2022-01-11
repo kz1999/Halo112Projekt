@@ -2,7 +2,7 @@ import React from "react";
 import '../styles/App.css';
 
 function AddMemberToStation(){
-    const [form, setForm] = React.useState( {member_id:null,station_id:null});
+    const [form, setForm] = React.useState( {member_id:'',station_id:'',responderAbility:''});
     const [responders, setResponders] = React.useState([]);
     const [responder, setResponder] = React.useState([]);
     const [station, setStation] = React.useState([]);
@@ -33,7 +33,8 @@ function AddMemberToStation(){
     function onSubmit(event){
         event.preventDefault();
         const data={
-            id:form.member_id
+            id:form.member_id,
+            responderAbility:form.responderAbility
         }
 
         const options={
@@ -48,28 +49,55 @@ function AddMemberToStation(){
     }
 
     function isValid(){
-        const {member_id} = form;
-        return member_id !== null;
+        const {member_id, responderAbility} = form;
+        return member_id !== '',responderAbility!== '';
     }
+    
 
-    return(
-        <div className="Test">
-            <h2>Add Member to station</h2>
-            <form onSubmit={onSubmit}>
-                {station.name}
-                <div className="FormRow">
-                    <label>member</label>
-                    <select name='member_id' onChange={onChange} value={form.member_id}>
-                        <option value={null}>Odaberi</option>
-                        {
-                            responders.filter(responder => responder.station_id === null).map(user => <option key={user.id} value={user.id}>{user.userName}</option>)
-                        }
-                    </select>
-                </div>
-                <button type="submit" disabled = {!isValid()}>Add</button>
-            </form>
-        </div>
-    )
+    const proba = [
+        {   name:'fireman', 
+            responderAbility: ["CISTERN","COMMAND","FOREST","LADDER"]
+        },
+        {
+            name:'policeman',
+            responderAbility: ["MOTORCYCLE", "CONTACT", "ARMORED", "CAR"]
+        },
+        {
+            name: "doctor",
+            responderAbility: ["AMBULANCE", "MOTORCYCLE"] 
+        }
+
+    ]
+    
+        return(
+            <div className="Test">
+                <h2>Add Member to station</h2>
+                <form onSubmit={onSubmit}>
+                    {station.name}
+                    <div className="FormRow">
+                        <label>member</label>
+                        <select name='member_id' onChange={onChange} value={form.member_id}>
+                            <option value=''>Odaberi</option>
+                            {
+                                responders.filter(responder => responder.station_id === null).map(user => <option key={user.id} value={user.id}>{user.userName}</option>)
+                            }
+                        </select>
+                    </div>
+                    <div className="FormRow">
+                        <label>responderAbility</label>
+                        <select name='responderAbility' onChange={onChange} value={form.responderAbility}>
+                            <option value=''>Odaberi</option>
+                            {
+                               proba.filter(proba => proba.name===responder.role).map(proba => proba.responderAbility.map(nesto => <option value={nesto}>{nesto}</option>))
+                            }
+                        </select>
+                    </div>
+
+                    <button type="submit" disabled = {!isValid()}>Add</button>
+                </form>
+            </div>
+        )
+    
 }
 
 export default AddMemberToStation;
