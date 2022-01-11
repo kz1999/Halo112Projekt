@@ -3,12 +3,13 @@ import '../styles/App.css';
 import Akcija from './Akcija'
 
 function CreateAction(){
-    const [form, setForm] = React.useState({description:""});
+    const [form, setForm] = React.useState({description:"", name:""});
 
     function addAction(event){
         event.preventDefault();
         
         const data = {
+            name: form.name,
             description: form.description
         };
 
@@ -29,20 +30,24 @@ function CreateAction(){
     }
 
     function isValid(){
-        const {description} = form;
-        return description.length > 0;
+        const {description, name} = form;
+        return description.length > 0 && name.length > 0;
     }
 
     return(
 
         <div className="CreateAction">
-            <h2>CreateAction</h2>
+            <h2>Otvori akciju</h2>
             <form onSubmit={addAction}>
                 <div className="FormRow">
-                    <label>description</label>
+                    <label>Naziv</label>
+                    <input name='name' onChange={onChange} value={form.name}/>
+                </div>
+                <div className="FormRow">
+                    <label>Informacije</label>
                     <input name='description' onChange={onChange} value={form.description}/>
                 </div>
-                <button type="submit" disabled = {!isValid()}>Create Action</button>
+                <button type="submit" disabled = {!isValid()}>Otvori akciju</button>
             </form>
         </div>
     )

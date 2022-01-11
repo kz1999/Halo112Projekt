@@ -3,11 +3,11 @@ import "../styles/App.css";
 import "../styles/Switch.css";
 
 import {
-  MapContainer,
-  TileLayer,
-  useMapEvents,
-  Popup,
-  Marker,
+MapContainer,
+TileLayer,
+useMapEvents,
+Popup,
+Marker,
 } from "react-leaflet";
 import * as L from "leaflet";
 import { LatLng } from "leaflet";
@@ -22,13 +22,13 @@ import carMarker from "../images/car.png";
 import rescMarker from "../images/person.png";
 
 function CurrentAction(props) {
-  const [responderLocation, setResponderLocation] = React.useState(
+const [responderLocation, setResponderLocation] = React.useState(
     new LatLng(0, 0)
-  );
-  const [respondersLocations, setRespondersLocations] = React.useState([]);
-  const [taskLocations, setTaskLocations] = React.useState({});
+);
+const [respondersLocations, setRespondersLocations] = React.useState([]);
+const [taskLocations, setTaskLocations] = React.useState({});
 
-  const iconPerson = new L.Icon({
+const iconPerson = new L.Icon({
     iconUrl: rescMarker,
     iconRetinaUrl: rescMarker,
     iconAnchor: null,
@@ -38,132 +38,136 @@ function CurrentAction(props) {
     shadowAnchor: null,
     iconSize: new L.Point(40, 40),
     //className: "leaflet-div-icon",
-  });
+});
 
-  React.useEffect(() => {
+React.useEffect(() => {
     fetch("/spasioci/current")
-      .then((spasioc) => spasioc.json())
-      .then((spasioc) => {
+    .then((spasioc) => spasioc.json())
+    .then((spasioc) => {
         if (spasioc !== undefined) {
-          fetch("/lokacija/" + spasioc.location_id)
+        fetch("/lokacija/" + spasioc.location_id)
             .then((location) => location.json())
             .then((location) => {
-              setResponderLocation(new LatLng(location.x, location.y));
-            });
-          fetch("/akcije/" + spasioc.currentAction_id)
+            setResponderLocation(new LatLng(location.x, location.y));});
+        fetch("/akcije/" + spasioc.currentAction_id)
             .then((akcija) => akcija.json())
             .then((akcija) => akcija.tasks)
             .then((tasks) =>
-              tasks.filter((task) => task.responder_id === spasioc.id)
+            tasks.filter((task) => task.responder_id === spasioc.id)
             )
             .then((tasks) => {
-              tasks.map((task) => {
+            tasks.map((task) => {
                 task.location_id.map((location_id) => {
-                  fetch("/lokacija/" + location_id)
+                fetch("/lokacija/" + location_id)
                     .then((location) => location.json())
                     .then((location) => {
-                      if (task.id in taskLocations) {
+                    if (task.id in taskLocations) {
                         taskLocations[task.id].push(
-                          new LatLng(location.x, location.y)
+                        new LatLng(location.x, location.y)
                         );
-                      } else {
+                    } else {
                         taskLocations[task.id] = [
-                          new LatLng(location.x, location.y),
+                        new LatLng(location.x, location.y),
                         ];
-                      }
+                    }
                     });
                 });
-              });
             });
-          fetch("/spasioci")
+            });
+        fetch("/spasioci")
             .then((spasioci) => spasioci.json())
             .then((spasioci) =>
-              spasioci.filter(
+            spasioci.filter(
                 (kolega) =>
-                  kolega.currentAction_id === spasioc.currentAction_id &&
-                  kolega.id !== spasioc.id
-              )
+                kolega.currentAction_id === spasioc.currentAction_id &&
+                kolega.id !== spasioc.id
+            )
             )
             .then((spasioci) =>
-              spasioci.map((kolega) => {
+            spasioci.map((kolega) => {
                 fetch("/lokacija/" + kolega.currentAction_id)
-                  .then((location) => location.json())
-                  .then((location) =>
+                .then((location) => location.json())
+                .then((location) =>
                     respondersLocations.push(new LatLng(location.x, location.y))
-                  );
-              })
+                );
+            })
             );
         }
-      });
-  }, []);
+    });
+}, []);
 
-  const createRoutineMachineLayer = (props) => {
+const createRoutineMachineLayer = (props) => {
     const instance = L.Routing.control({
-      waypoints: props.waypoints,
-      lineOptions: {
+    waypoints: props.waypoints,
+    lineOptions: {
         styles: [{ color: "#6FA1EC", weight: 4 }],
-      },
-      addWaypoints: true,
-      fitSelectedRoutes: true,
-      showAlternatives: false,
-      //geocoder: L.Control.Geocoder.nominatim(),
+    },
+    addWaypoints: true,
+    fitSelectedRoutes: true,
+    showAlternatives: false,
+    //geocoder: L.Control.Geocoder.nominatim(),
     });
     return instance;
-  };
-  const RoutingMachine = createControlComponent(createRoutineMachineLayer);
+};
+const RoutingMachine = createControlComponent(createRoutineMachineLayer);
 
-  function LocateUser() {
+function LocateUser() {
     const map = useMapEvents({
-      keypress() {
+    keypress() {
         map.locate();
-      },
-      locationfound(e) {
+    },
+    locationfound(e) {
         fetch("/spasioci/current")
             .then(spasioc => spasioc.json())
             .then(spasioc => {
+                const data={
+                    x: e.latlng.lat,
+                    y: e.latlng.lng
+                }
                 const options={
                     method: 'POST',
                     headers:{
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({x: e.latlng.lat, y: e.latlng.lng})
+                    body: JSON.stringify(data)
                 };
-                fetch('/lokacija/'+spasioc.location_id, options)
+                console.log(options)
+                fetch('/lokacija/'+spasioc.location_id, options).then(response => response.json()).then(data => console.log(data))
             })
         setResponderLocation(e.latlng);
-      },
+    },
     });
 
     return null;
-  }
+}
 
-  return (
+return (
     <div className="Action map">
-      <h2>Action id: {props.currentAction_id}</h2>
-      <MapContainer
+    <h2>Action id: {props.currentAction_id}</h2>
+    <MapContainer
         center={[45.8, 16]}
         zoom={13}
         scrollWheelZoom={true}
         closePopupOnClick={true}
-      >
+    >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <React.Fragment>
-          <LocateUser />
+        <LocateUser />
 
-          <Marker position={responderLocation} icon={iconPerson}></Marker>
-          {respondersLocations.map((marker) => (
+        <Marker position={responderLocation} icon={iconPerson}></Marker>
+        {respondersLocations.map((marker) => (
             <Marker key={marker} position={marker}></Marker>
-          ))}
+        ))}
         </React.Fragment>
         {Object.values(taskLocations).map((task) => (
-          <RoutingMachine key={task} waypoints={task} />
+        <RoutingMachine key={task} waypoints={task} />
         ))}
-      </MapContainer>
+    </MapContainer>
     </div>
-  );
+);
 }
 
 export default CurrentAction;

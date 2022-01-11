@@ -11,11 +11,12 @@ function Member(props){
         .then(data => {setMember(data)
             fetch('/korisnici/'+data.user_id)
             .then(data2 => data2.json())
-            .then(data2 => setUser(data2))});
+            .then(data2 => setUser(data2))
+        });   
     }, []);
 
     return(
-        <option value={member.id}className="Member">{member.userName}</option>
+        <option value={member.id}className="Member">{user.userName}</option>
     )
 }
 

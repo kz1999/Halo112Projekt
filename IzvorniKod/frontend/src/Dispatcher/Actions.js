@@ -14,7 +14,7 @@ function Actions(){
     return(
 
         <div className="Actions">
-            <h2>Actions</h2>
+            <h2>Akcije</h2>
             { allActions.map(akcija => <Akcija key={akcija.id} actionId={akcija.id}/>)}
         </div>
     )
