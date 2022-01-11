@@ -96,9 +96,9 @@ function CurrentAction(props) {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
                 <React.Fragment>
                 <Marker position={responderLocation} icon={iconPerson}></Marker>
-                {respondersLocations.map(marker => <Marker position={marker} ></Marker>)}
+                {respondersLocations.map(marker => <Marker key={marker} position={marker} ></Marker>)}
                 </React.Fragment>
-                {Object.values(taskLocations).map(task => <RoutingMachine waypoints={task}/>)}
+                {Object.values(taskLocations).map(task => <RoutingMachine key={task} waypoints={task}/>)}
             </MapContainer>
         </div>
         
