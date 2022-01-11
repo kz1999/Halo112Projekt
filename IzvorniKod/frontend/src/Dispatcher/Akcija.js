@@ -71,11 +71,6 @@ function Akcija(props){
         fetch('akcije/team/'+props.actionId+'/remove/'+form.member_id, options)
     }
 
-    function isValidSendRequest(){
-        const {how, urgencyLVL} = form;
-        return ;
-    }
-
     return(
         <div className="Action">
             Naziv akcije: {action.name}

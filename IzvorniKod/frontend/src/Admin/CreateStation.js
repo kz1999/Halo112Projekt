@@ -56,23 +56,23 @@ function CreateStation(){
 
     return(
         <div className="Test">
-            <h2>Add Station</h2>
+            <h2>Stvori stanicu</h2>
             <form onSubmit={onSubmit}>
                 <div className="FormRow">
-                    <label>name</label>
+                    <label>Ime stanice: </label>
                     <input name='name' onChange={onChange} value={form.name}/>
                 </div>
                 <div className="FormRow">
-                    <label>Role</label>
+                    <label>Vrsta stanice: </label>
                     <select name ="stationType" onChange={onChange} value={form.stationType}>
                         <option value="">Odaberi</option>
-                        <option value="fireman">Fire station</option>
-                        <option value="policeman">Police station</option>
-                        <option value="doctor">Hospital</option>
+                        <option value="fireman">Vatrogasna postaja</option>
+                        <option value="policeman">Policijska postaja</option>
+                        <option value="doctor">Bolnica</option>
                     </select>
                 </div>
                 <div className="FormRow">
-                    <label>director</label>
+                    <label>Direktor: </label>
                     <select name='director_id' onChange={onChange} value={form.director_id}>
                         <option value="">Odaberi</option>
                         {
@@ -80,7 +80,7 @@ function CreateStation(){
                         }
                     </select>
                 </div>
-                <button type="submit" disabled = {!isValid()}>Add</button>
+                <button type="submit" disabled = {!isValid()}>Stvori</button>
             </form>
             <div>
                 {
