@@ -9,11 +9,12 @@ function ResponderActionMenager(){
 
     React.useEffect(()=>{
         fetch('/spasioci/current')
-        .then(response => {response.json()})
+        .then(response => response.json())
         .then(data => {
             if(data !== undefined){
-            setRequestsList(data.requestsList)
-            setCurrentAction_id(data.currentAction_id)}
+                setRequestsList(data.requestsList)
+                setCurrentAction_id(data.currentAction_id)
+            }
         });
     });
 
