@@ -20,28 +20,28 @@ public class Responder {
 
     private Long station_id;
 
-    private boolean status;
+    private Boolean status=null;
 
     private Long currentAction_id;
 
     private Long location_id;
 
-    private boolean isDirector;
+    private Boolean isDirector=null;
 
     @ElementCollection
     private List<Long> requestsList;
 
-    ResponderAbility responderAbility;
+    private String responderAbility;
 
-    public ResponderAbility getResponderAbility() {
+    public String getResponderAbility() {
         return responderAbility;
     }
 
-    public void setResponderAbility(ResponderAbility responderAbility) {
+    public void setResponderAbility(String responderAbility) {
         this.responderAbility = responderAbility;
     }
 
-    public Responder(Long id, Long user_id, String userName, String role, Long station_id, boolean status, Long currentAction_id, Long location_id, boolean isDirector, List<Long> requestsList, ResponderAbility responderAbility) {
+    public Responder(Long id, Long user_id, String userName, String role, Long station_id, Boolean status, Long currentAction_id, Long location_id, Boolean isDirector, List<Long> requestsList, String responderAbility) {
         this.id = id;
         this.user_id = user_id;
         this.userName = userName;
@@ -106,11 +106,11 @@ public class Responder {
         this.station_id = station_id;
     }
 
-    public boolean isStatus() {
+    public Boolean isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
@@ -130,11 +130,11 @@ public class Responder {
         this.location_id = location_id;
     }
 
-    public boolean isDirector() {
+    public Boolean isDirector() {
         return isDirector;
     }
 
-    public void setDirector(boolean director) {
+    public void setDirector(Boolean director) {
         isDirector = director;
     }
 
