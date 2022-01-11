@@ -35,8 +35,10 @@ public class RequestServiceJpa implements RequestService {
         requestRepo.save(request);
         //List<Responder> responderList = new ArrayList<Responder>();
         for(var responder: responderRepo.findAll()){
-            responder.getRequestsList().add(request.getId());
-            responderRepo.save(responder);
+            if(responder.getResponderAbility()==request.getResponderAbility() && responder.isStatus()) {
+                responder.getRequestsList().add(request.getId());
+                responderRepo.save(responder);
+            }
         }
         return requestRepo.findById(request.getId()).get();
     }
