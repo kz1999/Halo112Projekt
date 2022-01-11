@@ -45,6 +45,8 @@ public class ResponderServiceJpa implements ResponderService {
 		l.setY(0);
 		locationRepo.save(l);
 		responder.setLocation_id(l.getId());
+		if(responder.isStatus()==null) responder.setStatus(false);
+		if(responder.isDirector()==null) responder.setDirector(false);
         return responderRepo.save(responder);
     }
 
