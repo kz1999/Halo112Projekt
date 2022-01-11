@@ -147,6 +147,9 @@ public class ActionServiceJpa implements ActionService {
 			Action action = actionRepo.findById(actionID).get();
 			boolean isRemoved = action.getTeam().remove(responderRepo.findById(responderID).get());
 			actionRepo.save(action);
+			Responder r = responderRepo.getById(responderID);
+			r.setCurrentAction_id(null);
+			responderRepo.save(r);
 			return isRemoved;
 		}
 		return false;
