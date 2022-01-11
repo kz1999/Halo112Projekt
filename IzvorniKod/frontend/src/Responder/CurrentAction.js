@@ -118,6 +118,18 @@ function CurrentAction(props) {
         map.locate();
       },
       locationfound(e) {
+        fetch("/spasioci/current")
+            .then(spasioc => spasioc.json())
+            .then(spasioc => {
+                const options={
+                    method: 'POST',
+                    headers:{
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({x: e.latlng.lat, y: e.latlng.lng})
+                };
+                fetch('/lokacija/'+spasioc.location_id, options)
+            })
         setResponderLocation(e.latlng);
       },
     });
@@ -140,6 +152,7 @@ function CurrentAction(props) {
         />
         <React.Fragment>
           <LocateUser />
+
           <Marker position={responderLocation} icon={iconPerson}></Marker>
           {respondersLocations.map((marker) => (
             <Marker key={marker} position={marker}></Marker>

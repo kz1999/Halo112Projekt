@@ -63,18 +63,22 @@ function AllRespondersMap(props){
 
     const createRoutineMachineLayer = (props) => {
         const instance = L.Routing.control({
-        waypoints: props.waypoints,
-        lineOptions: {
+          //waypoints: [L.latLng(45.8, 16), L.latLng(46, 16)],
+          lineOptions: {
             styles: [{ color: "#6FA1EC", weight: 4 }],
-        },
-        addWaypoints: true,
-
-        fitSelectedRoutes: true,
-        showAlternatives: false,
-        //geocoder: L.Control.Geocoder.nominatim(),
+          },
+          addWaypoints: true,
+          draggableWaypoints: true,
+          routeWhileDragging: true,
+          fitSelectedRoutes: true,
+          //showAlternatives: false,
+          collapsible: true,
+          geocoder: L.Control.Geocoder.nominatim(),
+          //showAlternatives: true,
         });
+      
         return instance;
-    };
+      };
     const RoutingMachine = createControlComponent(createRoutineMachineLayer);
 
     
@@ -96,7 +100,10 @@ function AllRespondersMap(props){
             )
         }else if(form.option==='4' && form.responder_id!==''){
             return(
-                <Responder responder_id={form.responder_id}/>
+                <React.Fragment>
+                    <Responder responder_id={form.responder_id}/>
+                    <RoutingMachine/>
+                </React.Fragment>
             )
         }
         return(
@@ -128,7 +135,7 @@ function AllRespondersMap(props){
                 </div>
                 <button type="submit" hidden={form.option !== '4'} disabled = {form.responder_id === ''}>Dodaj zadatak</button>
             </form>
-            <div className="Action map center">
+            <div className="Action map">
                 <MapContainer
                     center={[45.8, 16]}
                     zoom={13}
@@ -139,7 +146,7 @@ function AllRespondersMap(props){
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
 
                     <FilterAllResponders/>
-                    <RoutingMachine waypoints={[new L.latLng(4,4), new L.latLng(6,6)]}/>
+                    
                 </MapContainer>
             </div>
             
