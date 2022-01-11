@@ -62,8 +62,7 @@ function HeaderLoggedIn(props) {
           <header className="App-header-container">
             <div className="App-header">
               <Link to="/station" hidden={props.isDirector===false}>Add member to your station</Link>
-              <Link to="/status">Status</Link>
-              <Link to="/map">Map</Link>
+              <Link to="/status">Akcije</Link>
               <button onClick={logout}>
                 user: {props.currentUser}, role: {props.role}
                 <div/>

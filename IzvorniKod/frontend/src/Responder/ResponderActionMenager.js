@@ -4,42 +4,37 @@ import Status from "./Status";
 import Request from "./Request";
 
 function ResponderActionMenager(){
-    const [actions, setActions] = React.useState([]);
-    const [responder, setResponder] = React.useState([]);
-
-    React.useEffect(()=>{
-        fetch('/akcije')
-        .then(data => data.json())
-        .then(data => setActions(data));
-    }, []);
+    const [currentAction_id, setCurrentAction_id] = React.useState(null);
+    const [requestsList, setRequestsList] = React.useState([]);
 
     React.useEffect(()=>{
         fetch('/spasioci/current')
-        .then(data => data.json())
-        .then(data => setResponder(data));
-    }, []);
+        .then(response => {response.json()})
+        .then(data => {
+            if(data !== undefined){
+            setRequestsList(data.requestsList)
+            setCurrentAction_id(data.currentAction_id)}
+        });
+    });
 
-    if(responder.currentAction_id === null){
-
+    if(currentAction_id !== null){
         return(
             <div className="ActionMenager">
                 <Status/>
-                <h2>Pozivi na akciju:</h2>
-                {
-                    responder.requestsList.map(request_id=> 
-                    <Request key={request_id}request_id={request_id}></Request>)
-                }
+                <CurrentAction currentAction_id={currentAction_id}/>
             </div>
         )
     }
     return(
         <div className="ActionMenager">
             <Status/>
-            <CurrentAction currentAction_id={responder.currentAction_id}/>
+            <h2>Pozivi na akciju:</h2>
+            {
+                requestsList.map(request_id=> 
+                <Request key={request_id}request_id={request_id}></Request>)
+            }
         </div>
     )
-
-
 }
 
 export default ResponderActionMenager;
