@@ -31,10 +31,17 @@ public class Responder {
     @ElementCollection
     private List<Long> requestsList;
 
-    public Responder() {
+    ResponderAbility responderAbility;
+
+    public ResponderAbility getResponderAbility() {
+        return responderAbility;
     }
 
-    public Responder(Long id, Long user_id, String userName, String role, Long station_id, boolean status, Long currentAction_id, Long location_id, boolean isDirector, List<Long> requestsList) {
+    public void setResponderAbility(ResponderAbility responderAbility) {
+        this.responderAbility = responderAbility;
+    }
+
+    public Responder(Long id, Long user_id, String userName, String role, Long station_id, boolean status, Long currentAction_id, Long location_id, boolean isDirector, List<Long> requestsList, ResponderAbility responderAbility) {
         this.id = id;
         this.user_id = user_id;
         this.userName = userName;
@@ -45,6 +52,10 @@ public class Responder {
         this.location_id = location_id;
         this.isDirector = isDirector;
         this.requestsList = requestsList;
+        this.responderAbility = responderAbility;
+    }
+
+    public Responder() {
     }
 
     public List<Long> getRequestsList() {
