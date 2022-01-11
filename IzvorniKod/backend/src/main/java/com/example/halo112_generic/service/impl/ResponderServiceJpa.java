@@ -69,13 +69,13 @@ public class ResponderServiceJpa implements ResponderService {
 				r = requestRepo.getById(request);
 				if(responder.getCurrentAction_id()==null){
 					responder.setCurrentAction_id(r.getAction_id());
-					actionService.addResponderToAction(r.getAction_id(),responder.getId());
+					actionService.addResponderToAction(responder.getId(),r.getAction_id());
 				}
 				else{
 					Long oldAction = responder.getCurrentAction_id();
 					Long newAction = r.getAction_id();
-					actionService.removeResponderFromAction(oldAction, responder.getId());
-					actionService.addResponderToAction(newAction, responder.getId());
+					actionService.removeResponderFromAction(responder.getId(),oldAction);
+					actionService.addResponderToAction(responder.getId(),newAction);
 					responder.setCurrentAction_id(newAction);
 				}
 			}
