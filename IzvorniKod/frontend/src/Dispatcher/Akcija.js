@@ -1,5 +1,6 @@
 import React from "react";
 import '../styles/App.css';
+import '../styles/Akcija.css';
 import OPTGroupStanica from "./OPTGroupStanica";
 import Member from "./Member"
 
@@ -73,35 +74,38 @@ function Akcija(props){
 
     return(
         <div className="Action">
-            Naziv akcije: {action.name}
-            <form onSubmit={sendRequest}>
+            <div><b>Naziv akcije: {action.name}</b></div>
+            <form class="UserFormAction" onSubmit={sendRequest}>
                 <div className="FormRow">
-                    <label>Prijevozno sredstvo</label>
+                    <label class="form-label">Prijevozno sredstvo:</label>
                     <select name='how' onChange={onChange}>
                         <option value="">Odaberi</option> 
                         {["CISTERN", "COMMAND", "FOREST", "LADDER", "AMBULANCE", "MOTORCYCLE", "CONTACT", "ARMORED", "CAR"].map(option => <option key={option} value={option}>{option}</option>)}
                     </select>
                 </div>
                 <div className="FormRow">
-                    <label>Razina hitnosti</label>
+                    <label class="form-label">Razina hitnosti:</label>
                     <select name='urgencyLVL' onChange={onChange}>
                         <option value=''>Odaberi</option>
                         {[1,2,3,4,5,6,7,8,9,10].map(lvl => <option key={lvl} value={lvl}>{lvl}</option>)}
                     </select>
                 </div>
-                <button type="submit" disabled = {!(form.how !== '' && form.urgencyLVL !=='')}>Pošalji zahtjev</button>
+                <button class="action-button" type="submit" disabled = {!(form.how !== '' && form.urgencyLVL !=='')}>Pošalji zahtjev</button>
             </form>
-            <form onSubmit={removeResponderFromAction}>
+            <div>
+            <form class="UserFormActionRemove" onSubmit={removeResponderFromAction}>
                 <div className="FormRow">
-                    <label>Ukloni spasioca sa akcije</label>
+                    <label class="form-label">Ukloni spasioca sa akcije</label>
                     <select name='member_id' onChange={onChange}>
                         <option value="">Odaberi</option>
                         {actionTeam.map(responder=> <option value = {responder.id}>{responder.userName}</option>)}
                     </select>
                 </div>
-                <button type="submit" disabled = {form.member_id === ""}>Ukloni spasioca sa akcije</button>
+                <button class="remove-button" type="submit" disabled = {form.member_id === ""}>Ukloni spasioca sa akcije</button>
             </form>
-            <button onClick={deleteAction}>Označi akciju kao gotovu</button>
+            <button class="over-button" onClick={deleteAction}>Označi akciju kao gotovu</button>
+            <hr className="separator"></hr>
+            </div>
         </div>
     )
 }

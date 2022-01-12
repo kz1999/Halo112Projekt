@@ -1,6 +1,7 @@
 import React from "react";
 import '../styles/App.css';
 import '../styles/Switch.css';
+import '../styles/CreateTask.css';
 import Member from "./Member";
 
 function CreateTask(props){
@@ -69,14 +70,14 @@ function CreateTask(props){
     
     return(
         <div className="">
-            <form onSubmit={createTask}>
+            <form class="UserForm" onSubmit={createTask}>
                 Zadatak
                 <div className="FormRow">
-                    <label>Opis</label>
+                    <label class="form-label">Opis</label>
                     <input name='description' onChange={onChange} value={form.description}/>
                 </div>
                 <div className="FormRow">
-                    <label>Spasilac</label>
+                    <label class="form-label">Spasilac</label>
                     <select name='responder_id' onChange={onChange}>
                         <option value=''>Odaberi spasioca</option>
                         {responders.filter(responder=>responder.currentAction_id!==null).map(responder=> <Member key={responder.id}memberId={responder.id}/>)}
@@ -93,8 +94,8 @@ function CreateTask(props){
                         {locations.map(location=><option key={location.id} value={location.id}>{location.id}</option>)}
                     </select>
                 </div>
-                <button type="submit" disabled = {form.location===""}>add Location</button>
-            </form>
+                <button class="task-button" type="submit" disabled = {form.location===""}>add Location</button>
+            </form> 
         </div>
     )
 }

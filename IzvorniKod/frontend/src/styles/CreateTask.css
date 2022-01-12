@@ -1,0 +1,35 @@
+.UserFormTask {
+    padding-top: 10px;
+    width: 20%;
+    margin: auto;
+}
+
+
+.form-label {
+    padding-right: 5px;
+    text-align: left;
+    width: 60%;
+}
+
+.FormRow {
+     padding-top: 6px;
+     margin: auto;
+     text-align: left;
+}
+
+.task-button {
+    width: 30%;
+    background-color: #3b7de0;
+    color: white;
+    padding: 6px 4px;
+    margin: 25px 0;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .map-padded {
+      padding-top: 15px;
+  }
+

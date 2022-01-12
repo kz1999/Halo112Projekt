@@ -1,0 +1,86 @@
+
+  .action-button {
+    width: 120px;
+    background-color: #3b7de0;
+    color: white;
+    padding: 6px 4px;
+    margin: 25px 0;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .form-label {
+    padding-right: 5px;
+    text-align: left;
+    width: 60%;
+}
+
+.FormRow {
+     padding-top: 6px;
+     margin: auto;
+     text-align: left;
+}
+
+.UserFormAction {
+    padding-top: 5px;
+    padding-left: 10px;
+    width: 300px;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 15px;
+    border-width: 1px;
+    border-color: #000000;
+    border-style: solid;
+}
+
+
+.UserFormActionRemove {
+    padding-top: 5px;
+    padding-left: 10px;
+    width: 300px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    border-width: 1px;
+    border-color: #000000;
+    border-style: solid;
+}
+
+.remove-button {
+    width: 150px;
+    background-color: #3b7de0;
+    color: white;
+    padding: 6px 4px;
+    margin: 25px 0;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.over-button{
+    width: 200px;
+    background-color: #ff0000;
+    color: white;
+    padding: 6px 4px;
+    margin-bottom: 30px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.edit-action-form {
+    border-width: 2px;
+    border-color: #000000;
+    border: 2px 2px 2px 2px;
+}
+
+.separator{
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, transparent, #CCC, transparent); 
+}

@@ -1,0 +1,47 @@
+.header-link {
+    text-decoration: none;
+    color: #7aa4e4;
+}
+
+.header-link:active {
+    color: white;
+}
+
+.App-header-container {
+    background-color: #232049;
+    color: white;
+    min-height: 100px;
+    display: flex;
+  }
+  
+  .App-header {
+    margin: auto;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+
+  .App-header-dispatcher {
+    margin: auto;
+    width: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+
+  .header-button {
+    background-color: #3b7de0;
+    color: white;
+    padding: 10px 10px;
+    margin: 16px 0;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+

@@ -1,6 +1,7 @@
 import React from "react";
 import '../styles/App.css';
 import '../styles/Switch.css';
+import '../styles/CreateTask.css';
 import CreateTask from './CreateTask'
 
 import {MapContainer,TileLayer,useMapEvents,Popup,Marker,} from "react-leaflet";
@@ -161,9 +162,9 @@ function AllRespondersMap(props){
 
     return(
         <div className="">
-            <form onSubmit={addZadatak}>
+            <form className="UserFormTask" onSubmit={addZadatak}>
                 <div className="FormRow">
-                    <label>Opcija</label>
+                    <label className="form-label">Opcija:</label>
                     <select name='option' onChange={onChange} value={form.option}>
                         <option value="">Odaberi</option>
                         <option value="1">svi spasioci</option>
@@ -181,9 +182,9 @@ function AllRespondersMap(props){
                         {responders.filter(responder => responder.currentAction_id !== null).map(responder=><option key={responder.id} value={responder.id} label={responder.userName}/>)}
                     </select>
                 </div>
-                <button type="submit" hidden={form.option !== '4'} disabled = {form.responder_id === ''}>Dodaj zadatak</button>
+                <button className="" type="submit" hidden={form.option !== '4'} disabled = {form.responder_id === ''}>Dodaj zadatak</button>
             </form>
-            <div className="Action map">
+            <div className="Action map map-padded">
                 <MapContainer
                     center={[45.8, 16]}
                     zoom={13}
