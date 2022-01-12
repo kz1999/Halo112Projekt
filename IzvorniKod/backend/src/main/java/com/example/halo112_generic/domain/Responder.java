@@ -151,6 +151,7 @@ public class Responder {
                 ", location_id=" + location_id +
                 ", isDirector=" + isDirector +
                 ", requestsList=" + requestsList +
+                ", responderAbility='" + responderAbility + '\'' +
                 '}';
     }
 }

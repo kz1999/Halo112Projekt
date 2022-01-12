@@ -17,9 +17,9 @@ import "leaflet-control-geocoder/dist/Control.Geocoder.js";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.js";
 import "leaflet-routing-machine";
-//import RoutingMachine from "../Routing";
 import carMarker from "../images/car.png";
 import rescMarker from "../images/person.png";
+import Comments from "../Comments";
 
 function CurrentAction(props) {
   const [responderLocation, setResponderLocation] = React.useState(
@@ -88,14 +88,49 @@ function CurrentAction(props) {
               spasioci.map((kolega) => {
                 fetch("/lokacija/" + kolega.currentAction_id)
                   .then((location) => location.json())
-                  .then((location) =>
-                    respondersLocations.push(new LatLng(location.x, location.y))
-                  );
+                  .then((location) => {
+                    console.log(location);
+                    if (location != undefined) {
+                      respondersLocations.push(
+                        new LatLng(location.x, location.y)
+                      );
+                    } else {
+                      console.log("error");
+                    }
+                  });
               })
             );
         }
       });
   }, []);
+  const [arr, setArr] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch("/komentari")
+      .then((data) => data.json())
+      .then((data) => data.filter((comment) => comment.location_id != null))
+      .then((datajson) => setArr(datajson));
+  }, []);
+  if (arr.length == 0) {
+    return null;
+  }
+
+  const comments = [];
+  let x;
+  let y;
+
+  for (let i = 0; i < arr.length; i++) {
+    let com = 0;
+    fetch("/lokacija/" + arr[i].location_id)
+      .then((data) => data.json())
+      .then((data) => (com = data))
+      .then((data) => {
+        if (data !== undefined) {
+          comments.push([new LatLng(data.x, data.y), arr[i].text]);
+        }
+      })
+      .catch((err) => console.log(err.message));
+  }
 
   const createRoutineMachineLayer = (props) => {
     const instance = L.Routing.control({
@@ -118,6 +153,25 @@ function CurrentAction(props) {
         map.locate();
       },
       locationfound(e) {
+        fetch("/spasioci/current")
+          .then((spasioc) => spasioc.json())
+          .then((spasioc) => {
+            const data = {
+              x: e.latlng.lat,
+              y: e.latlng.lng,
+            };
+            const options = {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            };
+            console.log(options);
+            fetch("/lokacija/" + spasioc.location_id, options)
+              .then((response) => response.json())
+              .then((data) => console.log(data));
+          });
         setResponderLocation(e.latlng);
       },
     });
@@ -128,6 +182,7 @@ function CurrentAction(props) {
   return (
     <div className="Action map">
       <h2>Action id: {props.currentAction_id}</h2>
+
       <MapContainer
         center={[45.8, 16]}
         zoom={13}
@@ -140,6 +195,7 @@ function CurrentAction(props) {
         />
         <React.Fragment>
           <LocateUser />
+
           <Marker position={responderLocation} icon={iconPerson}></Marker>
           {respondersLocations.map((marker) => (
             <Marker key={marker} position={marker}></Marker>
@@ -148,7 +204,13 @@ function CurrentAction(props) {
         {Object.values(taskLocations).map((task) => (
           <RoutingMachine key={task} waypoints={task} />
         ))}
+        {Object.values(comments).map((comment) => (
+          <Marker key={comment[0]} position={comment[0]}>
+            <Popup>{comment[1]}</Popup>
+          </Marker>
+        ))}
       </MapContainer>
+      <Comments />
     </div>
   );
 }

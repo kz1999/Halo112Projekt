@@ -37,4 +37,9 @@ public class LocationController {
         return locationService.findById(id);
     }
 
+    @PostMapping("/{id}")
+    public void editLocation(@PathVariable Long id, @RequestBody Location location) throws Exception {
+        locationService.editLocation(id, location);
+    }
+
 }

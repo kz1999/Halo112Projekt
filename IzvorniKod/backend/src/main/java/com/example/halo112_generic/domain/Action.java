@@ -31,6 +31,7 @@ public class Action {
     private String description;
 
     @ElementCollection
+    @Column(length = 64000000)
     private List<String> gallery;
 
     public String getName() {
