@@ -1,5 +1,6 @@
 import React from "react";
 import '../styles/App.css';
+import '../styles/AddLocation.css';
 
 function CreateLocation(){
     const [form, setForm] = React.useState( {name:'', x:'', y:''});
@@ -37,20 +38,20 @@ function CreateLocation(){
     return(
         <div className="Location">
             <h2>Add Location</h2>
-            <form onSubmit={onSubmit}>
+            <form className="UserForm" onSubmit={onSubmit}>
                 <div className="FormRow">
-                    <label>name</label>
-                    <input name='name' onChange={onChange} value={form.name}/>
+                    <label className="form-label">Name:</label>
+                    <input className="form-field" name='name' onChange={onChange} value={form.name}/>
                 </div>
                 <div className="FormRow">
-                    <label>x</label>
-                    <input name='x' type='number' onChange={onChange} value={form.x}/>
+                    <label className="form-label">X</label>
+                    <input className="form-field" name='x' type='number' onChange={onChange} value={form.x}/>
                 </div>
                 <div className="FormRow">
-                    <label>y</label>
-                    <input name='y' type='number' onChange={onChange} value={form.y}/>
+                    <label className="form-label">Y</label>
+                    <input className="form-field" name='y' type='number' onChange={onChange} value={form.y}/>
                 </div>
-                <button type="submit" disabled = {!isValid()}>Add</button>
+                <button className="add-button" type="submit" disabled = {!isValid()}>Add</button>
             </form>
         </div>
     )

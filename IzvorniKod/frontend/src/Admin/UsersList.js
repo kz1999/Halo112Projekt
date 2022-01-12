@@ -1,5 +1,7 @@
 import React from "react";
 import User from "./User";
+import '../styles/UsersList.css';
+
 
 function UsersList(props){
 
@@ -15,7 +17,7 @@ function UsersList(props){
 
     return(
         <div className="Users">
-            <h2>Popis korisnika</h2>
+            <h2 class="title">Popis korisnika</h2>
             <div className="flex-container">
                 <div>KORISNICKO IME</div>
                 <div>ŠIFRA</div>

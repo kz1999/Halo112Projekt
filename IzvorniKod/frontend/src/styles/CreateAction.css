@@ -1,0 +1,41 @@
+.submit-button {
+    width: 120px;
+    background-color: #3b7de0;
+    color: white;
+    padding: 6px 4px;
+    margin: 25px 0;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .form-label {
+    padding-right: 5px;
+    text-align: left;
+    width: 60%;
+}
+
+.FormRow {
+     padding-top: 6px;
+     margin: auto;
+     text-align: left;
+}
+
+.UserForm {
+    width: 200px;
+    margin: auto;
+}
+
+.title {
+    padding-top: 15px;
+    font-size: 25px;
+  }
+
+  .form-label-opcija {
+    padding-right: 5px;
+    text-align: left;
+    width: 60%;
+}
+
+  

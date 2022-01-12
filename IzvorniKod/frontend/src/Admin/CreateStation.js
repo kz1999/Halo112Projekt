@@ -1,5 +1,5 @@
 import React from "react";
-import '../styles/App.css';
+import '../styles/CreateStation.css';
 
 function CreateStation(){
     const [form, setForm] = React.useState( {name:'', director_id:"", stationType:""});
@@ -56,14 +56,14 @@ function CreateStation(){
 
     return(
         <div className="Test">
-            <h2>Stvori stanicu</h2>
-            <form onSubmit={onSubmit}>
+            <div class="form-title"><b>Stvori stanicu</b></div>
+            <form class="UserFormStation" onSubmit={onSubmit}>
                 <div className="FormRow">
                     <label>Ime stanice: </label>
-                    <input name='name' onChange={onChange} value={form.name}/>
+                    <input class="form-field" name='name' onChange={onChange} value={form.name}/>
                 </div>
                 <div className="FormRow">
-                    <label>Vrsta stanice: </label>
+                    <label class="form-label">Vrsta stanice: </label>
                     <select name ="stationType" onChange={onChange} value={form.stationType}>
                         <option value="">Odaberi</option>
                         <option value="fireman">Vatrogasna postaja</option>
@@ -72,7 +72,7 @@ function CreateStation(){
                     </select>
                 </div>
                 <div className="FormRow">
-                    <label>Direktor: </label>
+                    <label class="form-label">Direktor: </label>
                     <select name='director_id' onChange={onChange} value={form.director_id}>
                         <option value="">Odaberi</option>
                         {
@@ -80,15 +80,15 @@ function CreateStation(){
                         }
                     </select>
                 </div>
-                <button type="submit" disabled = {!isValid()}>Stvori</button>
+                <button class="add-button" type="submit" disabled = {!isValid()}>Stvori</button>
             </form>
             <div>
                 {
-                    stations.map(station => <div key={station.id}>{station.name}, {
+                    stations.map(station => <div className="station-name" key={station.id}><b>{station.name}, {
                         responders.filter(user => 
                             user.id === station.director_id
                         ).map(user => <a key={user.id}>{user.userName}</a>)
-                    }</div>)
+                    }</b></div>)
                 }
             </div>
         </div>

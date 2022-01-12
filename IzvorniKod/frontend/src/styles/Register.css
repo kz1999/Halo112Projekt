@@ -3,11 +3,16 @@
     color: red;
   }
   
-  .UserForm {
-      padding-top: 30px;
-      width: 20%;
+  .UserFormReg {
+      padding-left: 30px;
+      padding-right: 30px;
+      width: 300px;
       margin: auto;
-
+      margin-top: 30px;
+      border-radius: 15px;
+      border-width: 1px;
+      border-color: #000000;
+      border-style: solid;
   }
 
   .form-field {
