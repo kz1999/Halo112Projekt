@@ -48,7 +48,7 @@ public class User {
     @Size(max=30)
     private String userName;
 
-    @Column(length = 1337)
+    @Column(length = 64000000)
     private String photo;
 
     private String passwordHash;

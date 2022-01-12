@@ -39,6 +39,16 @@ function Register(){
         const {username, role} = form;
         return username.length >= 1 && role !== null ;
     }
+    function picture(e){
+        const {name} = e.target;
+        console.log(e.target.files[0]);
+        const reader = new FileReader();
+
+        reader.readAsDataURL(e.target.files[0]);
+        reader.addEventListener('load',()=>{
+            setForm(oldForm => ({...oldForm, [name]: reader.result}))
+        })        
+    }
 
     return(
         <div className="UserForm">
@@ -81,7 +91,7 @@ function Register(){
                 </div>
                 <div className="FormRow">
                     <label>Picture </label>
-                    <input type ="file" name = "picture" onChange={onChange} value={form.photo}></input>
+                    <input type ="file" name = "photo" onChange={picture} ></input>
                 </div>
                 <button type="submit" disabled = {!isValid()}>Register</button>
             </form>
