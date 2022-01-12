@@ -33,14 +33,14 @@ public class RequestServiceJpa implements RequestService {
     @Override
     public Request createRequest(Request request) {
         requestRepo.save(request);
-        //List<Responder> responderList = new ArrayList<Responder>();
+        Request req = requestRepo.findById(request.getId()).get();
         for(var responder: responderRepo.findAll()){
-            if(responder.getResponderAbility()==request.getResponderAbility() && responder.isStatus()) {
-                responder.getRequestsList().add(request.getId());
+            if(responder.getResponderAbility()!=null && responder.getResponderAbility().equals(req.getResponderAbility()) && responder.isStatus()==true) {
+                responder.getRequestsList().add(req.getId());
                 responderRepo.save(responder);
             }
         }
-        return requestRepo.findById(request.getId()).get();
+        return req;
     }
 
     @Override
