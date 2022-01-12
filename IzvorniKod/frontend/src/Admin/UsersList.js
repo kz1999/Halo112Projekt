@@ -15,16 +15,16 @@ function UsersList(props){
 
     return(
         <div className="Users">
-            <h2>Users list</h2>
+            <h2>Popis korisnika</h2>
             <div className="flex-container">
-                <div>USERNAME</div>
-                <div>PASSWORD</div>
-                <div>EMAIL</div>
-                <div>NAME</div>
-                <div>SURNAME</div>
-                <div>PHONE NUMBER</div>
-                <div>ROLE</div>
-                <div>CONFIRMED</div>
+                <div>KORISNICKO IME</div>
+                <div>ŠIFRA</div>
+                <div>E-MAIL</div>
+                <div>IME</div>
+                <div>PREZIME</div>
+                <div>TELEFONSKI BROJ</div>
+                <div>ULOGA</div>
+                <div>POTVRĐEN</div>
             </div>
             { users.map(user => <User key={user.id} user = {user} setUserToChange = {props.setUserToChange}/>)}
         </div>

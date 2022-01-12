@@ -9,18 +9,22 @@ function ResponderActionMenager(){
 
     React.useEffect(()=>{
         fetch('/spasioci/current')
-        .then(response => {response.json()})
+        .then(response => {
+            if(response.status === 200)
+                return response.json();
+            return undefined;
+        })
         .then(data => {
             if(data !== undefined){
-            setRequestsList(data.requestsList)
-            setCurrentAction_id(data.currentAction_id)}
+                setRequestsList(data.requestsList)
+                setCurrentAction_id(data.currentAction_id)
+            }
         });
     });
 
     if(currentAction_id !== null){
         return(
             <div className="ActionMenager">
-                <Status/>
                 <CurrentAction currentAction_id={currentAction_id}/>
             </div>
         )
