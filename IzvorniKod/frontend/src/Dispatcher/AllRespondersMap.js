@@ -21,7 +21,7 @@ function AllRespondersMap(props){
     const [form, setForm] = React.useState({option:"", action:"", responder_id:""});
     const [actions, setActions] = React.useState([]);
     const [responders, setResponders] = React.useState([]);
-    const [waypoints, setWaypoints] = React.useState([]);
+    const [taskWaypoints, setTaskWaypoints] = React.useState([]);
 
     React.useEffect(()=>{
         fetch('/akcije')
@@ -40,7 +40,7 @@ function AllRespondersMap(props){
     function Responder(props){ 
         const [location, setLocation] = React.useState(null);
         const [responder, setResponder] = React.useState(null);
-
+        
         React.useEffect(()=>{
             fetch('/spasioci/'+props.responder_id)
             .then(data => data.json())
@@ -60,6 +60,7 @@ function AllRespondersMap(props){
             <div/>
         )
     }
+    var instanceCopy;
 
     const createRoutineMachineLayer = (props) => {
         const instance = L.Routing.control({
@@ -74,13 +75,57 @@ function AllRespondersMap(props){
           //showAlternatives: false,
           collapsible: true,
           geocoder: L.Control.Geocoder.nominatim(),
-          //showAlternatives: true,
+          showAlternatives: true,
         });
-      
+        instanceCopy = instance;
         return instance;
       };
     const RoutingMachine = createControlComponent(createRoutineMachineLayer);
 
+    function addZadatak(event){
+        event.preventDefault()
+        var waypoints = []
+        instanceCopy._plan._waypoints.map(waypoint => waypoint.latLng).filter(waypoint => waypoint !== undefined && waypoint !== null).map(waypoint => waypoints.push(waypoint))
+        
+        if(waypoints.length >= 2){
+            var locations = []
+            waypoints.map(waypoint => {
+                const options={
+                    method: 'POST',
+                    headers:{'Content-Type': 'application/json'},
+                    body: JSON.stringify({name: "waypoint", x: waypoint.lat, y: waypoint.lng})
+                };
+                //console.log(options)
+                fetch('/lokacija', options).then(data => data.json()).then(data => locations.push(data.id)).then(() => {
+                    if(locations.length === waypoints.length){
+                        const data = {
+                            text: "asd",
+                            responder_id: parseInt(form.responder_id),
+                            location_id: locations};
+                
+                        const options={
+                            method: 'POST',
+                            headers:{'Content-Type': 'application/json'},
+                            body: JSON.stringify(data)};
+                
+                        fetch('/task', options)
+                            .then(task=>task.json())
+                            .then(task=>{
+                            fetch('/spasioci/'+task.responder_id)
+                                .then(responder=>responder.json())
+                                .then(responder=>{
+                                fetch('/akcije/tasks/'+responder.currentAction_id, {
+                                    method: 'POST',
+                                    headers:{'Content-Type': 'application/json'},
+                                    body: JSON.stringify({id: task.id}) 
+                                })})}).then(()=>console.log("zadatk dodan"))
+    
+                    }}
+
+            )
+            
+        })
+    }}
     
     function FilterAllResponders(){ 
         if(form.option==='1'){
@@ -90,7 +135,7 @@ function AllRespondersMap(props){
             )
         }else if(form.option==='2'){
             return(
-                responders.filter(responder => responder.status===true && responder.action===null).map(responder=>
+                responders.filter(responder => responder.status===true && responder.currentAction_id===null).map(responder=>
                     <Responder key={responder.id} responder_id={responder.id}/>)
             )
         }else if(form.option==='3' && form.action!==''){
@@ -99,10 +144,11 @@ function AllRespondersMap(props){
                     <Responder key={responder.id} responder_id={responder.id}/>) 
             )
         }else if(form.option==='4' && form.responder_id!==''){
+            
             return(
                 <React.Fragment>
                     <Responder responder_id={form.responder_id}/>
-                    <RoutingMachine/>
+                    <RoutingMachine id="RoutingMachine"/>
                 </React.Fragment>
             )
         }
@@ -111,9 +157,11 @@ function AllRespondersMap(props){
         )
     }
 
+    
+
     return(
         <div className="">
-            <form>
+            <form onSubmit={addZadatak}>
                 <div className="FormRow">
                     <label>Opcija</label>
                     <select name='option' onChange={onChange} value={form.option}>
