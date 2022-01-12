@@ -1,0 +1,76 @@
+
+  
+  .error{
+    color: red;
+  }
+  
+  .leaflet-container {  
+    width: 70vw;
+    height: 70vh;  
+    z-index: 1;
+  }
+
+  .UserForm {
+      padding-top: 30px;
+      width: 20%;
+      margin: auto;
+      border-radius: 15px;
+      border-width: 2px;
+      border-color: #000000;
+  }
+
+  .form-field {
+    background-color: white;
+    border-radius: 12px;
+    border-width: 1px;
+    border-color: #000000;
+    box-sizing: border-box;
+    color: #eee;
+    font-size: 18px;
+    height: 100%;
+    outline: 0;
+    padding: 4px 20px 0;
+    width: 100%;
+  }
+
+  .form-picture {
+      padding-top: 10px;
+      margin: auto;
+      text-align: center;
+  }
+
+  .form-label {
+      padding-right: 5px;
+      text-align: left;
+      width: 60%;
+  }
+  
+  .FormRow {
+       padding-top: 6px;
+       margin: auto;
+       text-align: left;
+  }
+
+  .Role {
+    padding-top: 12px;
+    margin: auto;
+    text-align: center;
+    }
+
+
+  .login-button {
+    width: 30%;
+    background-color: #3b7de0;
+    color: white;
+    padding: 6px 4px;
+    margin: 25px 0;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .form-title {
+    font-size: 30px;
+  }
+  
