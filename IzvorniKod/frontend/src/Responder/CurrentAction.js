@@ -8,6 +8,7 @@ import {
   useMapEvents,
   Popup,
   Marker,
+  Tooltip,
 } from "react-leaflet";
 import * as L from "leaflet";
 import { LatLng } from "leaflet";
@@ -208,54 +209,61 @@ function CurrentAction(props) {
   }
 
   function LoadComments() {
-    if (comments.length == 0) {
-      return null;
-    }
+    const map = useMapEvents({
+      keypress() {
+        if (comments.length == 0) {
+          return null;
+        }
+        console.log("NOT NULL");
+        let comment = comments[0];
+        console.log(comment);
+        console.log(comment[1]);
+        console.log(comment[0]);
 
-    let comment = comments[0];
+        return (
+          (
+            <Marker key={comment[1]} position={comment[0]} icon={iconComment}>
+              <Tooltip>Komentar</Tooltip>
+            </Marker>
+          ),
+          console.log("returning")
+        );
+      },
+    });
 
-    return (
-      <Marker position={comment[0]} icon={iconComment}>
-        <Popup>{comment[1]}</Popup>
-      </Marker>
-    );
-  }
-
-  console.log(comments);
-  try {
-    return (
-      <div className="Action map">
-        <h2>Action id: {props.currentAction_id}</h2>
-
-        <MapContainer
-          center={[45.8, 16]}
-          zoom={13}
-          scrollWheelZoom={true}
-          closePopupOnClick={true}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <React.Fragment>
-            <LocateUser />
-
-            <Marker position={responderLocation} icon={iconColleague}></Marker>
-            {respondersLocations.map((marker) => (
-              <Marker key={marker} position={marker}></Marker>
-            ))}
-          </React.Fragment>
-          <LoadComments />
-          {Object.values(taskLocations).map((task) => (
-            <RoutingMachine key={task} waypoints={task} />
-          ))}
-        </MapContainer>
-        <Comments />
-      </div>
-    );
-  } catch (err) {
     return null;
   }
+
+  return (
+    <div className="Action map">
+      <h2>Action id: {props.currentAction_id}</h2>
+
+      <MapContainer
+        center={[45.8, 16]}
+        zoom={13}
+        scrollWheelZoom={true}
+        closePopupOnClick={true}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <React.Fragment>
+          <LocateUser />
+
+          <Marker position={responderLocation} icon={iconColleague}></Marker>
+          {respondersLocations.map((marker) => (
+            <Marker key={marker} position={marker}></Marker>
+          ))}
+        </React.Fragment>
+        <LoadComments />
+        {Object.values(taskLocations).map((task) => (
+          <RoutingMachine key={task} waypoints={task} />
+        ))}
+      </MapContainer>
+      <Comments />
+    </div>
+  );
 }
 
 export default CurrentAction;
