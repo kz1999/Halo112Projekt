@@ -74,7 +74,9 @@ function CurrentAction(props) {
           fetch("/lokacija/" + spasioc.location_id)
             .then((location) => location.json())
             .then((location) => {
-              setResponderLocation(new LatLng(location.x, location.y));
+              if (location != undefined) {
+                setResponderLocation(new LatLng(location.x, location.y));
+              }
             });
           fetch("/akcije/" + spasioc.currentAction_id)
             .then((akcija) => akcija.json())
@@ -93,9 +95,11 @@ function CurrentAction(props) {
                           new LatLng(location.x, location.y)
                         );
                       } else {
-                        taskLocations[task.id] = [
-                          new LatLng(location.x, location.y),
-                        ];
+                        if (task !== null) {
+                          taskLocations[task.id] = [
+                            new LatLng(location.x, location.y),
+                          ];
+                        }
                       }
                     });
                 });
@@ -115,7 +119,6 @@ function CurrentAction(props) {
                 fetch("/lokacija/" + kolega.currentAction_id)
                   .then((location) => location.json())
                   .then((location) => {
-                    console.log(location);
                     if (location != undefined) {
                       respondersLocations.push(
                         new LatLng(location.x, location.y)
@@ -129,6 +132,7 @@ function CurrentAction(props) {
         }
       });
   }, []);
+
   const [arr, setArr] = React.useState([]);
 
   React.useEffect(() => {
@@ -137,9 +141,6 @@ function CurrentAction(props) {
       .then((data) => data.filter((comment) => comment.location_id != null))
       .then((datajson) => setArr(datajson));
   }, []);
-  if (arr.length == 0) {
-    return null;
-  }
 
   const comments = [];
   let x;
@@ -164,9 +165,10 @@ function CurrentAction(props) {
       lineOptions: {
         styles: [{ color: "#6FA1EC", weight: 4 }],
       },
-      addWaypoints: true,
+      addWaypoints: false,
       fitSelectedRoutes: true,
       showAlternatives: false,
+      draggableWaypoints: false,
       //geocoder: L.Control.Geocoder.nominatim(),
     });
     return instance;
@@ -205,40 +207,55 @@ function CurrentAction(props) {
     return null;
   }
 
-  return (
-    <div className="Action map">
-      <h2>Action id: {props.currentAction_id}</h2>
+  function LoadComments() {
+    if (comments.length == 0) {
+      return null;
+    }
 
-      <MapContainer
-        center={[45.8, 16]}
-        zoom={13}
-        scrollWheelZoom={true}
-        closePopupOnClick={true}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <React.Fragment>
-          <LocateUser />
+    let comment = comments[0];
 
-          <Marker position={responderLocation} icon={iconColleague}></Marker>
-          {respondersLocations.map((marker) => (
-            <Marker key={marker} position={marker}></Marker>
+    return (
+      <Marker position={comment[0]} icon={iconComment}>
+        <Popup>{comment[1]}</Popup>
+      </Marker>
+    );
+  }
+
+  console.log(comments);
+  try {
+    return (
+      <div className="Action map">
+        <h2>Action id: {props.currentAction_id}</h2>
+
+        <MapContainer
+          center={[45.8, 16]}
+          zoom={13}
+          scrollWheelZoom={true}
+          closePopupOnClick={true}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <React.Fragment>
+            <LocateUser />
+
+            <Marker position={responderLocation} icon={iconColleague}></Marker>
+            {respondersLocations.map((marker) => (
+              <Marker key={marker} position={marker}></Marker>
+            ))}
+          </React.Fragment>
+          <LoadComments />
+          {Object.values(taskLocations).map((task) => (
+            <RoutingMachine key={task} waypoints={task} />
           ))}
-        </React.Fragment>
-        {Object.values(taskLocations).map((task) => (
-          <RoutingMachine key={task} waypoints={task} />
-        ))}
-        {Object.values(comments).map((comment) => (
-          <Marker key={comment[0]} position={comment[0]} icon={iconComment}>
-            <Popup>{comment[1]}</Popup>
-          </Marker>
-        ))}
-      </MapContainer>
-      <Comments />
-    </div>
-  );
+        </MapContainer>
+        <Comments />
+      </div>
+    );
+  } catch (err) {
+    return null;
+  }
 }
 
 export default CurrentAction;
