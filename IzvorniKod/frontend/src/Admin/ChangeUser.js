@@ -66,6 +66,9 @@ function ChangeUser(props){
                         <option value="admin">Admin</option>
                     </select>
                 </div>
+                <div className ="FormRow">
+                    <img name ="photo" src={form.photo}  ></img>
+                </div>
                 <button type="submit">ChangeUser</button>
             </form>
         </div>

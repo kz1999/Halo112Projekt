@@ -14,9 +14,9 @@ function HeaderLoggedIn(props) {
       <header className="Header">
         <header className="App-header-container">
           <div className="App-header">
-            <Link to="/users">Popis korisnika</Link>
-            <Link to="/createStation">Stvori stanicu</Link>
-            <button onClick={logout}>
+            <Link class="header-link" to="/users">Popis korisnika</Link>
+            <Link class="header-link" to="/createStation">Stvori stanicu</Link>
+            <button class="header-button" onClick={logout}>
               Korisnik: {props.currentUser}
               <div />
               Odjavite se!
@@ -29,12 +29,12 @@ function HeaderLoggedIn(props) {
     return (
       <header className="Header">
         <header className="App-header-container">
-          <div className="App-header">
-            <Link to="/createAction">Nova akcija</Link>
-            <Link to="/actions">Postojeće akcije</Link>
-            <Link to="/tasks">Zadaci</Link>
-            <Link to="/location">Lokacije</Link>
-            <button onClick={logout}>
+          <div className="App-header-dispatcher">
+            <Link class="header-link" to="/createAction">Nova akcija</Link>
+            <Link class="header-link" to="/actions">Postojeće akcije</Link>
+            <Link class="header-link" to="/tasks">Zadaci</Link>
+            <Link class="header-link" to="/location">Lokacije</Link>
+            <button class="header-button" onClick={logout}>
               Korisnik: {props.currentUser}
               <div/>
               Odjavite se!
@@ -59,10 +59,10 @@ function HeaderLoggedIn(props) {
         <header className="Header">
           <header className="App-header-container">
             <div className="App-header">
-              <Link to="/station" hidden={props.isDirector!==true}>Dodaj spasioca u svoju stanicu</Link>
-              <Link to="/abilities" hidden={props.isDirector!==true}>Abilities</Link>
-              <Link to="/status">Akcije</Link>
-              <button onClick={logout}>
+              <Link class="header-link" to="/station" hidden={props.isDirector!==true}>Dodaj spasioca u svoju stanicu</Link>
+              <Link class="header-link" to="/abilities" hidden={props.isDirector!==true}>Abilities</Link>
+              <Link class="header-link" to="/status">Akcije</Link>
+              <button class="header-button" onClick={logout}>
                 Korisnik: {props.currentUser}
                 <div/>
                 Odjavite se!
@@ -86,8 +86,8 @@ function HeaderLoggedOut() {
     <header className="Header">
       <header className="App-header-container">
         <div className="App-header">
-          <Link to="/login">Prijavi se</Link>
-          <Link to="/register">Registruj se</Link>
+          <Link class="header-link" to="/login">Prijavi se</Link>
+          <Link class="header-link" to="/register">Registruj se</Link>
         </div>
       </header>
     </header>

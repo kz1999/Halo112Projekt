@@ -1,5 +1,5 @@
 import React from "react";
-import '../styles/App.css';
+import '../styles/Login.css';
 
 function Login(props){
     const [loginForm, setLoginForm] = React.useState( {username:'', password:'' });
@@ -36,18 +36,18 @@ function Login(props){
     }
 
     return(
-        <div className="Login">
-            <h2>Login</h2>
+        <div className="UserFormLogin">
+            <div class="form-title"><b>Login</b></div>
             <form onSubmit={onSubmit}>
                 <div className="FormRow">
-                    <label>Username</label>
-                    <input name='username' onChange={onChange} value={loginForm.username} />
+                    <label class="form-label">Username:</label>
+                    <input class="form-field" name='username' onChange={onChange} value={loginForm.username} />
                 </div>
                 <div className="FormRow">
-                    <label>Password</label>
-                    <input name='password' type='password' onChange={onChange} value={loginForm.password}/>
+                    <label class="form-label">Password:</label>
+                    <input class="form-field" name='password' type='password' onChange={onChange} value={loginForm.password}/>
                 </div>
-                <button type="submit">Login</button>
+                <button class="login-button" type="submit">Login</button>
                 <div className="error">{error}</div>
             </form>
         </div>

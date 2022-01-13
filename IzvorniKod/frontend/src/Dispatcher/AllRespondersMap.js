@@ -1,7 +1,8 @@
 import React from "react";
-import "../styles/App.css";
-import "../styles/Switch.css";
-import CreateTask from "./CreateTask";
+import '../styles/App.css';
+import '../styles/Switch.css';
+import '../styles/CreateTask.css';
+import CreateTask from './CreateTask'
 
 import {
   MapContainer,
@@ -393,49 +394,47 @@ function AllRespondersMap(props) {
     return <div />;
   }
 
-  return (
-    <div className="">
-      <form onSubmit={addZadatak}>
-        <div className="FormRow">
-          <label>Opcija</label>
-          <select name="option" onChange={onChange} value={form.option}>
-            <option value="">Odaberi</option>
-            <option value="1">svi spasioci</option>
-            <option value="2">dostupni neaktivni spasioci</option>
-            <option value="3">aktivnih spasioci na odredenoj akciji</option>
-            <option value="4">dodaj zadatak spasiocu na akciji</option>
-          </select>
-          <div />
-          <select
-            name="action"
-            onChange={onChange}
-            hidden={form.option !== "3"}
-          >
-            <option value="">Odaberi</option>
-            {actions.map((action) => (
-              <option
-                key={action.id}
-                value={action.id}
-                label={action.description}
-              />
-            ))}
-          </select>
-          <select
-            name="responder_id"
-            onChange={onChange}
-            hidden={form.option !== "4"}
-          >
-            <option value="">Odaberi</option>
-            {responders
-              .filter((responder) => responder.currentAction_id !== null)
-              .map((responder) => (
-                <option
-                  key={responder.id}
-                  value={responder.id}
-                  label={responder.userName}
-                />
-              ))}
-          </select>
+    
+
+    return(
+        <div className="">
+            <form className="UserFormTask" onSubmit={addZadatak}>
+                <div className="FormRow">
+                    <label className="form-label">Opcija:</label>
+                    <select name='option' onChange={onChange} value={form.option}>
+                        <option value="">Odaberi</option>
+                        <option value="1">svi spasioci</option>
+                        <option value="2">dostupni neaktivni spasioci</option>
+                        <option value="3">aktivnih spasioci na odredenoj akciji</option>
+                        <option value="4">dodaj zadatak spasiocu na akciji</option>
+                    </select>
+                    <div/>
+                    <select name='action' onChange={onChange} hidden={form.option !== '3'}>
+                        <option value="">Odaberi</option>
+                        {actions.map(action=><option key={action.id} value={action.id} label={action.description}/>)}
+                    </select>
+                    <select name='responder_id' onChange={onChange} hidden={form.option !== '4'}>
+                        <option value="">Odaberi</option>
+                        {responders.filter(responder => responder.currentAction_id !== null).map(responder=><option key={responder.id} value={responder.id} label={responder.userName}/>)}
+                    </select>
+                </div>
+                <button className="" type="submit" hidden={form.option !== '4'} disabled = {form.responder_id === ''}>Dodaj zadatak</button>
+            </form>
+            <div className="Action map map-padded">
+                <MapContainer
+                    center={[45.8, 16]}
+                    zoom={13}
+                    scrollWheelZoom={true}
+                    closePopupOnClick={true}>
+                    <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+
+                    <FilterAllResponders/>
+                    
+                </MapContainer>
+            </div>
+            
         </div>
         <button
           type="submit"

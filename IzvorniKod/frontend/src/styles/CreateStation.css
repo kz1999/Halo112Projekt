@@ -1,0 +1,85 @@
+
+  .error{
+    color: red;
+  }
+  
+  .leaflet-container {  
+    width: 70vw;
+    height: 70vh;  
+    z-index: 1;
+  }
+
+  .UserFormStation {
+      padding-top: 10px;
+      padding-left: 20px;
+      padding-right: 20px;
+      width: 300px;
+      margin: auto;
+      margin-top: 5px;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      border-width: 1px;
+      border-color: #000000;
+      border-style: solid;
+  }
+
+  .form-field {
+    background-color: white;
+    border-radius: 12px;
+    border-width: 1px;
+    border-color: #000000;
+    box-sizing: border-box;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    height: 100%;
+    outline: 0;
+    padding: 2px 10px 2px;
+    width: 100%;
+  }
+
+  .form-picture {
+      padding-top: 10px;
+      margin: auto;
+      text-align: center;
+  }
+
+  .form-label {
+      padding-right: 5px;
+      text-align: left;
+      width: 60%;
+  }
+  
+  .FormRow {
+       padding-top: 6px;
+       margin: auto;
+       text-align: left;
+  }
+
+  .Role {
+    padding-top: 12px;
+    margin: auto;
+    text-align: center;
+    }
+
+
+  .add-button {
+    width: 100px;
+    background-color: #3b7de0;
+    color: white;
+    padding: 6px 4px;
+    margin: 25px 0;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .form-title {
+    font-size: 30px;
+    padding-top: 20px;
+  }
+
+  .station-name{
+    margin-top: 5px;
+  }
+  

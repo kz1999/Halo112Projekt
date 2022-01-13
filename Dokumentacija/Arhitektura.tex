@@ -268,13 +268,21 @@
 		
 		\section{Dijagram aktivnosti}
 			
-			\textbf{\textit{dio 2. revizije}}\\
-			
-			 \textit{Potrebno je priložiti dijagram aktivnosti s pripadajućim opisom. Dijagram aktivnosti treba prikazivati značajan dio sustava.}
-			
+			\begin{figure}[H]
+				\includegraphics[scale=0.5]{slike/act.png}
+				\centering
+				\caption{Dijagram aktivnosti}
+				\label{fig:act}
+			\end{figure}
+			Prikaz akcije otvaranja akcije za spasioce i zadavanja zadatka. Dispečer otvara i zatvara akcije, te zadaje zadatke. Spasioc osvježava svoju dostupnost i odaziva se na akcije. Dispečeru se prikazuju spasioci po stanicama i na karti. Spasiocu se prikazuju informacije o zadatku i ostalim spasiocima.
 			\eject
+			
 		\section{Dijagram komponenti}
 		
-			\textbf{\textit{dio 2. revizije}}\\
-		
-			 \textit{Potrebno je priložiti dijagram komponenti s pripadajućim opisom. Dijagram komponenti treba prikazivati strukturu cijele aplikacije.}
+			\begin{figure}[H]
+				\includegraphics[scale=0.6]{slike/cmp.png}
+				\centering
+				\caption{Dijagram komponenti}
+				\label{fig:cmp}
+			\end{figure}
+			Prikaz komponenti i strukture čitavog sustava. Korinik komunicira sa sustavom pomoću HTTP zahtjeva. Frontend i backend također komuniciraju HTTP porukama. Razmjenu HTTP poruka omogućuje REST API. Backend se sastoji od tri sloja. REST nadglednici komuniciraju s frontendom, a JPA repozitorij pohranjuje entitete sustava u bazu podataka korištenjem SQL API-a. Na sloju usluge je ostvarena temeljna funkcionalnost.

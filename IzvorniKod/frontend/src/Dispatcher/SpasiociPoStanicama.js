@@ -1,6 +1,7 @@
 import React from "react";
 import '../styles/App.css';
 import '../styles/Switch.css';
+import '../styles/CreateTask.css'
 import OPTGroupStanica from "./OPTGroupStanica";
 
 function SpasiociPoStanicama(props){
@@ -16,7 +17,7 @@ function SpasiociPoStanicama(props){
                     
     return(
         <div className="Stanice">
-            <select name ="role">
+            <select className="choice-box" name ="role">
                 <option>Slobodni Spasioci</option>
             {stations.map(station => <OPTGroupStanica key={station.id} stationId={station.id}/>)}
             </select>
