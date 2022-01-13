@@ -1,5 +1,7 @@
 import React from "react";
 import '../styles/App.css';
+import '../styles/Abilities.css';
+
 
 function Abilities(){
     const [form, setForm] = React.useState( {member_id:'',responderAbility:'',responderRole:''});
@@ -58,9 +60,9 @@ function Abilities(){
         return(
             <div className="Test">
                 <h2>Odaberi posebnu moć</h2>
-                <form onSubmit={onSubmit}>
+                <form className="UserFormAbilities" onSubmit={onSubmit}>
                     <div className="FormRow">
-                        <label>member</label>
+                        <label className="form-label">Member: </label>
                         <select name='member_id' onChange={onChange}>
                             <option value=''>Odaberi</option>
                             {
@@ -69,7 +71,7 @@ function Abilities(){
                         </select>
                     </div>
                     <div className="FormRow">
-                        <label>responderAbility</label>
+                        <label className="form-label">Responder ability: </label>
                         <select name='responderAbility' onChange={onChange} value={form.responderAbility}>
                             <option value=''>Odaberi</option>
                             {
@@ -78,7 +80,7 @@ function Abilities(){
                         </select>
                     </div>
 
-                    <button type="submit" disabled = {!isValid()}>Add</button>
+                    <button className="add-button" type="submit" disabled = {!isValid()}>Add</button>
                 </form>
             </div>
         )

@@ -55,10 +55,10 @@ function AddMemberToStation(){
     return(
         <div className="Test">
             <h2>Add Member to station</h2>
-            <form onSubmit={onSubmit}>
+            <form className="UserFormStation" onSubmit={onSubmit}>
                 {station.name}
                 <div className="FormRow">
-                    <label>member</label>
+                    <label className="form-label">Member: </label>
                     <select name='member_id' onChange={onChange} value={form.member_id}>
                         <option value=''>Odaberi</option>
                         {
@@ -66,7 +66,7 @@ function AddMemberToStation(){
                         }
                     </select>
                 </div>
-                <button type="submit" disabled = {!isValid()}>Add</button>
+                <button className="add-button" type="submit" disabled = {!isValid()}>Add</button>
             </form>
         </div>
     )
