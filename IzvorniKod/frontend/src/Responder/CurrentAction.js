@@ -19,6 +19,8 @@ import "leaflet-routing-machine/dist/leaflet-routing-machine.js";
 import "leaflet-routing-machine";
 import carMarker from "../images/car.png";
 import rescMarker from "../images/person.png";
+import collMarker from "../images/redperson.png";
+import commentMarker from "../images/comment.png";
 import Comments from "../Comments";
 
 function CurrentAction(props) {
@@ -31,6 +33,30 @@ function CurrentAction(props) {
   const iconPerson = new L.Icon({
     iconUrl: rescMarker,
     iconRetinaUrl: rescMarker,
+    iconAnchor: null,
+    popupAnchor: null,
+    shadowUrl: null,
+    shadowSize: null,
+    shadowAnchor: null,
+    iconSize: new L.Point(40, 40),
+    //className: "leaflet-div-icon",
+  });
+
+  const iconColleague = new L.Icon({
+    iconUrl: collMarker,
+    iconRetinaUrl: collMarker,
+    iconAnchor: null,
+    popupAnchor: null,
+    shadowUrl: null,
+    shadowSize: null,
+    shadowAnchor: null,
+    iconSize: new L.Point(40, 40),
+    //className: "leaflet-div-icon",
+  });
+
+  const iconComment = new L.Icon({
+    iconUrl: commentMarker,
+    iconRetinaUrl: commentMarker,
     iconAnchor: null,
     popupAnchor: null,
     shadowUrl: null,
@@ -196,7 +222,7 @@ function CurrentAction(props) {
         <React.Fragment>
           <LocateUser />
 
-          <Marker position={responderLocation} icon={iconPerson}></Marker>
+          <Marker position={responderLocation} icon={iconColleague}></Marker>
           {respondersLocations.map((marker) => (
             <Marker key={marker} position={marker}></Marker>
           ))}
@@ -205,7 +231,7 @@ function CurrentAction(props) {
           <RoutingMachine key={task} waypoints={task} />
         ))}
         {Object.values(comments).map((comment) => (
-          <Marker key={comment[0]} position={comment[0]}>
+          <Marker key={comment[0]} position={comment[0]} icon={iconComment}>
             <Popup>{comment[1]}</Popup>
           </Marker>
         ))}
