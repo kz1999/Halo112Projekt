@@ -92,7 +92,7 @@ function Register(){
                 </div>
                 <div className="form-picture">
                     <label class="form-label">Picture:</label>
-                    <input type ="file" name = "picture" onChange={onChange} value={form.photo}></input>
+                    <input type ="file" name = "photo" onChange={picture} ></input>
                 </div>
                 <button class="reg-button" type="submit" disabled = {!isValid()}>Register</button>
             </form>
