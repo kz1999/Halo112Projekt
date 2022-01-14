@@ -60,7 +60,7 @@ function HeaderLoggedIn(props) {
           <header className="App-header-container">
             <div className="App-header">
               <Link class="header-link" to="/station" hidden={props.isDirector!==true}>Dodaj spasioca u svoju stanicu</Link>
-              <Link class="header-link" to="/abilities" hidden={props.isDirector!==true}>Abilities</Link>
+              <Link class="header-link" to="/abilities" hidden={props.isDirector!==true}>Posebne moći</Link>
               <Link class="header-link" to="/status">Akcije</Link>
               <button class="header-button" onClick={logout}>
                 Korisnik: {props.currentUser}

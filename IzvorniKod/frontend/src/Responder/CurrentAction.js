@@ -222,16 +222,9 @@ function CurrentAction(props) {
         let comment = comments[0];
 
         return (
-<<<<<<< HEAD
           <Marker key={comment[1]} position={comment[0]} icon={iconComment}>
             <Tooltip>Komentar</Tooltip>
           </Marker>
-=======
-          
-            <Marker position={comment[0]} icon={iconComment}>
-            </Marker>
-          
->>>>>>> 019f2aad51573d9631b16706229f208aa33db011
         );
       },
     });
