@@ -34,6 +34,7 @@ function Comments() {
 
   function onSubmit(event) {
     event.preventDefault();
+
     //console.log(user.id);
 
     //timestamp
@@ -64,6 +65,11 @@ function Comments() {
         </div>
         <button type="submit">Send</button>
       </form>
+      {previousComments.map((comment) => (
+        <div key={comment.id}>
+          {comment.owner}:{comment.text}
+        </div>
+      ))}
     </div>
   );
 }
