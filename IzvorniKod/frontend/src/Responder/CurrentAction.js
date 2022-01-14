@@ -30,6 +30,7 @@ function CurrentAction(props) {
   );
   const [respondersLocations, setRespondersLocations] = React.useState([]);
   const [taskLocations, setTaskLocations] = React.useState({});
+  const [taskIDs, setTaskIDs] = React.useState([]);
 
   const iconPerson = new L.Icon({
     iconUrl: rescMarker,
@@ -87,6 +88,8 @@ function CurrentAction(props) {
             )
             .then((tasks) => {
               tasks.map((task) => {
+                console.log(task);
+                taskIDs.push(task.id);
                 task.location_id.map((location_id) => {
                   fetch("/lokacija/" + location_id)
                     .then((location) => location.json())
@@ -105,6 +108,7 @@ function CurrentAction(props) {
                     });
                 });
               });
+              console.log(taskIDs);
             });
           fetch("/spasioci")
             .then((spasioci) => spasioci.json())
@@ -214,17 +218,20 @@ function CurrentAction(props) {
         if (comments.length == 0) {
           return null;
         }
-        console.log("NOT NULL");
+
         let comment = comments[0];
-        console.log(comment);
-        console.log(comment[1]);
-        console.log(comment[0]);
 
         return (
+<<<<<<< HEAD
+          <Marker key={comment[1]} position={comment[0]} icon={iconComment}>
+            <Tooltip>Komentar</Tooltip>
+          </Marker>
+=======
           
             <Marker position={comment[0]} icon={iconComment}>
             </Marker>
           
+>>>>>>> 019f2aad51573d9631b16706229f208aa33db011
         );
       },
     });
@@ -278,6 +285,25 @@ function CurrentAction(props) {
           <RoutingMachine key={task} waypoints={task} />
         ))}
       </MapContainer>
+      <div>
+        Odaberi trenutni zadatak
+        <form className="UserFormAbilities">
+          <div className="FormRow">
+            <label className="form-label">Task: </label>
+            <select name="task_id">
+              <option value="">Odaberi</option>
+              {Object.values(taskIDs).map((task) => (
+                <option key={task} value={task}>
+                  {task}
+                </option>
+              ))}
+            </select>
+          </div>
+          <button className="add-button" type="submit">
+            Odaberi
+          </button>
+        </form>
+      </div>
       <Comments />
       <div className="img-container">
       {gallery.map(photo=><img name ="photo" src={photo} width="200" height="140" ></img>)}
