@@ -43,10 +43,7 @@ public class TestBackend {
 	
 	@Autowired
 	private TaskService taskService;
-		
-	@Autowired
-	private FiremanService firemanService;
-		
+				
 	@Test
 	public void testUser() throws Exception {
 		userService.createUser(new User(null, "test1", "", "secret", "Test", "Test", "", "", "policeman", false));
@@ -64,7 +61,7 @@ public class TestBackend {
 		User user1 = userService.createUser(new User(null, "test2", "", "secret", "Test", "Test", "", "", "fireman", true));
 		Responder responder = responderService.findByUserId(user1.getId()).get();
 		assertEquals("test2", responder.getUserName());
-		assertEquals(responder.getId(), firemanService.listAll().get(0).getResponder());
+		assertEquals(responder.getUser_id(), user1.getId());
 		
 		User user2 = userService.createUser(new User(null, "test3", "", "secret", "Test", "Test", "", "", "dispatcher", true));
 		assertEquals(user2.getId(), dispatcherService.listAll().get(0).getUser());
