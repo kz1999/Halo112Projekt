@@ -87,7 +87,7 @@ function HeaderLoggedOut() {
       <header className="App-header-container">
         <div className="App-header">
           <Link class="header-link" to="/login">Prijavi se</Link>
-          <Link class="header-link" to="/register">Registruj se</Link>
+          <Link class="header-link" to="/register">Registriraj se</Link>
         </div>
       </header>
     </header>

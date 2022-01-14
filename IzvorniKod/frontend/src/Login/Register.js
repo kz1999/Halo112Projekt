@@ -37,8 +37,8 @@ function Register(){
     }
 
     function isValid(){
-        const {username, role} = form;
-        return username.length >= 1 && role !== null ;
+        const {username, role, password, name, lastName, phoneNumber, email, photo} = form;
+        return username.length >= 1 && role !== null && password!==''&& name!=='' && lastName!==''&& phoneNumber!==''&& email!=='' && photo!=='';
     }
     function picture(e){
         const {name} = e.target;
@@ -86,7 +86,7 @@ function Register(){
                         <option value="dispatcher">Dispečer</option>
                         <option value="fireman">Vatrogasac</option>
                         <option value="policeman">Policajac</option>
-                        <option value="doctor">Doktorr</option>
+                        <option value="doctor">Doktor</option>
                         <option value="admin">Admin</option>
                     </select>
                 </div>
