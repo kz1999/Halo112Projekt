@@ -46,10 +46,12 @@ function Request(props){
     return(
         <div className="Request">
             
-            {request.emergencyLevel}
-            {request.responderAbility}
-            <button onClick={accept}>Accept</button>
-            <button onClick={decline}>Reject</button>
+            Razina hitnosti: {request.emergencyLevel },
+            Posebna moć: {request.responderAbility}
+            <div>
+            <button onClick={accept}>PRIHVATI</button>
+            <button onClick={decline}>ODBIJ</button>
+            </div>
         </div>
     )
 }

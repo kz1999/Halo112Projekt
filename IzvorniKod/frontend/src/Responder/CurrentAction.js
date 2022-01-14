@@ -243,10 +243,17 @@ function CurrentAction(props) {
     }, []);
 
 
+    const [akcija, setAkcija] = React.useState([]);
+
+    React.useEffect(()=>{
+        fetch('/akcije/'+props.currentAction_id)
+        .then(data => data.json())
+        .then(data => setAkcija(data));
+    }, []);
 
   return (
     <div className="Action map">
-      <h2>Action id: {props.currentAction_id}</h2>
+      <h2>Ime akcije: {akcija.name}</h2>
 
       <MapContainer
         center={[45.8, 16]}
@@ -274,7 +281,10 @@ function CurrentAction(props) {
       <Comments />
       <div className="img-container">
       {gallery.map(photo=><img name ="photo" src={photo} width="200" height="140" ></img>)}
-      {gallery.map(photo=><img name ="photo" src={photo} width="200" height="140" ></img>)}
+      </div>
+      <div>
+        <h3>Opis akcije:</h3>
+        <p>{akcija.description}</p>
       </div>
     </div>
   );
