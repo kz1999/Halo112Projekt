@@ -31,6 +31,13 @@ function ChangeUser(props){
         return fetch('/korisnici/' + form.userName, options);
     }
 
+    function proba (){
+        for (let i=0;i<3;i++){
+            <img name ="photo" src={form.photo}  ></img>
+
+        }
+    }
+
     return(
         
         <div className="UserForm">
@@ -67,7 +74,7 @@ function ChangeUser(props){
                     </select>
                 </div>
                 <div className ="FormRow">
-                    <img name ="photo" src={form.photo}  ></img>
+                <img name ="photo" src={form.photo} width="180" ></img>
                 </div>
                 <button type="submit">ChangeUser</button>
             </form>

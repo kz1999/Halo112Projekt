@@ -221,18 +221,28 @@ function CurrentAction(props) {
         console.log(comment[0]);
 
         return (
-          (
-            <Marker key={comment[1]} position={comment[0]} icon={iconComment}>
-              <Tooltip>Komentar</Tooltip>
+          
+            <Marker position={comment[0]} icon={iconComment}>
             </Marker>
-          ),
-          console.log("returning")
+          
         );
       },
     });
 
     return null;
   }
+  console.log(comments.length);
+  console.log(comments);
+
+  const [gallery, setGallery] = React.useState([]);
+
+    React.useEffect(()=>{
+        fetch('/akcije/gallery/'+props.currentAction_id)
+        .then(data => data.json())
+        .then(data => setGallery(data));
+    }, []);
+
+
 
   return (
     <div className="Action map">
@@ -262,6 +272,10 @@ function CurrentAction(props) {
         ))}
       </MapContainer>
       <Comments />
+      <div className="img-container">
+      {gallery.map(photo=><img name ="photo" src={photo} width="200" height="140" ></img>)}
+      {gallery.map(photo=><img name ="photo" src={photo} width="200" height="140" ></img>)}
+      </div>
     </div>
   );
 }
