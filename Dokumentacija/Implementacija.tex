@@ -175,18 +175,23 @@ public void testWrongStationType() throws Exception {
 			
 			\textbf{\textit{dio 2. revizije}}
 			
-			 \textit{Potrebno je umetnuti \textbf{specifikacijski} dijagram razmještaja i opisati ga. Moguće je umjesto specifikacijskog dijagrama razmještaja umetnuti dijagram razmještaja instanci, pod uvjetom da taj dijagram bolje opisuje neki važniji dio sustava.}
+			 \begin{figure}[H]
+			 	\includegraphics[scale=0.5]{slike/razmjestaj.PNG}
+			 	\centering
+			 	\caption{Dijagram razmještaja}
+			 	\label{fig:razmještaj}
+			 \end{figure}
 			
 			\eject 
 		
 		\section{Upute za puštanje u pogon}
 		
-			\textbf{\textit{dio 2. revizije}}\\
-		
-			 \textit{U ovom poglavlju potrebno je dati upute za puštanje u pogon (engl. deployment) ostvarene aplikacije. Na primjer, za web aplikacije, opisati postupak kojim se od izvornog kôda dolazi do potpuno postavljene baze podataka i poslužitelja koji odgovara na upite korisnika. Za mobilnu aplikaciju, postupak kojim se aplikacija izgradi, te postavi na neku od trgovina. Za stolnu (engl. desktop) aplikaciju, postupak kojim se aplikacija instalira na računalo. Ukoliko mobilne i stolne aplikacije komuniciraju s poslužiteljem i/ili bazom podataka, opisati i postupak njihovog postavljanja. Pri izradi uputa preporučuje se \textbf{naglasiti korake instalacije uporabom natuknica} te koristiti što je više moguće \textbf{slike ekrana} (engl. screenshots) kako bi upute bile jasne i jednostavne za slijediti.}
+			\subsection{Priprema za puštanje u pogon}
 			
+			Kako bi aplikacija radila potrebno je instalirati NodeJs, Maven i Javu (minimum verzija 11). Moguće da je također potrebno postaviti sustavske varijable okruženja što se može napraviti  odlaskom u Control Panel -> System and Security -> System -> Advanced System Settings -> Enviromental Variables gdje u dolnjem izborniku treba pronaći PATH i ukoliko nedostaje dodati relativanputdonodejs/nodejs i relativan putdomavena/bin.
 			
-			 \textit{Dovršenu aplikaciju potrebno je pokrenuti na javno dostupnom poslužitelju. Studentima se preporuča korištenje neke od sljedećih besplatnih usluga: \href{https://aws.amazon.com/}{Amazon AWS}, \href{https://azure.microsoft.com/en-us/}{Microsoft Azure} ili \href{https://www.heroku.com/}{Heroku}. Mobilne aplikacije trebaju biti objavljene na F-Droid, Google Play ili Amazon App trgovini.}
+			\subsection{Puštanje u pogon}
 			
+			Kada su programi instalirani, potrebno je upaliti command prompt konzolu koja se može pokrenuti upisivanjem cmd u Windowsov pretraživač i premijestiti se u lokaciju projekta (korištenjem cd (path) naredbe). Zatim se premijestite u IzvorniKod/frontend te tamo pokrenite naredbu npm install koja će instalirati potrebne node pakete. Nakon toga pokrenite naredbu npm start koja će otvoriti vas browser i pokrenuti frontend. Sada otvorite novi command prompt i premjestite se u lokaciju projekta te zatim u IzvorniKod/backend i pokrenite backend naredbom mvn spring-boot:run. Sada biste trebali vidjeti sljedeći prikaz u vašem command promptu:
 			
 			\eject 
