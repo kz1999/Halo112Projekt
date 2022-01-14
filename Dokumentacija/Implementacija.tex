@@ -196,7 +196,7 @@ public void testWrongStationType() throws Exception {
 			 	\caption{Dijagram razmještaja}
 			 	\label{fig:razmještaj}
 			 \end{figure}
-			Prikaz dijagrama razmještaja. U sustavu postoje klijent, frontend server, backend server i baza podataka.
+			Prikaz dijagrama razmještaja. U sustavu postoje klijent, frontend server, backend server i baza podataka. Ovo je bio planirani razmještaj projekta međutim aplikacija radi samo lokalno. Na heroku je postavljena aplikacija međutim funkcionalnost prijave ne radi. Također koristi se lokalna baza podataka umjesto psql servera.
 			
 			\eject 
 		
@@ -204,11 +204,11 @@ public void testWrongStationType() throws Exception {
 		
 			\subsection{Priprema za puštanje u pogon}
 			
-			Kako bi aplikacija radila potrebno je instalirati NodeJs, Maven i Javu (minimum verzija 11). Moguće da je također potrebno postaviti sustavske varijable okruženja što se može napraviti  odlaskom u Control Panel -> System and Security -> System -> Advanced System Settings -> Enviromental Variables gdje u dolnjem izborniku treba pronaći PATH i ukoliko nedostaje dodati relativanputdonodejs/nodejs i relativan putdomavena/bin.
+			Kako bi aplikacija radila potrebno je instalirati NodeJs, Maven i Javu (minimum verzija 11). Moguće da je potrebno postaviti sustavske varijable okruženja što se može napraviti odlaskom u Control Panel - System and Security - System - Advanced System Settings - Enviromental Variables gdje u dolnjem izborniku treba pronaći PATH i ukoliko nedostaje dodati ../PUT-DO-NODEJS-DIREKTORIJA/nodejs i ..IME-MAVEN-DIREKTORIJA/bin.
 			
 			\subsection{Puštanje u pogon}
 			
-			Kada su programi instalirani, potrebno je upaliti command prompt konzolu koja se može pokrenuti upisivanjem cmd u Windowsov pretraživač i premijestiti se u lokaciju projekta (korištenjem cd (path) naredbe). Zatim se premijestite u IzvorniKod/frontend te tamo pokrenite naredbu npm install koja će instalirati potrebne node pakete. Nakon toga pokrenite naredbu npm start koja će otvoriti vas browser i pokrenuti frontend.
+			Kada su programi instalirani, potrebno je upaliti command prompt koji se može pokrenuti upisivanjem cmd u Windowsov pretraživač i premijestiti se u lokaciju projekta (korištenjem cd path naredbe). Zatim se premijestite u IzvorniKod/frontend te tamo pokrenite naredbu npm install koja će instalirati potrebne node pakete. Nakon toga pokrenite naredbu npm start koja će otvoriti vaš web preglednik i pokrenuti frontend. Nemojte zatvoriti konzolu jer time frontend završava s radom.
 			
 
 		
@@ -234,5 +234,7 @@ public void testWrongStationType() throws Exception {
 					\caption{Pokretanje backenda iz cmd-a}
 					\label{fig:test2}
 				\end{figure}
+			
+			Ostavite konzolu otvorenu. Sada se možete vratiti na vaš preglednik i koristiti aplikaciju.
 			
 			\eject 
