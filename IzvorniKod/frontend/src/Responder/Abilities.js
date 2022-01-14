@@ -60,6 +60,7 @@ function Abilities(){
         return(
             <div className="Test">
                 <h2>Odaberi posebnu moć</h2>
+                <p>(klikni dvaput)</p>
                 <form className="UserFormAbilities" onSubmit={onSubmit}>
                     <div className="FormRow">
                         <label className="form-label">Član: </label>
@@ -80,7 +81,7 @@ function Abilities(){
                         </select>
                     </div>
 
-                    <button className="add-button" type="submit" disabled = {!isValid()}>Add</button>
+                    <button className="add-button" type="submit" disabled = {!isValid()}>Dodaj</button>
                 </form>
             </div>
         )
