@@ -1,6 +1,7 @@
 package com.example.halo112_generic.service.impl;
 
 import com.example.halo112_generic.dao.CommentRepository;
+import com.example.halo112_generic.dao.UserRepository;
 import com.example.halo112_generic.domain.Comment;
 import com.example.halo112_generic.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class CommentServiceJpa implements CommentService {
     @Autowired
     private CommentRepository commentRepo;
 
+    @Autowired
+    private UserRepository userRepo;
+
     @Override
     public List<Comment> listAll() {
         return commentRepo.findAll();
@@ -22,6 +26,9 @@ public class CommentServiceJpa implements CommentService {
 
     @Override
     public Comment createComment(Comment comment) {
+        if(comment.getUserName()==null && comment.getOwner()!=null){
+            comment.setUserName(userRepo.getById(comment.getOwner()).getUserName());
+        }
         return commentRepo.save(comment);
     }
 

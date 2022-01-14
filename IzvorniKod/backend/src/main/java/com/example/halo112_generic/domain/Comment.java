@@ -14,6 +14,16 @@ public class Comment {
 
     private Long owner_id;
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    private String userName;
+
     private LocalDateTime timeStamp;
 
     private String text;
@@ -23,9 +33,10 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(Long id, Long owner_id, LocalDateTime timeStamp, String text, Long location_id) {
+    public Comment(Long id, Long owner_id, String userName, LocalDateTime timeStamp, String text, Long location_id) {
         this.id = id;
         this.owner_id = owner_id;
+        this.userName = userName;
         this.timeStamp = timeStamp;
         this.text = text;
         this.location_id = location_id;

@@ -1,6 +1,8 @@
 import React from "react";
 import ChangeUser from './ChangeUser';
 import UsersList from "./UsersList";
+import "../styles/Comments.css";
+
 
 function Users(){
 
@@ -19,7 +21,7 @@ function Users(){
     return(
         <div className="Users">
             <ChangeUser user = {userToChange}/>
-            <button onClick={returnToList}>Return</button>
+            <button className="return-button" onClick={returnToList}>Return</button>
         </div>
     )
     

@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles/App.css";
+import "./styles/Comments.css";
 
 function Comments() {
   const [previousComments, setPreviousComments] = React.useState([]);
@@ -58,15 +59,15 @@ function Comments() {
   return (
     <div className="Comments">
       <h2>Comments</h2>
-      <form onSubmit={onSubmit}>
+      <form className="UserForm" onSubmit={onSubmit}>
         <div className="FormRow">
-          <label>yourComment</label>
-          <input name="text" onChange={onChange} value={form.text} />
+          <label>Vaš komentar: </label>
+          <input className="form-field" name="text" onChange={onChange} value={form.text} />
         </div>
-        <button type="submit">Send</button>
+        <button className="submit-button" type="submit">Send</button>
       </form>
       {previousComments.map((comment) => (
-        <div key={comment.id}>
+        <div  key={comment.id}>
           {comment.owner}:{comment.text}
         </div>
       ))}

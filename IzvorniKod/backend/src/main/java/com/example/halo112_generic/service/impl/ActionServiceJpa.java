@@ -6,6 +6,7 @@ import com.example.halo112_generic.dao.ResponderRepository;
 import com.example.halo112_generic.dao.TaskRepository;
 import com.example.halo112_generic.domain.*;
 import com.example.halo112_generic.service.ActionService;
+import com.example.halo112_generic.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +26,9 @@ public class ActionServiceJpa implements ActionService {
 
 	@Autowired
 	private TaskRepository taskRepo;
+
+	@Autowired
+	private CommentService commentService;
 
     @Override
     public List<Action> listAll() {
@@ -109,8 +113,10 @@ public class ActionServiceJpa implements ActionService {
 	}
 
 	@Override
-	public boolean addComment(Comment comment, Long id) {
+	public boolean addComment(Comment comment1, Long id) {
 		if (actionRepo.existsById(id)) {
+			commentService.createComment(comment1);
+			Comment comment = commentService.findById(comment1.getId()).get();
 			Action action = actionRepo.findById(id).get();
 			action.getComments().add(comment);
 			actionRepo.save(action);

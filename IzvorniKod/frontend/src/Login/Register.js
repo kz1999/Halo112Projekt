@@ -53,48 +53,48 @@ function Register(){
 
     return(
         <div className="UserFormReg">
-            <div class="form-title"><b>Register</b></div>
+            <div class="form-title"><b>Registracija</b></div>
             <form name="form" onSubmit={onSubmit}>
                 <div className="FormRow">
-                    <label class="form-label">Username:</label>
+                    <label class="form-label">Korisničko ime:</label>
                     <input class="form-field" name='username' onChange={onChange} value={form.username}/>
                 </div>
                 <div className="FormRow">
-                    <label class="form-label">Password:</label>
+                    <label class="form-label">Lozinka:</label>
                     <input class="form-field" name='password' type='password' onChange={onChange} value={form.password}/>
                 </div>
                 <div className="FormRow">
-                    <label class="form-label">E-mail adress:</label>
+                    <label class="form-label">E-mail adresa:</label>
                     <input class="form-field" name='email' onChange={onChange} value={form.email}/>
                 </div>
                 <div className="FormRow">
-                    <label class="form-label">Name:</label>
+                    <label class="form-label">Ime:</label>
                     <input class="form-field" name='name' onChange={onChange} value={form.name}/>
                 </div>
                 <div className="FormRow">
-                    <label class="form-label">Last name:</label>
+                    <label class="form-label">Prezime:</label>
                     <input class="form-field" name='lastName' onChange={onChange} value={form.lastName}/>
                 </div>
                 <div className="FormRow">
-                    <label class="form-label">Telephone number:</label>
+                    <label class="form-label">Telefonski broj:</label>
                     <input class="form-field" name='phoneNumber' onChange={onChange} value={form.phoneNumber}/>
                 </div>
                 <div className="Role">
-                    <label class="form-label">Role:</label>
+                    <label class="form-label">Uloga:</label>
                     <select name ="role" onChange={onChange} value={form.role}>
                         <option value={null}></option>
-                        <option value="dispatcher">Dispatcher</option>
-                        <option value="fireman">Fireman</option>
-                        <option value="policeman">Policeman</option>
-                        <option value="doctor">Doctor</option>
+                        <option value="dispatcher">Dispečer</option>
+                        <option value="fireman">Vatrogasac</option>
+                        <option value="policeman">Policajac</option>
+                        <option value="doctor">Doktorr</option>
                         <option value="admin">Admin</option>
                     </select>
                 </div>
                 <div className="form-picture">
-                    <label class="form-label">Picture:</label>
+                    <label class="form-label">Fotografija:</label>
                     <input type ="file" name = "photo" onChange={picture} ></input>
                 </div>
-                <button class="reg-button" type="submit" disabled = {!isValid()}>Register</button>
+                <button class="reg-button" type="submit" disabled = {!isValid()}>Registriraj se</button>
             </form>
         </div>
     )
