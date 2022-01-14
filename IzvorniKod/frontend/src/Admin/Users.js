@@ -1,6 +1,8 @@
 import React from "react";
 import ChangeUser from './ChangeUser';
 import UsersList from "./UsersList";
+import "./styles/Comments.css";
+
 
 function Users(){
 
