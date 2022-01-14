@@ -56,9 +56,9 @@ function Abilities() {
   }
 
   const proba = {
-    fireman: ["CISTERN", "COMMAND", "FOREST", "LADDER"],
-    policeman: ["MOTORCYCLE", "CONTACT", "ARMORED", "CAR"],
-    doctor: ["AMBULANCE", "MOTORCYCLE"],
+    fireman: ["CISTERNA", "ZAPOVJEDNO", "SUMSKO", "AUTOLJESTVE"],
+    policeman: ["MOTOCIKL", "KONTAKT", "OKLOPNO", "AUTOMOBIL"],
+    doctor: ["HITNA", "MOTOCIKL"],
     "": [],
   };
 

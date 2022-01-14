@@ -198,7 +198,7 @@ function AllRespondersMap(props) {
     }, []);
 
     if (location !== null) {
-      if (ability == "CISTERN") {
+      if (ability == "CISTERNA") {
         return (
           <Marker
             position={new L.latLng(location.x, location.y)}
@@ -206,7 +206,7 @@ function AllRespondersMap(props) {
           ></Marker>
         );
       }
-      if (ability == "COMMAND") {
+      if (ability == "ZAPOVJEDNO") {
         return (
           <Marker
             position={new L.latLng(location.x, location.y)}
@@ -214,7 +214,7 @@ function AllRespondersMap(props) {
           ></Marker>
         );
       }
-      if (ability == "FOREST") {
+      if (ability == "SUMSKO") {
         return (
           <Marker
             position={new L.latLng(location.x, location.y)}
@@ -222,7 +222,7 @@ function AllRespondersMap(props) {
           ></Marker>
         );
       }
-      if (ability == "LADDER") {
+      if (ability == "AUTOLJESTVE") {
         return (
           <Marker
             position={new L.latLng(location.x, location.y)}
@@ -230,7 +230,7 @@ function AllRespondersMap(props) {
           ></Marker>
         );
       }
-      if (ability == "MOTORCYCLE" && role == "policeman") {
+      if (ability == "MOTOCIKL" && role == "policeman") {
         return (
           <Marker
             position={new L.latLng(location.x, location.y)}
@@ -238,7 +238,7 @@ function AllRespondersMap(props) {
           ></Marker>
         );
       }
-      if (ability == "CONTACt") {
+      if (ability == "KONTAKT") {
         return (
           <Marker
             position={new L.latLng(location.x, location.y)}
@@ -246,7 +246,7 @@ function AllRespondersMap(props) {
           ></Marker>
         );
       }
-      if (ability == "ARMORED") {
+      if (ability == "OKLOPNO") {
         return (
           <Marker
             position={new L.latLng(location.x, location.y)}
@@ -254,7 +254,7 @@ function AllRespondersMap(props) {
           ></Marker>
         );
       }
-      if (ability == "CAR") {
+      if (ability == "AUTOMOBIL") {
         return (
           <Marker
             position={new L.latLng(location.x, location.y)}
@@ -262,7 +262,7 @@ function AllRespondersMap(props) {
           ></Marker>
         );
       }
-      if (ability == "AMBULANCE") {
+      if (ability == "HITNA") {
         return (
           <Marker
             position={new L.latLng(location.x, location.y)}
@@ -270,7 +270,7 @@ function AllRespondersMap(props) {
           ></Marker>
         );
       }
-      if (ability == "MOTORCYCLE") {
+      if (ability == "MOTOCIKL") {
         return (
           <Marker
             position={new L.latLng(location.x, location.y)}
