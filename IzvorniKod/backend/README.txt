@@ -15,3 +15,6 @@ Kliknite finish.
 
 U paketu com.example.halo112_generic koji se nalazi unutar src/main/java otvorite Halo112GenericApplication.java
 Backend možete pokrenut klikanjem na gumb "Run" (nalazi se u alatnoj traci, zelene boje s bijelim trokutićem unutra).
+
+Postojeća (dodana u aplikaciju čim se pokrene) korisnička imena su: dispatcher, admin, policajac1, policajac2, policajac3, vatrogasac1, vatrogasac2,
+vatrogasac3, doktor1, doktor2, doktor3, svima je password password.
