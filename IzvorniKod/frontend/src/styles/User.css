@@ -1,0 +1,14 @@
+.flex-container {
+    display: flex;
+}
+  
+.flex-container > div {
+    border: 3px;
+    width: 100px;
+    text-align: center;
+    font-size: 10px;
+}
+
+.link{
+    color: blue;
+}

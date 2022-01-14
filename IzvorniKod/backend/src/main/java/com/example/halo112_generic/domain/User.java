@@ -6,10 +6,23 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "myuser")
+//@MappedSuperclass
 public class User {
 
     public User(Long id, String userName, String photo, String passwordHash, String name, String surname, String phoneNumber, String email, String role, boolean confirmed) {
         this.id = id;
+        this.userName = userName;
+        this.photo = photo;
+        this.passwordHash = passwordHash;
+        this.name = name;
+        this.surname = surname;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.role = role;
+        this.confirmed = confirmed;
+    }
+    
+    public User(String userName, String photo, String passwordHash, String name, String surname, String phoneNumber, String email, String role, boolean confirmed) {
         this.userName = userName;
         this.photo = photo;
         this.passwordHash = passwordHash;
@@ -35,6 +48,7 @@ public class User {
     @Size(max=30)
     private String userName;
 
+    @Column(length = 64000000)
     private String photo;
 
     private String passwordHash;
@@ -47,12 +61,12 @@ public class User {
 
     private String email;
 
+    @NotNull
     private String role;
 
     private boolean confirmed;
 
-
-    public Long getId() {
+	public Long getId() {
         return id;
     }
 
