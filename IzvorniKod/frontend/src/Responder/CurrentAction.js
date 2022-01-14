@@ -233,20 +233,19 @@ function CurrentAction(props) {
 
   const [gallery, setGallery] = React.useState([]);
 
-    React.useEffect(()=>{
-        fetch('/akcije/gallery/'+props.currentAction_id)
-        .then(data => data.json())
-        .then(data => setGallery(data));
-    }, []);
+  React.useEffect(() => {
+    fetch("/akcije/gallery/" + props.currentAction_id)
+      .then((data) => data.json())
+      .then((data) => setGallery(data));
+  }, []);
 
+  const [akcija, setAkcija] = React.useState([]);
 
-    const [akcija, setAkcija] = React.useState([]);
-
-    React.useEffect(()=>{
-        fetch('/akcije/'+props.currentAction_id)
-        .then(data => data.json())
-        .then(data => setAkcija(data));
-    }, []);
+  React.useEffect(() => {
+    fetch("/akcije/" + props.currentAction_id)
+      .then((data) => data.json())
+      .then((data) => setAkcija(data));
+  }, []);
 
   return (
     <div className="Action map">
@@ -277,20 +276,13 @@ function CurrentAction(props) {
       </MapContainer>
       <Comments />
       <div className="img-container">
-<<<<<<< HEAD
         {gallery.map((photo) => (
           <img name="photo" src={photo} width="200" height="140"></img>
         ))}
-        {gallery.map((photo) => (
-          <img name="photo" src={photo} width="200" height="140"></img>
-        ))}
-=======
-      {gallery.map(photo=><img name ="photo" src={photo} width="200" height="140" ></img>)}
       </div>
       <div>
         <h3>Opis akcije:</h3>
         <p>{akcija.description}</p>
->>>>>>> 2f63972b3e51ad6ceca7efbeff49bb3ea061cbb8
       </div>
     </div>
   );
