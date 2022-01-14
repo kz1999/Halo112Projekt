@@ -7,13 +7,29 @@ function Comments() {
   const [user, setUser] = React.useState([]);
   const [form, setForm] = React.useState({ text: "" });
   const [location, setLocation] = React.useState([]);
+  const [current, setCurrent] = React.useState(null);
 
   React.useEffect(() => {
-    //setInterval(() => {
-    fetch("/komentari")
+    fetch("spasioci/current")
+      .then((spasioc) => spasioc.json())
+      .then((spasioc) => {
+        fetch("/akcije/" + spasioc.currentAction_id)
+          .then((data) => data.json())
+          .then((previousComments) => {
+            setPreviousComments(previousComments.comments);
+            console.log(previousComments);
+          });
+        //}, 1000);
+
+        setLocation(spasioc.location_id);
+        setCurrent(spasioc.currentAction_id);
+      });
+    fetch("/akcije/komentari/" + current)
       .then((data) => data.json())
-      .then((previousComments) => setPreviousComments(previousComments));
-    //}, 1000);
+      .then((previousComments) => {
+        //setPreviousComments(previousComments);
+        console.log(previousComments);
+      });
   }, []);
 
   React.useEffect(() => {
@@ -21,12 +37,6 @@ function Comments() {
       .then((data) => data.json())
       .then((user) => setUser(user));
   }, []);
-
-  React.useEffect(() => {
-    fetch("spasioci/current")
-      .then((spasioc) => spasioc.json())
-      .then((spasioc) => setLocation(spasioc.location_id));
-  });
 
   function onChange(event) {
     const { name, value } = event.target;
@@ -54,6 +64,12 @@ function Comments() {
     };
 
     fetch("/komentari", options).then((data) => console.log(data));
+
+    fetch("/akcije/comments/" + current, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
   }
 
   return (
@@ -62,13 +78,20 @@ function Comments() {
       <form className="UserForm" onSubmit={onSubmit}>
         <div className="FormRow">
           <label>Vaš komentar: </label>
-          <input className="form-field" name="text" onChange={onChange} value={form.text} />
+          <input
+            className="form-field"
+            name="text"
+            onChange={onChange}
+            value={form.text}
+          />
         </div>
-        <button className="submit-button" type="submit">Send</button>
+        <button className="submit-button" type="submit">
+          Send
+        </button>
       </form>
       {previousComments.map((comment) => (
-        <div  key={comment.id}>
-          {comment.owner}:{comment.text}
+        <div key={comment.id}>
+          {comment.userName}:{comment.text}
         </div>
       ))}
     </div>

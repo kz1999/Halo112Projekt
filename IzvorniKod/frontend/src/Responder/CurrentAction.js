@@ -199,7 +199,6 @@ function CurrentAction(props) {
               },
               body: JSON.stringify(data),
             };
-            console.log(options);
             fetch("/lokacija/" + spasioc.location_id, options)
               .then((response) => response.json())
               .then((data) => console.log(data));
