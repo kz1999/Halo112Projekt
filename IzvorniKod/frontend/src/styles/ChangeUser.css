@@ -1,6 +1,5 @@
-
-  .submit-button {
-    width: 40%;
+.submit-button {
+    width: 50%;
     background-color: #3b7de0;
     color: white;
     padding: 6px 4px;
@@ -11,28 +10,6 @@
     font-size: 14px;
   }
 
-  .title {
-      font-size: 30px;
-      padding-top: 25px;
-  }
-
-  .comment {
-    margin: auto;
-    margin-top: 5px;
-    width: 200px;
-  }
-
-  .UserFormComment {
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 350px;
-    margin: auto;
-    margin-top: 30px;
-    border-radius: 15px;
-    border-width: 1px;
-    border-color: #000000;
-    border-style: solid;
-}
 
 .form-field {
   background-color: white;
